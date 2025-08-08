@@ -213,6 +213,45 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!localStorage.getItem('cookieConsent')) {
         showCookieConsent();
     }
+
+    // Process section observer (sticky stepper sync)
+    (function initProcess(){
+      const items = document.querySelectorAll('.process .process-item');
+      const nav = document.querySelectorAll('.process .process-nav a');
+      if (!items.length || !nav.length) return;
+      const map = new Map();
+      items.forEach((it, idx) => { map.set(it.id, nav[idx]); });
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            items.forEach(i => i.classList.remove('is-inview'));
+            e.target.classList.add('is-inview');
+            nav.forEach(a => a.classList.remove('is-active'));
+            const a = map.get(e.target.id);
+            if (a) a.classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -40% 0px', threshold: 0.01 });
+      items.forEach(i => obs.observe(i));
+
+      // Smooth nav
+      nav.forEach(a => a.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }));
+    })();
+
+    // Reveal workflow steps
+    (function initWorkflowReveal(){
+      const steps = document.querySelectorAll('.wf-step');
+      if (!steps.length) return;
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+      steps.forEach(s=>obs.observe(s));
+    })();
 });
 
 // Tabs logic
@@ -274,30 +313,64 @@ function initDrawOnScroll() {
 
 // Phasen-Expander (horizontal)
 (function initPhases(){
+    const section = document.querySelector('#phases');
     const track = document.querySelector('.phases-track');
     const panels = document.querySelectorAll('.phase-panel');
     const progress = document.querySelector('.phases-progress');
-    if (!track || panels.length === 0) return;
+    if (!track) return;
+
     const setActive = (id) => {
         track.querySelectorAll('.phase-card').forEach(b => {
-            b.classList.toggle('is-active', b.getAttribute('data-phase') === id);
-            b.setAttribute('aria-selected', b.getAttribute('data-phase') === id ? 'true' : 'false');
-        });
-        panels.forEach(p => {
-            const active = p.id === `phase-${id}`;
-            p.classList.toggle('hidden', !active);
-            p.classList.toggle('show', active);
-            p.setAttribute('aria-hidden', String(!active));
+            const active = b.getAttribute('data-phase') === id;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-selected', active ? 'true' : 'false');
+            b.setAttribute('aria-expanded', active ? 'true' : 'false');
         });
         if (progress) {
             const pct = { '1': 25, '2': 50, '3': 75, '4': 100 }[id] || 25;
             progress.style.width = pct + '%';
         }
     };
+
+    // Wenn alte Panels existieren, ignorieren; wir nutzen Beschreibungen in Cards
+
+    let autoplayTimer = null;
+    let current = '1';
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const usingCssAnimation = window.matchMedia('(min-width: 1024px)').matches;
+
+    const startAutoplay = () => {
+        if (autoplayTimer || prefersReduced || usingCssAnimation) return;
+        autoplayTimer = setInterval(() => {
+            const next = ({ '1': '2', '2': '3', '3': '4', '4': '1' })[current] || '2';
+            current = next;
+            setActive(current);
+            const btn = track.querySelector(`.phase-card[data-phase="${current}"]`);
+            if (btn) btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }, 4000);
+    };
+    const stopAutoplay = () => { clearInterval(autoplayTimer); autoplayTimer = null; };
+
+    // Initial
+    setActive(current);
+    if (section?.dataset.auto === 'true') startAutoplay();
+
+    ['click','touchstart','mouseenter'].forEach(evt => {
+        track.addEventListener(evt, () => { current = document.querySelector('.phase-card.is-active')?.getAttribute('data-phase') || current; stopAutoplay(); }, { passive: true });
+    });
+
+    const visObs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+            if (e.isIntersecting && section?.dataset.auto === 'true') startAutoplay(); else stopAutoplay();
+        });
+    }, { threshold: 0.25 });
+    visObs.observe(section);
+
     track.addEventListener('click', (e) => {
         const btn = e.target.closest('.phase-card');
         if (!btn) return;
         const id = btn.getAttribute('data-phase');
+        current = id;
         setActive(id);
         btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     });
