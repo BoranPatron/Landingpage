@@ -434,8 +434,8 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 /* CI-Logo: nutzt PNG als Maske und färbt mit Primär/Akzent */
 .ci-logo {
     display: inline-block;
-    width: 46px;
-    height: 46px;
+    width: 56px;
+    height: 56px;
     background: var(--ci-primary);
     -webkit-mask-image: url('logo.png');
     mask-image: url('logo.png');
@@ -453,7 +453,7 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Responsive Varianten */
 @media (min-width: 640px) {
-    .ci-logo { width: 54px; height: 54px; }
+    .ci-logo { width: 64px; height: 64px; }
 } 
 
 /* CI Theme: dunkler Hintergrund, helle Typografie, Glas-Panels */
