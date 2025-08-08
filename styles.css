@@ -561,10 +561,9 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .phase-title { display: block; font-weight: 700; color: #f7fafc; }
 .phase-sub { display: block; color: #e6ebef; font-size: .875rem; opacity: .85; }
 .phase-panels { margin-top: 1rem; }
-.phase-panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; }
-.phase-panel .panel-inner { padding: 1.5rem; }
-.phase-panel .list { margin-top: .75rem; color: #e6ebef; }
-.phase-panel .list li { list-style: disc; margin-left: 1.25rem; }
+.phase-panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; box-shadow: 0 24px 60px -30px rgba(0,0,0,.55); transform: translateZ(0); transition: opacity .25s ease, transform .25s ease; }
+.phase-panel.show { opacity: 1; transform: translateY(0); }
+.phase-panel.hidden { opacity: .85; transform: translateY(6px); }
 
 /* FAQ Accordion */
 .accordion { display: grid; gap: 8px; }
@@ -667,3 +666,6 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Small icon bubble inside card */
 .phases-modern .phase-card .icon { width: 28px; height: 28px; border-radius: 999px; background: rgba(255,255,255,.12); display: inline-flex; align-items:center; justify-content:center; margin-right:.4rem; } 
+
+/* Micro gradient on cards */
+.phases-modern .phase-card { background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); } 
