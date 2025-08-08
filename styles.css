@@ -533,6 +533,10 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .btn-primary-alt { display: inline-block; color: #0b1114; background: var(--ci-accent); padding: .75rem 1rem; border-radius: .75rem; font-weight: 700; }
 .btn-primary-alt:hover { filter: brightness(0.95); }
 
+/* Kontrastreiche Variante für dunklen Untergrund */
+.btn-primary-dark { display: inline-block; color: #ffffff; background: var(--ci-primary); padding: .75rem 1rem; border-radius: .75rem; font-weight: 700; box-shadow: 0 10px 20px -10px rgba(0,0,0,.5); }
+.btn-primary-dark:hover { background: var(--ci-primary-dark); }
+
 /* Hover lift */
 .hover-lift { transition: transform .25s ease, box-shadow .25s ease; }
 .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 18px 45px -18px rgba(0,0,0,.45); }
