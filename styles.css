@@ -579,7 +579,7 @@ hr, .divider { border-color: var(--ci-accent) !important; }
     inset: 0;
     background:
       linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.55) 100%),
-      url('Design%20ohne%20Titel%20%2816%29.png');
+      url('./Design%20ohne%20Titel%20%2816%29.png');
     background-size: cover;
     background-position: center;
     opacity: 0.9;
