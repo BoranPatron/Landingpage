@@ -30,15 +30,8 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="#" class="flex items-center space-x-3">
-                    <span class="ci-logo ci-logo--gradient hidden sm:inline-block"></span>
-                    <div class="flex-shrink-0">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-8 h-8 bg-[var(--ci-primary)] rounded-lg flex items-center justify-center">
-                                <span class="text-white font-bold text-lg">B</span>
-                            </div>
-                            <span class="text-xl font-bold text-gray-900">BuildWise</span>
-                        </div>
-                    </div>
+                    <span class="ci-logo ci-logo--gradient"></span>
+                    <span class="text-xl font-bold text-gray-900">BuildWise</span>
                 </a>
                 </div>
                 
@@ -308,6 +301,85 @@
         </div>
     </section>
 
+    <!-- Phases Section (modern) directly after Features -->
+    <section id="phases" class="py-20 phases-modern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">So läuft es mit BuildWise</h2>
+                <p class="text-lg text-gray-600">Vom Bedarf zur Vergabe in vier slicken Schritten.</p>
+            </div>
+            <div class="phases-wrapper" data-aos="fade-up">
+                <div class="phases-rail">
+                    <div class="phases-progress" style="width:25%"></div>
+                </div>
+                <div class="phases-track justify-center" role="tablist" aria-label="Projektphasen">
+                    <button class="phase-card is-active" role="tab" aria-selected="true" data-phase="1">
+                        <span class="phase-index">01</span>
+                        <span class="phase-title">Bedarf</span>
+                    </button>
+                    <button class="phase-card" role="tab" aria-selected="false" data-phase="2">
+                        <span class="phase-index">02</span>
+                        <span class="phase-title">Ausschreiben</span>
+                    </button>
+                    <button class="phase-card" role="tab" aria-selected="false" data-phase="3">
+                        <span class="phase-index">03</span>
+                        <span class="phase-title">Angebote</span>
+                    </button>
+                    <button class="phase-card" role="tab" aria-selected="false" data-phase="4">
+                        <span class="phase-index">04</span>
+                        <span class="phase-title">Vergabe</span>
+                    </button>
+                </div>
+                <div class="phase-panels">
+                    <div class="phase-panel" id="phase-1" role="tabpanel">
+                        <div class="panel-inner">
+                            <h3>Bedarf erfassen</h3>
+                            <p>Leistungen, Termine, Budget, Dokumente – alles strukturiert in wenigen Minuten erfasst.</p>
+                            <ul class="list">
+                                <li>Checklisten für Gewerke</li>
+                                <li>Dokument-Uploads</li>
+                                <li>Automatische Qualitätsprüfung</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-panel hidden" id="phase-2" role="tabpanel" aria-hidden="true">
+                        <div class="panel-inner">
+                            <h3>Ausschreiben</h3>
+                            <p>Mit Vorlagen und unserem Matching erreichst du die passenden Dienstleister.</p>
+                            <ul class="list">
+                                <li>Vorlagenbibliothek</li>
+                                <li>Gewerk-/Radiusfilter</li>
+                                <li>Einladung mit einem Klick</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-panel hidden" id="phase-3" role="tabpanel" aria-hidden="true">
+                        <div class="panel-inner">
+                            <h3>Angebote</h3>
+                            <p>Transparente Vergleiche, Nachfragen direkt im Chat, revisionssicher dokumentiert.</p>
+                            <ul class="list">
+                                <li>Vergleichsmatrix</li>
+                                <li>Chat & Rückfragen</li>
+                                <li>Freigaben & Protokolle</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-panel hidden" id="phase-4" role="tabpanel" aria-hidden="true">
+                        <div class="panel-inner">
+                            <h3>Vergabe</h3>
+                            <p>Vertrag, Start, Übergabe ins Projekt – alles aus einer Hand.</p>
+                            <ul class="list">
+                                <li>Zusage-Workflow</li>
+                                <li>Automatisierte Dokumente</li>
+                                <li>Übergabe an Projektmanagement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
     <section id="pricing" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -566,86 +638,6 @@
                                 <div>Samstag: 9:00 - 12:00</div>
                                 <div>Sonntag: Geschlossen</div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Phases Section -->
-    <section id="phases" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">So läuft es mit BuildWise</h2>
-                <p class="text-lg text-gray-600">Vom Bedarf zur Vergabe in vier schlanken Schritten.</p>
-            </div>
-            <div class="phases-wrapper" data-aos="fade-up">
-                <div class="phases-track" role="tablist" aria-label="Projektphasen">
-                    <button class="phase-card is-active" role="tab" aria-selected="true" data-phase="1">
-                        <span class="phase-index">01</span>
-                        <span class="phase-title">Bedarf erfassen</span>
-                        <span class="phase-sub">Scope & Kriterien</span>
-                    </button>
-                    <button class="phase-card" role="tab" aria-selected="false" data-phase="2">
-                        <span class="phase-index">02</span>
-                        <span class="phase-title">Ausschreiben</span>
-                        <span class="phase-sub">Vorlage & Matching</span>
-                    </button>
-                    <button class="phase-card" role="tab" aria-selected="false" data-phase="3">
-                        <span class="phase-index">03</span>
-                        <span class="phase-title">Angebote</span>
-                        <span class="phase-sub">Vergleichen & Chat</span>
-                    </button>
-                    <button class="phase-card" role="tab" aria-selected="false" data-phase="4">
-                        <span class="phase-index">04</span>
-                        <span class="phase-title">Vergabe</span>
-                        <span class="phase-sub">Zusage & Start</span>
-                    </button>
-                </div>
-                <div class="phase-panels">
-                    <div class="phase-panel" id="phase-1" role="tabpanel">
-                        <div class="panel-inner">
-                            <h3>Bedarf erfassen</h3>
-                            <p>Leistungen, Termine, Budget, Dokumente – alles strukturiert in wenigen Minuten erfasst.</p>
-                            <ul class="list">
-                                <li>Checklisten für Gewerke</li>
-                                <li>Dokument-Uploads</li>
-                                <li>Automatische Qualitätsprüfung</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="phase-panel hidden" id="phase-2" role="tabpanel" aria-hidden="true">
-                        <div class="panel-inner">
-                            <h3>Ausschreiben</h3>
-                            <p>Mit Vorlagen und unserem Matching erreichst du die passenden Dienstleister.</p>
-                            <ul class="list">
-                                <li>Vorlagenbibliothek</li>
-                                <li>Gewerk-/Radiusfilter</li>
-                                <li>Einladung mit einem Klick</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="phase-panel hidden" id="phase-3" role="tabpanel" aria-hidden="true">
-                        <div class="panel-inner">
-                            <h3>Angebote</h3>
-                            <p>Transparente Vergleiche, Nachfragen direkt im Chat, revisionssicher dokumentiert.</p>
-                            <ul class="list">
-                                <li>Vergleichsmatrix</li>
-                                <li>Chat & Rückfragen</li>
-                                <li>Freigaben & Protokolle</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="phase-panel hidden" id="phase-4" role="tabpanel" aria-hidden="true">
-                        <div class="panel-inner">
-                            <h3>Vergabe</h3>
-                            <p>Vertrag, Start, Übergabe ins Projekt – alles aus einer Hand.</p>
-                            <ul class="list">
-                                <li>Zusage-Workflow</li>
-                                <li>Automatisierte Dokumente</li>
-                                <li>Übergabe an Projektmanagement</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
