@@ -669,3 +669,49 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Micro gradient on cards */
 .phases-modern .phase-card { background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); } 
+
+/* Edge fade for horizontal scroll areas */
+.scroll-fade { position: relative; }
+.scroll-fade::before, .scroll-fade::after { content: ""; position: absolute; top: 0; bottom: 0; width: 28px; pointer-events: none; z-index: 2; }
+.scroll-fade::before { left: 0; background: linear-gradient(90deg, rgba(31,41,55,1), rgba(31,41,55,0)); }
+.scroll-fade::after { right: 0; background: linear-gradient(270deg, rgba(31,41,55,1), rgba(31,41,55,0)); }
+
+/* Scroll-snap for phases */
+.phases-track { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.phases-track .phase-card { scroll-snap-align: start; }
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  /* Navbar spacing */
+  #navbar .h-16 { height: 3.25rem; }
+
+  /* Hero spacing & typography */
+  .hero-section { padding-top: 4.75rem !important; padding-bottom: 2rem !important; }
+  .hero-section h1 { font-size: 1.9rem !important; line-height: 1.2 !important; }
+  .hero-section p { font-size: 1rem !important; }
+  .slogan-pill { flex-wrap: wrap; text-align: center; }
+
+  /* CTA full width on mobile */
+  .btn-cta, .btn-primary-dark { width: 100%; justify-content: center; }
+
+  /* Cards (disable heavy effects) */
+  .tilt-card { transform: none !important; }
+  .tilt-card .w-12 { transform: none !important; }
+
+  /* Phases: larger touch targets, snap, rail subtle */
+  .phases-modern .phases-rail { height: 4px; margin-bottom: 10px; }
+  .phases-track { gap: 10px; overflow-x: auto; }
+  .phases-modern .phase-card { min-width: 82vw; padding: 1rem 1.1rem; }
+  .phases-modern .phase-index { font-size: .95rem; }
+  .phases-modern .phase-title { font-size: 1.05rem; }
+  .phases-modern .phase-sub { font-size: .9rem; opacity: .9; }
+  .phase-panel .panel-inner { padding: 1.1rem; }
+
+  /* Footer stack */
+  footer .grid { grid-template-columns: 1fr !important; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+} 
