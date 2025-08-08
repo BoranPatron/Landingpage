@@ -434,8 +434,8 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 /* CI-Logo: nutzt PNG als Maske und färbt mit Primär/Akzent */
 .ci-logo {
     display: inline-block;
-    width: 36px;
-    height: 36px;
+    width: 46px;
+    height: 46px;
     background: var(--ci-primary);
     -webkit-mask-image: url('logo.png');
     mask-image: url('logo.png');
@@ -453,7 +453,7 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Responsive Varianten */
 @media (min-width: 640px) {
-    .ci-logo { width: 40px; height: 40px; }
+    .ci-logo { width: 54px; height: 54px; }
 } 
 
 /* CI Theme: dunkler Hintergrund, helle Typografie, Glas-Panels */
@@ -624,3 +624,9 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 }
 .slogan-pill .sep { opacity: .6; }
 .slogan-pill .accent { color: var(--ci-accent); } 
+
+/* Phases modern */
+.phases-modern .phases-rail { position: relative; height: 6px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden; margin-bottom: 18px; }
+.phases-modern .phases-progress { position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, var(--ci-accent), #ffe08a); border-radius: 999px; transition: width .3s ease; }
+.phases-modern .phases-track { display: grid; grid-auto-flow: column; gap: 12px; }
+.phases-modern .phase-card { min-width: 160px; backdrop-filter: blur(8px); } 

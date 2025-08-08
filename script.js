@@ -276,6 +276,7 @@ function initDrawOnScroll() {
 (function initPhases(){
     const track = document.querySelector('.phases-track');
     const panels = document.querySelectorAll('.phase-panel');
+    const progress = document.querySelector('.phases-progress');
     if (!track || panels.length === 0) return;
     track.addEventListener('click', (e) => {
         const btn = e.target.closest('.phase-card');
@@ -290,6 +291,10 @@ function initDrawOnScroll() {
             p.classList.toggle('hidden', !active);
             p.setAttribute('aria-hidden', String(!active));
         });
+        if (progress) {
+            const pct = { '1': 25, '2': 50, '3': 75, '4': 100 }[id] || 25;
+            progress.style.width = pct + '%';
+        }
         // sanft zum aktiven Tab scrollen
         btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     });
