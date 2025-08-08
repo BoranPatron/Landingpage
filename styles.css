@@ -629,8 +629,41 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .slogan-pill .sep { opacity: .6; }
 .slogan-pill .accent { color: var(--ci-accent); } 
 
+/* Peppiger CTA-Button */
+.btn-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .9rem 1.25rem;
+  border-radius: .9rem;
+  color: #0b1114;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffd35a 0%, #f9c74f 40%, #ffe08a 100%);
+  box-shadow: 0 12px 30px -12px rgba(249, 199, 79, .55);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.btn-cta:hover { transform: translateY(-2px); box-shadow: 0 18px 45px -18px rgba(249,199,79,.7); }
+.btn-cta::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,.0) 0%, rgba(255,255,255,.35) 50%, rgba(255,255,255,.0) 100%);
+  transform: translateX(-120%);
+  transition: transform .7s ease;
+}
+.btn-cta:hover::after { transform: translateX(120%); }
+
 /* Phases modern */
 .phases-modern .phases-rail { position: relative; height: 6px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden; margin-bottom: 18px; }
 .phases-modern .phases-progress { position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, var(--ci-accent), #ffe08a); border-radius: 999px; transition: width .3s ease; }
 .phases-modern .phases-track { display: grid; grid-auto-flow: column; gap: 12px; }
 .phases-modern .phase-card { min-width: 160px; backdrop-filter: blur(8px); } 
+
+/* Phases modern – pep up */
+.phases-modern .phase-card { position: relative; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06); border-radius: 1rem; padding: 1rem 1.1rem; }
+.phases-modern .phase-card.is-active { background: linear-gradient(135deg, rgba(81,100,111,0.55), rgba(249,199,79,0.22)); box-shadow: 0 18px 45px -18px rgba(0,0,0,.5); }
+.phases-modern .phase-card::before { content: ""; position: absolute; left: .9rem; top: .9rem; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.25); }
+.phases-modern .phase-card.is-active::before { background: var(--ci-accent); box-shadow: 0 0 0 6px rgba(249,199,79,.18); }
+.phases-modern .phase-title { font-weight: 800; }
+
+/* Small icon bubble inside card */
+.phases-modern .phase-card .icon { width: 28px; height: 28px; border-radius: 999px; background: rgba(255,255,255,.12); display: inline-flex; align-items:center; justify-content:center; margin-right:.4rem; } 
