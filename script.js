@@ -10,6 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
         offset: 100
     });
 
+    // Tabs (Bauträger/Dienstleister)
+    initTabs();
+
+    // Tilt-Effekt für Karten
+    initTilt('.tilt-card');
+
+    // Blueprint-Outline zeichnen, sobald sichtbar
+    initDrawOnScroll();
+
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     let lastScrollTop = 0;
@@ -62,12 +71,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form handling
-    const contactForm = document.querySelector('form');
+    // Form handling (contact)
+    const contactForm = document.querySelector('section#contact form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             handleFormSubmission(this);
+        });
+    }
+
+    // Beta form handling
+    const betaForm = document.getElementById('beta-form');
+    if (betaForm) {
+        betaForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('beta-email');
+            const email = (emailInput?.value || '').trim();
+            const isValid = /.+@.+\..+/.test(email);
+            if (isValid) {
+                showNotification('Danke! Wir melden uns in Kürze mit deinem Beta-Zugang.', 'success');
+                trackEvent('beta_signup', { email });
+                betaForm.reset();
+            } else {
+                showNotification('Bitte gib eine gültige E-Mail-Adresse ein.', 'error');
+            }
         });
     }
 
@@ -121,11 +148,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Parallax effect for hero section
-    const heroSection = document.querySelector('.hero-gradient');
+    const heroSection = document.querySelector('.hero-section');
     if (heroSection) {
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
+            const rate = scrolled * -0.3;
             heroSection.style.transform = `translateY(${rate}px)`;
         });
     }
@@ -187,6 +214,106 @@ document.addEventListener('DOMContentLoaded', function() {
         showCookieConsent();
     }
 });
+
+// Tabs logic
+function initTabs() {
+    const container = document.getElementById('audience-tabs');
+    if (!container) return;
+    const buttons = container.querySelectorAll('.tab-btn');
+    const panels = [
+        document.getElementById('tab-bautraeger'),
+        document.getElementById('tab-dienstleister')
+    ];
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const tab = btn.getAttribute('data-tab');
+            panels.forEach(p => {
+                const isActive = p.id === `tab-${tab}`;
+                p.classList.toggle('hidden', !isActive);
+                p.setAttribute('aria-hidden', String(!isActive));
+            });
+        });
+    });
+}
+
+// Tilt effect for cards
+function initTilt(selector) {
+    const cards = document.querySelectorAll(selector);
+    const strength = 8;
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const rx = ((y - rect.height / 2) / rect.height) * -strength;
+            const ry = ((x - rect.width / 2) / rect.width) * strength;
+            card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        });
+    });
+}
+
+// Draw-on-scroll for blueprint SVG
+function initDrawOnScroll() {
+    const svg = document.querySelector('.draw-on-scroll');
+    if (!svg) return;
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                svg.classList.add('is-drawn');
+                obs.unobserve(svg);
+            }
+        });
+    }, { threshold: 0.2 });
+    obs.observe(svg);
+}
+
+// Phasen-Expander (horizontal)
+(function initPhases(){
+    const track = document.querySelector('.phases-track');
+    const panels = document.querySelectorAll('.phase-panel');
+    if (!track || panels.length === 0) return;
+    track.addEventListener('click', (e) => {
+        const btn = e.target.closest('.phase-card');
+        if (!btn) return;
+        const id = btn.getAttribute('data-phase');
+        track.querySelectorAll('.phase-card').forEach(b => {
+            b.classList.toggle('is-active', b === btn);
+            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        });
+        panels.forEach(p => {
+            const active = p.id === `phase-${id}`;
+            p.classList.toggle('hidden', !active);
+            p.setAttribute('aria-hidden', String(!active));
+        });
+        // sanft zum aktiven Tab scrollen
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    });
+})();
+
+// FAQ Accordion (ein Panel offen)
+(function initAccordion(){
+    const root = document.querySelector('[data-accordion]');
+    if (!root) return;
+    root.addEventListener('click', (e) => {
+        const header = e.target.closest('.acc-header');
+        if (!header) return;
+        const expanded = header.getAttribute('aria-expanded') === 'true';
+        // alle schließen
+        root.querySelectorAll('.acc-header').forEach(h => h.setAttribute('aria-expanded','false'));
+        root.querySelectorAll('.acc-panel').forEach(p => p.hidden = true);
+        // angeklicktes öffnen, wenn vorher zu
+        if (!expanded) {
+            header.setAttribute('aria-expanded','true');
+            const panel = header.nextElementSibling;
+            if (panel && panel.classList.contains('acc-panel')) panel.hidden = false;
+        }
+    });
+})();
 
 // Form submission handler
 function handleFormSubmission(form) {
@@ -418,7 +545,7 @@ trackEvent('page_view', {
 
 // Track button clicks
 document.addEventListener('click', function(e) {
-    if (e.target.matches('a[href="#register"], button')) {
+    if (e.target.matches('a[href="#beta"], a[href="#problem-solution"], button')) {
         trackEvent('button_click', {
             button_text: e.target.textContent.trim(),
             button_type: e.target.tagName.toLowerCase()
