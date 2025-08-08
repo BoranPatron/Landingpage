@@ -407,3 +407,220 @@ html {
         transition-duration: 0.01ms !important;
     }
 } 
+
+:root {
+    --ci-primary: #51646f; /* Hauptfarbe */
+    --ci-primary-dark: #41535c; /* Hover/Darker */
+    --ci-accent: #f9c74f; /* Akzent-Gelb */
+    --ci-accent-dark: #e8b73e;
+}
+
+/* Override der häufig genutzten Tailwind-Orange-Klassen auf CI-Farben */
+.text-orange-500, .text-orange-600, .text-orange-700 { color: var(--ci-accent) !important; }
+.border-orange-500, .border-orange-600, .border-orange-700 { border-color: var(--ci-accent) !important; }
+
+.bg-orange-500, .bg-orange-600, .bg-orange-700 { background-color: var(--ci-primary) !important; }
+.hover\:bg-orange-500:hover, .hover\:bg-orange-600:hover, .hover\:bg-orange-700:hover { background-color: var(--ci-primary-dark) !important; }
+
+.text-orange-500:hover, .text-orange-600:hover { color: var(--ci-accent-dark) !important; }
+.hover\:text-orange-500:hover, .hover\:text-orange-600:hover { color: var(--ci-accent-dark) !important; }
+
+/* Schattenfarbe für Buttons an CI angepasst */
+.shadow-orange-600\/20 { box-shadow: 0 10px 25px -10px rgba(81, 100, 111, 0.25) !important; }
+
+/* Dünne Zierlinien in Akzent-Gelb */
+hr, .divider { border-color: var(--ci-accent) !important; } 
+
+/* CI-Logo: nutzt PNG als Maske und färbt mit Primär/Akzent */
+.ci-logo {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background: var(--ci-primary);
+    -webkit-mask-image: url('logo.png');
+    mask-image: url('logo.png');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+.ci-logo--gradient {
+    background: linear-gradient(135deg, var(--ci-primary) 35%, var(--ci-accent) 100%);
+}
+
+/* Responsive Varianten */
+@media (min-width: 640px) {
+    .ci-logo { width: 40px; height: 40px; }
+} 
+
+/* CI Theme: dunkler Hintergrund, helle Typografie, Glas-Panels */
+.ci-theme {
+    /* Layered radial gradient in Primärabstufungen */
+    background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(255,255,255,0.06), transparent 60%),
+        radial-gradient(900px 600px at 100% 0%, rgba(249, 199, 79, 0.10), transparent 50%),
+        linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%);
+    color: #f2f5f7;
+    min-height: 100vh;
+}
+
+/* Typografie-Overrides für gängige Tailwind-Grautöne innerhalb des Themes */
+.ci-theme .text-gray-900 { color: #f7fafc !important; }
+.ci-theme .text-gray-800 { color: #edf2f7 !important; }
+.ci-theme .text-gray-700 { color: #e6ebef !important; }
+.ci-theme .text-gray-600 { color: #dde3e8 !important; }
+.ci-theme .text-gray-500 { color: #cfd6dc !important; }
+
+/* Entferne weiße Flächen -> Glas-Panels */
+.ci-theme .bg-white, .ci-theme .bg-gray-50, .ci-theme .bg-gray-100 {
+    background: rgba(255,255,255,0.06) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+/* Sektionen mit hellem Hintergrund auf dunkel umstellen */
+.ci-theme section { background: transparent !important; }
+.ci-theme footer { background: rgba(0,0,0,0.35) !important; }
+
+/* Navbar auf dunklem Theme */
+.ci-theme #navbar { background: rgba(0,0,0,0.25) !important; border-color: rgba(255,255,255,0.08) !important; }
+.ci-theme .navbar-scrolled { background: rgba(0,0,0,0.45) !important; }
+
+/* Links und Interaktionen */
+.ci-theme a { color: var(--ci-accent); }
+.ci-theme a:hover { color: var(--ci-accent-dark); }
+
+/* Buttons – bereits via Orange-Overrides auf Primär/Akzent umgestellt */
+.ci-theme .border-gray-100, .ci-theme .border-gray-200 { border-color: rgba(255,255,255,0.12) !important; }
+
+/* Karten-Highlights */
+.ci-theme .hover\:shadow-lg:hover, .ci-theme .hover\:shadow-xl:hover {
+    box-shadow: 0 20px 50px -12px rgba(0,0,0,0.45) !important;
+}
+
+/* Beta-CTA Hintergrund dezent verstärken */
+.ci-theme #beta { background: linear-gradient(160deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25)) !important; }
+
+/* Hero-Text über dunklem Hintergrund besser lesbar */
+.ci-theme .hero-section h1, .ci-theme .hero-section p { color: #f7fafc !important; } 
+
+/* Blueprint Hero */
+.blueprint-hero { position: relative; }
+.blueprint-hero .blueprint-grid {
+    background-image:
+        linear-gradient(0deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+.blueprint-hero .draw-on-scroll { color: var(--ci-accent); opacity: 0.8; }
+
+/* Tabs */
+.tab-btn {
+    color: var(--ci-accent);
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.04);
+    padding: 0.5rem 1rem; margin: 0 0.25rem;
+    border-radius: 999px; font-weight: 600;
+    transition: all .2s ease;
+}
+.tab-btn:hover { background: rgba(255,255,255,0.08); }
+.tab-btn.active { background: var(--ci-primary); color: #fff; border-color: transparent; }
+.tab-panel .panel-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; padding: 2rem; }
+.badge { background: rgba(249,199,79,0.15); color: var(--ci-accent); padding: .25rem .6rem; border-radius: 999px; font-weight: 600; font-size: .875rem; }
+.btn-primary-alt { display: inline-block; color: #0b1114; background: var(--ci-accent); padding: .75rem 1rem; border-radius: .75rem; font-weight: 700; }
+.btn-primary-alt:hover { filter: brightness(0.95); }
+
+/* Hover lift */
+.hover-lift { transition: transform .25s ease, box-shadow .25s ease; }
+.hover-lift:hover { transform: translateY(-4px); box-shadow: 0 18px 45px -18px rgba(0,0,0,.45); }
+
+/* Tilt cards (3D-Parallax per JS) */
+.tilt-card { transform-style: preserve-3d; will-change: transform; }
+.tilt-card .w-12 { transform: translateZ(20px); }
+
+/* SVG Draw-on-scroll */
+.draw-on-scroll path { stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 1.6s ease; }
+.draw-on-scroll.is-drawn path { stroke-dashoffset: 0; } 
+
+/* Phases (horizontaler Expander) */
+.phases-wrapper { overflow: hidden; }
+.phases-track { display: grid; grid-auto-flow: column; gap: 12px; overflow-x: auto; padding-bottom: 10px; }
+.phases-track::-webkit-scrollbar { height: 6px; }
+.phases-track::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 999px; }
+.phase-card { min-width: 220px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; padding: 1rem; text-align: left; cursor: pointer; transition: transform .2s ease, background .2s ease; }
+.phase-card:hover { transform: translateY(-3px); }
+.phase-card.is-active { background: linear-gradient(135deg, rgba(81,100,111,0.5), rgba(249,199,79,0.2)); border-color: rgba(255,255,255,0.18); }
+.phase-index { font-weight: 800; color: var(--ci-accent); }
+.phase-title { display: block; font-weight: 700; color: #f7fafc; }
+.phase-sub { display: block; color: #e6ebef; font-size: .875rem; opacity: .85; }
+.phase-panels { margin-top: 1rem; }
+.phase-panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; }
+.phase-panel .panel-inner { padding: 1.5rem; }
+.phase-panel .list { margin-top: .75rem; color: #e6ebef; }
+.phase-panel .list li { list-style: disc; margin-left: 1.25rem; }
+
+/* FAQ Accordion */
+.accordion { display: grid; gap: 8px; }
+.acc-header { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: .75rem; font-weight: 600; }
+.acc-header:hover { background: rgba(255,255,255,0.1); }
+.acc-icon { color: var(--ci-accent); font-weight: 800; margin-left: 1rem; }
+.acc-panel { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: .75rem; padding: 1rem 1.25rem; color: #e6ebef; } 
+
+/* Hero mit Foto und Wasserzeichen-Logo */
+.hero-section.has-photo {
+    position: relative;
+}
+.hero-section.has-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.55) 100%),
+      url('Design%20ohne%20Titel%20%2816%29.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 0;
+}
+.hero-section.has-photo::after {
+    content: "";
+    position: absolute;
+    right: 3vw;
+    bottom: 3vh;
+    width: min(28vw, 420px);
+    height: min(28vw, 420px);
+    background-image: url('logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.07;
+    filter: grayscale(100%) contrast(105%);
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    z-index: 1;
+}
+.hero-section.has-photo > * { position: relative; z-index: 2; }
+
+/* Reduziere die Blueprint-Gitter-Deckkraft, falls vorhanden */
+.hero-section.has-photo .blueprint-grid { opacity: 0.08; } 
+
+/* Slogan Pill */
+.slogan-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    padding: .55rem 1rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: #f7fafc;
+    font-weight: 700;
+    letter-spacing: .2px;
+    backdrop-filter: blur(8px);
+}
+.slogan-pill .sep { opacity: .6; }
+.slogan-pill .accent { color: var(--ci-accent); } 

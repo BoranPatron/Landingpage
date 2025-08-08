@@ -21,21 +21,24 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
-<body class="font-inter bg-white">
+<body class="font-inter ci-theme">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50 transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 w-full backdrop-blur-sm border-b border-gray-100 z-50 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center">
+                    <a href="#" class="flex items-center space-x-3">
+                    <span class="ci-logo ci-logo--gradient hidden sm:inline-block"></span>
                     <div class="flex-shrink-0">
                         <div class="flex items-center space-x-2">
-                            <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center">
+                            <div class="w-8 h-8 bg-[var(--ci-primary)] rounded-lg flex items-center justify-center">
                                 <span class="text-white font-bold text-lg">B</span>
                             </div>
                             <span class="text-xl font-bold text-gray-900">BuildWise</span>
                         </div>
                     </div>
+                </a>
                 </div>
                 
                 <!-- Desktop Navigation -->
@@ -43,6 +46,8 @@
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="#features" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Features</a>
                         <a href="#pricing" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Preise</a>
+                        <a href="#phases" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Ablauf</a>
+                        <a href="#faq" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">FAQ</a>
                         <a href="#about" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Über uns</a>
                         <a href="#contact" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Kontakt</a>
                     </div>
@@ -51,7 +56,7 @@
                 <!-- CTA Buttons -->
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="#login" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Anmelden</a>
-                    <a href="#register" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Kostenlos starten</a>
+                    <a href="#beta" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Beta-Zugang sichern!</a>
                 </div>
                 
                 <!-- Mobile menu button -->
@@ -70,42 +75,146 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100">
                 <a href="#features" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Features</a>
                 <a href="#pricing" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Preise</a>
+                <a href="#phases" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Ablauf</a>
+                <a href="#faq" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">FAQ</a>
                 <a href="#about" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Über uns</a>
                 <a href="#contact" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Kontakt</a>
                 <div class="pt-4 space-y-2">
                     <a href="#login" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Anmelden</a>
-                    <a href="#register" class="bg-orange-500 hover:bg-orange-600 text-white block px-3 py-2 rounded-lg text-base font-medium">Kostenlos starten</a>
+                    <a href="#beta" class="bg-orange-500 hover:bg-orange-600 text-white block px-3 py-2 rounded-lg text-base font-medium">Beta-Zugang sichern!</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-20 pb-16 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="pt-28 pb-24 relative overflow-hidden hero-section blueprint-hero has-photo">
+        <div class="absolute inset-0 blueprint-grid pointer-events-none" aria-hidden="true"></div>
+        <div class="absolute -right-10 -top-6 opacity-[0.18] hidden lg:block pointer-events-none" aria-hidden="true">
+            <!-- Subtiles Bau-Outline SVG, wird on-scroll gezeichnet -->
+            <svg class="draw-on-scroll" width="520" height="360" viewBox="0 0 520 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 300 L140 220 L260 300 L260 140 L380 70 L500 150" stroke="currentColor" stroke-width="3"/>
+                <path d="M140 220 L140 120 L220 80 L220 180" stroke="currentColor" stroke-width="3"/>
+                <path d="M90 260 L90 300 M190 260 L190 300 M290 260 L290 300" stroke="currentColor" stroke-width="3"/>
+            </svg>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center" data-aos="fade-up">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                    Die intelligente Plattform für
-                    <span class="text-orange-500">Bauprojekte</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6">
+                    Schluss mit der Suche: <span class="text-orange-600">Finde die passenden Partner</span> für deine Bauprojekte.
                 </h1>
-                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                    BuildWise verbindet Bauträger und Dienstleister im Baugewerbe. 
-                    Optimieren Sie Ihre Projekte mit unserer intelligenten Plattform.
+                <p class="text-xl text-gray-700 mb-10 max-w-3xl mx-auto">
+                    Die Plattform, die Bauträger und Dienstleister zusammenbringt – einfach, schnell und effizient.
                 </p>
+                <div class="mb-8 flex justify-center">
+                    <div class="slogan-pill" data-aos="zoom-in">
+                        <span>Ein Projekt.</span>
+                        <span class="sep">•</span>
+                        <span>Viele Profis.</span>
+                        <span class="sep">•</span>
+                        <span>Eine Sprache: <span class="accent">Qualität</span></span>
+                    </div>
+                </div>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#register" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105">
-                        Kostenlos starten
+                    <a href="#beta" class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 transform hover:scale-[1.03] shadow-lg shadow-orange-600/20">
+                        Beta-Zugang sichern!
                     </a>
-                    <a href="#demo" class="border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300">
-                        Demo ansehen
+                    <a href="#problem-solution" class="border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300">
+                        Mehr erfahren
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Problem & Lösung Section -->
+    <section id="problem-solution" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Problem & Lösung</h2>
+                <p class="text-lg text-gray-600">Zwei Perspektiven. Eine Plattform.</p>
+            </div>
+            <!-- Tabs -->
+            <div class="flex justify-center mb-8" id="audience-tabs" role="tablist">
+                <button class="tab-btn active" data-tab="bautraeger" role="tab" aria-selected="true">Bauträger</button>
+                <button class="tab-btn" data-tab="dienstleister" role="tab" aria-selected="false">Dienstleister</button>
+            </div>
+            <!-- Panels -->
+            <div>
+                <div id="tab-bautraeger" class="tab-panel grid lg:grid-cols-2 gap-8" role="tabpanel">
+                    <div class="panel-card hover-lift" data-aos="fade-right">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Stell dir vor…</h3>
+                        <ul class="space-y-3 text-gray-700 leading-relaxed">
+                            <li>…Ausschreibungen sind in Minuten erstellt – statt in Tagen.</li>
+                            <li>…verifizierte Dienstleister melden sich proaktiv auf deine Vergaben.</li>
+                            <li>…du hast Kosten, Termine und Fortschritt in einem einzigen Dashboard.</li>
+                        </ul>
+                    </div>
+                    <div class="panel-card hover-lift" data-aos="fade-left">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="badge">Workflow</div>
+                            <div class="badge">Transparenz</div>
+                            <div class="badge">Vergabe</div>
+                        </div>
+                        <p class="text-gray-700 mb-6">BuildWise bündelt Kommunikation, Dokumente und Freigaben – revisionssicher und DSGVO-konform.</p>
+                        <a href="#beta" class="btn-primary-alt">Jetzt Beta testen</a>
+                    </div>
+                </div>
+                <div id="tab-dienstleister" class="tab-panel hidden grid lg:grid-cols-2 gap-8" role="tabpanel" aria-hidden="true">
+                    <div class="panel-card hover-lift" data-aos="fade-right">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Stell dir vor…</h3>
+                        <ul class="space-y-3 text-gray-700 leading-relaxed">
+                            <li>…du verbringst weniger Zeit mit Akquise und mehr auf der Baustelle.</li>
+                            <li>…du verpasst keine relevante Ausschreibung mehr.</li>
+                            <li>…dein Profil macht deine Qualität sichtbar – und überzeugt automatisch.</li>
+                        </ul>
+                    </div>
+                    <div class="panel-card hover-lift" data-aos="fade-left">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="badge">Sichtbarkeit</div>
+                            <div class="badge">Matching</div>
+                            <div class="badge">Pipeline</div>
+                        </div>
+                        <p class="text-gray-700 mb-6">Erhalte nur Anfragen, die zu deinem Gewerk, Radius und Auslastung passen.</p>
+                        <a href="#beta" class="btn-primary-alt">Jetzt vormerken</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beta CTA Section -->
+    <section id="beta" class="py-24 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white relative overflow-hidden">
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-orange-400/20 rounded-full blur-3xl"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Sei unter den Ersten und gestalte die Zukunft mit!</h2>
+                    <p class="text-lg text-gray-300 mb-8">
+                        Wir sind bereit, unsere Plattform zu launchen und brauchen dein Feedback, um sie perfekt zu machen.
+                        Melde dich jetzt für unsere exklusive Beta-Version an und sei Teil einer neuen Generation der Bauwirtschaft.
+                    </p>
+                    <div class="hidden md:block text-gray-400 text-sm">100% DSGVO-konform · Kein Spam · Du kannst dich jederzeit abmelden</div>
+                </div>
+                <div data-aos="fade-left">
+                    <form id="beta-form" class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur">
+                        <label for="beta-email" class="block text-sm font-medium text-gray-300 mb-2">E-Mail-Adresse</label>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <input id="beta-email" type="email" required placeholder="dein.name@unternehmen.ch" class="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg placeholder-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-orange-500">
+                            <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                Beta-Zugang sichern!
+                            </button>
+                        </div>
+                        <p class="mt-3 text-xs text-gray-400">Mit deiner Anmeldung erklärst du dich mit unserer Datenschutzerklärung einverstanden.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
-    <section id="features" class="py-20 bg-white">
+    <section id="features" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -118,7 +227,7 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -131,7 +240,7 @@
                 </div>
                 
                 <!-- Feature 2 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
@@ -144,7 +253,7 @@
                 </div>
                 
                 <!-- Feature 3 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
@@ -157,7 +266,7 @@
                 </div>
                 
                 <!-- Feature 4 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -170,7 +279,7 @@
                 </div>
                 
                 <!-- Feature 5 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="500">
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
@@ -183,7 +292,7 @@
                 </div>
                 
                 <!-- Feature 6 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="600">
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="600">
                     <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -199,7 +308,7 @@
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-gray-50">
+    <section id="pricing" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -212,7 +321,7 @@
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Basic Plan -->
-                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="text-center mb-8">
                         <h3 class="text-2xl font-bold text-gray-900 mb-4">Basic</h3>
                         <div class="text-4xl font-bold text-orange-500 mb-2">Kostenlos</div>
@@ -238,13 +347,13 @@
                             E-Mail Support
                         </li>
                     </ul>
-                    <a href="#register" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 py-3 px-6 rounded-lg font-semibold transition-colors block text-center">
+                    <a href="#beta" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 py-3 px-6 rounded-lg font-semibold transition-colors block text-center">
                         Kostenlos starten
                     </a>
                 </div>
                 
                 <!-- Pro Plan -->
-                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-orange-500 relative" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-orange-500 relative tilt-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
                         <span class="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold">Empfohlen</span>
                     </div>
@@ -279,13 +388,13 @@
                             Erweiterte Analysen
                         </li>
                     </ul>
-                    <a href="#register" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors block text-center">
+                    <a href="#beta" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors block text-center">
                         Pro Plan wählen
                     </a>
                 </div>
                 
                 <!-- Enterprise Plan -->
-                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="text-center mb-8">
                         <h3 class="text-2xl font-bold text-gray-900 mb-4">Enterprise</h3>
                         <div class="text-4xl font-bold text-orange-500 mb-2">Individuell</div>
@@ -300,13 +409,13 @@
                         </li>
                         <li class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
                             Dedizierter Support
                         </li>
                         <li class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
                             On-Premise Option
                         </li>
@@ -320,7 +429,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
@@ -390,7 +499,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50">
+    <section id="contact" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -463,17 +572,135 @@
         </div>
     </section>
 
+    <!-- Phases Section -->
+    <section id="phases" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">So läuft es mit BuildWise</h2>
+                <p class="text-lg text-gray-600">Vom Bedarf zur Vergabe in vier schlanken Schritten.</p>
+            </div>
+            <div class="phases-wrapper" data-aos="fade-up">
+                <div class="phases-track" role="tablist" aria-label="Projektphasen">
+                    <button class="phase-card is-active" role="tab" aria-selected="true" data-phase="1">
+                        <span class="phase-index">01</span>
+                        <span class="phase-title">Bedarf erfassen</span>
+                        <span class="phase-sub">Scope & Kriterien</span>
+                    </button>
+                    <button class="phase-card" role="tab" aria-selected="false" data-phase="2">
+                        <span class="phase-index">02</span>
+                        <span class="phase-title">Ausschreiben</span>
+                        <span class="phase-sub">Vorlage & Matching</span>
+                    </button>
+                    <button class="phase-card" role="tab" aria-selected="false" data-phase="3">
+                        <span class="phase-index">03</span>
+                        <span class="phase-title">Angebote</span>
+                        <span class="phase-sub">Vergleichen & Chat</span>
+                    </button>
+                    <button class="phase-card" role="tab" aria-selected="false" data-phase="4">
+                        <span class="phase-index">04</span>
+                        <span class="phase-title">Vergabe</span>
+                        <span class="phase-sub">Zusage & Start</span>
+                    </button>
+                </div>
+                <div class="phase-panels">
+                    <div class="phase-panel" id="phase-1" role="tabpanel">
+                        <div class="panel-inner">
+                            <h3>Bedarf erfassen</h3>
+                            <p>Leistungen, Termine, Budget, Dokumente – alles strukturiert in wenigen Minuten erfasst.</p>
+                            <ul class="list">
+                                <li>Checklisten für Gewerke</li>
+                                <li>Dokument-Uploads</li>
+                                <li>Automatische Qualitätsprüfung</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-panel hidden" id="phase-2" role="tabpanel" aria-hidden="true">
+                        <div class="panel-inner">
+                            <h3>Ausschreiben</h3>
+                            <p>Mit Vorlagen und unserem Matching erreichst du die passenden Dienstleister.</p>
+                            <ul class="list">
+                                <li>Vorlagenbibliothek</li>
+                                <li>Gewerk-/Radiusfilter</li>
+                                <li>Einladung mit einem Klick</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-panel hidden" id="phase-3" role="tabpanel" aria-hidden="true">
+                        <div class="panel-inner">
+                            <h3>Angebote</h3>
+                            <p>Transparente Vergleiche, Nachfragen direkt im Chat, revisionssicher dokumentiert.</p>
+                            <ul class="list">
+                                <li>Vergleichsmatrix</li>
+                                <li>Chat & Rückfragen</li>
+                                <li>Freigaben & Protokolle</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="phase-panel hidden" id="phase-4" role="tabpanel" aria-hidden="true">
+                        <div class="panel-inner">
+                            <h3>Vergabe</h3>
+                            <p>Vertrag, Start, Übergabe ins Projekt – alles aus einer Hand.</p>
+                            <ul class="list">
+                                <li>Zusage-Workflow</li>
+                                <li>Automatisierte Dokumente</li>
+                                <li>Übergabe an Projektmanagement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Häufige Fragen</h2>
+                <p class="text-lg text-gray-600">Alles Wichtige auf einen Blick.</p>
+            </div>
+            <div class="faq">
+                <div class="accordion" data-accordion>
+                    <button class="acc-header" aria-expanded="false">
+                        <span>Wie finde ich die richtigen Dienstleister?</span>
+                        <span class="acc-icon">+</span>
+                    </button>
+                    <div class="acc-panel" hidden>
+                        <p>Über Matching nach Gewerk, Standort, Kapazität und Qualitätsscore – transparent und schnell.</p>
+                    </div>
+
+                    <button class="acc-header" aria-expanded="false">
+                        <span>Ist BuildWise DSGVO-konform?</span>
+                        <span class="acc-icon">+</span>
+                    </button>
+                    <div class="acc-panel" hidden>
+                        <p>Ja. Datenhaltung in der EU/CH, Audit-Logs, Rollen & Rechte sowie verschlüsselte Übertragung.</p>
+                    </div>
+
+                    <button class="acc-header" aria-expanded="false">
+                        <span>Was kostet die Nutzung?</span>
+                        <span class="acc-icon">+</span>
+                    </button>
+                    <div class="acc-panel" hidden>
+                        <p>Es gibt einen kostenlosen Einstieg sowie Pro- und Enterprise-Modelle. Details siehe Preise.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-lg">B</span>
-                        </div>
-                        <span class="text-xl font-bold">BuildWise</span>
+                    <div class="flex items-center space-x-3 mb-4">
+                    <span class="ci-logo ci-logo--gradient"></span>
+                    <div class="w-8 h-8 bg-[var(--ci-primary)] rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">B</span>
                     </div>
+                    <span class="text-xl font-bold">BuildWise</span>
+                </div>
                     <p class="text-gray-400 mb-4">
                         Die intelligente Plattform für Bauprojekte. 
                         Verbinden Sie sich mit qualifizierten Dienstleistern.
