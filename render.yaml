@@ -2,7 +2,7 @@ services:
   - type: web
     name: buildwise-landingpage
     env: static
-    buildCommand: null
+    rootDirectory: Landingpage
     staticPublishPath: ./
     routes:
       - type: rewrite
@@ -35,4 +35,4 @@ services:
         value: "public, max-age=31536000, immutable"
       - path: /*.js
         name: Cache-Control
-        value: "public, max-age=31536000, immutable" 
+        value: "public, max-age=31536000, immutable"
