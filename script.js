@@ -278,24 +278,27 @@ function initDrawOnScroll() {
     const panels = document.querySelectorAll('.phase-panel');
     const progress = document.querySelector('.phases-progress');
     if (!track || panels.length === 0) return;
-    track.addEventListener('click', (e) => {
-        const btn = e.target.closest('.phase-card');
-        if (!btn) return;
-        const id = btn.getAttribute('data-phase');
+    const setActive = (id) => {
         track.querySelectorAll('.phase-card').forEach(b => {
-            b.classList.toggle('is-active', b === btn);
-            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+            b.classList.toggle('is-active', b.getAttribute('data-phase') === id);
+            b.setAttribute('aria-selected', b.getAttribute('data-phase') === id ? 'true' : 'false');
         });
         panels.forEach(p => {
             const active = p.id === `phase-${id}`;
             p.classList.toggle('hidden', !active);
+            p.classList.toggle('show', active);
             p.setAttribute('aria-hidden', String(!active));
         });
         if (progress) {
             const pct = { '1': 25, '2': 50, '3': 75, '4': 100 }[id] || 25;
             progress.style.width = pct + '%';
         }
-        // sanft zum aktiven Tab scrollen
+    };
+    track.addEventListener('click', (e) => {
+        const btn = e.target.closest('.phase-card');
+        if (!btn) return;
+        const id = btn.getAttribute('data-phase');
+        setActive(id);
         btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     });
 })();
