@@ -287,6 +287,25 @@ document.addEventListener('DOMContentLoaded', function() {
         if (desc) desc.textContent = d;
       });
       // Hover-only Reveal; Keyboard-Nutzer sehen weiterhin Label (kein Toggle nötig)
+      // Mobile/Touch: Tap-to-Reveal
+      const isTouch = matchMedia('(hover: none)').matches || 'ontouchstart' in window;
+      if (isTouch) {
+        bubbles.forEach(b => {
+          b.addEventListener('click', (e) => {
+            e.preventDefault();
+            // schließen andere
+            bubbles.forEach(x => { if (x !== b) x.classList.remove('is-open'); });
+            b.classList.toggle('is-open');
+          });
+        });
+        // Klicken außerhalb schließt Overlay
+        document.addEventListener('click', (e) => {
+          const target = e.target;
+          if (!target.closest('.bw-bubble')) {
+            bubbles.forEach(x => x.classList.remove('is-open'));
+          }
+        });
+      }
     })();
 
     // Floating bubbles
