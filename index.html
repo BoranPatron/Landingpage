@@ -45,6 +45,7 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#problem-solution" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Problem & Lösung</a>
                         <a href="#pricing" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Preise</a>
                         <a href="#phases" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Ablauf</a>
                         <a href="#faq" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">FAQ</a>
@@ -73,6 +74,7 @@
         <!-- Mobile Navigation -->
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100">
+                <a href="#problem-solution" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Problem & Lösung</a>
                 <a href="#pricing" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Preise</a>
                 <a href="#phases" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Ablauf</a>
                 <a href="#faq" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">FAQ</a>
@@ -113,11 +115,11 @@
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center hero-ctas">
-                    <a href="#beta" class="btn-cta text-lg">
-                        <span>Beta-Zugang sichern!</span>
+                    <a href="#beta" class="btn-cta text-lg" aria-label="Kostenlosen Beta-Zugang sichern">
+                        <span>Kostenlosen Beta-Zugang sichern</span>
                     </a>
-                    <a href="#problem-solution" class="border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300">
-                        Mehr erfahren
+                    <a href="#phases" class="border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300" aria-label="So funktioniert BuildWise anzeigen">
+                        So funktioniert BuildWise
                     </a>
                 </div>
             </div>
@@ -354,14 +356,16 @@
                     <div class="hidden md:block text-gray-400 text-sm">100% DSGVO-konform · Kein Spam · Du kannst dich jederzeit abmelden</div>
                 </div>
                 <div data-aos="fade-left">
-                    <form id="beta-form" class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur">
+                    <form id="beta-form" class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur" novalidate aria-describedby="beta-status">
                         <label for="beta-email" class="block text-sm font-medium text-gray-300 mb-2">E-Mail-Adresse</label>
                         <div class="flex flex-col sm:flex-row gap-3">
-                            <input id="beta-email" type="email" required placeholder="dein.name@unternehmen.ch" class="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg placeholder-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-orange-500">
-                            <button type="submit" class="btn-cta">
+                            <input id="beta-email" name="email" type="email" required placeholder="dein.name@unternehmen.ch" class="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg placeholder-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-orange-500" aria-invalid="false" aria-describedby="beta-email-error">
+                            <button type="submit" class="btn-cta" aria-label="Kostenlosen Beta-Zugang sichern">
                                 <span>Beta-Zugang sichern!</span>
                             </button>
                         </div>
+                        <p id="beta-email-error" class="text-red-400 text-sm mt-2" hidden></p>
+                        <div id="beta-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
                         <p class="mt-3 text-xs text-gray-400">Mit deiner Anmeldung erklärst du dich mit unserer Datenschutzerklärung einverstanden.</p>
                     </form>
                 </div>
@@ -389,7 +393,7 @@
                         </div>
                         <h3>Bedarf erfassen</h3>
                     </div>
-                    <p class="wf-lead">Scope, Termine, Budget – in Minuten erfasst.</p>
+                    <p class="wf-lead">Leistungsumfang, Termine, Budget – in Minuten erfasst.</p>
                 </div>
 
                 <div class="wf-row">
@@ -640,22 +644,26 @@
             
             <div class="grid lg:grid-cols-2 gap-12">
                 <div data-aos="fade-right">
-                    <form class="space-y-6">
+                    <form class="space-y-6" id="contact-form" novalidate aria-describedby="contact-status">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors" required aria-invalid="false" aria-describedby="err-name">
+                            <p id="err-name" class="text-red-500 text-sm mt-1" hidden></p>
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">E-Mail</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors">
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors" required aria-invalid="false" aria-describedby="err-email">
+                            <p id="err-email" class="text-red-500 text-sm mt-1" hidden></p>
                         </div>
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Nachricht</label>
-                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"></textarea>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors" required aria-invalid="false" aria-describedby="err-message"></textarea>
+                            <p id="err-message" class="text-red-500 text-sm mt-1" hidden></p>
                         </div>
-                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors">
+                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors" aria-label="Nachricht senden">
                             Nachricht senden
                         </button>
+                        <div id="contact-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
                     </form>
                 </div>
                 
@@ -765,7 +773,7 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Produkt</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#problem-solution" class="hover:text-white transition-colors">Problem & Lösung</a></li>
                         <li><a href="#pricing" class="hover:text-white transition-colors">Preise</a></li>
                         <li><a href="#" class="hover:text-white transition-colors">API</a></li>
                         <li><a href="#" class="hover:text-white transition-colors">Dokumentation</a></li>
@@ -798,18 +806,9 @@
                     © 2024 BuildWise. Alle Rechte vorbehalten.
                 </div>
                 <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <span class="sr-only">Datenschutz</span>
-                        Datenschutz
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <span class="sr-only">AGB</span>
-                        AGB
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <span class="sr-only">Impressum</span>
-                        Impressum
-                    </a>
+                    <a href="/datenschutz.html" aria-label="Datenschutz" class="text-gray-400 hover:text-white transition-colors">Datenschutz</a>
+                    <a href="/agb.html" aria-label="AGB" class="text-gray-400 hover:text-white transition-colors">AGB</a>
+                    <a href="/impressum.html" aria-label="Impressum" class="text-gray-400 hover:text-white transition-colors">Impressum</a>
                 </div>
             </div>
         </div>
@@ -818,6 +817,8 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js?v=3"></script>
+    <!-- Globale ARIA Live Region -->
+    <div id="global-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
     <!-- Bottom Sheet für Mobile Bubble-Details -->
     <div class="bw-sheet-backdrop" id="bwSheetBackdrop" hidden></div>
     <div class="bw-sheet" id="bwSheet" hidden>
