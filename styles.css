@@ -884,7 +884,10 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   .wf-grid::before { display: none; }
   .wf-step { padding-left: 2rem; }
   .wf-step::before { content: ""; position: absolute; left: .9rem; top: 1.1rem; bottom: -1rem; width: 2px; background: rgba(255,255,255,.14); }
-  .wf-index { position: absolute; left: .25rem; top: .8rem; width: 28px; height: 28px; }
+  .wf-index { position: absolute; left: .25rem; top: .8rem; width: 22px; height: 22px; font-size: .75rem; border-radius: 6px; }
+  .wf-head, .wf-card-head { gap: .4rem; }
+  .wf-icon { width: 22px; height: 22px; border-radius: .45rem; }
+  .wf-icon svg { width: 14px; height: 14px; }
 }
 
 /* Motion reduce */
