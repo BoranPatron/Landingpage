@@ -1078,3 +1078,13 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* JS-Physikmodus: Animations via JS, CSS-Animation abschalten */
 .bw-physics .bw-bubble { animation: none !important; } 
+
+@media (max-width: 640px) {
+  /* Mobile: kein Physik-Layout, sondern Grid ohne Überlagerung */
+  .bw-physics { position: relative; min-height: auto; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .75rem; }
+  .bw-physics .bw-bubble { position: static; width: auto; height: 150px; animation: none !important; }
+  .bw-physics .bw-icon { width: 40px; height: 40px; }
+  .bw-physics .bw-icon svg { width: 20px; height: 20px; }
+  /* Overlay ausblenden; stattdessen Label sichtbar lassen */
+  .bw-physics .bw-desc { display: none !important; }
+} 
