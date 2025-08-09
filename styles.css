@@ -1063,34 +1063,22 @@ hr, .divider { border-color: var(--ci-accent) !important; }
  .bw-bubble .bw-desc { opacity: 0; transform: translateY(6px); transition: opacity .2s ease, transform .2s ease; }
  .bw-bubble:hover .bw-desc { opacity: 1; transform: translateY(0); }
  .bw-bubble:hover .bw-icon, .bw-bubble:hover .bw-label { opacity: 0; transition: opacity .15s ease; }
- 
- /* CI-konformes Hover-Overlay (Glas, primärer Ton, gute Lesbarkeit) */
- .bw-desc {
-  position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%);
-  width: 86%; text-align: center; color: #fff; font-weight: 700; font-size: 1rem; line-height: 1.35;
-  background: linear-gradient(160deg, rgba(81,100,111,.95), rgba(81,100,111,.92));
-  border: 1px solid rgba(249,199,79,.5);
-  border-radius: .75rem; padding: .55rem .7rem;
-  backdrop-filter: blur(8px) saturate(120%);
-  box-shadow: 0 10px 28px -14px rgba(0,0,0,.55), 0 0 0 4px rgba(249,199,79,.12) inset;
+/* Tap-to-reveal (mobile) */
+.bw-bubble.is-open { z-index: 12; }
+.bw-bubble.is-open .bw-icon, .bw-bubble.is-open .bw-label { opacity: 0; }
+.bw-bubble.is-open .bw-desc { opacity: 1; transform: translateY(0); display: block; }
+
+@media (max-width: 640px) {
+  .bw-bubbles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .bw-icon { width: 44px; height: 44px; }
+  .bw-icon svg { width: 22px; height: 22px; }
+  .bw-desc { font-size: .95rem; }
 }
-.bw-desc::before {
-  content:""; position:absolute; left: 50%; bottom: -7px; transform: translateX(-50%);
-  width: 12px; height: 12px; background: inherit; border-left: 1px solid rgba(249,199,79,.5); border-bottom: 1px solid rgba(249,199,79,.5);
-  transform-origin: center; rotate: 45deg; filter: blur(.2px);
-}
- 
- @media (max-width: 640px) {
-   .bw-bubbles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
-   .bw-icon { width: 44px; height: 44px; }
-   .bw-icon svg { width: 22px; height: 22px; }
-   .bw-desc { font-size: .95rem; width: 88%; bottom: 10%; }
- }
- 
- /* Motion reduzieren */
- @media (prefers-reduced-motion: reduce) {
-   .bw-bubble { animation: none !important; }
- } 
+
+/* Motion reduzieren */
+@media (prefers-reduced-motion: reduce) {
+  .bw-bubble { animation: none !important; }
+} 
 
 /* Floating layout: absolute over section */
 .bw-floating { position: relative; min-height: 360px; }
@@ -1116,15 +1104,15 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .bw-physics .bw-bubble { animation: none !important; } 
 
 @media (max-width: 640px) {
-  /* Mobile: kein Physik-Layout, sondern Grid ohne Überlagerung */
-  .bw-physics { position: relative; min-height: auto; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .9rem; justify-items: center; align-items: start; }
+  /* Mobile: Kreis-Bubbles im Grid, Tap-to-Reveal */
+  .bw-physics { position: relative; min-height: auto; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .9rem; justify-items: center; align-items: start; overflow: visible; }
   .bw-physics.bw-floating::before { opacity: .15; pointer-events: none; }
-  .bw-physics .bw-bubble { position: static; width: 180px; height: 180px; border-radius: 9999px; padding: .85rem; animation: none !important; z-index: 1; }
+  .bw-physics .bw-bubble { position: static; width: 160px; height: 160px; border-radius: 9999px; padding: .85rem; animation: none !important; z-index: 1; }
   .bw-physics .bw-icon { width: 46px; height: 46px; }
   .bw-physics .bw-icon svg { width: 22px; height: 22px; }
-  .bw-physics .bw-label { font-size: .95rem; text-align: center; line-height: 1.25; color: #f2f5f7; }
-  /* Overlay-Text ausblenden auf Mobile für Lesbarkeit */
-  .bw-physics .bw-desc { display: none !important; }
+  .bw-physics .bw-label { font-size: .95rem; text-align: center; line-height: 1.25; color: #0b1114; opacity: .95; }
+  .bw-physics .bw-desc { display: none; position: absolute; top: calc(100% + 8px); bottom: auto; left: 50%; transform: translateX(-50%); width: min(84vw, 320px); }
+  .bw-physics .bw-bubble.is-open .bw-desc { display: block; }
 } 
 
 /* Hintergrundbild im Beta-Abschnitt */
@@ -1161,7 +1149,8 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .ps-bubbles .bw-bubble:hover { z-index: 5; }
 .ps-bubbles .bw-desc { z-index: 10; }
 @media (max-width: 640px){
-  .ps-bubbles { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .ps-bubbles .bw-bubble { width: auto; height: auto; border-radius: 1.25rem; padding: 1rem; animation: none !important; }
-  .ps-bubbles .bw-desc { display: none !important; }
+  .ps-bubbles { grid-template-columns: repeat(2, minmax(0,1fr)); overflow: visible; }
+  .ps-bubbles .bw-bubble { width: 160px; height: 160px; border-radius: 9999px; padding: 0.85rem; animation: none !important; }
+  .ps-bubbles .bw-desc { display: none; position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); width: min(84vw, 320px); }
+  .ps-bubbles .bw-bubble.is-open .bw-desc { display: block; }
 } 
