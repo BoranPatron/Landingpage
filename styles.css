@@ -1058,22 +1058,24 @@ hr, .divider { border-color: var(--ci-accent) !important; }
  
  /* Drift-Animation (schneller & größere Amplitude) */
  @keyframes bwFloat { 0% { transform: translateY(0) translateX(0) scale(1); } 25% { transform: translateY(-12px) translateX(6px) scale(1.01); } 50% { transform: translateY(0) translateX(10px) scale(1); } 75% { transform: translateY(-10px) translateX(-6px) scale(1.01); } 100% { transform: translateY(0) translateX(0) scale(1); } }
+ /* Mobile: sehr leichte, GPU-freundliche Drift */
+ @keyframes mFloat { 0%,100% { transform: translate3d(0,0,0); } 25% { transform: translate3d(4px,-6px,0); } 50% { transform: translate3d(8px,0,0); } 75% { transform: translate3d(-4px,-4px,0); } }
  
  /* In-Bubble Reveal auf Hover */
  .bw-bubble .bw-desc { opacity: 0; transform: translateY(6px); transition: opacity .2s ease, transform .2s ease; }
  .bw-bubble:hover .bw-desc { opacity: 1; transform: translateY(0); }
  .bw-bubble:hover .bw-icon, .bw-bubble:hover .bw-label { opacity: 0; transition: opacity .15s ease; }
-/* Tap-to-reveal (mobile) */
-.bw-bubble.is-open { z-index: 12; }
-.bw-bubble.is-open .bw-icon, .bw-bubble.is-open .bw-label { opacity: 0; }
-.bw-bubble.is-open .bw-desc { opacity: 1; transform: translateY(0); display: block; }
-
-@media (max-width: 640px) {
-  .bw-bubbles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
-  .bw-icon { width: 44px; height: 44px; }
-  .bw-icon svg { width: 22px; height: 22px; }
-  .bw-desc { font-size: .95rem; }
-}
+ /* Tap-to-reveal (mobile) */
+ .bw-bubble.is-open { z-index: 12; }
+ .bw-bubble.is-open .bw-icon, .bw-bubble.is-open .bw-label { opacity: 0; }
+ .bw-bubble.is-open .bw-desc { opacity: 1; transform: translateY(0); display: block; }
+ 
+ @media (max-width: 640px) {
+   .bw-bubbles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+   .bw-icon { width: 44px; height: 44px; }
+   .bw-icon svg { width: 22px; height: 22px; }
+   .bw-desc { font-size: .95rem; }
+ }
 
 /* Motion reduzieren */
 @media (prefers-reduced-motion: reduce) {
@@ -1082,7 +1084,7 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Floating layout: absolute over section */
 .bw-floating { position: relative; min-height: 360px; }
-.bw-floating::before { content: ""; position: absolute; inset: 0; background-image: url('/bg_wbpage2.png'), url('./bg_wbpage2.png'), url('assets/bg_wbpage2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: .35; z-index: 0; }
+.bw-floating::before { content: none; }
 .bw-floating .bw-bubble { position: absolute; left: var(--x, 10%); top: var(--y, 10%); width: 220px; height: 220px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: .5rem; }
 .bw-floating .bw-bubble { z-index: 1; }
 .bw-floating .bw-label { pointer-events: none; }
@@ -1094,7 +1096,7 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Features with background image */
 .features-hero { position: relative; }
-.features-hero::before { content:""; position:absolute; inset:0; background-image: url('/bg_wbpage2.png'), url('./bg_wbpage2.png'), url('assets/bg_wbpage2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity:.45; z-index:0; pointer-events: none; }
+.features-hero::before { content: none; }
 .features-hero > div { position: relative; z-index: 1; }
 
 /* Emphasis inside labels */
@@ -1106,23 +1108,23 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 @media (max-width: 640px) {
   /* Mobile: Kreis-Bubbles im Grid, Tap-to-Reveal */
   .bw-physics { position: relative; min-height: auto; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .9rem; justify-items: center; align-items: start; overflow: visible; }
-  .bw-physics.bw-floating::before { opacity: .15; pointer-events: none; }
-  .bw-physics .bw-bubble { position: static; width: 160px; height: 160px; border-radius: 9999px; padding: .85rem; animation: none !important; z-index: 1; }
+  .bw-physics.bw-floating::before { content: none; }
+  .bw-physics .bw-bubble { position: static; width: 160px; height: 160px; border-radius: 9999px; padding: .85rem; animation: mFloat var(--dur, 8s) ease-in-out infinite; will-change: transform; z-index: 1; }
   .bw-physics .bw-icon { width: 46px; height: 46px; }
   .bw-physics .bw-icon svg { width: 22px; height: 22px; }
   .bw-physics .bw-label { font-size: .95rem; text-align: center; line-height: 1.25; color: #0b1114; opacity: .95; }
-  .bw-physics .bw-desc { display: none; position: absolute; top: calc(100% + 8px); bottom: auto; left: 50%; transform: translateX(-50%); width: min(84vw, 320px); }
-  .bw-physics .bw-bubble.is-open .bw-desc { display: block; }
+  /* In-Bubble-Overlay auf Mobile nicht nutzen -> Bottom Sheet */
+  .bw-physics .bw-desc { display: none !important; }
 } 
 
 /* Hintergrundbild im Beta-Abschnitt */
 .bg-photo { position: relative; }
-.bg-photo::before { content: ""; position: absolute; inset: 0; background-image: url('/bg_wbpage2.png'), url('./bg_wbpage2.png'), url('assets/bg_wbpage2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: .35; pointer-events: none; z-index: 0; }
+.bg-photo::before { content: ""; position: absolute; inset: 0; background-image: url('/bg_wbpage2.png'), url('./bg_wbpage2.png'), url('assets/bg_wbpage2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: .22; pointer-events: none; z-index: 0; }
 .bg-photo > * { position: relative; z-index: 1; } 
 
 /* Hintergrundbild für "So funktioniert BuildWise" */
 .process { position: relative; }
-.process::before { content: ""; position: absolute; inset: 0; background-image: url('/bg_wbpage2.png'), url('./bg_wbpage2.png'), url('assets/bg_wbpage2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: .4; pointer-events: none; z-index: 0; }
+.process::before { content: none; }
 .process > * { position: relative; z-index: 1; } 
 
 /* Kompaktere Bubbles im Problem-&-Lösung-Abschnitt */
@@ -1150,7 +1152,17 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .ps-bubbles .bw-desc { z-index: 10; }
 @media (max-width: 640px){
   .ps-bubbles { grid-template-columns: repeat(2, minmax(0,1fr)); overflow: visible; }
-  .ps-bubbles .bw-bubble { width: 160px; height: 160px; border-radius: 9999px; padding: 0.85rem; animation: none !important; }
-  .ps-bubbles .bw-desc { display: none; position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); width: min(84vw, 320px); }
-  .ps-bubbles .bw-bubble.is-open .bw-desc { display: block; }
+  .ps-bubbles .bw-bubble { width: 160px; height: 160px; border-radius: 9999px; padding: 0.85rem; animation: mFloat var(--dur, 8s) ease-in-out infinite; will-change: transform; }
+  .ps-bubbles .bw-desc { display: none !important; }
+} 
+
+/* Mobile Bottom Sheet für Bubble-Details */
+@media (max-width: 640px) {
+  .bw-sheet-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 60; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+  .bw-sheet { position: fixed; left: 0; right: 0; bottom: -60%; z-index: 61; background: linear-gradient(160deg, rgba(81,100,111,.98), rgba(81,100,111,.95)); color: #fff; border-top-left-radius: 16px; border-top-right-radius: 16px; box-shadow: 0 -10px 30px rgba(0,0,0,.35), 0 0 0 2px rgba(249,199,79,.18) inset; padding: 14px 16px 18px; transform: translateY(0); transition: bottom .3s ease; }
+  .bw-sheet h4 { font-weight: 800; margin-bottom: 6px; }
+  .bw-sheet p { font-size: 0.98rem; line-height: 1.4; }
+  .bw-sheet .bw-close { position: absolute; top: 10px; right: 12px; border: none; background: transparent; color: #fff; font-size: 20px; }
+  .bw-sheet.is-open { bottom: 0; }
+  .bw-sheet-backdrop.is-open { opacity: 1; pointer-events: auto; }
 } 
