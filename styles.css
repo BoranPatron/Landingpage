@@ -961,8 +961,8 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .wf-row { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: .85rem; padding: .9rem 1rem; display: grid; gap: .35rem; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
 .wf-row:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -22px rgba(0,0,0,.5); border-color: rgba(255,255,255,.14); }
 .wf-row-head { display: flex; align-items: center; gap: .55rem; }
-.wf-row-head h3 { font-weight: 700; font-size: clamp(1rem, .8vw + .85rem, 1.25rem); }
-.wf-lead { color:#e6ebef; font-size: clamp(.95rem, .5vw + .7rem, 1rem); margin: 0; }
+.wf-row-head h3 { font-weight: 700; font-size: clamp(1rem, .8vw + .85rem, 1.25rem); line-height: 1.3; }
+.wf-lead { color:#e6ebef; font-size: clamp(.95rem, .5vw + .7rem, 1rem); line-height: 1.5; margin: 0; word-break: break-word; }
 
 /* Dezente Linie links (Timeline-Optik) */
 .wf-vert::before { content:""; position:absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,.08); border-radius: 2px; }
@@ -974,8 +974,13 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .wf-icon { width: 22px; height: 22px; border-radius: .45rem; background: rgba(249,199,79,.15); color: var(--ci-accent); display: inline-flex; align-items:center; justify-content:center; }
 .wf-icon svg { width: 14px; height: 14px; }
 
+/* Mobile Lesbarkeit */
 @media (max-width: 640px){
-  .wf-vert::before { left: 10px; }
+  .wf-vert { gap: 1rem; }
+  .wf-row { padding: 1rem 1rem 1rem 2.25rem; }
+  .wf-row-head h3 { font-size: 1.05rem; }
+  .wf-lead { font-size: .98rem; -webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box; overflow: hidden; }
+  .wf-vert::before { left: 10px; background: rgba(255,255,255,.06); }
   .wf-row::before { left: 6px; }
 } 
 
