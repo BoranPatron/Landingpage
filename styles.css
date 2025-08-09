@@ -927,8 +927,19 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   .wf-step { padding: .85rem .9rem .9rem 2rem; }
 } 
 
-.wf-icon { width: 34px; height: 34px; border-radius: .6rem; background: rgba(249,199,79,.15); color: var(--ci-accent); display: inline-flex; align-items:center; justify-content:center; }
-.wf-icon svg { width: 20px; height: 20px; stroke-width: 2; } 
+/* Icon-Größen und Glow */
+.wf-icon { width: 34px; height: 34px; border-radius: .6rem; background: rgba(249,199,79,.15); color: var(--ci-accent); display: inline-flex; align-items:center; justify-content:center; overflow: hidden; }
+.wf-icon svg { width: 20px; height: 20px; stroke-width: 2; max-width: 100%; max-height: 100%; display: block; }
+.wf-step:hover .wf-icon, .wf-card:hover .wf-icon { background: rgba(249,199,79,.22); box-shadow: 0 0 0 6px rgba(249,199,79,.12), 0 8px 22px -12px rgba(249,199,79,.35); transform: translateZ(0) scale(1.03); transition: box-shadow .25s ease, transform .25s ease, background .25s ease; }
+
+/* Sicherheitsnetz gegen zu große SVGs (falls außerhalb von .wf-icon eingefügt) */
+.wf-step > svg, .wf-card > svg { width: 24px !important; height: 24px !important; }
+
+/* Mobile Icon-Größe weiter reduzieren */
+@media (max-width: 640px) {
+  .wf-icon { width: 20px; height: 20px; border-radius: .4rem; }
+  .wf-icon svg { width: 12px; height: 12px; }
+} 
 
 /* Mobile Carousel */
 .wf-carousel { display: none; }
@@ -944,3 +955,30 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   /* Accordion ausblenden, wenn Carousel aktiv */
   .process-mobile { display: none; }
 } 
+
+/* Vertikaler Workflow */
+.wf-vert { display: grid; gap: .8rem; position: relative; }
+.wf-row { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: .85rem; padding: .9rem 1rem; display: grid; gap: .35rem; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.wf-row:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -22px rgba(0,0,0,.5); border-color: rgba(255,255,255,.14); }
+.wf-row-head { display: flex; align-items: center; gap: .55rem; }
+.wf-row-head h3 { font-weight: 700; font-size: clamp(1rem, .8vw + .85rem, 1.25rem); }
+.wf-lead { color:#e6ebef; font-size: clamp(.95rem, .5vw + .7rem, 1rem); margin: 0; }
+
+/* Dezente Linie links (Timeline-Optik) */
+.wf-vert::before { content:""; position:absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,.08); border-radius: 2px; }
+.wf-row { position: relative; }
+.wf-row::before { content:""; position:absolute; left: 8px; top: 1.1rem; width: 10px; height: 10px; border-radius: 999px; background: var(--ci-accent); box-shadow: 0 0 0 6px rgba(249,199,79,.14); }
+
+/* Kopf-Elemente (Index/Icons) kleiner, konsistent */
+.wf-index { display: inline-flex; width: 24px; height: 24px; border-radius: 6px; align-items:center; justify-content:center; background: var(--ci-primary); color:#fff; font-size: .75rem; font-weight: 700; }
+.wf-icon { width: 22px; height: 22px; border-radius: .45rem; background: rgba(249,199,79,.15); color: var(--ci-accent); display: inline-flex; align-items:center; justify-content:center; }
+.wf-icon svg { width: 14px; height: 14px; }
+
+@media (max-width: 640px){
+  .wf-vert::before { left: 10px; }
+  .wf-row::before { left: 6px; }
+} 
+
+/* Hard cap for any SVG inside phases section to avoid oversized icons */
+#phases svg { max-width: 28px; max-height: 28px; }
+#phases .wf-icon svg { width: 14px; height: 14px; } 
