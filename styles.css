@@ -926,3 +926,18 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 .wf-icon { width: 34px; height: 34px; border-radius: .6rem; background: rgba(249,199,79,.15); color: var(--ci-accent); display: inline-flex; align-items:center; justify-content:center; }
 .wf-icon svg { width: 20px; height: 20px; stroke-width: 2; } 
+
+/* Mobile Carousel */
+.wf-carousel { display: none; }
+@media (max-width: 640px) {
+  .wf-carousel { display: block; margin-top: .5rem; }
+  .wf-track { display: grid; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto; gap: .75rem; padding-bottom: .5rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .wf-track::-webkit-scrollbar { display: none; }
+  .wf-card { scroll-snap-align: start; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: .85rem; padding: .9rem; display: grid; gap: .4rem; }
+  .wf-card-head { display: flex; align-items: center; gap: .55rem; }
+  .wf-dots { display: flex; justify-content: center; gap: .35rem; margin-top: .5rem; }
+  .wf-dots button { width: 6px; height: 6px; border-radius: 999px; background: rgba(255,255,255,.25); border: none; }
+  .wf-dots button.is-active { background: var(--ci-accent); }
+  /* Accordion ausblenden, wenn Carousel aktiv */
+  .process-mobile { display: none; }
+} 
