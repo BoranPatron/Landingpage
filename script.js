@@ -290,20 +290,33 @@ document.addEventListener('DOMContentLoaded', function() {
       // Mobile/Touch: Tap-to-Reveal
       const isTouch = matchMedia('(hover: none)').matches || 'ontouchstart' in window;
       if (isTouch) {
+        const sheet = document.getElementById('bwSheet');
+        const sheetTitle = document.getElementById('bwSheetTitle');
+        const sheetText = document.getElementById('bwSheetText');
+        const sheetBackdrop = document.getElementById('bwSheetBackdrop');
+        const sheetClose = document.getElementById('bwSheetClose');
+
+        function openSheet(title, text){
+          sheetTitle.textContent = title;
+          sheetText.textContent = text;
+          sheet.hidden = false; sheetBackdrop.hidden = false;
+          requestAnimationFrame(()=>{ sheet.classList.add('is-open'); sheetBackdrop.classList.add('is-open'); });
+        }
+        function closeSheet(){
+          sheet.classList.remove('is-open'); sheetBackdrop.classList.remove('is-open');
+          setTimeout(()=>{ sheet.hidden = true; sheetBackdrop.hidden = true; }, 250);
+        }
+        sheetBackdrop?.addEventListener('click', closeSheet);
+        sheetClose?.addEventListener('click', closeSheet);
+        document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeSheet(); });
+
         bubbles.forEach(b => {
           b.addEventListener('click', (e) => {
             e.preventDefault();
-            // schließen andere
-            bubbles.forEach(x => { if (x !== b) x.classList.remove('is-open'); });
-            b.classList.toggle('is-open');
+            const title = b.getAttribute('data-title') || b.querySelector('.bw-label')?.textContent?.trim() || '';
+            const text = b.getAttribute('data-desc') || '';
+            openSheet(title, text);
           });
-        });
-        // Klicken außerhalb schließt Overlay
-        document.addEventListener('click', (e) => {
-          const target = e.target;
-          if (!target.closest('.bw-bubble')) {
-            bubbles.forEach(x => x.classList.remove('is-open'));
-          }
         });
       }
     })();
