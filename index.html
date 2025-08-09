@@ -140,16 +140,8 @@
             </div>
             <!-- Panels -->
             <div>
-                <div id="tab-bautraeger" class="tab-panel grid lg:grid-cols-2 gap-8" role="tabpanel">
-                    <div class="panel-card hover-lift" data-aos="fade-right">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Stell dir vor…</h3>
-                        <ul class="space-y-3 text-gray-700 leading-relaxed">
-                            <li>…Ausschreibungen sind in Minuten erstellt – statt in Tagen.</li>
-                            <li>…verifizierte Dienstleister melden sich proaktiv auf deine Vergaben.</li>
-                            <li>…du hast Kosten, Termine und Fortschritt in einem einzigen Dashboard.</li>
-                        </ul>
-                    </div>
-                    <div class="panel-card hover-lift" data-aos="fade-left">
+                <div id="tab-bautraeger" class="tab-panel grid lg:grid-cols-1 gap-8" role="tabpanel">
+                    <div class="panel-card hover-lift" data-aos="fade-up">
                         <div class="flex items-center gap-4 mb-4">
                             <div class="badge">Workflow</div>
                             <div class="badge">Transparenz</div>
@@ -158,24 +150,109 @@
                         <p class="text-gray-700 mb-6">BuildWise bündelt Kommunikation, Dokumente und Freigaben – revisionssicher und DSGVO-konform.</p>
                         
                     </div>
-                </div>
-                <div id="tab-dienstleister" class="tab-panel hidden grid lg:grid-cols-2 gap-8" role="tabpanel" aria-hidden="true">
-                    <div class="panel-card hover-lift" data-aos="fade-right">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Stell dir vor…</h3>
-                        <ul class="space-y-3 text-gray-700 leading-relaxed">
-                            <li>…du verbringst weniger Zeit mit Akquise und mehr auf der Baustelle.</li>
-                            <li>…du verpasst keine relevante Ausschreibung mehr.</li>
-                            <li>…dein Profil macht deine Qualität sichtbar – und überzeugt automatisch.</li>
-                        </ul>
+                    <!-- Vorteile für Bauträger: Bubble-Grid -->
+                    <div class="lg:col-span-2 mt-6" data-aos="fade-up">
+                        <div class="text-center text-gray-600 font-semibold mb-3">Vorteile für Bauträger</div>
+                        <hr class="ps-divider"/>
+                        <div class="bw-bubbles ps-bubbles">
+                            <button class="bw-bubble" data-title="Schnellere Ausschreibungen" data-desc="Erstelle komplette Ausschreibungen in Minuten statt Tagen." aria-label="Schnellere Ausschreibungen">
+                                <span class="bw-icon">
+                                    <!-- lucide Zap -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
+                                </span>
+                                <span class="bw-label">Schnellere <span class="bw-em">Ausschreibungen</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Passgenaues Matching" data-desc="Automatisch geprüfte Dienstleister, passend zu Projekt, Budget und Zeitplan." aria-label="Passgenaues Matching">
+                                <span class="bw-icon">
+                                    <!-- lucide Target -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 7v5l3 3"/></svg>
+                                </span>
+                                <span class="bw-label">Passgenaues <span class="bw-em">Matching</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Alles im Blick" data-desc="Kosten, Termine und Fortschritt zentral im Dashboard verwalten." aria-label="Alles im Blick">
+                                <span class="bw-icon">
+                                    <!-- lucide BarChart3 -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M3 3v18h18"/><path stroke-width="2" d="M7 16v-6M12 19V8M17 13V5"/></svg>
+                                </span>
+                                <span class="bw-label">Alles <span class="bw-em">im Blick</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Dokumentenmanagement" data-desc="Pläne, Verträge und Freigaben sicher hochladen und jederzeit darauf zugreifen." aria-label="Dokumentenmanagement">
+                                <span class="bw-icon">
+                                    <!-- lucide FileText -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path stroke-width="2" d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Dokumenten</span>management</span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Direkte Kommunikation" data-desc="Fragen und Abstimmungen schnell im integrierten Projekt‑Chat klären." aria-label="Direkte Kommunikation">
+                                <span class="bw-icon">
+                                    <!-- lucide MessageSquare -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
+                                </span>
+                                <span class="bw-label">Direkte <span class="bw-em">Kommunikation</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="panel-card hover-lift" data-aos="fade-left">
+                </div>
+                <div id="tab-dienstleister" class="tab-panel hidden grid lg:grid-cols-1 gap-8" role="tabpanel" aria-hidden="true">
+                    <div class="panel-card hover-lift" data-aos="fade-up">
                         <div class="flex items-center gap-4 mb-4">
                             <div class="badge">Sichtbarkeit</div>
                             <div class="badge">Matching</div>
                             <div class="badge">Pipeline</div>
                         </div>
                         <p class="text-gray-700 mb-6">Erhalte nur Anfragen, die zu deinem Gewerk, Radius und Auslastung passen.</p>
-                        <a href="#beta" class="btn-primary-alt">Jetzt vormerken</a>
+                    </div>
+                    <!-- Vorteile für Dienstleister: Bubble-Grid -->
+                    <div class="lg:col-span-2 mt-6" data-aos="fade-up">
+                        <div class="text-center text-gray-600 font-semibold mb-3">Vorteile für Dienstleister</div>
+                        <hr class="ps-divider"/>
+                        <div class="bw-bubbles ps-bubbles">
+                            <button class="bw-bubble" data-title="Gezielte Anfragen" data-desc="Erhalte nur Projekte, die zu Gewerk, Einsatzgebiet und Auslastung passen." aria-label="Gezielte Anfragen">
+                                <span class="bw-icon">
+                                    <!-- lucide Target -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 7v5l3 3"/></svg>
+                                </span>
+                                <span class="bw-label">Gezielte <span class="bw-em">Anfragen</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Mehr Sichtbarkeit" data-desc="Referenzen, Qualifikationen und Bewertungen im Profil präsentieren." aria-label="Mehr Sichtbarkeit">
+                                <span class="bw-icon">
+                                    <!-- lucide Eye -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                                </span>
+                                <span class="bw-label">Mehr <span class="bw-em">Sichtbarkeit</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Einfache Angebotsabgabe" data-desc="Direkt auf Ausschreibungen antworten – ohne Papierarbeit." aria-label="Einfache Angebotsabgabe">
+                                <span class="bw-icon">
+                                    <!-- lucide ClipboardList -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M9 5h6M7 9h10M7 13h6"/><rect x="5" y="3" width="14" height="18" rx="2"/></svg>
+                                </span>
+                                <span class="bw-label">Einfache <span class="bw-em">Angebote</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Planbare Auslastung" data-desc="Freie Kapazitäten hinterlegen und Aufträge im passenden Zeitraum sichern." aria-label="Planbare Auslastung">
+                                <span class="bw-icon">
+                                    <!-- lucide Calendar -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M8 2v4m8-4v4M3 10h18M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2"/></svg>
+                                </span>
+                                <span class="bw-label">Planbare <span class="bw-em">Auslastung</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Projektübersicht" data-desc="Alle Projekte, Umsätze und Bewertungen gesammelt im Blick behalten." aria-label="Projektübersicht">
+                                <span class="bw-icon">
+                                    <!-- lucide BarChart3 -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M3 3v18h18"/><path stroke-width="2" d="M7 16v-6M12 19V8M17 13V5"/></svg>
+                                </span>
+                                <span class="bw-label">Projekt<span class="bw-em">übersicht</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -183,7 +260,7 @@
     </section>
 
     <!-- Beta CTA Section -->
-    <section id="beta" class="py-24 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white relative overflow-hidden">
+    <section id="beta" class="py-24 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white relative overflow-hidden bg-photo">
         <div class="absolute -top-32 -right-32 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-orange-400/20 rounded-full blur-3xl"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -224,8 +301,8 @@
                 </p>
             </div>
 
-            <!-- Modernes Bubble-Grid -->
-            <div class="bw-bubbles bw-floating bw-physics" data-aos="fade-up" aria-label="BuildWise Funktionen">
+            <!-- Modernes Bubble-Grid (Design wie Vorteile für Bauträger) -->
+            <div class="bw-bubbles bw-floating bw-physics ps-bubbles" data-aos="fade-up" aria-label="BuildWise Funktionen">
                 <button class="bw-bubble" data-title="Projektmanagement" data-desc="Verwalten Sie Bauprojekte effizient – zentral, übersichtlich, kollaborativ." aria-label="Projektmanagement">
                     <span class="bw-icon">
                         <!-- lucide ClipboardList -->
