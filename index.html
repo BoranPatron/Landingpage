@@ -45,7 +45,6 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#features" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Features</a>
                         <a href="#pricing" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Preise</a>
                         <a href="#phases" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Ablauf</a>
                         <a href="#faq" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">FAQ</a>
@@ -74,7 +73,6 @@
         <!-- Mobile Navigation -->
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100">
-                <a href="#features" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Features</a>
                 <a href="#pricing" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Preise</a>
                 <a href="#phases" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Ablauf</a>
                 <a href="#faq" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">FAQ</a>
@@ -127,7 +125,7 @@
     </section>
 
     <!-- Problem & Lösung Section -->
-    <section id="problem-solution" class="py-20">
+    <section id="problem-solution" class="py-28">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Problem & Lösung</h2>
@@ -150,11 +148,9 @@
                         <p class="text-gray-700 mb-6">BuildWise bündelt Kommunikation, Dokumente und Freigaben – revisionssicher und DSGVO-konform.</p>
                         
                     </div>
-                    <!-- Vorteile für Bauträger: Bubble-Grid -->
+                    <!-- Kombinierte Bubbles für Bauträger -->
                     <div class="lg:col-span-2 mt-6" data-aos="fade-up">
-                        <div class="text-center text-gray-600 font-semibold mb-3">Vorteile für Bauträger</div>
-                        <hr class="ps-divider"/>
-                        <div class="bw-bubbles ps-bubbles">
+                        <div class="bw-bubbles bw-physics bw-floating ps-bubbles" aria-label="Vorteile für Bauträger (kombiniert)">
                             <button class="bw-bubble" data-title="Schnellere Ausschreibungen" data-desc="Erstelle komplette Ausschreibungen in Minuten statt Tagen." aria-label="Schnellere Ausschreibungen">
                                 <span class="bw-icon">
                                     <!-- lucide Zap -->
@@ -195,6 +191,49 @@
                                 <span class="bw-label">Direkte <span class="bw-em">Kommunikation</span></span>
                                 <span class="bw-desc"></span>
                             </button>
+                            <!-- zusätzliche ehem. allgemeine Vorteile -->
+                            <button class="bw-bubble" data-title="Projektmanagement" data-desc="Verwalte Bauprojekte effizient – zentral, übersichtlich, kollaborativ." aria-label="Projektmanagement">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6m-8 4h10M7 13h4M7 17h4m2 4h3a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3M9 5a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v0a2 2 0 0 0-2-2"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Projekt</span>management</span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Dienstleister‑Netzwerk" data-desc="Finde und vernetze dich mit qualifizierten Partnern – Matching inklusive." aria-label="Dienstleister-Netzwerk">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8m8 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                </span>
+                                <span class="bw-label">Dienstleister‑<span class="bw-em">Netzwerk</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Finanzen" data-desc="Budgets, Kosten und Forecasts stets im Blick – transparent und sicher." aria-label="Finanzen">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7h-7a5 5 0 0 0-5 5v0a5 5 0 0 0 5 5h7M3 12h9M3 16h9"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Finanzen</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Termine" data-desc="Kalender, Meilensteine, Erinnerungen – alles nahtlos verknüpft." aria-label="Termine">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 2v4m8-4v4M3 10h18M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Termine</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Dokumente" data-desc="Pläne, Verträge, Fotos – zentral, versioniert und durchsuchbar." aria-label="Dokumente">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Dokumente</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Updates" data-desc="Bleib auf dem neuesten Stand – Benachrichtigungen in Echtzeit." aria-label="Updates">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Updates</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -207,11 +246,9 @@
                         </div>
                         <p class="text-gray-700 mb-6">Erhalte nur Anfragen, die zu deinem Gewerk, Radius und Auslastung passen.</p>
                     </div>
-                    <!-- Vorteile für Dienstleister: Bubble-Grid -->
+                    <!-- Kombinierte Bubbles für Dienstleister -->
                     <div class="lg:col-span-2 mt-6" data-aos="fade-up">
-                        <div class="text-center text-gray-600 font-semibold mb-3">Vorteile für Dienstleister</div>
-                        <hr class="ps-divider"/>
-                        <div class="bw-bubbles ps-bubbles">
+                        <div class="bw-bubbles bw-physics bw-floating ps-bubbles" aria-label="Vorteile für Dienstleister (kombiniert)">
                             <button class="bw-bubble" data-title="Gezielte Anfragen" data-desc="Erhalte nur Projekte, die zu Gewerk, Einsatzgebiet und Auslastung passen." aria-label="Gezielte Anfragen">
                                 <span class="bw-icon">
                                     <!-- lucide Target -->
@@ -252,6 +289,49 @@
                                 <span class="bw-label">Projekt<span class="bw-em">übersicht</span></span>
                                 <span class="bw-desc"></span>
                             </button>
+                            <!-- zusätzliche ehem. allgemeine Vorteile -->
+                            <button class="bw-bubble" data-title="Projektmanagement" data-desc="Verwalte Bauprojekte effizient – zentral, übersichtlich, kollaborativ." aria-label="Projektmanagement">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6m-8 4h10M7 13h4M7 17h4m2 4h3a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3M9 5a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v0a2 2 0 0 0-2-2"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Projekt</span>management</span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Dienstleister‑Netzwerk" data-desc="Finde und vernetze dich mit qualifizierten Partnern – Matching inklusive." aria-label="Dienstleister-Netzwerk">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8m8 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                </span>
+                                <span class="bw-label">Dienstleister‑<span class="bw-em">Netzwerk</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Finanzen" data-desc="Budgets, Kosten und Forecasts stets im Blick – transparent und sicher." aria-label="Finanzen">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7h-7a5 5 0 0 0-5 5v0a5 5 0 0 0 5 5h7M3 12h9M3 16h9"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Finanzen</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Termine" data-desc="Kalender, Meilensteine, Erinnerungen – alles nahtlos verknüpft." aria-label="Termine">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 2v4m8-4v4M3 10h18M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Termine</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Dokumente" data-desc="Pläne, Verträge, Fotos – zentral, versioniert und durchsuchbar." aria-label="Dokumente">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Dokumente</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
+                            <button class="bw-bubble" data-title="Updates" data-desc="Bleib auf dem neuesten Stand – Benachrichtigungen in Echtzeit." aria-label="Updates">
+                                <span class="bw-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
+                                </span>
+                                <span class="bw-label"><span class="bw-em">Updates</span></span>
+                                <span class="bw-desc"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -285,77 +365,6 @@
                         <p class="mt-3 text-xs text-gray-400">Mit deiner Anmeldung erklärst du dich mit unserer Datenschutzerklärung einverstanden.</p>
                     </form>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-20 features-hero">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Warum BuildWise?
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Unsere Plattform bietet dir alles, was du für erfolgreiche Bauprojekte brauchst
-                </p>
-            </div>
-
-            <!-- Modernes Bubble-Grid (Design wie Vorteile für Bauträger) -->
-            <div class="bw-bubbles bw-floating bw-physics ps-bubbles" data-aos="fade-up" aria-label="BuildWise Funktionen">
-                <button class="bw-bubble" data-title="Projektmanagement" data-desc="Verwalte Bauprojekte effizient – zentral, übersichtlich, kollaborativ." aria-label="Projektmanagement">
-                    <span class="bw-icon">
-                        <!-- lucide ClipboardList -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6m-8 4h10M7 13h4M7 17h4m2 4h3a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3M9 5a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v0a2 2 0 0 0-2-2"/></svg>
-                    </span>
-                    <span class="bw-label"><span class="bw-em">Projekt</span>management</span>
-                    <span class="bw-desc"></span>
-                </button>
-
-                <button class="bw-bubble" data-title="Dienstleister‑Netzwerk" data-desc="Finde und vernetze dich mit qualifizierten Partnern – Matching inklusive." aria-label="Dienstleister-Netzwerk">
-                    <span class="bw-icon">
-                        <!-- lucide Users -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8m8 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </span>
-                    <span class="bw-label">Dienstleister‑<span class="bw-em">Netzwerk</span></span>
-                    <span class="bw-desc"></span>
-                </button>
-
-                <button class="bw-bubble" data-title="Finanzmanagement" data-desc="Budgets, Kosten und Forecasts stets im Blick – transparent und sicher." aria-label="Finanzmanagement">
-                    <span class="bw-icon">
-                        <!-- lucide Euro -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7h-7a5 5 0 0 0-5 5v0a5 5 0 0 0 5 5h7M3 12h9M3 16h9"/></svg>
-                    </span>
-                    <span class="bw-label"><span class="bw-em">Finanzen</span></span>
-                    <span class="bw-desc"></span>
-                </button>
-
-                <button class="bw-bubble" data-title="Terminplanung" data-desc="Kalender, Meilensteine, Erinnerungen – alles nahtlos verknüpft." aria-label="Terminplanung">
-                    <span class="bw-icon">
-                        <!-- lucide Calendar -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 2v4m8-4v4M3 10h18M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2"/></svg>
-                    </span>
-                    <span class="bw-label"><span class="bw-em">Termine</span></span>
-                    <span class="bw-desc"></span>
-                </button>
-
-                <button class="bw-bubble" data-title="Dokumentenverwaltung" data-desc="Pläne, Verträge, Fotos – zentral, versioniert und durchsuchbar." aria-label="Dokumentenverwaltung">
-                    <span class="bw-icon">
-                        <!-- lucide FileText -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-                    </span>
-                    <span class="bw-label"><span class="bw-em">Dokumente</span></span>
-                    <span class="bw-desc"></span>
-                </button>
-
-                <button class="bw-bubble" data-title="Echtzeit‑Updates" data-desc="Bleib auf dem neuesten Stand – Benachrichtigungen in Echtzeit." aria-label="Echtzeit-Updates">
-                    <span class="bw-icon">
-                        <!-- lucide Zap -->
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
-                    </span>
-                    <span class="bw-label"><span class="bw-em">Updates</span></span>
-                    <span class="bw-desc"></span>
-                </button>
             </div>
         </div>
     </section>
