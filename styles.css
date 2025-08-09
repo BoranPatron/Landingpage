@@ -1060,7 +1060,9 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Floating layout: absolute over section */
 .bw-floating { position: relative; min-height: 360px; }
+.bw-floating::before { content: ""; position: absolute; inset: 0; background-image: url('bg_wbpage2.png'); background-size: cover; background-position: center; opacity: .28; z-index: 0; }
 .bw-floating .bw-bubble { position: absolute; left: var(--x, 10%); top: var(--y, 10%); width: 220px; height: 220px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: .5rem; }
+.bw-floating .bw-bubble { z-index: 1; }
 .bw-floating .bw-label { pointer-events: none; }
 
 @media (max-width: 640px) {
@@ -1070,7 +1072,7 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Features with background image */
 .features-hero { position: relative; }
-.features-hero::before { content:""; position:absolute; inset:0; background-image: url('bg_wbpage2.png'); background-size: cover; background-position: center; opacity:.35; z-index:0; }
+.features-hero::before { content:""; position:absolute; inset:0; background-image: url('bg_wbpage2.png'); background-size: cover; background-position: center; opacity:.35; z-index:0; pointer-events: none; }
 .features-hero > div { position: relative; z-index: 1; }
 
 /* Emphasis inside labels */
@@ -1081,10 +1083,12 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 @media (max-width: 640px) {
   /* Mobile: kein Physik-Layout, sondern Grid ohne Überlagerung */
-  .bw-physics { position: relative; min-height: auto; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .75rem; }
-  .bw-physics .bw-bubble { position: static; width: auto; height: 150px; animation: none !important; }
-  .bw-physics .bw-icon { width: 40px; height: 40px; }
-  .bw-physics .bw-icon svg { width: 20px; height: 20px; }
-  /* Overlay ausblenden; stattdessen Label sichtbar lassen */
+  .bw-physics { position: relative; min-height: auto; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .9rem; justify-items: center; align-items: start; }
+  .bw-physics.bw-floating::before { opacity: .15; pointer-events: none; }
+  .bw-physics .bw-bubble { position: static; width: 160px; height: 160px; border-radius: 9999px; padding: .85rem; animation: none !important; z-index: 1; }
+  .bw-physics .bw-icon { width: 44px; height: 44px; }
+  .bw-physics .bw-icon svg { width: 22px; height: 22px; }
+  .bw-physics .bw-label { font-size: .95rem; text-align: center; line-height: 1.25; color: #f2f5f7; }
+  /* Overlay-Text ausblenden auf Mobile für Lesbarkeit */
   .bw-physics .bw-desc { display: none !important; }
 } 
