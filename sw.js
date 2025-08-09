@@ -1,4 +1,4 @@
-const CACHE = 'bw-landing-v3';
+const CACHE = 'bw-landing-v4';
 const ASSETS = [
   '/',
   '/index.html',
@@ -19,24 +19,26 @@ self.addEventListener('activate', (e) => {
   );
 });
 
+// Network-first für HTML/CSS/JS in Dev
 self.addEventListener('fetch', (e) => {
   const req = e.request;
-  // Network-first for index.html, so updates werden sofort sichtbar
-  if (req.mode === 'navigate') {
+  const url = new URL(req.url);
+  const isStatic = url.pathname.endsWith('.css') || url.pathname.endsWith('.js') || req.mode === 'navigate';
+  if (isStatic) {
     e.respondWith(
       fetch(req).then(res => {
         const copy = res.clone();
-        caches.open(CACHE).then(c => c.put('/', copy));
+        caches.open(CACHE).then(c => c.put(req, copy));
         return res;
-      }).catch(() => caches.match('/index.html'))
+      }).catch(() => caches.match(req).then(r => r || caches.match('/index.html')))
     );
-    return;
+  } else {
+    e.respondWith(
+      caches.match(req).then((hit) => hit || fetch(req).then(res => {
+        const copy = res.clone();
+        caches.open(CACHE).then(c => c.put(req, copy));
+        return res;
+      }))
+    );
   }
-  e.respondWith(
-    caches.match(req).then((hit) => hit || fetch(req).then(res => {
-      const copy = res.clone();
-      caches.open(CACHE).then(c => c.put(req, copy));
-      return res;
-    }).catch(() => caches.match('/index.html')))
-  );
 });
