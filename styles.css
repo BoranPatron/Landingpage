@@ -994,3 +994,8 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Verhindere versehentlich große SVGs im Abschnitt */
 #phases > svg, #phases .wf-vert > svg, #phases .wf-row > svg { display: none !important; } 
+
+/* Closer / Abbinder */
+.closer { background: transparent; }
+.closer-divider { border: none; height: 1px; background: rgba(255,255,255,.12); margin: 0 0 12px 0; }
+.closer-text { color: #e6ebef; font-weight: 600; letter-spacing: .2px; font-size: clamp(1rem, 1.2vw + .8rem, 1.25rem); } 
