@@ -987,3 +987,10 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 /* Hard cap for any SVG inside phases section to avoid oversized icons */
 #phases svg { max-width: 28px; max-height: 28px; }
 #phases .wf-icon svg { width: 14px; height: 14px; } 
+
+/* Phasen-Icons konsistent einfärben */
+#phases .wf-icon { color: var(--ci-accent); background: rgba(249,199,79,.15); }
+#phases .wf-icon svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
+
+/* Verhindere versehentlich große SVGs im Abschnitt */
+#phases > svg, #phases .wf-vert > svg, #phases .wf-row > svg { display: none !important; } 
