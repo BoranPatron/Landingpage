@@ -382,7 +382,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
       function step(dtMs){
         const rect = container.getBoundingClientRect();
-        const minX = 80, minY = 80, maxX = rect.width - 80, maxY = rect.height - 80;
+        // Rand mit "Überhang": Bubbles dürfen bis zur Hälfte herausragen
+        const minX = -60, minY = -60, maxX = rect.width + 60, maxY = rect.height + 60;
         const dt = Math.max(0.001, dtMs / 1000); // s
 
         // weiche Antriebsrichtung (Low-Frequency Noise via angle)
@@ -418,9 +419,9 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
 
-        // Randkräfte (federnd statt harter Bounce)
+        // Randkräfte (elastisch, lassen halben Überhang zu und prallen smooth zurück)
         state.forEach(s => {
-          const kWall = 120; // px/s^2
+          const kWall = 90; // weicher
           if (s.x < minX) s.vx += (minX - s.x) * kWall * dt;
           if (s.x > maxX) s.vx -= (s.x - maxX) * kWall * dt;
           if (s.y < minY) s.vy += (minY - s.y) * kWall * dt;
@@ -429,9 +430,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Dämpfung & Geschwindigkeitslimit
         state.forEach(s => {
-          const maxV = 60; // px/s
+          const maxV = 48; // etwas ruhiger
           // Dämpfung für smoothness
-          s.vx *= 0.98; s.vy *= 0.98;
+          s.vx *= 0.985; s.vy *= 0.985;
           const v = Math.hypot(s.vx, s.vy);
           if (v > maxV) { const scale = maxV / v; s.vx *= scale; s.vy *= scale; }
         });

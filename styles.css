@@ -1109,7 +1109,7 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   /* Mobile: Kreis-Bubbles im Grid, Tap-to-Reveal */
   .bw-physics { position: relative; min-height: auto; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .9rem; justify-items: center; align-items: start; overflow: visible; }
   .bw-physics.bw-floating::before { content: none; }
-  .bw-physics .bw-bubble { position: static; width: 160px; height: 160px; border-radius: 9999px; padding: .85rem; animation: mFloat var(--dur, 8s) ease-in-out infinite; will-change: transform; z-index: 1; }
+  .bw-physics .bw-bubble { position: static; width: 160px; height: 160px; border-radius: 9999px; padding: .85rem; animation: none !important; will-change: transform; z-index: 1; }
   .bw-physics .bw-icon { width: 46px; height: 46px; }
   .bw-physics .bw-icon svg { width: 22px; height: 22px; }
   .bw-physics .bw-label { font-size: .95rem; text-align: center; line-height: 1.25; color: #0b1114; opacity: .95; }
