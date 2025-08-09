@@ -213,7 +213,7 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20">
+    <section id="features" class="py-20 features-hero">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -223,85 +223,62 @@
                     Unsere Plattform bietet alles, was Sie für erfolgreiche Bauprojekte benötigen
                 </p>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Projektmanagement</h3>
-                    <p class="text-gray-600">
-                        Verwalten Sie Ihre Bauprojekte effizient mit unserem intuitiven Projektmanagement-System.
-                    </p>
-                </div>
-                
-                <!-- Feature 2 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Dienstleister-Netzwerk</h3>
-                    <p class="text-gray-600">
-                        Finden Sie qualifizierte Dienstleister in Ihrer Region und vernetzen Sie sich.
-                    </p>
-                </div>
-                
-                <!-- Feature 3 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Finanzmanagement</h3>
-                    <p class="text-gray-600">
-                        Behalten Sie den Überblick über Kosten, Budgets und Zahlungsströme.
-                    </p>
-                </div>
-                
-                <!-- Feature 4 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Terminplanung</h3>
-                    <p class="text-gray-600">
-                        Planen Sie Termine und Besichtigungen effizient mit unserem Kalender-System.
-                    </p>
-                </div>
-                
-                <!-- Feature 5 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Dokumentenverwaltung</h3>
-                    <p class="text-gray-600">
-                        Verwalten Sie alle Projektunterlagen sicher und übersichtlich.
-                    </p>
-                </div>
-                
-                <!-- Feature 6 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 tilt-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Echtzeit-Updates</h3>
-                    <p class="text-gray-600">
-                        Bleiben Sie immer auf dem neuesten Stand mit Echtzeit-Benachrichtigungen.
-                    </p>
-                </div>
+
+            <!-- Modernes Bubble-Grid -->
+            <div class="bw-bubbles bw-floating bw-physics" data-aos="fade-up" aria-label="BuildWise Funktionen">
+                <button class="bw-bubble" data-title="Projektmanagement" data-desc="Verwalten Sie Bauprojekte effizient – zentral, übersichtlich, kollaborativ." aria-label="Projektmanagement">
+                    <span class="bw-icon">
+                        <!-- lucide ClipboardList -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6m-8 4h10M7 13h4M7 17h4m2 4h3a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3M9 5a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v0a2 2 0 0 0-2-2"/></svg>
+                    </span>
+                    <span class="bw-label"><span class="bw-em">Projekt</span>management</span>
+                    <span class="bw-desc"></span>
+                </button>
+
+                <button class="bw-bubble" data-title="Dienstleister‑Netzwerk" data-desc="Finden und vernetzen Sie qualifizierte Partner – Matching inklusive." aria-label="Dienstleister-Netzwerk">
+                    <span class="bw-icon">
+                        <!-- lucide Users -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8m8 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </span>
+                    <span class="bw-label">Dienstleister‑<span class="bw-em">Netzwerk</span></span>
+                    <span class="bw-desc"></span>
+                </button>
+
+                <button class="bw-bubble" data-title="Finanzmanagement" data-desc="Budgets, Kosten und Forecasts stets im Blick – transparent und sicher." aria-label="Finanzmanagement">
+                    <span class="bw-icon">
+                        <!-- lucide Euro -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7h-7a5 5 0 0 0-5 5v0a5 5 0 0 0 5 5h7M3 12h9M3 16h9"/></svg>
+                    </span>
+                    <span class="bw-label"><span class="bw-em">Finanzen</span></span>
+                    <span class="bw-desc"></span>
+                </button>
+
+                <button class="bw-bubble" data-title="Terminplanung" data-desc="Kalender, Meilensteine, Erinnerungen – alles nahtlos verknüpft." aria-label="Terminplanung">
+                    <span class="bw-icon">
+                        <!-- lucide Calendar -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 2v4m8-4v4M3 10h18M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2"/></svg>
+                    </span>
+                    <span class="bw-label"><span class="bw-em">Termine</span></span>
+                    <span class="bw-desc"></span>
+                </button>
+
+                <button class="bw-bubble" data-title="Dokumentenverwaltung" data-desc="Pläne, Verträge, Fotos – zentral, versioniert und durchsuchbar." aria-label="Dokumentenverwaltung">
+                    <span class="bw-icon">
+                        <!-- lucide FileText -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                    </span>
+                    <span class="bw-label"><span class="bw-em">Dokumente</span></span>
+                    <span class="bw-desc"></span>
+                </button>
+
+                <button class="bw-bubble" data-title="Echtzeit‑Updates" data-desc="Bleiben Sie auf dem neuesten Stand – Benachrichtigungen in Echtzeit." aria-label="Echtzeit-Updates">
+                    <span class="bw-icon">
+                        <!-- lucide Zap -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
+                    </span>
+                    <span class="bw-label"><span class="bw-em">Updates</span></span>
+                    <span class="bw-desc"></span>
+                </button>
             </div>
         </div>
     </section>
