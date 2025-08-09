@@ -273,6 +273,152 @@ document.addEventListener('DOMContentLoaded', function() {
       dots.forEach((d, i) => d.addEventListener('click', () => { cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start' }); }));
       update();
     })();
+
+    // Bubble grid interaction
+    (function initBubbles(){
+      const bubbles = document.querySelectorAll('.bw-bubble');
+      if (!bubbles.length) return;
+      bubbles.forEach((b, i) => {
+        const dur = (8 + Math.random() * 5).toFixed(1) + 's'; // etwas schneller
+        b.style.setProperty('--dur', dur);
+        b.style.animationDelay = (-Math.random() * 8).toFixed(1) + 's';
+        const d = b.getAttribute('data-desc') || '';
+        const desc = b.querySelector('.bw-desc');
+        if (desc) desc.textContent = d;
+      });
+      // Hover-only Reveal; Keyboard-Nutzer sehen weiterhin Label (kein Toggle nötig)
+    })();
+
+    // Floating bubbles
+    (function initFloatingBubbles(){
+      const container = document.querySelector('.bw-floating');
+      if (!container) return;
+      const rect = () => container.getBoundingClientRect();
+      const bubbles = container.querySelectorAll('.bw-bubble');
+      const place = () => {
+        const r = rect();
+        const cols = Math.max(2, Math.floor(r.width / 260));
+        const rows = Math.max(2, Math.ceil(bubbles.length / cols));
+        const cellW = r.width / cols;
+        const cellH = Math.max(200, r.height / rows);
+        bubbles.forEach((b, i) => {
+          const c = i % cols; const row = Math.floor(i / cols);
+          let x = c * cellW + cellW/2 + (Math.random()*50 - 25);
+          let y = row * cellH + cellH/2 + (Math.random()*50 - 25);
+          x = Math.max(80, Math.min(r.width - 80, x));
+          y = Math.max(80, Math.min(r.height - 80, y));
+          b.style.setProperty('--x', `${x}px`);
+          b.style.setProperty('--y', `${y}px`);
+          const dur = (7 + Math.random() * 5).toFixed(1) + 's'; // schneller
+          b.style.setProperty('--dur', dur);
+          b.style.animationDelay = (-Math.random() * 8).toFixed(1) + 's';
+        });
+      };
+      place();
+      let to;
+      window.addEventListener('resize', () => { clearTimeout(to); to = setTimeout(place, 150); });
+    })();
+
+    // Simple 2D physics for feature bubbles
+    (function initBubblePhysics(){
+      const container = document.querySelector('.bw-physics');
+      if (!container) return;
+      const bubbles = Array.from(container.querySelectorAll('.bw-bubble'));
+      const state = bubbles.map((el, i) => ({ el, x: 0, y: 0, vx: 0, vy: 0, r: 0, angle: Math.random()*Math.PI*2, freq: 0.4 + Math.random()*0.3, speed: 8 + Math.random()*6 }));
+
+      function layout() {
+        const rect = container.getBoundingClientRect();
+        // initial placement (grid with jitter)
+        const cols = Math.max(2, Math.floor(rect.width / 260));
+        const rows = Math.max(2, Math.ceil(bubbles.length / cols));
+        const cellW = rect.width / cols;
+        const cellH = Math.max(200, rect.height / rows);
+        state.forEach((s, i) => {
+          const b = s.el; const c = i % cols; const row = Math.floor(i / cols);
+          const w = b.offsetWidth || 200; const h = b.offsetHeight || 200;
+          s.r = Math.max(w, h) / 2;
+          s.x = c * cellW + cellW / 2 + (Math.random()*40 - 20);
+          s.y = row * cellH + cellH / 2 + (Math.random()*40 - 20);
+          // sehr langsame Startgeschwindigkeit in px/s
+          s.vx = (Math.random()*2 - 1) * 10;
+          s.vy = (Math.random()*2 - 1) * 10;
+          positionEl(s);
+        });
+      }
+
+      function positionEl(s){ s.el.style.setProperty('--x', `${s.x}px`); s.el.style.setProperty('--y', `${s.y}px`); }
+
+      function step(dtMs){
+        const rect = container.getBoundingClientRect();
+        const minX = 80, minY = 80, maxX = rect.width - 80, maxY = rect.height - 80;
+        const dt = Math.max(0.001, dtMs / 1000); // s
+
+        // weiche Antriebsrichtung (Low-Frequency Noise via angle)
+        state.forEach(s => {
+          s.angle += s.freq * dt; // rad/s
+          // Kraft in px/s^2
+          const drive = s.speed; // Amplitude
+          s.vx += Math.cos(s.angle) * drive * dt;
+          s.vy += Math.sin(s.angle) * drive * dt;
+        });
+
+        // Soft-Repulsion (auch vor Kontakt) + Kollisionskorrektur
+        for (let i = 0; i < state.length; i++) {
+          for (let j = i+1; j < state.length; j++) {
+            const a = state[i], b = state[j];
+            const dx = b.x - a.x, dy = b.y - a.y; const dist = Math.hypot(dx, dy) || 0.0001;
+            const nx = dx / dist, ny = dy / dist;
+            const target = a.r + b.r - 16; // gewünschter Mindestabstand (kleiner Puffer)
+            const softRange = target + 24;  // frühzeitig abstoßen
+            if (dist < softRange) {
+              const k = 60; // Federkonstante (px/s^2)
+              const force = (softRange - dist) / softRange * k; // linear fallend
+              // entgegengesetzte Kräfte anwenden
+              a.vx -= nx * force * dt; a.vy -= ny * force * dt;
+              b.vx += nx * force * dt; b.vy += ny * force * dt;
+            }
+            if (dist < target) {
+              // kleine Positionskorrektur gegen Überschneidung
+              const overlap = (target - dist) * 0.5;
+              a.x -= nx * overlap; a.y -= ny * overlap;
+              b.x += nx * overlap; b.y += ny * overlap;
+            }
+          }
+        }
+
+        // Randkräfte (federnd statt harter Bounce)
+        state.forEach(s => {
+          const kWall = 120; // px/s^2
+          if (s.x < minX) s.vx += (minX - s.x) * kWall * dt;
+          if (s.x > maxX) s.vx -= (s.x - maxX) * kWall * dt;
+          if (s.y < minY) s.vy += (minY - s.y) * kWall * dt;
+          if (s.y > maxY) s.vy -= (s.y - maxY) * kWall * dt;
+        });
+
+        // Dämpfung & Geschwindigkeitslimit
+        state.forEach(s => {
+          const maxV = 60; // px/s
+          // Dämpfung für smoothness
+          s.vx *= 0.98; s.vy *= 0.98;
+          const v = Math.hypot(s.vx, s.vy);
+          if (v > maxV) { const scale = maxV / v; s.vx *= scale; s.vy *= scale; }
+        });
+
+        // Integration
+        state.forEach(s => { s.x += s.vx * dt; s.y += s.vy * dt; positionEl(s); });
+      }
+
+      let last = performance.now();
+      function loop(now){
+        const dt = Math.min(40, now - last); last = now; // ms
+        step(dt);
+        requestAnimationFrame(loop);
+      }
+
+      layout();
+      requestAnimationFrame(loop);
+      window.addEventListener('resize', () => { layout(); });
+    })();
 });
 
 // Tabs logic
