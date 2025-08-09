@@ -252,6 +252,27 @@ document.addEventListener('DOMContentLoaded', function() {
       }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
       steps.forEach(s=>obs.observe(s));
     })();
+
+    // Mobile carousel dots sync
+    (function initWFCarousel(){
+      const track = document.querySelector('.wf-track');
+      const dots = document.querySelectorAll('.wf-dots button');
+      if (!track || !dots.length) return;
+      const cards = track.querySelectorAll('.wf-card');
+      const update = () => {
+        const rect = track.getBoundingClientRect();
+        let active = 0;
+        cards.forEach((c, i) => {
+          const r = c.getBoundingClientRect();
+          const visible = Math.max(0, Math.min(r.right, rect.right) - Math.max(r.left, rect.left));
+          if (visible > (rect.width * 0.5)) active = i;
+        });
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === active));
+      };
+      track.addEventListener('scroll', () => { requestAnimationFrame(update); }, { passive: true });
+      dots.forEach((d, i) => d.addEventListener('click', () => { cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start' }); }));
+      update();
+    })();
 });
 
 // Tabs logic
