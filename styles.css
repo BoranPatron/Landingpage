@@ -1115,6 +1115,10 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   .bw-physics .bw-label { font-size: .95rem; text-align: center; line-height: 1.25; color: #0b1114; opacity: .95; }
   /* In-Bubble-Overlay auf Mobile nicht nutzen -> Bottom Sheet */
   .bw-physics .bw-desc { display: none !important; }
+
+  /* Speziell für "Warum BuildWise?": absolute Positionierung für Physik */
+  .bw-physics.bw-floating { display: block; min-height: 360px; }
+  .bw-physics.bw-floating .bw-bubble { position: absolute; width: 170px; height: 170px; }
 } 
 
 /* Hintergrundbild im Beta-Abschnitt */
