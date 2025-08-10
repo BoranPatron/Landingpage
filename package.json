@@ -1,0 +1,14 @@
+{
+  "name": "buildwise-landing",
+  "private": true,
+  "scripts": {
+    "dev": "netlify dev -p 5508",
+    "build": "echo 'static site'",
+    "serve": "npx serve -l 5508"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^2.7.0"
+  }
+}
+
+
