@@ -1,9 +1,9 @@
-const CACHE = 'bw-landing-v4';
+const CACHE = 'bw-landing-v5';
 const ASSETS = [
   '/',
   '/index.html',
-  '/styles.css?v=3',
-  '/script.js?v=3',
+  '/styles.css?v=4',
+  '/script.js?v=4',
   '/logo.png'
 ];
 
