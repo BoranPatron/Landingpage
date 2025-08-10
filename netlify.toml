@@ -1,0 +1,11 @@
+[build]
+  publish = "Landingpage"
+  functions = "Landingpage/netlify/functions"
+
+# Optional: Redirect API path to function (nice URL)
+[[redirects]]
+  from = "/api/beta-subscribe"
+  to = "/.netlify/functions/brevo-beta-subscribe"
+  status = 200
+
+
