@@ -4,10 +4,15 @@
   "scripts": {
     "dev": "netlify dev -p 5508",
     "build": "echo 'static site'",
-    "serve": "npx serve -l 5508"
+    "serve": "npx serve -l 5508",
+    "api": "node api/server.js"
   },
   "devDependencies": {
     "@netlify/functions": "^2.7.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
   }
 }
 
