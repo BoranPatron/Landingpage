@@ -820,6 +820,12 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="config.js?v=2"></script>
     <script src="script.js?v=7"></script>
+    <script>
+      // Force SW update on version bump
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.update()));
+      }
+    </script>
     <!-- Globale ARIA Live Region -->
     <div id="global-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
     <!-- Bottom Sheet für Mobile Bubble-Details -->
