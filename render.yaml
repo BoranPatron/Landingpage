@@ -2,7 +2,7 @@ services:
   - type: web
     name: buildwise-landingpage
     env: static
-    rootDir: Landingpage
+    rootDir: .
     staticPublishPath: ./
     routes:
       - type: rewrite
@@ -39,7 +39,7 @@ services:
   - type: web
     name: buildwise-api
     env: node
-    rootDir: Landingpage
+    rootDir: .
     buildCommand: npm install --omit=dev
     startCommand: node api/server.js
     envVars:
