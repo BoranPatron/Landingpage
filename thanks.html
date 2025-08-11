@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danke – Beta-Launch Countdown</title>
+  <link rel="stylesheet" href="styles.css?v=5">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-inter ci-theme">
+  <nav class="w-full py-4 px-6 flex items-center justify-between" style="background: rgba(0,0,0,.25); border-bottom:1px solid rgba(255,255,255,.08)">
+    <a href="/" class="flex items-center gap-3"><span class="ci-logo ci-logo--gradient"></span><span class="font-bold text-lg">BuildWise</span></a>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-6 py-16">
+    <section class="text-center" data-aos="fade-up">
+      <h1 class="text-3xl md:text-5xl font-extrabold gradient-text mb-4">Danke für deine Anmeldung!</h1>
+      <p class="text-lg text-gray-300 mb-10">Der Beta‑Launch startet am 18.08.2025. Wir zählen gemeinsam die Tage.</p>
+
+      <div class="countdown">
+        <div class="cd-grid">
+          <div class="cd-box"><div id="cd-days" class="cd-value">0</div><div class="cd-label">Tage</div></div>
+          <div class="cd-box"><div id="cd-hours" class="cd-value">0</div><div class="cd-label">Stunden</div></div>
+          <div class="cd-box"><div id="cd-mins" class="cd-value">0</div><div class="cd-label">Minuten</div></div>
+          <div class="cd-box"><div id="cd-secs" class="cd-value">0</div><div class="cd-label">Sekunden</div></div>
+        </div>
+        <div class="mt-10">
+          <a href="/" class="btn-primary-alt">Zurück zur Startseite</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const target = new Date('2025-08-18T00:00:00+02:00').getTime();
+    const el = {
+      d: document.getElementById('cd-days'),
+      h: document.getElementById('cd-hours'),
+      m: document.getElementById('cd-mins'),
+      s: document.getElementById('cd-secs')
+    };
+    function tick(){
+      const now = Date.now();
+      let diff = Math.max(0, target - now);
+      const days = Math.floor(diff / (1000*60*60*24)); diff -= days*24*60*60*1000;
+      const hours= Math.floor(diff / (1000*60*60));    diff -= hours*60*60*1000;
+      const mins = Math.floor(diff / (1000*60));       diff -= mins*60*1000;
+      const secs = Math.floor(diff / 1000);
+      el.d.textContent = String(days);
+      el.h.textContent = String(hours).padStart(2,'0');
+      el.m.textContent = String(mins).padStart(2,'0');
+      el.s.textContent = String(secs).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+  </script>
+</body>
+</html>
+
+

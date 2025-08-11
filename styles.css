@@ -339,23 +339,44 @@ html {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
-/* Notification Styles */
+/* Notification Styles – kontrastreich, peppig, CI-konform */
 .notification {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    z-index: 50;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  color: #fff;
+  background: linear-gradient(160deg, rgba(81,100,111,.96), rgba(81,100,111,.90));
+  border: 1px solid rgba(249,199,79,.35);
+  box-shadow: 0 12px 30px -12px rgba(0,0,0,.6), 0 0 24px rgba(249,199,79,.25), 0 0 0 2px rgba(255,255,255,.06) inset;
+  backdrop-filter: blur(6px);
+  transform: translateX(110%);
+  transition: transform .35s ease, opacity .35s ease;
+  z-index: 70;
 }
+.notification.show { transform: translateX(0); }
 
-.notification.show {
-    transform: translateX(0);
+/* Varianten je Typ (nutzt Klassen: notification-success|error|info) */
+.notification-success { border-color: rgba(34,197,94,.45); box-shadow: 0 12px 30px -12px rgba(0,0,0,.6), 0 0 26px rgba(34,197,94,.28), 0 0 0 2px rgba(34,197,94,.18) inset; }
+.notification-error   { border-color: rgba(239,68,68,.5);  box-shadow: 0 12px 30px -12px rgba(0,0,0,.6), 0 0 26px rgba(239,68,68,.28),  0 0 0 2px rgba(239,68,68,.18) inset; }
+.notification-info    { border-color: rgba(249,199,79,.5); box-shadow: 0 12px 30px -12px rgba(0,0,0,.6), 0 0 26px rgba(249,199,79,.28), 0 0 0 2px rgba(249,199,79,.18) inset; }
+
+.notification .flex { align-items: center; }
+.notification .flex span { color: #fff; }
+
+/* Countdown – groß & glow */
+.countdown {
+  display: grid; gap: 1rem; justify-content: center; align-items: center; text-align: center;
 }
+.countdown .cd-grid { display: grid; grid-auto-flow: column; gap: 1rem; justify-content: center; align-items: end; }
+.cd-box {
+  min-width: 120px; padding: 1rem 1.25rem; border-radius: 1rem; background: linear-gradient(160deg, rgba(81,100,111,.85), rgba(81,100,111,.75));
+  border: 1px solid rgba(249,199,79,.35); box-shadow: 0 20px 50px -12px rgba(0,0,0,.45), 0 0 28px rgba(249,199,79,.22), 0 0 0 2px rgba(255,255,255,.06) inset;
+}
+.cd-value { font-weight: 900; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1; letter-spacing: 1px; color: #fff; text-shadow: 0 0 18px rgba(249,199,79,.18); }
+.cd-label { margin-top: .35rem; font-weight: 700; color: #ffe08a; opacity: .95; letter-spacing: .5px; }
+@media (max-width: 640px) { .cd-box { min-width: 86px; padding: .8rem; } }
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {

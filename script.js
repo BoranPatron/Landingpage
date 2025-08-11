@@ -113,6 +113,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 statusLive && (statusLive.textContent = 'Erfolgreich angemeldet.');
                 trackEvent('beta_signup', { email });
                 betaForm.reset();
+
+                // Weiterleitung zur Countdown-Seite
+                try { window.location.href = '/thanks.html'; } catch(_) {}
             } catch (err) {
                 console.error('Brevo Beta-Anmeldung fehlgeschlagen:', err);
                 const msg = (err && err.message) ? err.message : 'Die Anmeldung ist fehlgeschlagen. Bitte versuche es später erneut.';
