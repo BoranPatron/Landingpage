@@ -1176,7 +1176,7 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Hintergrundbild im Beta-Abschnitt */
 .bg-photo { position: relative; }
-.bg-photo::before { content: ""; position: absolute; inset: 0; background-image: url('/bg_wbpage2.png'), url('./bg_wbpage2.png'), url('assets/bg_wbpage2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: .22; pointer-events: none; z-index: 0; }
+.bg-photo::before { content: ""; position: absolute; inset: 0; background-image: url('/bg_wbpage2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: .22; pointer-events: none; z-index: 0; }
 .bg-photo > * { position: relative; z-index: 1; } 
 
 /* Hintergrundbild für "So funktioniert BuildWise" */
