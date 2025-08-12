@@ -357,6 +357,21 @@ html {
 }
 .notification.show { transform: translateX(0); }
 
+/* Inline-Highlight für kurze Hinweise (dezent, CI-konform) */
+.inline-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .25rem .55rem;
+  border-radius: .6rem;
+  background: rgba(249,199,79,.14);
+  color: #ffe08a;
+  border: 1px solid rgba(249,199,79,.35);
+  box-shadow: 0 0 0 2px rgba(255,255,255,.05) inset, 0 0 16px rgba(249,199,79,.15);
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
 /* Varianten je Typ (nutzt Klassen: notification-success|error|info) */
 .notification-success { border-color: rgba(34,197,94,.45); box-shadow: 0 12px 30px -12px rgba(0,0,0,.6), 0 0 26px rgba(34,197,94,.28), 0 0 0 2px rgba(34,197,94,.18) inset; }
 .notification-error   { border-color: rgba(239,68,68,.5);  box-shadow: 0 12px 30px -12px rgba(0,0,0,.6), 0 0 26px rgba(239,68,68,.28),  0 0 0 2px rgba(239,68,68,.18) inset; }
