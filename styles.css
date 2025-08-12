@@ -1240,10 +1240,14 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: white;
+  /* CI-Farben mit Transparenz für Glasmorphismus-Effekt */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
@@ -1269,7 +1273,9 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 .ranking-card:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
 }
 
 /* Spezifische Glow-Farben für jedes Ranking */
@@ -1351,6 +1357,27 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   top: 0;
   color: var(--ci-accent);
   font-weight: bold;
+}
+
+/* Textfarben für bessere Lesbarkeit auf transparentem Hintergrund */
+.ranking-card h4 {
+  color: #f7fafc !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.ranking-card .text-gray-500 {
+  color: #e2e8f0 !important;
+  opacity: 0.9;
+}
+
+/* Provisions-Zahlen bleiben in ihrer ursprünglichen Farbe für Kontrast */
+.ranking-card .text-red-500,
+.ranking-card .text-rose-500,
+.ranking-card .text-orange-500,
+.ranking-card .text-sky-600,
+.ranking-card .text-green-600 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  filter: brightness(1.1) saturate(1.2);
 }
 
 /* Mobile Anpassungen für Ranking Cards */
