@@ -773,9 +773,11 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
   /* Hero spacing & typography */
   .hero-section { padding-top: 4.75rem !important; padding-bottom: 2rem !important; }
-  .hero-section h1 { font-size: 1.9rem !important; line-height: 1.2 !important; }
+  /* Headline auf Mobile kleiner und mit adaptiver Größe */
+  .hero-section h1 { font-size: clamp(1.35rem, 5.2vw, 1.6rem) !important; line-height: 1.25 !important; }
   .hero-section p { font-size: 1rem !important; }
-  .slogan-pill { flex-wrap: wrap; text-align: center; }
+  /* Slogan auf eine Zeile zwingen und skalieren */
+  .slogan-pill { flex-wrap: nowrap; white-space: nowrap; text-align: center; font-size: clamp(.72rem, 3.5vw, .9rem); gap: .35rem; padding: .45rem .85rem; }
 
   /* CTA full width on mobile */
   .btn-cta, .btn-primary-dark { width: 100%; justify-content: center; }
@@ -1229,4 +1231,144 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .btn-cta:focus-visible, a:focus-visible { box-shadow: 0 0 0 4px rgba(249,199,79,.25); }
 
 /* Visually hidden utility for aria-live regions */
-.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; } 
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* Ranking Cards - einheitliche Größe und Glow-Effekte */
+.ranking-card {
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.ranking-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--card-glow-start, rgba(249,115,22,0.3)), var(--card-glow-end, rgba(249,115,22,0.1)));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: exclude;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ranking-card:hover::before {
+  opacity: 1;
+}
+
+.ranking-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Spezifische Glow-Farben für jedes Ranking */
+.ranking-card.pionier {
+  --card-glow-start: rgba(239,68,68,0.4);
+  --card-glow-end: rgba(239,68,68,0.1);
+}
+
+.ranking-card.quartiers-meister {
+  --card-glow-start: rgba(244,63,94,0.4);
+  --card-glow-end: rgba(244,63,94,0.1);
+}
+
+.ranking-card.baustellenkoryphae {
+  --card-glow-start: rgba(249,115,22,0.4);
+  --card-glow-end: rgba(249,115,22,0.1);
+}
+
+.ranking-card.nachbarschaftsheld {
+  --card-glow-start: rgba(14,165,233,0.4);
+  --card-glow-end: rgba(14,165,233,0.1);
+}
+
+.ranking-card.branchen-legende {
+  --card-glow-start: rgba(34,197,94,0.4);
+  --card-glow-end: rgba(34,197,94,0.1);
+}
+
+/* Hover-Overlay für detaillierte Informationen */
+.ranking-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.85) 100%);
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: inherit;
+  backdrop-filter: blur(4px);
+}
+
+.ranking-card:hover .ranking-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ranking-overlay h5 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  color: var(--ci-accent);
+}
+
+.ranking-overlay ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  space-y: 0.5rem;
+}
+
+.ranking-overlay li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.ranking-overlay li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--ci-accent);
+  font-weight: bold;
+}
+
+/* Mobile Anpassungen für Ranking Cards */
+@media (max-width: 640px) {
+  .ranking-card {
+    min-height: 240px;
+    padding: 1.25rem;
+  }
+  
+  .ranking-overlay {
+    padding: 1.25rem;
+  }
+  
+  .ranking-overlay h5 {
+    font-size: 1.125rem;
+  }
+  
+  .ranking-overlay li {
+    font-size: 0.8125rem;
+  }
+} 
