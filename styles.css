@@ -1467,12 +1467,46 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Credit System Styles */
 .credit-info-card {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
   padding: 1.25rem;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 16px 44px -28px rgba(0,0,0,.5);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
 }
+
+.credit-info-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--info-glow-start, rgba(249,199,79,.35)), var(--info-glow-end, rgba(249,199,79,.12)));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .25s ease;
+  pointer-events: none;
+}
+
+.credit-info-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.18);
+  box-shadow: 0 20px 60px -26px rgba(0,0,0,.6);
+}
+
+.credit-info-card:hover::before { opacity: 1; }
+
+/* Farb-Varianten für Glow */
+.credit-info-card.info-what  { --info-glow-start: rgba(59,130,246,.35);  --info-glow-end: rgba(59,130,246,.12); }
+.credit-info-card.info-earn  { --info-glow-start: rgba(34,197,94,.35);  --info-glow-end: rgba(34,197,94,.12); }
 
 /* Hero-Kachel für Credits – an CI-Glasdesign angepasst */
 .credit-hero-card {
