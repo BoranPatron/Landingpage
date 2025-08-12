@@ -600,7 +600,17 @@
                 <!-- Bild -->
                 <div data-aos="fade-left">
                     <figure class="rounded-2xl overflow-hidden shadow-xl border border-white/10 bg-white/5 backdrop-blur">
-                        <img src="/aboutus.jpeg" alt="Teamfoto BuildWise" class="w-full h-full object-cover" />
+                        <picture>
+                            <img
+                                src="assets/aboutus.jpeg"
+                                alt="Team hinter BuildWise"
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                                decoding="async"
+                                width="1280" height="853"
+                                sizes="(min-width: 1024px) 560px, 100vw"
+                            />
+                        </picture>
                     </figure>
                 </div>
             </div>
