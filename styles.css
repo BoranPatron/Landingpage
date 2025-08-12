@@ -1403,12 +1403,13 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 /* Pricing Tab System */
 .pricing-tabs {
   display: inline-flex;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(249, 199, 79, 0.08);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(249, 199, 79, 0.25);
   border-radius: 12px;
   padding: 4px;
   gap: 4px;
+  box-shadow: 0 10px 28px -20px rgba(249, 199, 79, 0.45);
 }
 
 .pricing-tab {
@@ -1429,14 +1430,18 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 .pricing-tab:hover {
   color: #f7fafc;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(249, 199, 79, 0.12);
 }
 
 .pricing-tab.active {
-  color: #f7fafc;
-  background: linear-gradient(135deg, var(--ci-primary) 0%, var(--ci-primary-dark) 100%);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  color: #0b1114;
+  background: linear-gradient(135deg, var(--ci-accent) 0%, var(--ci-accent-dark) 100%);
+  border: 1px solid rgba(249, 199, 79, 0.55);
+  box-shadow: 0 14px 32px -18px rgba(249, 199, 79, 0.65), 0 0 0 2px rgba(255, 255, 255, 0.08) inset;
+  filter: saturate(1.05);
 }
+
+.pricing-tab.active .tab-icon svg { color: #0b1114; }
 
 .pricing-tab .tab-icon {
   display: flex;
