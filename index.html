@@ -705,7 +705,7 @@
                     </div>
 
                     <!-- Credit-System Erklärung -->
-                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 md:p-8 mb-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="credit-hero-card p-6 md:p-8 mb-12" data-aos="fade-up" data-aos-delay="100">
                         <div class="text-center mb-6">
                             <div class="w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -794,24 +794,48 @@
                     </div>
 
                     <!-- Credit-Verbrauch Beispiel -->
-                    <div class="mt-12 bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="300">
-                        <h3 class="text-xl font-bold text-gray-900 mb-6 text-center">Beispiel-Rechnung</h3>
-                        <div class="grid md:grid-cols-3 gap-6">
-                            <div class="calculation-step">
-                                <div class="step-number">1</div>
-                                <h4 class="step-title">Start</h4>
-                                <p class="step-desc">200 Credits bei Beta-Anmeldung</p>
+                    <div class="mt-12 calc-card" data-aos="fade-up" data-aos-delay="300">
+                        <h3 class="calc-title">Beispiel‑Rechnung</h3>
+                        <div class="calc-flow">
+                            <div class="calc-item">
+                                <div class="calc-head">
+                                    <span class="calc-icon start">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l5 5L20 7"/></svg>
+                                    </span>
+                                    <span class="calc-title-sm">Start</span>
+                                </div>
+                                <div class="calc-sub">200 Credits bei Beta‑Anmeldung</div>
+                                <div class="chip chip-neutral">Startguthaben 200</div>
                             </div>
-                            <div class="calculation-step">
-                                <div class="step-number">2</div>
-                                <h4 class="step-title">Verbrauch</h4>
-                                <p class="step-desc">-1 Credit pro Tag = -30 Credits/Monat</p>
+
+                            <div class="calc-connector"></div>
+
+                            <div class="calc-item">
+                                <div class="calc-head">
+                                    <span class="calc-icon use">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m4-4H8"/></svg>
+                                    </span>
+                                    <span class="calc-title-sm">Verbrauch</span>
+                                </div>
+                                <div class="calc-sub">-1 Credit pro Tag ≈ −30/Monat</div>
+                                <div class="chip chip-negative">−30 Credits / Monat</div>
                             </div>
-                            <div class="calculation-step">
-                                <div class="step-number">3</div>
-                                <h4 class="step-title">Verdienen</h4>
-                                <p class="step-desc">+Credits durch erfolgreiche Projekte</p>
+
+                            <div class="calc-connector"></div>
+
+                            <div class="calc-item">
+                                <div class="calc-head">
+                                    <span class="calc-icon earn">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m-4-4h8"/></svg>
+                                    </span>
+                                    <span class="calc-title-sm">Verdienen</span>
+                                </div>
+                                <div class="calc-sub">+Credits durch erfolgreiche Projekte</div>
+                                <div class="chip chip-positive">+X Credits / Projekt</div>
                             </div>
+                        </div>
+                        <div class="calc-summary">
+                            Beispiel: <strong>200 Start‑Credits</strong> − 30/Monat + verdiente Credits ⇒ Laufzeit <strong>verlängerbar</strong> durch Aktivität.
                         </div>
                     </div>
                 </div>

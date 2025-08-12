@@ -1474,6 +1474,16 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   backdrop-filter: blur(4px);
 }
 
+/* Hero-Kachel für Credits – an CI-Glasdesign angepasst */
+.credit-hero-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 50px -24px rgba(0,0,0,.45);
+}
+
 .credit-package {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
@@ -1642,37 +1652,62 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 }
 
 /* Calculation Steps */
-.calculation-step {
+/* Moderne Flow-Kachel für Beispiel-Rechnung */
+.calc-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 1.25rem 1.25rem 1.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.calc-title {
   text-align: center;
-  position: relative;
+  font-weight: 800;
+  color: #f7fafc;
+  font-size: clamp(1.15rem, .9vw + 1rem, 1.4rem);
+  margin-bottom: .75rem;
 }
 
-.step-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  background: linear-gradient(135deg, var(--ci-primary), var(--ci-accent));
-  color: white;
-  border-radius: 50%;
-  font-weight: 900;
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.calc-flow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .9rem;
 }
 
-.step-title {
-  font-weight: 700;
-  color: #374151;
-  margin-bottom: 0.5rem;
+@media (min-width: 768px) {
+  .calc-flow { grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; }
 }
 
-.step-desc {
-  font-size: 0.875rem;
-  color: #6b7280;
-  line-height: 1.4;
+.calc-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 1rem;
+  display: grid;
+  gap: .35rem;
 }
+
+.calc-head { display: flex; align-items: center; gap: .5rem; }
+.calc-icon { width: 34px; height: 34px; border-radius: 10px; display: inline-flex; align-items:center; justify-content:center; color:#fff; box-shadow: 0 8px 22px -12px rgba(0,0,0,.6); }
+.calc-icon.start { background: linear-gradient(135deg, #10b981, #059669); }
+.calc-icon.use { background: linear-gradient(135deg, #64748b, #374151); }
+.calc-icon.earn { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+.calc-title-sm { font-weight: 800; color:#f7fafc; }
+.calc-sub { color:#e2e8f0; font-size: .9rem; opacity:.95; }
+
+.calc-connector { display: none; height: 3px; background: linear-gradient(90deg, var(--ci-accent), rgba(255,255,255,.2)); border-radius: 999px; }
+@media (min-width: 768px) { .calc-connector { display:block; min-width: 56px; } }
+
+.chip { display:inline-flex; align-items:center; gap:.35rem; padding:.25rem .5rem; border-radius: 999px; font-weight:700; font-size:.8rem; border:1px solid rgba(255,255,255,.18); }
+.chip-positive { background: rgba(34,197,94,.18); color:#86efac; }
+.chip-negative { background: rgba(239,68,68,.18); color:#fca5a5; }
+.chip-neutral  { background: rgba(255,255,255,.08); color:#e5e7eb; }
+
+.calc-summary { margin-top: .75rem; text-align: center; color:#e5e7eb; font-size: .9rem; }
+.calc-summary strong { color: var(--ci-accent); }
 
 /* Mobile Optimizations */
 @media (max-width: 768px) {
