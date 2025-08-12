@@ -445,15 +445,47 @@
             <!-- Header -->
             <div class="text-center mb-12" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Bezahlmodell & Provisionen
+                    Bezahlmodell & Kostenstruktur
                 </h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Unser Bezahlmodell ist einfach und transparent: Gebühren fallen nur bei erfolgreicher Auftragsvermittlung an.
+                    Transparente Kostenmodelle für beide Seiten unserer Plattform.
                 </p>
             </div>
 
-            <!-- Phasen -->
-            <div class="space-y-8 mb-16" data-aos="fade-up" data-aos-delay="100">
+            <!-- Tab Navigation -->
+            <div class="flex justify-center mb-12" data-aos="fade-up" data-aos-delay="50">
+                <div class="pricing-tabs" role="tablist">
+                    <button class="pricing-tab active" data-tab="dienstleister" role="tab" aria-selected="true" aria-controls="tab-dienstleister-pricing">
+                        <span class="tab-icon">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                            </svg>
+                        </span>
+                        Dienstleister
+                    </button>
+                    <button class="pricing-tab" data-tab="bautraeger" role="tab" aria-selected="false" aria-controls="tab-bautraeger-pricing">
+                        <span class="tab-icon">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                        </span>
+                        Bauträger
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="pricing-tab-content">
+                <!-- Dienstleister Tab -->
+                <div id="tab-dienstleister-pricing" class="pricing-tab-panel active" role="tabpanel" aria-labelledby="dienstleister-tab">
+                    <div class="text-center mb-8">
+                        <p class="text-lg text-gray-600">
+                            Für Dienstleister: Gebühren fallen nur bei erfolgreicher Auftragsvermittlung an.
+                        </p>
+                    </div>
+
+                    <!-- Phasen für Dienstleister -->
+                    <div class="space-y-8 mb-16" data-aos="fade-up" data-aos-delay="100">
                 <!-- Phase 1: Beta -->
                 <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
                     <div class="flex flex-col md:flex-row md:items-center gap-4">
@@ -655,12 +687,134 @@
                 </div>
             </div>
 
-            <!-- Hinweis -->
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4 max-w-2xl mx-auto">
-                    <strong>Hinweis:</strong> Ihr Ranking basiert auf abgeschlossenen Projekten, Kundenbewertungen und Qualitätskriterien. 
-                    Je mehr erfolgreiche Projekte Sie abschließen, desto höher steigt Ihr Rang und desto niedriger wird Ihre Provision.
-                </p>
+                    <!-- Hinweis für Dienstleister -->
+                    <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
+                        <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4 max-w-2xl mx-auto">
+                            <strong>Hinweis:</strong> Ihr Ranking basiert auf abgeschlossenen Projekten, Kundenbewertungen und Qualitätskriterien. 
+                            Je mehr erfolgreiche Projekte Sie abschließen, desto höher steigt Ihr Rang und desto niedriger wird Ihre Provision.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bauträger Tab -->
+                <div id="tab-bautraeger-pricing" class="pricing-tab-panel" role="tabpanel" aria-labelledby="bautraeger-tab" hidden>
+                    <div class="text-center mb-8">
+                        <p class="text-lg text-gray-600">
+                            Für Bauträger: Credit-basiertes System mit fairen Monatsgebühren und Belohnungen.
+                        </p>
+                    </div>
+
+                    <!-- Credit-System Erklärung -->
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 md:p-8 mb-12" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">BuildWise Credits</h3>
+                            <p class="text-gray-600">Unsere interne Währung für faire und transparente Abrechnung</p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="credit-info-card">
+                                <h4 class="font-bold text-gray-900 mb-3">💰 Was sind Credits?</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li>• 1 Credit = 1 CHF Wert</li>
+                                    <li>• Bezahlung der monatlichen Pro-Gebühren</li>
+                                    <li>• Täglich wird 1 Credit abgezogen</li>
+                                    <li>• Verdienen Sie Credits durch Aktivitäten</li>
+                                </ul>
+                            </div>
+                            <div class="credit-info-card">
+                                <h4 class="font-bold text-gray-900 mb-3">⭐ Credits verdienen</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li>• Angebot annehmen: +Credits</li>
+                                    <li>• Projekt erfolgreich abschließen: +Credits</li>
+                                    <li>• Freunde einladen: +Credits</li>
+                                    <li>• Plattform-Feedback: +Credits</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Credit-Pakete -->
+                    <div class="grid md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="200">
+                        <!-- Beta-User Paket -->
+                        <div class="credit-package beta-package">
+                            <div class="package-header">
+                                <div class="package-badge">Beta-Launch</div>
+                                <h3 class="package-title">Frühe Unterstützer</h3>
+                                <div class="package-credits">200 Credits</div>
+                                <div class="package-value">Im Wert von 200 CHF</div>
+                            </div>
+                            <div class="package-content">
+                                <div class="package-duration">
+                                    <span class="duration-label">Laufzeit:</span>
+                                    <span class="duration-value">~6,7 Monate</span>
+                                </div>
+                                <ul class="package-features">
+                                    <li>Kostenloser Zugang zur Beta</li>
+                                    <li>Alle Pro-Features inklusive</li>
+                                    <li>Direkter Support-Kanal</li>
+                                    <li>Einfluss auf Produktentwicklung</li>
+                                    <li>Credits durch Aktivitäten verlängerbar</li>
+                                </ul>
+                                <div class="package-highlight">
+                                    Jetzt anmelden und 200 Credits sichern!
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Standard-Paket -->
+                        <div class="credit-package standard-package">
+                            <div class="package-header">
+                                <div class="package-badge standard">Standard</div>
+                                <h3 class="package-title">Nach der Beta</h3>
+                                <div class="package-credits">90 Credits</div>
+                                <div class="package-value">Im Wert von 90 CHF</div>
+                            </div>
+                            <div class="package-content">
+                                <div class="package-duration">
+                                    <span class="duration-label">Laufzeit:</span>
+                                    <span class="duration-value">~3 Monate</span>
+                                </div>
+                                <ul class="package-features">
+                                    <li>Startguthaben für neue Nutzer</li>
+                                    <li>Alle Pro-Features inklusive</li>
+                                    <li>Standard-Support</li>
+                                    <li>Credits durch Aktivitäten verdienen</li>
+                                    <li>Nachkauf von Credits möglich</li>
+                                </ul>
+                                <div class="package-note">
+                                    Verfügbar ab 01.01.2026
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Credit-Verbrauch Beispiel -->
+                    <div class="mt-12 bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="300">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6 text-center">Beispiel-Rechnung</h3>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="calculation-step">
+                                <div class="step-number">1</div>
+                                <h4 class="step-title">Start</h4>
+                                <p class="step-desc">200 Credits bei Beta-Anmeldung</p>
+                            </div>
+                            <div class="calculation-step">
+                                <div class="step-number">2</div>
+                                <h4 class="step-title">Verbrauch</h4>
+                                <p class="step-desc">-1 Credit pro Tag = -30 Credits/Monat</p>
+                            </div>
+                            <div class="calculation-step">
+                                <div class="step-number">3</div>
+                                <h4 class="step-title">Verdienen</h4>
+                                <p class="step-desc">+Credits durch erfolgreiche Projekte</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

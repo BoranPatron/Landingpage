@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Tabs (Bauträger/Dienstleister)
     initTabs();
+    
+    // Pricing Tabs
+    initPricingTabs();
 
     // Tilt-Effekt für Karten
     initTilt('.tilt-card');
@@ -881,4 +884,47 @@ async function subscribeToBeta(email) {
 
     // 2) Kein direkter Brevo-Fallback mehr im Frontend (Geheimnis-Schutz)
     throw new Error('Anmeldung derzeit nicht möglich (Server nicht erreichbar oder falsche API-URL). Bitte später erneut versuchen.');
+}
+
+// Pricing Tab System
+function initPricingTabs() {
+    const tabs = document.querySelectorAll('.pricing-tab');
+    const panels = document.querySelectorAll('.pricing-tab-panel');
+    
+    if (!tabs.length || !panels.length) return;
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+            
+            // Update tabs
+            tabs.forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-selected', 'false');
+            });
+            
+            this.classList.add('active');
+            this.setAttribute('aria-selected', 'true');
+            
+            // Update panels
+            panels.forEach(panel => {
+                panel.classList.remove('active');
+                panel.setAttribute('hidden', 'true');
+            });
+            
+            const targetPanel = document.getElementById(`tab-${targetTab}-pricing`);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+                targetPanel.removeAttribute('hidden');
+            }
+        });
+        
+        // Keyboard navigation
+        tab.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    });
 }
