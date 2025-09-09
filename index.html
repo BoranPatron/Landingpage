@@ -116,6 +116,9 @@
                     <a href="#beta" class="btn-cta text-lg" aria-label="Jetzt kostenlosen Beta Zugang sichern!">
                         <span class="btn-text">Jetzt kostenlosen Beta Zugang sichern!</span>
                     </a>
+                    <button id="demo-button" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg" aria-label="Demo starten">
+                        🚀 Demo starten
+                    </button>
                     <a href="#phases" class="border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300" aria-label="So funktioniert BuildWise anzeigen">
                         So funktioniert BuildWise
                     </a>
@@ -1102,6 +1105,61 @@
         <button class="bw-close" id="bwSheetClose" aria-label="Schließen">×</button>
         <h4 id="bwSheetTitle"></h4>
         <p id="bwSheetText"></p>
+    </div>
+
+    <!-- Demo Modal -->
+    <div id="demo-modal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center p-4" style="display: none;">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all duration-300 scale-95 opacity-0" id="demo-modal-content">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <span class="text-white text-2xl">🚀</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">BuildWise Demo</h2>
+                <p class="text-gray-600">Wählen Sie Ihre Rolle, um die passende Demo-Ansicht zu erleben</p>
+            </div>
+
+            <div class="space-y-4 mb-6">
+                <button id="demo-bautraeger" class="w-full p-4 border-2 border-gray-200 rounded-xl hover:border-orange-500 hover:bg-orange-50 transition-all duration-300 text-left group">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Bauträger</h3>
+                            <p class="text-sm text-gray-600">Projektmanagement & Dienstleister-Matching</p>
+                        </div>
+                    </div>
+                </button>
+
+                <button id="demo-dienstleister" class="w-full p-4 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 text-left group">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Dienstleister</h3>
+                            <p class="text-sm text-gray-600">Auftragsmanagement & Angebotserstellung</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="flex justify-between">
+                <button id="demo-close" class="px-6 py-2 text-gray-600 hover:text-gray-800 transition-colors">
+                    Abbrechen
+                </button>
+                <div class="text-xs text-gray-500 flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    Sichere Demo-Umgebung
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html> 

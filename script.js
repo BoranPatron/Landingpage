@@ -201,6 +201,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Demo functionality
+    initDemo();
+
     // Pricing toggle (if needed)
     const pricingToggle = document.querySelector('.pricing-toggle');
     if (pricingToggle) {
@@ -927,4 +930,129 @@ function initPricingTabs() {
             }
         });
     });
+}
+
+// Demo System
+function initDemo() {
+    const demoButton = document.getElementById('demo-button');
+    const demoModal = document.getElementById('demo-modal');
+    const demoModalContent = document.getElementById('demo-modal-content');
+    const demoClose = document.getElementById('demo-close');
+    const demoBautraeger = document.getElementById('demo-bautraeger');
+    const demoDienstleister = document.getElementById('demo-dienstleister');
+    
+    if (!demoButton || !demoModal) return;
+    
+    // Demo-Button Click
+    demoButton.addEventListener('click', function() {
+        showDemoModal();
+        trackEvent('demo_modal_opened');
+    });
+    
+    // Modal schließen
+    demoClose?.addEventListener('click', closeDemoModal);
+    demoModal.addEventListener('click', function(e) {
+        if (e.target === demoModal) {
+            closeDemoModal();
+        }
+    });
+    
+    // ESC-Taste zum Schließen
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && demoModal.style.display !== 'none') {
+            closeDemoModal();
+        }
+    });
+    
+    // Rollenauswahl
+    demoBautraeger?.addEventListener('click', function() {
+        startDemo('bautraeger');
+    });
+    
+    demoDienstleister?.addEventListener('click', function() {
+        startDemo('dienstleister');
+    });
+    
+    function showDemoModal() {
+        demoModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Animation
+        requestAnimationFrame(() => {
+            demoModalContent.style.transform = 'scale(1)';
+            demoModalContent.style.opacity = '1';
+        });
+    }
+    
+    function closeDemoModal() {
+        demoModalContent.style.transform = 'scale(0.95)';
+        demoModalContent.style.opacity = '0';
+        
+        setTimeout(() => {
+            demoModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 300);
+    }
+    
+    function startDemo(role) {
+        trackEvent('demo_started', { role });
+        closeDemoModal();
+        
+        // Zeige Loading-Nachricht
+        showNotification(`Demo wird gestartet für ${role === 'bautraeger' ? 'Bauträger' : 'Dienstleister'}...`, 'info');
+        
+        // Simuliere Demo-Start
+        setTimeout(() => {
+            // Erstelle Demo-URL mit Rollenparameter
+            const frontendUrl = getDemoUrl(role);
+            
+            // Öffne Demo in neuem Tab
+            const demoWindow = window.open(frontendUrl, '_blank', 'noopener,noreferrer');
+            
+            if (demoWindow) {
+                showNotification('Demo wurde in einem neuen Tab geöffnet', 'success');
+            } else {
+                // Fallback wenn Popup blockiert
+                showNotification('Popup wurde blockiert. Klicken Sie hier um die Demo zu öffnen.', 'error');
+                // Alternativ: Direkte Weiterleitung
+                // window.location.href = frontendUrl;
+            }
+        }, 1000);
+    }
+    
+    function getDemoUrl(role) {
+        // Bestimme die Frontend-URL basierend auf der Umgebung
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        
+        let baseUrl;
+        if (isDevelopment) {
+            // Lokale Entwicklung - Frontend läuft normalerweise auf Port 5173 (Vite)
+            baseUrl = 'http://localhost:5173';
+        } else {
+            // Produktion - Frontend URL aus Config oder relative URL
+            baseUrl = window.BUILDWISE_FRONTEND_URL || 'https://frontend.buildwise.ch';
+        }
+        
+        // Demo-Credentials basierend auf Rolle
+        const demoCredentials = getDemoCredentials(role);
+        
+        // URL mit Demo-Parametern
+        return `${baseUrl}/login?demo=true&role=${role}&email=${encodeURIComponent(demoCredentials.email)}&password=${encodeURIComponent(demoCredentials.password)}`;
+    }
+    
+    function getDemoCredentials(role) {
+        // Demo-Zugangsdaten für verschiedene Rollen
+        const credentials = {
+            bautraeger: {
+                email: 'demo.bautraeger@buildwise.ch',
+                password: 'demo123'
+            },
+            dienstleister: {
+                email: 'demo.dienstleister@buildwise.ch',
+                password: 'demo123'
+            }
+        };
+        
+        return credentials[role] || credentials.bautraeger;
+    }
 }
