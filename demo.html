@@ -19,53 +19,126 @@
             background: rgba(255, 255, 255, 0.1); 
         }
         
-        /* Dashboard Card Styles - exakt wie im Frontend */
-        .dashboard-card {
+        /* Radial Menu Styles */
+        .radial-menu {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+        }
+        
+        .radial-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #ffbd59, #ffa726);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .radial-center:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .radial-item {
+            position: absolute;
+            width: 140px;
+            height: 140px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.5s ease;
-            min-height: 320px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            transform-origin: center;
         }
         
-        .dashboard-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border-color: rgba(255, 189, 89, 0.3);
-            transform: translateY(-8px) scale(1.05);
+        .radial-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 189, 89, 0.6);
+            transform: scale(1.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .dashboard-card .icon-container {
-            background: linear-gradient(135deg, #ffbd59, #ffa726);
-            transition: all 0.5s ease;
+        .radial-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
         }
         
-        .dashboard-card:hover .icon-container {
-            transform: scale(1.1) rotate(3deg);
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+        .radial-item:hover .icon {
+            transform: scale(1.2) rotate(10deg);
         }
         
-        .dashboard-card:hover .card-title {
+        .radial-item .title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .radial-item:hover .title {
             color: #ffbd59;
         }
         
-        .dashboard-card .glow {
-            background: linear-gradient(135deg, rgba(255, 189, 89, 0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.5s ease;
+        .radial-item .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            text-align: center;
         }
         
-        .dashboard-card:hover .glow {
-            opacity: 1;
-        }
-        
-        .progress-bar {
-            background: linear-gradient(90deg, #ffbd59, #ffa726);
-            transition: all 1s ease-out;
-        }
+        /* Positionierung der Items im Kreis */
+        .radial-item:nth-child(1) { top: 50px; left: 50%; transform: translateX(-50%); }
+        .radial-item:nth-child(2) { top: 120px; right: 80px; }
+        .radial-item:nth-child(3) { top: 50%; right: 30px; transform: translateY(-50%); }
+        .radial-item:nth-child(4) { bottom: 120px; right: 80px; }
+        .radial-item:nth-child(5) { bottom: 50px; left: 50%; transform: translateX(-50%); }
+        .radial-item:nth-child(6) { bottom: 120px; left: 80px; }
+        .radial-item:nth-child(7) { top: 50%; left: 30px; transform: translateY(-50%); }
+        .radial-item:nth-child(8) { top: 120px; left: 80px; }
         
         .animate-bounce-slow {
             animation: bounce 2s infinite;
+        }
+        
+        .pulse-ring {
+            position: absolute;
+            border: 3px solid rgba(255, 189, 89, 0.3);
+            border-radius: 50%;
+            animation: pulse-ring 2s infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -170,55 +243,43 @@
             </div>
         </header>
 
-        <!-- Main Content - exakt wie im Frontend -->
-        <main class="flex-1 p-8 relative z-10">
-            <div class="max-w-7xl mx-auto">
-                <!-- Quick Stats - exakt wie im Frontend -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                    <div class="group bg-white/10 backdrop-blur-lg rounded-2xl p-7 shadow-xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2">
-                        <div class="flex items-center">
-                            <div class="p-4 bg-gradient-to-br from-green-400 to-green-600 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                                </svg>
-                            </div>
-                            <div class="ml-5">
-                                <p class="text-base font-medium text-gray-300" id="stat1-label">Aktive Gewerke</p>
-                                <p class="text-3xl font-bold text-white" id="stat1-value">5</p>
-                            </div>
+        <!-- Main Content - Radial Menu Design -->
+        <main class="flex-1 p-8 relative z-10 flex items-center justify-center">
+            <div class="w-full max-w-4xl">
+                <!-- Radial Menu Container -->
+                <div class="radial-menu" id="radial-menu">
+                    <!-- Pulse Rings -->
+                    <div class="pulse-ring" style="width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 0s;"></div>
+                    <div class="pulse-ring" style="width: 220px; height: 220px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 0.5s;"></div>
+                    <div class="pulse-ring" style="width: 240px; height: 240px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 1s;"></div>
+                    
+                    <!-- Center Logo -->
+                    <div class="radial-center">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-[#3d4952] mb-1">BW</div>
+                            <div class="text-sm font-semibold text-[#3d4952]" id="center-role">Demo</div>
                         </div>
                     </div>
-                    <div class="group bg-white/10 backdrop-blur-lg rounded-2xl p-7 shadow-xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2">
-                        <div class="flex items-center">
-                            <div class="p-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                            <div class="ml-5">
-                                <p class="text-base font-medium text-gray-300" id="stat2-label">Offene Aufgaben</p>
-                                <p class="text-3xl font-bold text-white" id="stat2-value">12</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="group bg-white/10 backdrop-blur-lg rounded-2xl p-7 shadow-xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2">
-                        <div class="flex items-center">
-                            <div class="p-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
-                                </svg>
-                            </div>
-                            <div class="ml-5">
-                                <p class="text-base font-medium text-gray-300" id="stat3-label">Budget</p>
-                                <p class="text-3xl font-bold text-white" id="stat3-value">CHF 2.5M</p>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <!-- Radial Menu Items - werden dynamisch geladen -->
                 </div>
-
-                <!-- Main Dashboard Grid - exakt wie im Frontend mit DashboardCard-Design -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="dashboard-cards">
-                    <!-- Cards werden dynamisch geladen -->
+                
+                <!-- Quick Info unter dem Menu -->
+                <div class="mt-16 text-center">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
+                        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+                            <div class="text-2xl font-bold text-[#ffbd59]" id="quick-stat1">5</div>
+                            <div class="text-sm text-gray-300" id="quick-label1">Aktive Module</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+                            <div class="text-2xl font-bold text-[#ffbd59]" id="quick-stat2">12</div>
+                            <div class="text-sm text-gray-300" id="quick-label2">Offene Aufgaben</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+                            <div class="text-2xl font-bold text-[#ffbd59]" id="quick-stat3">CHF 2.5M</div>
+                            <div class="text-sm text-gray-300" id="quick-label3">Projektvolumen</div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Recent Activity Section - exakt wie im Frontend -->
@@ -382,76 +443,28 @@
             document.getElementById('project-status').textContent = data.projectStatus;
             document.getElementById('progress-percent').textContent = `${data.progress}%`;
             document.getElementById('progress-bar').style.width = `${data.progress}%`;
+            document.getElementById('center-role').textContent = role === 'bautraeger' ? 'Bauträger' : 'Dienstleister';
             
-            // Stats aktualisieren
-            document.getElementById('stat1-label').textContent = data.stats.stat1.label;
-            document.getElementById('stat1-value').textContent = data.stats.stat1.value;
-            document.getElementById('stat2-label').textContent = data.stats.stat2.label;
-            document.getElementById('stat2-value').textContent = data.stats.stat2.value;
-            document.getElementById('stat3-label').textContent = data.stats.stat3.label;
-            document.getElementById('stat3-value').textContent = data.stats.stat3.value;
+            // Quick Stats aktualisieren
+            document.getElementById('quick-stat1').textContent = data.cards.length;
+            document.getElementById('quick-label1').textContent = 'Aktive Module';
+            document.getElementById('quick-stat2').textContent = data.stats.stat2.value;
+            document.getElementById('quick-label2').textContent = data.stats.stat2.label;
+            document.getElementById('quick-stat3').textContent = data.stats.stat3.value;
+            document.getElementById('quick-label3').textContent = 'Projektvolumen';
             
-            // Dashboard Cards erstellen - exakt wie DashboardCard-Komponente
-            const cardsContainer = document.getElementById('dashboard-cards');
-            cardsContainer.innerHTML = data.cards.map((card, index) => `
-                <div class="transform hover:scale-105 transition-all duration-300">
-                    <button class="dashboard-card group relative rounded-3xl p-8 cursor-pointer w-full focus:outline-none focus:ring-2 focus:ring-[#ffbd59] focus:ring-opacity-50" type="button">
-                        <!-- Animated Background Glow -->
-                        <div class="glow absolute inset-0 rounded-3xl"></div>
-                        
-                        ${card.badge ? `
-                        <!-- Badge -->
-                        <div class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${card.badge.color} text-white shadow-lg transform group-hover:scale-110 transition-transform duration-300">
-                            ${card.badge.text}
-                        </div>
-                        ` : ''}
-                        
-                        ${card.status ? `
-                        <!-- Status Indicator -->
-                        <div class="absolute top-4 left-4 flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md border bg-green-500/20 text-green-300 border-green-500/30">
-                            <span class="capitalize">${card.status}</span>
-                        </div>
-                        ` : ''}
-
-                        <!-- Icon Container -->
-                        <div class="relative flex items-center justify-center mb-6">
-                            <div class="absolute inset-0 bg-gradient-to-br from-[#ffbd59] to-[#ffa726] rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-                            <div class="icon-container relative w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-500">
-                                <div class="text-white drop-shadow-lg text-4xl">
-                                    ${card.icon}
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Title -->
-                        <h3 class="card-title font-bold text-2xl mb-3 tracking-wide text-white transition-all duration-300 text-center">
-                            ${card.title}
-                        </h3>
-
-                        <!-- Description -->
-                        <div class="text-sm text-gray-300 text-center group-hover:text-gray-200 transition-colors w-full mb-6">
-                            ${card.desc}
-                        </div>
-
-                        ${card.progress ? `
-                        <!-- Progress Bar -->
-                        <div class="space-y-3 w-full">
-                            <div class="flex justify-between text-xs text-gray-400">
-                                <span>${card.progress.label}</span>
-                                <span class="text-[#ffbd59] font-bold">${card.progress.value}%</span>
-                            </div>
-                            <div class="relative w-full bg-gray-700/50 rounded-full h-3 backdrop-blur-sm border border-gray-600/30 overflow-hidden">
-                                <div class="progress-bar absolute inset-0 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg" style="width: ${card.progress.value}%"></div>
-                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent h-3 rounded-full animate-pulse"></div>
-                            </div>
-                        </div>
-                        ` : ''}
-
-                        <!-- Hover Effect Overlay -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-[#ffbd59]/0 to-[#ffbd59]/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                    </button>
+            // Radial Menu erstellen
+            const radialContainer = document.getElementById('radial-menu');
+            const radialItems = data.cards.map((card, index) => `
+                <div class="radial-item" onclick="showModuleInfo('${card.title}', '${card.desc}')">
+                    ${card.badge ? `<div class="badge">${card.badge.text.replace(' neue', '').replace(' offen', '').replace(' heute', '').replace(' bestellt', '')}</div>` : ''}
+                    <div class="icon">${card.icon}</div>
+                    <div class="title">${card.title}</div>
                 </div>
             `).join('');
+            
+            // Füge die Items zum Container hinzu (nach den Pulse Rings und dem Center)
+            radialContainer.innerHTML += radialItems;
             
             // Aktivitäten erstellen - exakt wie im Frontend
             const activityContainer = document.getElementById('activity-list');
@@ -463,6 +476,43 @@
                     <span class="ml-auto text-xs text-gray-400">${activity.time}</span>
                 </div>
             `).join('');
+        }
+
+        // Modul-Info anzeigen
+        function showModuleInfo(title, description) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4';
+            modal.innerHTML = `
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl max-w-md w-full p-8 border border-white/20 transform transition-all duration-300">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#ffbd59] to-[#ffa726] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl">🚀</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-2">${title}</h2>
+                        <p class="text-gray-300">${description}</p>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-4 mb-6 border border-white/10">
+                        <p class="text-sm text-gray-300 text-center">
+                            <span class="text-[#ffbd59] font-semibold">Demo-Modus:</span><br>
+                            Dies ist eine Vorschau der ${title}-Funktionalität. 
+                            In der Vollversion können Sie hier alle Features nutzen.
+                        </p>
+                    </div>
+                    <div class="flex justify-center">
+                        <button onclick="this.closest('.fixed').remove()" 
+                                class="px-6 py-3 bg-gradient-to-r from-[#ffbd59] to-[#ffa726] text-[#3d4952] rounded-xl font-semibold hover:from-[#ffa726] hover:to-[#ff9800] transition-all duration-300 transform hover:scale-105">
+                            Verstanden
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            // Animation
+            setTimeout(() => {
+                modal.querySelector('.bg-white\\/10').style.transform = 'scale(1)';
+                modal.querySelector('.bg-white\\/10').style.opacity = '1';
+            }, 10);
         }
 
         // Demo starten
