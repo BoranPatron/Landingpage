@@ -1132,8 +1132,8 @@ function initDemo() {
             }
         }
         
-        // URL direkt zur Demo-Seite - KEIN LOGIN!
-        return `${baseUrl}/demo?role=${role}`;
+        // URL direkt zur neuen Demo-Seite - KEIN LOGIN!
+        return `${baseUrl}/demo-new?role=${role}`;
     }
     
     function getDemoCredentials(role) {
