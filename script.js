@@ -1120,20 +1120,20 @@ function initDemo() {
         let baseUrl = customBaseUrl;
         
         if (!baseUrl) {
-            // Bestimme die Frontend-URL basierend auf der Umgebung
+            // Bestimme die Demo-URL basierend auf der Umgebung
             const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
             
             if (isDevelopment) {
-                // Lokale Entwicklung - Frontend läuft normalerweise auf Port 5173 (Vite)
-                baseUrl = 'http://localhost:5173';
+                // Lokale Entwicklung - Demo läuft auf der Landingpage
+                baseUrl = window.location.origin;
             } else {
-                // Produktion - Verwende erste verfügbare URL aus Config
-                baseUrl = window.BUILDWISE_FRONTEND_URL || 'https://app.buildwise.ch';
+                // Produktion - Demo läuft auf der gleichen Domain wie die Landingpage
+                baseUrl = window.location.origin; // https://www.buildwise.ch
             }
         }
         
-        // URL direkt zur neuen Demo-Seite - KEIN LOGIN!
-        return `${baseUrl}/demo-new?role=${role}`;
+        // URL direkt zur neuen Demo-Seite auf der Landingpage - KEIN LOGIN!
+        return `${baseUrl}/demo-new.html?role=${role}`;
     }
     
     function getDemoCredentials(role) {
