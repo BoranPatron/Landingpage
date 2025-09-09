@@ -5,10 +5,10 @@ window.BUILDWISE_CONFIG = {
         ? 'http://localhost:8000' 
         : 'https://buildwise-api.onrender.com',
     
-    // Frontend URL für Demo-Weiterleitung
+    // Frontend URL für Demo-Weiterleitung - EINFACH!
     FRONTEND_URL: window.location.hostname === 'localhost'
         ? 'http://localhost:5173'
-        : 'https://www.buildwise.ch/app',  // Frontend als Unterverzeichnis
+        : 'https://www.buildwise.ch',  // Gleiche Domain wie Landingpage
     
     // Feature Flags
     FEATURES: {

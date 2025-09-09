@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildWise Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .demo-banner { 
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            animation: pulse 2s infinite;
+        }
+        .card-hover:hover { transform: translateY(-2px); }
+        .gradient-bg { background: linear-gradient(135deg, #51646f, #3d4952, #2c3539); }
+        .glass { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Demo Banner -->
+    <div class="demo-banner text-white px-6 py-3 flex items-center justify-between shadow-lg">
+        <div class="flex items-center gap-3">
+            <span class="text-xl">🚀</span>
+            <div>
+                <span class="font-semibold">BuildWise Demo</span>
+                <span class="ml-2 text-blue-200" id="role-display">Wird geladen...</span>
+            </div>
+        </div>
+        <button onclick="window.close() || (window.location.href = '/')" 
+                class="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-medium transition-colors">
+            Demo beenden
+        </button>
+    </div>
+
+    <!-- Header wie im Frontend -->
+    <header class="sticky top-0 z-20 glass text-white px-8 py-7 shadow-2xl border-b border-[#ffbd59]/20">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <div class="w-14 h-14 bg-gradient-to-br from-[#ffbd59] to-[#ffa726] rounded-2xl flex items-center justify-center shadow-lg">
+                        <svg class="w-7 h-7 text-[#3d4952]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <div class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-green-400 to-green-500 rounded-full border-2 border-white animate-pulse"></div>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-extrabold bg-gradient-to-r from-white to-[#ffbd59] bg-clip-text text-transparent">
+                        BuildWise <span class="text-sm text-blue-300">(Demo)</span>
+                    </h1>
+                    <p class="text-base text-gray-300 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-[#ffbd59]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                        Digitaler Bauassistent
+                        <span class="text-xs text-blue-300 ml-2" id="user-name">• Demo User</span>
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 px-5 py-2 rounded-full text-base font-medium glass border border-green-500/30 bg-green-500/20 text-green-300">
+                <svg class="w-4 h-4 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
+                </svg>
+                <span>Demo Online</span>
+            </div>
+        </div>
+
+        <!-- Projekt Info -->
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-[#ffbd59] mb-2 flex items-center justify-center gap-3">
+                <svg class="w-7 h-7 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                Willkommen zur Demo
+            </h2>
+            
+            <div class="flex flex-wrap items-center justify-center gap-6 text-gray-300 mb-4">
+                <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-[#ffbd59]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <span>Projekt: <span class="font-semibold text-white" id="project-name">Demo Projekt</span></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-[#ffbd59]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                    </svg>
+                    <span>Status: <span class="font-semibold text-green-400" id="project-status">In Bearbeitung</span></span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="space-y-3">
+                <div class="flex justify-between text-base">
+                    <span class="text-gray-300">Projektfortschritt</span>
+                    <span class="text-[#ffbd59] font-bold text-lg" id="progress-percent">65%</span>
+                </div>
+                <div class="relative w-full bg-gray-700/50 rounded-full h-5 backdrop-blur-sm border border-gray-600/30">
+                    <div id="progress-bar" class="absolute inset-0 bg-gradient-to-r from-[#ffbd59] to-[#ffa726] h-5 rounded-full transition-all duration-1000 ease-out shadow-lg" style="width: 65%"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent h-5 rounded-full animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="group glass rounded-2xl p-7 shadow-xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2 card-hover">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-gradient-to-br from-green-400 to-green-600 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-5">
+                            <p class="text-base font-medium text-gray-300" id="stat1-label">Aktive Gewerke</p>
+                            <p class="text-3xl font-bold text-white" id="stat1-value">5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group glass rounded-2xl p-7 shadow-xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2 card-hover">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-5">
+                            <p class="text-base font-medium text-gray-300" id="stat2-label">Offene Aufgaben</p>
+                            <p class="text-3xl font-bold text-white" id="stat2-value">12</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group glass rounded-2xl p-7 shadow-xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2 card-hover">
+                    <div class="flex items-center">
+                        <div class="p-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                            </svg>
+                        </div>
+                        <div class="ml-5">
+                            <p class="text-base font-medium text-gray-300" id="stat3-label">Budget</p>
+                            <p class="text-3xl font-bold text-white" id="stat3-value">CHF 2.5M</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="dashboard-cards">
+                <!-- Cards werden dynamisch geladen -->
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="mt-16 glass rounded-3xl p-10 shadow-2xl border border-white/20">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <svg class="w-6 h-6 text-[#ffbd59]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Letzte Aktivitäten
+                </h2>
+                <div class="space-y-4" id="activity-list">
+                    <!-- Aktivitäten werden dynamisch geladen -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Demo-Daten und Logik
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role') || 'bautraeger';
+        
+        // Demo-Daten basierend auf Rolle
+        const demoData = {
+            bautraeger: {
+                roleName: 'Bauträger-Ansicht',
+                userName: 'Max Mustermann',
+                projectName: 'Wohnkomplex Seeblick',
+                projectStatus: 'Ausführung',
+                progress: 65,
+                stats: {
+                    stat1: { label: 'Aktive Gewerke', value: '5' },
+                    stat2: { label: 'Offene Aufgaben', value: '12' },
+                    stat3: { label: 'Budget', value: 'CHF 8.5M' }
+                },
+                cards: [
+                    { title: 'Manager', desc: 'Projekt- und Gewerkverwaltung', icon: '🏠', color: 'from-blue-500 to-blue-600' },
+                    { title: 'Docs', desc: 'Dokumentenmanagement', icon: '📄', color: 'from-green-500 to-green-600' },
+                    { title: 'To Do', desc: 'Aufgabenmanagement', icon: '✅', color: 'from-yellow-500 to-orange-500' },
+                    { title: 'Finance', desc: 'Budget & Kosten', icon: '💰', color: 'from-purple-500 to-purple-600' },
+                    { title: 'Offering', desc: 'Angebotsmanagement', icon: '🤝', color: 'from-indigo-500 to-indigo-600' },
+                    { title: 'Visualize', desc: 'Pläne & Visualisierungen', icon: '👁️', color: 'from-pink-500 to-pink-600' }
+                ],
+                activities: [
+                    { text: 'Neues Angebot für Elektroarbeiten erhalten', time: 'vor 2 Stunden', color: 'green' },
+                    { text: 'Bauantrag genehmigt', time: 'vor 4 Stunden', color: 'blue' },
+                    { text: 'Qualitätskontrolle Rohbau abgeschlossen', time: 'vor 1 Tag', color: 'yellow' }
+                ]
+            },
+            dienstleister: {
+                roleName: 'Dienstleister-Ansicht',
+                userName: 'Anna Musterfrau',
+                projectName: 'Elektroinstallation Seeblick',
+                projectStatus: 'In Bearbeitung',
+                progress: 70,
+                stats: {
+                    stat1: { label: 'Aktive Aufträge', value: '3' },
+                    stat2: { label: 'Offene Aufgaben', value: '8' },
+                    stat3: { label: 'Umsatz', value: 'CHF 450K' }
+                },
+                cards: [
+                    { title: 'Aufträge', desc: 'Meine Bauprojekte', icon: '🔨', color: 'from-blue-500 to-blue-600' },
+                    { title: 'Zeiterfassung', desc: 'Stunden & Leistungen', icon: '⏰', color: 'from-green-500 to-green-600' },
+                    { title: 'Angebote', desc: 'Neue Anfragen', icon: '📋', color: 'from-yellow-500 to-orange-500' },
+                    { title: 'Rechnungen', desc: 'Abrechnung & Zahlungen', icon: '🧾', color: 'from-purple-500 to-purple-600' },
+                    { title: 'Materialien', desc: 'Bestellungen & Lager', icon: '📦', color: 'from-indigo-500 to-indigo-600' },
+                    { title: 'Kunden', desc: 'Kundenverwaltung', icon: '👥', color: 'from-pink-500 to-pink-600' }
+                ],
+                activities: [
+                    { text: 'Elektroverteilung OG installiert', time: 'vor 1 Stunde', color: 'green' },
+                    { text: 'Material für nächste Woche bestellt', time: 'vor 3 Stunden', color: 'blue' },
+                    { text: 'Neue Anfrage für Bürogebäude erhalten', time: 'vor 5 Stunden', color: 'yellow' }
+                ]
+            }
+        };
+
+        // Demo initialisieren
+        function initDemo() {
+            const data = demoData[role];
+            
+            // UI aktualisieren
+            document.getElementById('role-display').textContent = `(${data.roleName})`;
+            document.getElementById('user-name').textContent = `• ${data.userName}`;
+            document.getElementById('project-name').textContent = data.projectName;
+            document.getElementById('project-status').textContent = data.projectStatus;
+            document.getElementById('progress-percent').textContent = `${data.progress}%`;
+            document.getElementById('progress-bar').style.width = `${data.progress}%`;
+            
+            // Stats aktualisieren
+            document.getElementById('stat1-label').textContent = data.stats.stat1.label;
+            document.getElementById('stat1-value').textContent = data.stats.stat1.value;
+            document.getElementById('stat2-label').textContent = data.stats.stat2.label;
+            document.getElementById('stat2-value').textContent = data.stats.stat2.value;
+            document.getElementById('stat3-label').textContent = data.stats.stat3.label;
+            document.getElementById('stat3-value').textContent = data.stats.stat3.value;
+            
+            // Dashboard Cards erstellen
+            const cardsContainer = document.getElementById('dashboard-cards');
+            cardsContainer.innerHTML = data.cards.map(card => `
+                <div class="group glass rounded-2xl p-6 shadow-xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2 card-hover cursor-pointer">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-3 bg-gradient-to-br ${card.color} rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-2xl">${card.icon}</span>
+                        </div>
+                        <div class="text-right">
+                            <h3 class="text-xl font-bold text-white group-hover:text-[#ffbd59] transition-colors">${card.title}</h3>
+                            <p class="text-sm text-gray-400">${card.desc}</p>
+                        </div>
+                    </div>
+                    <div class="text-center text-gray-300 text-sm">
+                        <span class="opacity-75">Demo-Funktionalität</span>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Aktivitäten erstellen
+            const activityContainer = document.getElementById('activity-list');
+            activityContainer.innerHTML = data.activities.map(activity => `
+                <div class="flex items-center p-4 glass rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
+                    <div class="w-3 h-3 bg-gradient-to-r from-${activity.color}-400 to-${activity.color}-600 rounded-full mr-4 animate-pulse"></div>
+                    <span class="text-sm text-gray-200 flex-1">${activity.text}</span>
+                    <span class="ml-auto text-xs text-gray-400">${activity.time}</span>
+                </div>
+            `).join('');
+        }
+
+        // Demo starten
+        document.addEventListener('DOMContentLoaded', initDemo);
+    </script>
+</body>
+</html>

@@ -1038,8 +1038,8 @@ function initDemo() {
             return getDemoUrl(role, 'http://localhost:5173');
         }
         
-        // Für Produktion: Verwende Frontend unter gleicher Domain als Unterverzeichnis
-        const baseUrl = 'https://www.buildwise.ch/app';
+        // Für Produktion: Verwende gleiche Domain wie Landingpage
+        const baseUrl = 'https://www.buildwise.ch';
         
         try {
             // Prüfe ob Frontend verfügbar ist (mit kurzer Timeout)
@@ -1087,16 +1087,16 @@ function initDemo() {
     function showDemoErrorFallback(role) {
         const errorMessage = `
             <div style="text-align: center; padding: 20px; max-width: 500px; margin: 0 auto;">
-                <h3 style="color: #ef4444; margin-bottom: 10px;">🚧 Frontend wird eingerichtet</h3>
+                <h3 style="color: #ef4444; margin-bottom: 10px;">🚧 Demo wird eingerichtet</h3>
                 <p style="color: #666; margin-bottom: 15px;">
-                    Das BuildWise Frontend ist noch nicht unter <strong>www.buildwise.ch/app</strong> verfügbar.
+                    Das BuildWise Frontend wird unter <strong>www.buildwise.ch</strong> eingerichtet.
                 </p>
                 <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: left;">
-                    <h4 style="color: #374151; margin: 0 0 10px 0; font-size: 14px;">📋 Deployment-Anweisungen:</h4>
+                    <h4 style="color: #374151; margin: 0 0 10px 0; font-size: 14px;">📋 Einfache Lösung:</h4>
                     <ol style="color: #6b7280; font-size: 13px; margin: 0; padding-left: 20px;">
-                        <li>Frontend unter <code>/app</code> Pfad deployen</li>
-                        <li>URL: <code>https://www.buildwise.ch/app</code></li>
-                        <li>Oder temporär externe URL in config.js eintragen</li>
+                        <li>Frontend direkt unter <code>www.buildwise.ch</code> deployen</li>
+                        <li>Gleiche Domain, keine Subdomains nötig</li>
+                        <li>Demo läuft dann automatisch</li>
                     </ol>
                 </div>
                 <p style="color: #666; margin-bottom: 20px; font-size: 14px;">
@@ -1132,11 +1132,8 @@ function initDemo() {
             }
         }
         
-        // Demo-Credentials basierend auf Rolle
-        const demoCredentials = getDemoCredentials(role);
-        
-        // URL mit Demo-Parametern
-        return `${baseUrl}/login?demo=true&role=${role}&email=${encodeURIComponent(demoCredentials.email)}&password=${encodeURIComponent(demoCredentials.password)}`;
+        // URL direkt zur Demo-Seite - KEIN LOGIN!
+        return `${baseUrl}/demo?role=${role}`;
     }
     
     function getDemoCredentials(role) {
