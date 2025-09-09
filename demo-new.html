@@ -12,17 +12,17 @@
             background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); 
         }
         
-        /* RadialMenu Styles - aus dem echten Frontend */
+        /* RadialMenu Styles - verbessert und nach links verschoben */
         .radial-menu-container {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            left: 30px;
             z-index: 1000;
         }
         
         .radial-menu-button {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, #ffbd59, #ffa726);
             border-radius: 50%;
             display: flex;
@@ -31,17 +31,19 @@
             cursor: pointer;
             box-shadow: 0 8px 32px rgba(255, 189, 89, 0.3);
             transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.2);
         }
         
         .radial-menu-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 12px 40px rgba(255, 189, 89, 0.4);
+            box-shadow: 0 12px 40px rgba(255, 189, 89, 0.5);
+            border-color: rgba(255, 255, 255, 0.4);
         }
         
         .radial-menu-items {
             position: absolute;
-            bottom: 80px;
-            right: 0;
+            bottom: 90px;
+            left: 0;
             opacity: 0;
             pointer-events: none;
             transition: all 0.4s ease;
@@ -54,13 +56,14 @@
         
         .radial-item {
             position: absolute;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
@@ -69,9 +72,47 @@
         }
         
         .radial-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 189, 89, 0.6);
-            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 189, 89, 0.8);
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(255, 189, 89, 0.3);
+        }
+        
+        .radial-item-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        
+        .radial-item-label {
+            font-size: 8px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            line-height: 1;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        /* Tooltip für RadialMenu Items */
+        .radial-item::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .radial-item:hover::after {
+            opacity: 1;
         }
         
         /* Dashboard Card Styles */
@@ -179,18 +220,53 @@
             document.getElementById('nav-user').textContent = '• Max Mustermann';
             document.getElementById('radial-menu').style.display = 'block';
 
-            // RadialMenu Items
+            // RadialMenu Items - erweitert und lesbar
             const radialItems = [
-                { id: 'manager', label: 'Manager', icon: '🏠', angle: -170 },
-                { id: 'tasks', label: 'To-Do', icon: '✅', angle: -140 },
-                { id: 'documents', label: 'Docs', icon: '📄', angle: -110 },
-                { id: 'finance', label: 'Finance', icon: '💰', angle: -80 },
-                { id: 'visualize', label: 'Visualize', icon: '👁️', angle: -50 }
+                { 
+                    id: 'manager', 
+                    label: 'Manager', 
+                    icon: '🏠', 
+                    angle: -170,
+                    tooltip: 'Projekt- & Ausschreibungsmanagement',
+                    description: 'Verwalten Sie Ihre Bauprojekte und Ausschreibungen zentral'
+                },
+                { 
+                    id: 'tasks', 
+                    label: 'To-Do', 
+                    icon: '✅', 
+                    angle: -140,
+                    tooltip: 'Aufgabenmanagement',
+                    description: 'Übersicht über alle offenen Aufgaben und Termine'
+                },
+                { 
+                    id: 'documents', 
+                    label: 'DMS', 
+                    icon: '📄', 
+                    angle: -110,
+                    tooltip: 'Dokumentenmanagementsystem',
+                    description: 'Zentrale Verwaltung aller Projektdokumente'
+                },
+                { 
+                    id: 'finance', 
+                    label: 'Finance', 
+                    icon: '💰', 
+                    angle: -80,
+                    tooltip: 'Finanzen & Abrechnung',
+                    description: 'Kostenübersicht und Rechnungsmanagement'
+                },
+                { 
+                    id: 'visualize', 
+                    label: 'Visual', 
+                    icon: '👁️', 
+                    angle: -50,
+                    tooltip: 'Projektvisualisierung',
+                    description: '3D-Ansichten und Planungstools'
+                }
             ];
 
             const itemsContainer = document.getElementById('radial-items');
             itemsContainer.innerHTML = radialItems.map((item, index) => {
-                const radius = 120;
+                const radius = 140;
                 const angleRad = (item.angle * Math.PI) / 180;
                 const x = Math.cos(angleRad) * radius;
                 const y = Math.sin(angleRad) * radius;
@@ -198,8 +274,10 @@
                 return `
                     <div class="radial-item" 
                          style="transform: translate(${x}px, ${y}px);"
-                         onclick="showModuleInfo('${item.label}', 'Demo-Funktionalität für ${item.label}')">
-                        <span class="text-2xl">${item.icon}</span>
+                         data-tooltip="${item.tooltip}"
+                         onclick="showModuleInfo('${item.label}', '${item.description}')">
+                        <div class="radial-item-icon">${item.icon}</div>
+                        <div class="radial-item-label">${item.label}</div>
                     </div>
                 `;
             }).join('');
@@ -271,12 +349,34 @@
                             </div>
                         </div>
 
+                        <!-- Beispielprojekte -->
+                        <div class="mb-12">
+                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="text-[#ffbd59]">🏗️</span>
+                                Ihre Projekte
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                ${generateProjectCards()}
+                            </div>
+                        </div>
+
+                        <!-- Aktuelle Ausschreibungen -->
+                        <div class="mb-12">
+                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="text-[#ffbd59]">📋</span>
+                                Aktuelle Ausschreibungen
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                ${generateTenderCards()}
+                            </div>
+                        </div>
+
                         <!-- Info Box -->
                         <div class="bg-gradient-to-r from-[#ffbd59]/20 to-[#ffa726]/20 border border-[#ffbd59]/30 rounded-2xl p-8 text-center">
                             <div class="text-6xl mb-4">🚀</div>
                             <h2 class="text-2xl font-bold text-white mb-4">Bauträger Dashboard</h2>
                             <p class="text-gray-300 mb-6">
-                                Nutzen Sie das <strong class="text-[#ffbd59]">RadialMenu</strong> unten rechts für die Navigation zu allen Modulen.
+                                Nutzen Sie das <strong class="text-[#ffbd59]">RadialMenu</strong> unten links für die Navigation zu allen Modulen.
                                 <br>Das RadialMenu ist die zentrale Steuerung für Bauträger.
                             </p>
                             <div class="flex items-center justify-center gap-4 text-sm text-gray-400">
@@ -421,6 +521,159 @@
             `;
         }
 
+        // Generate demo project cards for Bauträger
+        function generateProjectCards() {
+            const projects = [
+                {
+                    name: 'Wohnkomplex Seeblick',
+                    location: 'Zürich, Seefeld',
+                    status: 'In Ausführung',
+                    progress: 65,
+                    budget: 'CHF 8.5M',
+                    completion: 'Q2 2025',
+                    trades: 5,
+                    tasks: 12,
+                    statusColor: 'green'
+                },
+                {
+                    name: 'Bürogebäude Zentrum',
+                    location: 'Basel, Innenstadt',
+                    status: 'Planung',
+                    progress: 25,
+                    budget: 'CHF 12.2M',
+                    completion: 'Q4 2025',
+                    trades: 8,
+                    tasks: 23,
+                    statusColor: 'blue'
+                },
+                {
+                    name: 'Einfamilienhaus Muster',
+                    location: 'Bern, Länggasse',
+                    status: 'Abgeschlossen',
+                    progress: 100,
+                    budget: 'CHF 1.8M',
+                    completion: 'Abgeschlossen',
+                    trades: 6,
+                    tasks: 0,
+                    statusColor: 'gray'
+                }
+            ];
+
+            return projects.map(project => `
+                <div class="dashboard-card rounded-2xl p-6 cursor-pointer" onclick="showProjectDetails('${project.name}')">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-white">${project.name}</h3>
+                        <span class="px-3 py-1 text-xs rounded-full bg-${project.statusColor}-500/20 text-${project.statusColor}-300 border border-${project.statusColor}-500/30">
+                            ${project.status}
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-3 mb-4">
+                        <div class="flex items-center text-sm text-gray-300">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            ${project.location}
+                        </div>
+                        <div class="flex items-center text-sm text-gray-300">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                            </svg>
+                            ${project.budget}
+                        </div>
+                        <div class="flex items-center text-sm text-gray-300">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            ${project.completion}
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Bar -->
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>Fortschritt</span>
+                            <span class="text-[#ffbd59] font-bold">${project.progress}%</span>
+                        </div>
+                        <div class="w-full bg-gray-700/50 rounded-full h-2">
+                            <div class="progress-bar h-2 rounded-full" style="width: ${project.progress}%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="flex justify-between text-xs text-gray-400">
+                        <span>${project.trades} Gewerke</span>
+                        <span>${project.tasks} Aufgaben</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate demo tender cards for Bauträger
+        function generateTenderCards() {
+            const tenders = [
+                {
+                    title: 'Elektroinstallation - Wohnkomplex Seeblick',
+                    category: 'Elektrotechnik',
+                    budget: 'CHF 180.000 - 220.000',
+                    deadline: '15. März 2025',
+                    offers: 3,
+                    status: 'Offen',
+                    description: 'Komplette Elektroinstallation für 24 Wohneinheiten'
+                },
+                {
+                    title: 'Sanitärarbeiten - Bürogebäude Zentrum',
+                    category: 'Sanitär',
+                    budget: 'CHF 95.000 - 120.000',
+                    deadline: '28. Februar 2025',
+                    offers: 5,
+                    status: 'Bewertung',
+                    description: 'Sanitärinstallation für 6-stöckiges Bürogebäude'
+                }
+            ];
+
+            return tenders.map(tender => `
+                <div class="dashboard-card rounded-2xl p-6 cursor-pointer" onclick="showTenderDetails('${tender.title}')">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-white">${tender.title}</h3>
+                        <span class="px-3 py-1 text-xs rounded-full ${tender.status === 'Offen' ? 'bg-green-500/20 text-green-300' : 'bg-yellow-500/20 text-yellow-300'}">
+                            ${tender.status}
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm text-gray-300">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                            </svg>
+                            ${tender.category}
+                        </div>
+                        <div class="flex items-center text-sm text-gray-300">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                            </svg>
+                            ${tender.budget}
+                        </div>
+                        <div class="flex items-center text-sm text-gray-300">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            Frist: ${tender.deadline}
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-400 mb-4">${tender.description}</p>
+                    
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-400">${tender.offers} Angebote erhalten</span>
+                        <button class="px-4 py-2 bg-gradient-to-r from-[#ffbd59] to-[#ffa726] text-[#2c3539] rounded-lg text-sm font-semibold hover:from-[#ffa726] hover:to-[#ff9800] transition-all duration-300">
+                            Details ansehen
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
         // Generate demo trade cards for service providers
         function generateTradeDemoCards() {
             const trades = [
@@ -519,6 +772,14 @@
 
         function showTradeDetails(title) {
             showModuleInfo(title, 'Hier können Sie ein detailliertes Angebot für diesen Auftrag erstellen.');
+        }
+
+        function showProjectDetails(projectName) {
+            showModuleInfo(projectName, `Detailansicht für ${projectName} mit Gewerken, Aufgaben, Dokumenten und Finanzen.`);
+        }
+
+        function showTenderDetails(tenderTitle) {
+            showModuleInfo('Ausschreibung', `${tenderTitle} - Hier können Sie Angebote verwalten und bewerten.`);
         }
 
         // Initialize demo based on role
