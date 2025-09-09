@@ -12,11 +12,11 @@
             background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); 
         }
         
-        /* RadialMenu Styles - verbessert und nach links verschoben */
+        /* RadialMenu Styles - in der rechten Hälfte positioniert */
         .radial-menu-container {
             position: fixed;
             bottom: 30px;
-            left: 30px;
+            right: 30px;
             z-index: 1000;
         }
         
@@ -43,7 +43,7 @@
         .radial-menu-items {
             position: absolute;
             bottom: 90px;
-            left: 0;
+            right: 0;
             opacity: 0;
             pointer-events: none;
             transition: all 0.4s ease;
@@ -96,7 +96,7 @@
         .radial-item::after {
             content: attr(data-tooltip);
             position: absolute;
-            left: 80px;
+            right: 80px;
             top: 50%;
             transform: translateY(-50%);
             background: rgba(0, 0, 0, 0.8);
@@ -371,12 +371,45 @@
                             </div>
                         </div>
 
+                        <!-- Gewerke-Übersicht -->
+                        <div class="mb-12">
+                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="text-[#ffbd59]">🔨</span>
+                                Gewerke-Management
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                ${generateTradeOverview()}
+                            </div>
+                        </div>
+
+                        <!-- Aktuelle Aufgaben -->
+                        <div class="mb-12">
+                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="text-[#ffbd59]">✅</span>
+                                Anstehende Aufgaben
+                            </h2>
+                            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                                ${generateTaskList()}
+                            </div>
+                        </div>
+
+                        <!-- Finanz-Übersicht -->
+                        <div class="mb-12">
+                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="text-[#ffbd59]">💰</span>
+                                Finanz-Dashboard
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                ${generateFinanceCards()}
+                            </div>
+                        </div>
+
                         <!-- Info Box -->
                         <div class="bg-gradient-to-r from-[#ffbd59]/20 to-[#ffa726]/20 border border-[#ffbd59]/30 rounded-2xl p-8 text-center">
                             <div class="text-6xl mb-4">🚀</div>
                             <h2 class="text-2xl font-bold text-white mb-4">Bauträger Dashboard</h2>
                             <p class="text-gray-300 mb-6">
-                                Nutzen Sie das <strong class="text-[#ffbd59]">RadialMenu</strong> unten links für die Navigation zu allen Modulen.
+                                Nutzen Sie das <strong class="text-[#ffbd59]">RadialMenu</strong> unten rechts für die Navigation zu allen Modulen.
                                 <br>Das RadialMenu ist die zentrale Steuerung für Bauträger.
                             </p>
                             <div class="flex items-center justify-center gap-4 text-sm text-gray-400">
@@ -496,8 +529,44 @@
                         </div>
 
                         <!-- Available Trades -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            ${generateTradeDemoCards()}
+                        <div class="mb-12">
+                            <h3 class="text-xl font-bold text-white mb-4">Verfügbare Aufträge</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                ${generateTradeDemoCards()}
+                            </div>
+                        </div>
+
+                        <!-- Meine Angebote -->
+                        <div class="mb-12">
+                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="text-[#ffbd59]">📄</span>
+                                Meine Angebote
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                ${generateMyQuotes()}
+                            </div>
+                        </div>
+
+                        <!-- Aktive Aufträge -->
+                        <div class="mb-12">
+                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="text-[#ffbd59]">🏗️</span>
+                                Aktive Aufträge
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                ${generateActiveJobs()}
+                            </div>
+                        </div>
+
+                        <!-- Terminkalender -->
+                        <div class="mb-12">
+                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span class="text-[#ffbd59]">📅</span>
+                                Anstehende Termine
+                            </h2>
+                            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                                ${generateAppointments()}
+                            </div>
                         </div>
 
                         <!-- Info Box -->
@@ -669,6 +738,155 @@
                         <button class="px-4 py-2 bg-gradient-to-r from-[#ffbd59] to-[#ffa726] text-[#2c3539] rounded-lg text-sm font-semibold hover:from-[#ffa726] hover:to-[#ff9800] transition-all duration-300">
                             Details ansehen
                         </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate trade overview for Bauträger
+        function generateTradeOverview() {
+            const trades = [
+                { name: 'Elektro', status: 'Aktiv', progress: 75, color: 'blue' },
+                { name: 'Sanitär', status: 'Planung', progress: 30, color: 'yellow' },
+                { name: 'Heizung', status: 'Abgeschlossen', progress: 100, color: 'green' },
+                { name: 'Maler', status: 'Offen', progress: 0, color: 'gray' }
+            ];
+
+            return trades.map(trade => `
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20 hover:bg-white/15 transition-all cursor-pointer" onclick="showModuleInfo('${trade.name}', 'Gewerk ${trade.name} - Status: ${trade.status}')">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-semibold text-white">${trade.name}</h4>
+                        <span class="px-2 py-1 text-xs rounded-full bg-${trade.color}-500/20 text-${trade.color}-300">${trade.status}</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>Fortschritt</span>
+                            <span class="text-[#ffbd59]">${trade.progress}%</span>
+                        </div>
+                        <div class="w-full bg-gray-700/50 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-[#ffbd59] to-[#ffa726] h-2 rounded-full transition-all duration-1000" style="width: ${trade.progress}%"></div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate task list for Bauträger
+        function generateTaskList() {
+            const tasks = [
+                { title: 'Elektroplanung prüfen', project: 'Wohnkomplex Seeblick', priority: 'Hoch', due: 'Heute' },
+                { title: 'Angebot Sanitär bewerten', project: 'Bürogebäude Zentrum', priority: 'Mittel', due: 'Morgen' },
+                { title: 'Baugenehmigung einreichen', project: 'Einfamilienhaus Muster', priority: 'Niedrig', due: '3 Tage' }
+            ];
+
+            return tasks.map(task => `
+                <div class="flex items-center justify-between py-3 border-b border-white/10 last:border-b-0 hover:bg-white/5 px-3 rounded cursor-pointer" onclick="showModuleInfo('${task.title}', 'Aufgabe für ${task.project}')">
+                    <div class="flex-1">
+                        <h4 class="text-white font-medium">${task.title}</h4>
+                        <p class="text-sm text-gray-400">${task.project}</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="px-2 py-1 text-xs rounded-full ${task.priority === 'Hoch' ? 'bg-red-500/20 text-red-300' : task.priority === 'Mittel' ? 'bg-yellow-500/20 text-yellow-300' : 'bg-green-500/20 text-green-300'}">${task.priority}</span>
+                        <span class="text-xs text-gray-400">${task.due}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate finance cards for Bauträger
+        function generateFinanceCards() {
+            const finances = [
+                { title: 'Gesamtbudget', amount: 'CHF 22.5M', change: '+2.1%', positive: true },
+                { title: 'Ausgaben MTD', amount: 'CHF 1.8M', change: '-5.3%', positive: true },
+                { title: 'Offene Rechnungen', amount: 'CHF 340K', change: '+12%', positive: false }
+            ];
+
+            return finances.map(finance => `
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all cursor-pointer" onclick="showModuleInfo('${finance.title}', 'Finanzdetails für ${finance.title}')">
+                    <h4 class="text-lg font-semibold text-white mb-2">${finance.title}</h4>
+                    <p class="text-2xl font-bold text-[#ffbd59] mb-2">${finance.amount}</p>
+                    <div class="flex items-center">
+                        <span class="text-sm ${finance.positive ? 'text-green-400' : 'text-red-400'}">${finance.change}</span>
+                        <span class="text-xs text-gray-400 ml-2">vs. Vormonat</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate my quotes for Dienstleister
+        function generateMyQuotes() {
+            const quotes = [
+                { title: 'Elektroinstallation Neubau', status: 'Eingereicht', amount: 'CHF 28.500', date: '10.01.2025' },
+                { title: 'Sanitär Renovation', status: 'Angenommen', amount: 'CHF 18.200', date: '08.01.2025' },
+                { title: 'Heizung Mehrfamilienhaus', status: 'Abgelehnt', amount: 'CHF 45.000', date: '05.01.2025' }
+            ];
+
+            return quotes.map(quote => `
+                <div class="trade-card rounded-2xl p-6 cursor-pointer" onclick="showModuleInfo('${quote.title}', 'Angebot: ${quote.title} - Status: ${quote.status}')">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-white">${quote.title}</h3>
+                        <span class="px-3 py-1 text-xs rounded-full ${quote.status === 'Angenommen' ? 'bg-green-500/20 text-green-300' : quote.status === 'Abgelehnt' ? 'bg-red-500/20 text-red-300' : 'bg-yellow-500/20 text-yellow-300'}">${quote.status}</span>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Angebotssumme:</span>
+                            <span class="text-[#ffbd59] font-bold">${quote.amount}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Eingereicht:</span>
+                            <span class="text-gray-300">${quote.date}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate active jobs for Dienstleister
+        function generateActiveJobs() {
+            const jobs = [
+                { title: 'Sanitär Wohnkomplex', location: 'Zürich', progress: 65, deadline: '15.03.2025' },
+                { title: 'Elektro Bürogebäude', location: 'Basel', progress: 30, deadline: '28.02.2025' },
+                { title: 'Heizung Einfamilienhaus', location: 'Bern', progress: 90, deadline: '10.02.2025' }
+            ];
+
+            return jobs.map(job => `
+                <div class="trade-card rounded-2xl p-6 cursor-pointer" onclick="showModuleInfo('${job.title}', 'Aktiver Auftrag: ${job.title} in ${job.location}')">
+                    <h3 class="text-lg font-semibold text-white mb-2">${job.title}</h3>
+                    <p class="text-gray-400 mb-4">${job.location}</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Fortschritt</span>
+                            <span class="text-[#ffbd59] font-bold">${job.progress}%</span>
+                        </div>
+                        <div class="w-full bg-gray-700/50 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-[#ffbd59] to-[#ffa726] h-2 rounded-full" style="width: ${job.progress}%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Deadline:</span>
+                            <span class="text-gray-300">${job.deadline}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate appointments for Dienstleister
+        function generateAppointments() {
+            const appointments = [
+                { title: 'Baustellenbesichtigung', project: 'Wohnkomplex Seeblick', time: '09:00', date: 'Heute' },
+                { title: 'Angebotsbesprechung', project: 'Bürogebäude Zentrum', time: '14:30', date: 'Morgen' },
+                { title: 'Abnahme Heizung', project: 'Einfamilienhaus Muster', time: '11:00', date: 'Freitag' }
+            ];
+
+            return appointments.map(appointment => `
+                <div class="flex items-center justify-between py-3 border-b border-white/10 last:border-b-0 hover:bg-white/5 px-3 rounded cursor-pointer" onclick="showModuleInfo('${appointment.title}', 'Termin: ${appointment.title} - ${appointment.project}')">
+                    <div class="flex-1">
+                        <h4 class="text-white font-medium">${appointment.title}</h4>
+                        <p class="text-sm text-gray-400">${appointment.project}</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[#ffbd59] font-medium">${appointment.time}</p>
+                        <p class="text-xs text-gray-400">${appointment.date}</p>
                     </div>
                 </div>
             `).join('');
