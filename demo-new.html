@@ -12,11 +12,11 @@
             background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); 
         }
         
-        /* RadialMenu Styles - in der rechten Hälfte positioniert */
+        /* RadialMenu Styles - leicht nach links verschoben */
         .radial-menu-container {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            right: 80px;
             z-index: 1000;
         }
         
@@ -789,7 +789,7 @@
                     
                     <div class="flex items-center justify-between">
                         <span class="text-sm text-gray-400">${tender.offers} Angebote erhalten</span>
-                        <button class="px-4 py-2 bg-gradient-to-r from-[#ffbd59] to-[#ffa726] text-[#2c3539] rounded-lg text-sm font-semibold hover:from-[#ffa726] hover:to-[#ff9800] transition-all duration-300">
+                        <button class="px-4 py-2 bg-gradient-to-r from-[#ffbd59] to-[#ffa726] text-[#2c3539] rounded-lg text-sm font-semibold hover:from-[#ffa726] hover:to-[#ff9800] transition-all duration-300" onclick="showTenderDetailsModal('${tender.title}', '${tender.category}', '${tender.budget}', '${tender.deadline}', ${tender.offers}, '${tender.status}', '${tender.description}')">
                             Details ansehen
                         </button>
                     </div>
@@ -1052,6 +1052,164 @@
 
         function showTenderDetails(tenderTitle) {
             showModuleInfo('Ausschreibung', `${tenderTitle} - Hier können Sie Angebote verwalten und bewerten.`);
+        }
+
+        function showTenderDetailsModal(title, category, budget, deadline, offers, status, description) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4';
+            modal.innerHTML = `
+                <div class="bg-gradient-to-br from-[#2c3539] to-[#1a1a2e] rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-white/20">
+                    <!-- Header -->
+                    <div class="p-6 border-b border-white/20">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h2 class="text-2xl font-bold text-white mb-2">${title}</h2>
+                                <div class="flex items-center gap-4">
+                                    <span class="px-3 py-1 text-sm rounded-full bg-blue-500/20 text-blue-300">${category}</span>
+                                    <span class="px-3 py-1 text-sm rounded-full ${status === 'Offen' ? 'bg-green-500/20 text-green-300' : 'bg-yellow-500/20 text-yellow-300'}">${status}</span>
+                                </div>
+                            </div>
+                            <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-white transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-6">
+                        <!-- Ausschreibungs-Details -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                                <h3 class="text-lg font-semibold text-white mb-4">Ausschreibungs-Details</h3>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Budget:</span>
+                                        <span class="text-[#ffbd59] font-semibold">${budget}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Angebotsfrist:</span>
+                                        <span class="text-white">${deadline}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Eingegangene Angebote:</span>
+                                        <span class="text-green-400 font-semibold">${offers}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Status:</span>
+                                        <span class="text-white">${status}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                                <h3 class="text-lg font-semibold text-white mb-4">Projektinformationen</h3>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Projekt:</span>
+                                        <span class="text-white">${title.includes('Seeblick') ? 'Wohnkomplex Seeblick' : 'Bürogebäude Zentrum'}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Standort:</span>
+                                        <span class="text-white">${title.includes('Seeblick') ? 'Zürich, Seefeld' : 'Basel, Innenstadt'}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Bauphase:</span>
+                                        <span class="text-white">${title.includes('Seeblick') ? 'Rohbau' : 'Planung'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Beschreibung -->
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10 mb-6">
+                            <h3 class="text-lg font-semibold text-white mb-3">Leistungsbeschreibung</h3>
+                            <p class="text-gray-300 leading-relaxed">${description}</p>
+                            <div class="mt-4 p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                                <p class="text-blue-300 text-sm">
+                                    <strong>Zusätzliche Anforderungen:</strong> 
+                                    ${title.includes('Elektro') ? 'KNX-Bussystem, Photovoltaik-Vorbereitung, E-Mobility Ladestation' : 'Fußbodenheizung kompatibel, Wärmepumpen-Anschluss, Smart-Home Integration'}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Eingegangene Angebote -->
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10 mb-6">
+                            <h3 class="text-lg font-semibold text-white mb-4">Eingegangene Angebote (${offers})</h3>
+                            <div class="space-y-3">
+                                ${generateMockOffers(offers, budget)}
+                            </div>
+                        </div>
+
+                        <!-- Aktionen -->
+                        <div class="flex items-center justify-end gap-4 pt-6 border-t border-white/20">
+                            <button onclick="this.closest('.fixed').remove()" 
+                                    class="px-6 py-3 text-gray-300 hover:text-white transition-colors">
+                                Schließen
+                            </button>
+                            ${status === 'Offen' ? `
+                                <button onclick="showModuleInfo('Ausschreibung bearbeiten', 'Hier können Sie die Ausschreibung bearbeiten oder erweitern.')" 
+                                        class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all duration-300">
+                                    Bearbeiten
+                                </button>
+                            ` : `
+                                <button onclick="showModuleInfo('Angebote bewerten', 'Hier können Sie die eingegangenen Angebote vergleichen und bewerten.')" 
+                                        class="px-6 py-3 bg-gradient-to-r from-[#ffbd59] to-[#ffa726] text-[#2c3539] rounded-xl font-semibold hover:from-[#ffa726] hover:to-[#ff9800] transition-all duration-300">
+                                    Angebote bewerten
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function generateMockOffers(count, budget) {
+            const companies = [
+                { name: 'ElektroTech AG', rating: 4.8, experience: '15+ Jahre' },
+                { name: 'Sanitär Meier GmbH', rating: 4.6, experience: '12+ Jahre' },
+                { name: 'Heizung & Klima Pro', rating: 4.9, experience: '20+ Jahre' },
+                { name: 'Bau-Elektrik Zürich', rating: 4.5, experience: '8+ Jahre' },
+                { name: 'Installationen Weber', rating: 4.7, experience: '18+ Jahre' }
+            ];
+
+            const budgetRange = budget.match(/CHF ([\d.]+) - ([\d.]+)/);
+            const minBudget = budgetRange ? parseFloat(budgetRange[1].replace('.', '')) : 100;
+            const maxBudget = budgetRange ? parseFloat(budgetRange[2].replace('.', '')) : 200;
+
+            return Array.from({length: Math.min(count, 5)}, (_, i) => {
+                const company = companies[i];
+                const offerAmount = (minBudget + (maxBudget - minBudget) * Math.random()).toFixed(0);
+                const deliveryTime = Math.floor(Math.random() * 4) + 2; // 2-6 Wochen
+                
+                return `
+                    <div class="bg-white/5 rounded-lg p-4 border border-white/10 hover:bg-white/10 transition-all cursor-pointer" onclick="showModuleInfo('${company.name}', 'Detailansicht des Angebots von ${company.name}')">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-semibold text-white">${company.name}</h4>
+                            <div class="flex items-center gap-2">
+                                <span class="text-yellow-400">★</span>
+                                <span class="text-sm text-gray-300">${company.rating}</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 text-sm">
+                            <div>
+                                <span class="text-gray-400">Angebot:</span>
+                                <p class="text-[#ffbd59] font-semibold">CHF ${offerAmount}.000</p>
+                            </div>
+                            <div>
+                                <span class="text-gray-400">Lieferzeit:</span>
+                                <p class="text-white">${deliveryTime} Wochen</p>
+                            </div>
+                            <div>
+                                <span class="text-gray-400">Erfahrung:</span>
+                                <p class="text-white">${company.experience}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
         // Initialize demo based on role
