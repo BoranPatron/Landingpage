@@ -8,7 +8,7 @@ window.BUILDWISE_CONFIG = {
     // Frontend URL für Demo-Weiterleitung
     FRONTEND_URL: window.location.hostname === 'localhost'
         ? 'http://localhost:5173'
-        : 'https://frontend.buildwise.ch',
+        : 'https://www.buildwise.ch/app',  // Frontend als Unterverzeichnis
     
     // Feature Flags
     FEATURES: {

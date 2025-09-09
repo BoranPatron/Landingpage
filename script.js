@@ -994,43 +994,142 @@ function initDemo() {
         }, 300);
     }
     
-    function startDemo(role) {
+    async function startDemo(role) {
         trackEvent('demo_started', { role });
         closeDemoModal();
         
         // Zeige Loading-Nachricht
         showNotification(`Demo wird gestartet für ${role === 'bautraeger' ? 'Bauträger' : 'Dienstleister'}...`, 'info');
         
-        // Simuliere Demo-Start
-        setTimeout(() => {
-            // Erstelle Demo-URL mit Rollenparameter
-            const frontendUrl = getDemoUrl(role);
+        try {
+            // Finde verfügbare Frontend-URL
+            const frontendUrl = await findAvailableFrontendUrl(role);
+            
+            if (!frontendUrl) {
+                throw new Error('Frontend nicht verfügbar');
+            }
             
             // Öffne Demo in neuem Tab
             const demoWindow = window.open(frontendUrl, '_blank', 'noopener,noreferrer');
             
             if (demoWindow) {
                 showNotification('Demo wurde in einem neuen Tab geöffnet', 'success');
+                
+                // Prüfe nach 3 Sekunden ob Tab noch offen ist
+                setTimeout(() => {
+                    if (demoWindow.closed) {
+                        showNotification('Demo-Tab wurde geschlossen. Sie können die Demo jederzeit neu starten.', 'info');
+                    }
+                }, 3000);
             } else {
                 // Fallback wenn Popup blockiert
-                showNotification('Popup wurde blockiert. Klicken Sie hier um die Demo zu öffnen.', 'error');
-                // Alternativ: Direkte Weiterleitung
-                // window.location.href = frontendUrl;
+                showFallbackOptions(frontendUrl, role);
             }
-        }, 1000);
+        } catch (error) {
+            console.error('Demo start error:', error);
+            showDemoErrorFallback(role);
+        }
     }
     
-    function getDemoUrl(role) {
-        // Bestimme die Frontend-URL basierend auf der Umgebung
+    async function findAvailableFrontendUrl(role) {
         const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         
-        let baseUrl;
         if (isDevelopment) {
-            // Lokale Entwicklung - Frontend läuft normalerweise auf Port 5173 (Vite)
-            baseUrl = 'http://localhost:5173';
-        } else {
-            // Produktion - Frontend URL aus Config oder relative URL
-            baseUrl = window.BUILDWISE_FRONTEND_URL || 'https://frontend.buildwise.ch';
+            return getDemoUrl(role, 'http://localhost:5173');
+        }
+        
+        // Für Produktion: Verwende Frontend unter gleicher Domain als Unterverzeichnis
+        const baseUrl = 'https://www.buildwise.ch/app';
+        
+        try {
+            // Prüfe ob Frontend verfügbar ist (mit kurzer Timeout)
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 3000);
+            
+            await fetch(baseUrl, { 
+                method: 'HEAD', 
+                signal: controller.signal,
+                mode: 'no-cors'
+            });
+            
+            clearTimeout(timeoutId);
+            return getDemoUrl(role, baseUrl);
+            
+        } catch (error) {
+            // Frontend noch nicht deployed - zeige hilfreiche Nachricht
+            console.warn('Frontend nicht unter /app gefunden:', error);
+            return getDemoUrl(role, baseUrl); // Verwende URL trotzdem für Deployment-Hinweis
+        }
+    }
+    
+    function showFallbackOptions(frontendUrl, role) {
+        const fallbackHtml = `
+            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 400px; margin: 20px auto;">
+                <h3 style="color: #333; margin-bottom: 15px;">Demo öffnen</h3>
+                <p style="color: #666; margin-bottom: 20px;">Popup wurde blockiert. Wählen Sie eine Option:</p>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <a href="${frontendUrl}" target="_blank" style="background: #3b82f6; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; text-align: center; font-weight: 500;">
+                        🚀 Demo in neuem Tab öffnen
+                    </a>
+                    <button onclick="window.location.href='${frontendUrl}'" style="background: #6b7280; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 500;">
+                        📱 Demo in diesem Tab öffnen
+                    </button>
+                </div>
+                <p style="color: #999; font-size: 12px; margin-top: 15px; text-align: center;">
+                    Demo für ${role === 'bautraeger' ? 'Bauträger' : 'Dienstleister'}
+                </p>
+            </div>
+        `;
+        
+        showNotification(fallbackHtml, 'info');
+    }
+    
+    function showDemoErrorFallback(role) {
+        const errorMessage = `
+            <div style="text-align: center; padding: 20px; max-width: 500px; margin: 0 auto;">
+                <h3 style="color: #ef4444; margin-bottom: 10px;">🚧 Frontend wird eingerichtet</h3>
+                <p style="color: #666; margin-bottom: 15px;">
+                    Das BuildWise Frontend ist noch nicht unter <strong>www.buildwise.ch/app</strong> verfügbar.
+                </p>
+                <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: left;">
+                    <h4 style="color: #374151; margin: 0 0 10px 0; font-size: 14px;">📋 Deployment-Anweisungen:</h4>
+                    <ol style="color: #6b7280; font-size: 13px; margin: 0; padding-left: 20px;">
+                        <li>Frontend unter <code>/app</code> Pfad deployen</li>
+                        <li>URL: <code>https://www.buildwise.ch/app</code></li>
+                        <li>Oder temporär externe URL in config.js eintragen</li>
+                    </ol>
+                </div>
+                <p style="color: #666; margin-bottom: 20px; font-size: 14px;">
+                    Kontaktieren Sie uns für Unterstützung beim Deployment oder eine persönliche Demo.
+                </p>
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="location.reload()" style="background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px;">
+                        🔄 Erneut versuchen
+                    </button>
+                    <a href="#contact" style="background: #10b981; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 14px;">
+                        📧 Kontakt aufnehmen
+                    </a>
+                </div>
+            </div>
+        `;
+        
+        showNotification(errorMessage, 'error');
+    }
+    
+    function getDemoUrl(role, customBaseUrl = null) {
+        let baseUrl = customBaseUrl;
+        
+        if (!baseUrl) {
+            // Bestimme die Frontend-URL basierend auf der Umgebung
+            const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            
+            if (isDevelopment) {
+                // Lokale Entwicklung - Frontend läuft normalerweise auf Port 5173 (Vite)
+                baseUrl = 'http://localhost:5173';
+            } else {
+                // Produktion - Verwende erste verfügbare URL aus Config
+                baseUrl = window.BUILDWISE_FRONTEND_URL || 'https://app.buildwise.ch';
+            }
         }
         
         // Demo-Credentials basierend auf Rolle
