@@ -35,15 +35,69 @@ html {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* Hero Section Enhancements */
+/* Hero Section Enhancements - Desktop Optimiert */
 .hero-gradient {
     background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
 }
 
-/* Button Hover Effects */
+/* Desktop Hero Optimierungen */
+@media (min-width: 1024px) {
+  .hero-section {
+    min-height: 90vh;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .hero-section .text-center {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .hero-headline {
+    font-size: clamp(3rem, 5vw, 4.5rem) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 2.5rem !important;
+    letter-spacing: -0.02em;
+  }
+  
+  .hero-section p {
+    font-size: 1.25rem !important;
+    line-height: 1.6 !important;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+  }
+  
+  .slogan-pill {
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .hero-ctas {
+    margin-top: 3rem;
+    gap: 1.5rem !important;
+  }
+  
+  .hero-ctas .btn-cta {
+    padding: 1rem 2rem !important;
+    font-size: 1.1rem !important;
+    min-width: 280px;
+  }
+  
+  .hero-ctas button, .hero-ctas a {
+    padding: 1rem 1.75rem !important;
+    font-size: 1rem !important;
+    min-width: 220px;
+  }
+}
+
+/* Button Hover Effects - Desktop Enhanced */
 .btn-primary {
     position: relative;
     overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary::before {
@@ -54,21 +108,62 @@ html {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+    transition: left 0.5s ease;
 }
 
 .btn-primary:hover::before {
     left: 100%;
 }
 
-/* Feature Card Animations */
+/* Desktop Button Enhancements */
+@media (min-width: 1024px) {
+  .btn-cta:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,.4), 0 0 50px rgba(249,199,79,.6);
+  }
+  
+  .btn-cta:active {
+    transform: translateY(-1px) scale(1.02);
+  }
+  
+  /* Andere Buttons */
+  button:not(.btn-cta):hover, a:not(.btn-cta):hover {
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+  }
+}
+
+/* Feature Card Animations - Desktop Enhanced */
 .feature-card {
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+/* Desktop-spezifische Hover-Effekte */
+@media (min-width: 1024px) {
+  .feature-card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  .feature-card:hover::before {
+    left: 100%;
+  }
 }
 
 /* Pricing Card Enhancements */
@@ -173,6 +268,38 @@ html {
         font-size: 3.75rem;
         line-height: 1;
     }
+}
+
+/* Desktop Typography Optimierungen */
+@media (min-width: 1024px) {
+  h2 {
+    font-size: clamp(2.25rem, 4vw, 3rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1.5rem !important;
+    letter-spacing: -0.01em;
+  }
+  
+  h3 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem) !important;
+    line-height: 1.3 !important;
+    letter-spacing: -0.01em;
+  }
+  
+  p {
+    font-size: 1.125rem !important;
+    line-height: 1.7 !important;
+    max-width: 65ch;
+  }
+  
+  .text-lg {
+    font-size: 1.25rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  .text-xl {
+    font-size: 1.5rem !important;
+    line-height: 1.5 !important;
+  }
 }
 
 /* Custom Grid Layouts */
@@ -586,9 +713,36 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .btn-primary-dark { display: inline-block; color: #ffffff; background: var(--ci-primary); padding: .75rem 1rem; border-radius: .75rem; font-weight: 700; box-shadow: 0 10px 20px -10px rgba(0,0,0,.5); }
 .btn-primary-dark:hover { background: var(--ci-primary-dark); }
 
-/* Hover lift */
-.hover-lift { transition: transform .25s ease, box-shadow .25s ease; }
-.hover-lift:hover { transform: translateY(-4px); box-shadow: 0 18px 45px -18px rgba(0,0,0,.45); }
+/* Hover lift - Desktop Enhanced */
+.hover-lift { 
+  transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s ease; 
+}
+
+.hover-lift:hover { 
+  transform: translateY(-6px) scale(1.02); 
+  box-shadow: 0 25px 60px -20px rgba(0,0,0,.3); 
+}
+
+/* Desktop-spezifische Hover-Verbesserungen */
+@media (min-width: 1024px) {
+  .panel-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 30px 80px -25px rgba(0,0,0,.25);
+    border-color: rgba(255,255,255,0.2);
+  }
+  
+  .ranking-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 35px 90px -30px rgba(0,0,0,.3);
+  }
+  
+  /* Bubble Hover-Effekte verstärken */
+  .bw-bubble:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 25px 50px -20px rgba(0,0,0,.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
 
 /* Tilt cards (3D-Parallax per JS) */
 .tilt-card { transform-style: preserve-3d; will-change: transform; }
@@ -750,6 +904,30 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 .phases-modern .phase-card.is-active::before { background: var(--ci-accent); box-shadow: 0 0 0 6px rgba(249,199,79,.18); }
 .phases-modern .phase-title { font-weight: 800; }
 
+/* Desktop Phases Optimierungen */
+@media (min-width: 1024px) {
+  .phases-track {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2rem !important;
+    overflow: visible !important;
+  }
+  
+  .phases-modern .phase-card {
+    min-width: auto !important;
+    padding: 2rem !important;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .phases-modern .phase-card .phase-desc {
+    max-height: none !important;
+    opacity: 1 !important;
+  }
+}
+
 /* Small icon bubble inside card */
 .phases-modern .phase-card .icon { width: 28px; height: 28px; border-radius: 999px; background: rgba(255,255,255,.12); display: inline-flex; align-items:center; justify-content:center; margin-right:.4rem; } 
 
@@ -900,7 +1078,96 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   /* Footer stack */
   footer .grid { grid-template-columns: 1fr !important; }
   
-  /* Sektions-Spacing reduzieren */
+  /* Desktop Layout und Spacing */
+@media (min-width: 1024px) {
+  section {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+  
+  .py-20 {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+  
+  .py-24 {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
+  
+  .py-28 {
+    padding-top: 7rem !important;
+    padding-bottom: 7rem !important;
+  }
+  
+  /* Größere Container-Breiten für Desktop */
+  .max-w-7xl {
+    max-width: 1400px !important;
+  }
+  
+  .max-w-5xl {
+    max-width: 1200px !important;
+  }
+  
+  /* Bessere Grid-Gaps */
+  .grid {
+    gap: 2rem !important;
+  }
+  
+  .gap-8 {
+    gap: 3rem !important;
+  }
+  
+  .gap-12 {
+    gap: 4rem !important;
+  }
+  
+  /* Content-Dichte Optimierungen */
+  .bw-bubbles {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    gap: 1.5rem !important;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .bw-bubble {
+    width: 200px !important;
+    height: 200px !important;
+  }
+  
+  /* Ranking Cards - mehr pro Zeile auf Desktop */
+  .ranking-cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 2rem !important;
+  }
+  
+  /* Problem & Lösung - bessere Nutzung des Platzes */
+  #problem-solution .tab-panel {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Pricing Section - Side-by-Side Layout */
+  .pricing-tab-content {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  
+  /* FAQ - Multi-Column Layout */
+  .accordion {
+    columns: 2;
+    column-gap: 3rem;
+    column-fill: balance;
+  }
+  
+  .acc-header, .acc-panel {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Mobile Sektions-Spacing (bestehend) */
+@media (max-width: 640px) {
   section {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
@@ -934,10 +1201,45 @@ hr, .divider { border-color: var(--ci-accent) !important; }
     gap: 1rem !important;
   }
   
-  /* Navigation kompakter */
+  /* Desktop Navigation Enhancements */
+@media (min-width: 1024px) {
+  #navbar {
+    padding: 0 2rem;
+  }
+  
+  .navbar-scrolled {
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* Desktop Navigation Links */
+  #navbar a {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #navbar a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: var(--ci-accent);
+    transition: left 0.3s ease;
+  }
+  
+  #navbar a:hover::before {
+    left: 0;
+  }
+}
+
+/* Mobile Navigation (bestehend) */
+@media (max-width: 640px) {
   .mobile-menu-enter, .mobile-menu-enter-active {
     backdrop-filter: blur(8px);
   }
+}
   
   /* Bessere Touch-Targets */
   button, a {
@@ -1172,6 +1474,32 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
   gap: 1rem; 
   position: relative; 
+}
+
+/* Desktop Workflow Optimierungen */
+@media (min-width: 1024px) {
+  .wf-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2rem !important;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .wf-step {
+    padding: 2rem !important;
+    min-height: 280px;
+  }
+  
+  /* Vertikaler Workflow für Desktop */
+  .wf-vert {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .wf-row {
+    padding: 2rem !important;
+    margin-bottom: 1.5rem;
+  }
 }
 .wf-step { 
   position: relative; 
