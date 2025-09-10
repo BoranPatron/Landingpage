@@ -16,8 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Pricing Tabs
     initPricingTabs();
 
-    // Tilt-Effekt für Karten
-    initTilt('.tilt-card');
+    // Tilt-Effekt für Karten (nur Desktop)
+    if (window.innerWidth > 1024) {
+        initTilt('.tilt-card');
+        
+        // Erweiterte Hover-Effekte für Desktop
+        initDesktopHoverEffects();
+    }
 
     // Blueprint-Outline zeichnen, sobald sichtbar
     initDrawOnScroll();
@@ -130,16 +135,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Intersection Observer for animations
+    // Enhanced Intersection Observer for animations
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: window.innerWidth > 1024 ? 0.2 : 0.1, // Höhere Schwelle auf Desktop
+        rootMargin: window.innerWidth > 1024 ? '0px 0px -100px 0px' : '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-fade-in');
+                
+                // Desktop-spezifische Animationen
+                if (window.innerWidth > 1024) {
+                    // Staggered Animation für Kinder-Elemente
+                    const children = entry.target.querySelectorAll('.feature-card, .panel-card, .bw-bubble');
+                    children.forEach((child, index) => {
+                        setTimeout(() => {
+                            child.style.opacity = '1';
+                            child.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                }
             }
         });
     }, observerOptions);
@@ -179,14 +196,34 @@ document.addEventListener('DOMContentLoaded', function() {
         counterObserver.observe(counter);
     });
 
-    // Parallax effect for hero section
+    // Enhanced parallax effect for hero section (Desktop only)
     const heroSection = document.querySelector('.hero-section');
-    if (heroSection) {
-        window.addEventListener('scroll', function() {
+    if (heroSection && window.innerWidth > 1024) {
+        let ticking = false;
+        
+        function updateParallax() {
             const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.3;
+            const rate = scrolled * -0.15; // Subtiler auf Desktop
+            const opacity = Math.max(0.3, 1 - scrolled / (window.innerHeight * 0.8));
+            
             heroSection.style.transform = `translateY(${rate}px)`;
-        });
+            
+            // Fade-out Effekt beim Scrollen
+            if (scrolled > 100) {
+                heroSection.style.opacity = opacity;
+            }
+            
+            ticking = false;
+        }
+        
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestTick, { passive: true });
     }
 
     // Tooltip functionality
@@ -594,6 +631,24 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, 250);
     });
+    
+    // Desktop-spezifische Performance-Optimierungen
+    if (window.innerWidth > 1024) {
+        // Smooth scrolling enhancement
+        document.documentElement.style.scrollBehavior = 'smooth';
+        
+        // Preload hover states
+        const style = document.createElement('style');
+        style.textContent = `
+            .feature-card, .panel-card, .ranking-card {
+                will-change: transform, box-shadow;
+            }
+            .btn-cta {
+                will-change: transform, box-shadow, filter;
+            }
+        `;
+        document.head.appendChild(style);
+    }
 });
 
 // Tabs logic
@@ -619,10 +674,11 @@ function initTabs() {
     });
 }
 
-// Tilt effect for cards
+// Enhanced tilt effect for cards (Desktop only)
 function initTilt(selector) {
     const cards = document.querySelectorAll(selector);
-    const strength = 8;
+    const strength = 12; // Verstärkter Effekt
+    
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
@@ -630,10 +686,65 @@ function initTilt(selector) {
             const y = e.clientY - rect.top;
             const rx = ((y - rect.height / 2) / rect.height) * -strength;
             const ry = ((x - rect.width / 2) / rect.width) * strength;
-            card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(20px)`;
+            card.style.transition = 'none';
         });
+        
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+            card.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
+    });
+}
+
+// Desktop-spezifische Hover-Effekte
+function initDesktopHoverEffects() {
+    // Magnetic Button Effect
+    const buttons = document.querySelectorAll('.btn-cta, button, .tab-btn');
+    buttons.forEach(button => {
+        button.addEventListener('mousemove', (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translate(0px, 0px) scale(1)';
+        });
+    });
+    
+    // Parallax Cards
+    const cards = document.querySelectorAll('.panel-card, .ranking-card, .credit-package');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+            
+            card.style.background = `radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(249,199,79,0.1), transparent 50%)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.background = '';
+        });
+    });
+    
+    // Text Glow Effect
+    const headings = document.querySelectorAll('h1, h2, h3');
+    headings.forEach(heading => {
+        heading.addEventListener('mouseenter', () => {
+            heading.style.textShadow = '0 0 20px rgba(249,199,79,0.5)';
+            heading.style.transition = 'text-shadow 0.3s ease';
+        });
+        
+        heading.addEventListener('mouseleave', () => {
+            heading.style.textShadow = 'none';
         });
     });
 }
