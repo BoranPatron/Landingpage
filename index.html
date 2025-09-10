@@ -7,15 +7,49 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>BuildWise - Die intelligente Plattform für Bauprojekte</title>
-    <meta name="description" content="BuildWise verbindet Bauträger und Dienstleister im Baugewerbe. Optimiere deine Projekte mit unserer intelligenten Plattform.">
+    <!-- SEO Meta Tags -->
+    <title>BuildWise - Bauträger & Dienstleister Plattform Schweiz | Bauprojekt Management Software</title>
+    <meta name="description" content="BuildWise: Die führende Plattform für Bauträger und Dienstleister in der Schweiz. Finden Sie qualifizierte Partner, verwalten Sie Bauprojekte effizient und optimieren Sie Ihre Bauabläufe. Jetzt kostenlos testen!">
+    <meta name="keywords" content="Bauträger Schweiz, Dienstleister Baugewerbe, Bauprojekt Management, Baumanagement Software, Handwerker finden, Subunternehmer, Totalunternehmer, Baubranche Digitalisierung, Bauleiter Software, Projektmanagement Bau">
+    <meta name="author" content="BuildWise AG">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#51646f">
+    <link rel="canonical" href="https://www.buildwise.ch/">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.buildwise.ch/">
+    <meta property="og:title" content="BuildWise - Bauträger & Dienstleister Plattform Schweiz">
+    <meta property="og:description" content="Die führende Plattform für Bauträger und Dienstleister in der Schweiz. Finden Sie qualifizierte Partner und verwalten Sie Bauprojekte effizient.">
+    <meta property="og:image" content="https://www.buildwise.ch/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="de_CH">
+    <meta property="og:site_name" content="BuildWise">
     
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.buildwise.ch/">
+    <meta property="twitter:title" content="BuildWise - Bauträger & Dienstleister Plattform Schweiz">
+    <meta property="twitter:description" content="Die führende Plattform für Bauträger und Dienstleister in der Schweiz. Finden Sie qualifizierte Partner und verwalten Sie Bauprojekte effizient.">
+    <meta property="twitter:image" content="https://www.buildwise.ch/logo.png">
+    
+    <!-- Geo Tags für lokale SEO -->
+    <meta name="geo.region" content="CH-ZH">
+    <meta name="geo.placename" content="Zürich">
+    <meta name="geo.position" content="47.3769;8.5417">
+    <meta name="ICBM" content="47.3769, 8.5417">
+    
+    <!-- Hreflang für mehrsprachige Unterstützung -->
+    <link rel="alternate" hreflang="de-ch" href="https://www.buildwise.ch/">
+    <link rel="alternate" hreflang="de" href="https://www.buildwise.ch/">
+    <link rel="alternate" hreflang="x-default" href="https://www.buildwise.ch/">
+    
+    <!-- Tailwind CSS - Optimiert für Performance -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    
+    <!-- AOS Animation Library - Lazy Loading -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,11 +57,192 @@
     <!-- Custom Styles (cache-busting) -->
     <link rel="stylesheet" href="styles.css?v=4">
     
-    <!-- Favicon / App Icons -->
+    <!-- Favicon / App Icons - SEO optimiert -->
     <link rel="icon" type="image/png" sizes="32x32" href="/logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/logo.png">
-    <link rel="apple-touch-icon" href="/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png">
     <link rel="shortcut icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Preload kritische Ressourcen -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="styles.css?v=4" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    
+    <!-- Schema.org Strukturierte Daten für SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "BuildWise",
+        "description": "Die führende Plattform für Bauträger und Dienstleister in der Schweiz. Finden Sie qualifizierte Partner, verwalten Sie Bauprojekte effizient und optimieren Sie Ihre Bauabläufe.",
+        "url": "https://www.buildwise.ch",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CHF",
+            "description": "Kostenlose Beta-Version verfügbar"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "BuildWise AG",
+            "url": "https://www.buildwise.ch",
+            "logo": "https://www.buildwise.ch/logo.png",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Zürich",
+                "addressCountry": "CH"
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+41 44 123 45 67",
+                "contactType": "customer service",
+                "areaServed": "CH",
+                "availableLanguage": "German"
+            }
+        },
+        "audience": {
+            "@type": "BusinessAudience",
+            "businessFunction": "Construction"
+        },
+        "featureList": [
+            "Projektmanagement für Bauprojekte",
+            "Dienstleister-Matching",
+            "Dokumentenmanagement",
+            "Kommunikationstools",
+            "Budgetverwaltung",
+            "Terminplanung"
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "BuildWise",
+        "url": "https://www.buildwise.ch",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.buildwise.ch/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "BuildWise AG",
+        "url": "https://www.buildwise.ch",
+        "logo": "https://www.buildwise.ch/logo.png",
+        "description": "BuildWise verbindet Bauträger und Dienstleister im Schweizer Baugewerbe durch intelligente Matching-Technologie und effizientes Projektmanagement.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Zürich",
+            "addressRegion": "ZH",
+            "addressCountry": "CH"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+41 44 123 45 67",
+            "email": "Stephan.Schellworth@buildwise.ch",
+            "contactType": "customer service",
+            "areaServed": "CH",
+            "availableLanguage": ["German"]
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/buildwise-ch"
+        ],
+        "foundingDate": "2022",
+        "industry": "Construction Technology",
+        "numberOfEmployees": "2-10"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "BuildWise AG",
+        "image": "https://www.buildwise.ch/logo.png",
+        "description": "Führende Baumanagement-Software und Plattform für Bauträger und Dienstleister in der Schweiz. Digitales Projektmanagement für die Baubranche.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Bahnhofstrasse 1",
+            "addressLocality": "Zürich",
+            "postalCode": "8001",
+            "addressRegion": "ZH",
+            "addressCountry": "CH"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 47.3769,
+            "longitude": 8.5417
+        },
+        "url": "https://www.buildwise.ch",
+        "telephone": "+41 44 123 45 67",
+        "email": "Stephan.Schellworth@buildwise.ch",
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "08:00",
+                "closes": "18:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "09:00",
+                "closes": "12:00"
+            }
+        ],
+        "areaServed": {
+            "@type": "Country",
+            "name": "Switzerland"
+        },
+        "serviceArea": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 47.3769,
+                "longitude": 8.5417
+            },
+            "geoRadius": "200000"
+        },
+        "priceRange": "CHF 0-500",
+        "currenciesAccepted": "CHF",
+        "paymentAccepted": "Credit Card, Bank Transfer",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "BuildWise Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Baumanagement Software",
+                        "description": "Digitales Projektmanagement für Bauprojekte"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Dienstleister Matching",
+                        "description": "Intelligente Vermittlung von Handwerkern und Subunternehmern"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
 </head>
 <body class="font-inter ci-theme">
     <!-- Navigation -->
@@ -100,7 +315,7 @@
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center" data-aos="fade-up">
                 <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 hero-headline">
-                    Schluss mit der Suche: <span class="text-orange-600">Finde die passenden Partner</span> für deine Bauprojekte.
+                    <span class="text-orange-600">Bauträger & Dienstleister</span> in der Schweiz: Finde qualifizierte Partner für deine Bauprojekte
                 </h1>
                 
                 <div class="flex justify-center">
@@ -131,8 +346,8 @@
     <section id="problem-solution" class="py-28">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Problem & Lösung</h2>
-                <p class="text-lg text-gray-600">Zwei Perspektiven. Eine Plattform.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Baumanagement Software für Bauträger und Dienstleister</h2>
+                <p class="text-lg text-gray-600">Effizientes Projektmanagement und intelligentes Matching in der Schweizer Baubranche.</p>
             </div>
             <!-- Tabs -->
             <div class="flex justify-center mb-8" id="audience-tabs" role="tablist">
@@ -148,7 +363,7 @@
                             <div class="badge">Transparenz</div>
                             <div class="badge">Vergabe</div>
                         </div>
-                        <p class="text-gray-700 mb-6">BuildWise bündelt Kommunikation, Dokumente und Freigaben – revisionssicher und DSGVO-konform.</p>
+                        <p class="text-gray-700 mb-6">BuildWise ist die führende Baumanagement-Software für Schweizer Bauträger. Unsere Plattform bündelt Projektmanagement, Dienstleister-Matching und Dokumentenverwaltung – revisionssicher, DSGVO-konform und speziell für die Baubranche entwickelt.</p>
                         
                     </div>
                     <!-- Kombinierte Bubbles für Bauträger -->
@@ -247,7 +462,7 @@
                             <div class="badge">Matching</div>
                             <div class="badge">Pipeline</div>
                         </div>
-                        <p class="text-gray-700 mb-6">Erhalte nur Anfragen, die zu deinem Gewerk, Radius und Auslastung passen.</p>
+                        <p class="text-gray-700 mb-6">Als Dienstleister, Subunternehmer oder Handwerker in der Schweiz erhalten Sie über BuildWise nur qualifizierte Projektanfragen, die zu Ihrem Gewerk, Einsatzgebiet und Ihrer aktuellen Auslastung passen. Optimieren Sie Ihre Auftragsgewinnung in der Baubranche.</p>
                     </div>
                     <!-- Kombinierte Bubbles für Dienstleister -->
                     <div class="lg:col-span-2 mt-6" data-aos="fade-up">
@@ -380,8 +595,8 @@
     <section id="phases" class="py-20 process">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">So funktioniert BuildWise</h2>
-                <p class="text-lg text-gray-600">Vom Bedarf bis zur Vergabe – transparent, effizient, nachvollziehbar.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Bauprojekt Management: So funktioniert BuildWise</h2>
+                <p class="text-lg text-gray-600">Vom Bedarf bis zur Vergabe – digitales Projektmanagement für die moderne Baubranche.</p>
             </div>
 
             <!-- Vertikaler, moderner Workflow -->
@@ -448,10 +663,10 @@
             <!-- Header -->
             <div class="text-center mb-12" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Bezahlmodell & Kostenstruktur
+                    Preise für Baumanagement Software in der Schweiz
                 </h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Transparente Kostenmodelle für beide Seiten unserer Plattform.
+                    Transparente und faire Preismodelle für Bauträger und Dienstleister in der Schweizer Baubranche.
                 </p>
             </div>
 
@@ -859,9 +1074,9 @@
                     </div>
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Über uns</h2>
                     <div class="space-y-4 text-gray-700">
-                        <p>Wir kennen die Baustelle – und die Herausforderungen, die dort täglich entstehen. Ob Dienstleister, Subunternehmer, Totalunternehmer, Bauleiter oder Bauträger: Alle brauchen verlässliche Partner, klare Prozesse und den schnellen Zugriff auf Dokumente und Termine. Genau dafür haben wir BuildWise entwickelt – die Plattform, die Zusammenarbeit einfacher, transparenter und effizienter macht.</p>
-                        <p>Hinter BuildWise stehen Stephan aus der Tech-Branche und Janina aus Architektur und Bau. Seit 2018 sind wir in der Bauwelt aktiv, seit 2022 mit einem klaren Fokus auf Planung und Visualisierung von Immobilien. Unser Know-how fließt in jede Funktion: Dienstleister finden passgenaue Projekte, Totalunternehmer steuern Budgets und Termine zentral, Bauträger sichern sich schon vor Baubeginn einen Überblick und starke Partner.</p>
-                        <p>Unser Leitbild ist klar: Qualität, Nähe, Partnerschaft. Wir gestalten die Zukunft des Bauens – gemeinsam mit dir.</p>
+                        <p>Als Schweizer Unternehmen kennen wir die Herausforderungen der lokalen Baubranche. Ob Dienstleister, Subunternehmer, Totalunternehmer, Bauleiter oder Bauträger in Zürich, Basel, Bern oder anderen Schweizer Städten: Alle brauchen verlässliche Partner, digitale Prozesse und effizienten Zugriff auf Bauprojekt-Dokumente. BuildWise ist die Antwort auf die Digitalisierung der Schweizer Baubranche.</p>
+                        <p>Hinter BuildWise stehen Stephan aus der Tech-Branche und Janina aus Architektur und Bau, beide mit Sitz in Zürich. Seit 2018 sind wir in der Schweizer Bauwelt aktiv, seit 2022 mit klarem Fokus auf Immobilien-Planung und Baumanagement-Software. Unser lokales Know-how fließt in jede Funktion: Schweizer Dienstleister finden passgenaue Bauprojekte, Totalunternehmer steuern Budgets nach Schweizer Standards, Bauträger sichern sich bereits vor Baubeginn qualifizierte Partner aus der Region.</p>
+                        <p>Unser Leitbild für die Schweizer Baubranche: Qualität, lokale Nähe, vertrauensvolle Partnerschaft. Wir gestalten die digitale Zukunft des Schweizer Bauwesens – gemeinsam mit Ihnen.</p>
                     </div>
 
                     <!-- Zielgruppen Highlights -->
@@ -887,7 +1102,7 @@
                         <picture>
                             <img
                                 src="/assets/aboutus.jpeg?v=1"
-                                alt="Team hinter BuildWise"
+                                alt="BuildWise Team - Schweizer Baumanagement Software Entwickler"
                                 class="w-full h-full object-cover object-center"
                                 loading="lazy"
                                 decoding="async"
@@ -962,7 +1177,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     </svg>
-                                    <span class="text-gray-600">Zürich, Schweiz</span>
+                                    <span class="text-gray-600">Zürich, Schweiz - Schweizweite Baubranche</span>
                                 </div>
                             </div>
                         </div>
@@ -991,11 +1206,11 @@
             <div class="faq">
                 <div class="accordion" data-accordion>
                     <button class="acc-header" aria-expanded="false">
-                        <span>Wie finde ich die richtigen Dienstleister?</span>
+                        <span>Wie finde ich qualifizierte Dienstleister und Handwerker in der Schweiz?</span>
                         <span class="acc-icon">+</span>
                     </button>
                     <div class="acc-panel" hidden>
-                        <p>Über Matching nach Gewerk, Standort, Kapazität und Qualitätsscore – transparent und schnell.</p>
+                        <p>BuildWise nutzt intelligentes Matching nach Gewerk, Standort in der Schweiz, verfügbarer Kapazität und Qualitätsbewertungen. So finden Bauträger schnell die passenden Subunternehmer, Handwerker und Dienstleister für ihre Bauprojekte – transparent, effizient und regional fokussiert.</p>
                     </div>
 
                     <button class="acc-header" aria-expanded="false">
@@ -1007,11 +1222,35 @@
                     </div>
 
                     <button class="acc-header" aria-expanded="false">
-                        <span>Was kostet die Nutzung?</span>
+                        <span>Was kostet die Baumanagement-Software für Schweizer Unternehmen?</span>
                         <span class="acc-icon">+</span>
                     </button>
                     <div class="acc-panel" hidden>
-                        <p>Es gibt einen kostenlosen Einstieg sowie Pro- und Enterprise-Modelle. Details siehe Preise.</p>
+                        <p>BuildWise bietet transparente Preismodelle für die Schweizer Baubranche: Kostenlose Beta-Version für Early Adopters, faire Provisionsmodelle für Dienstleister (2,7-4,7% je nach Ranking) und Credit-basierte Abrechnung für Bauträger. Alle Preise in CHF, speziell für den Schweizer Markt entwickelt.</p>
+                    </div>
+
+                    <button class="acc-header" aria-expanded="false">
+                        <span>Welche Gewerke und Dienstleister sind auf BuildWise vertreten?</span>
+                        <span class="acc-icon">+</span>
+                    </button>
+                    <div class="acc-panel" hidden>
+                        <p>Auf BuildWise finden Sie alle wichtigen Gewerke der Schweizer Baubranche: Maurer, Elektriker, Sanitär-Installateure, Heizungsbauer, Zimmerer, Dachdecker, Maler, Gipser, Bodenleger, Schreiner und viele weitere Handwerker und Subunternehmer. Auch spezialisierte Dienstleister wie Architekten, Bauleiter und Totalunternehmer sind vertreten.</p>
+                    </div>
+
+                    <button class="acc-header" aria-expanded="false">
+                        <span>Ist BuildWise für kleine und große Bauprojekte geeignet?</span>
+                        <span class="acc-icon">+</span>
+                    </button>
+                    <div class="acc-panel" hidden>
+                        <p>Ja, BuildWise eignet sich für Bauprojekte jeder Größe in der Schweiz: Von Einfamilienhäusern und Renovierungen bis hin zu großen Wohnbauprojekten, Gewerbebauten und Infrastrukturprojekten. Unsere Plattform skaliert mit Ihren Anforderungen und unterstützt sowohl kleine Handwerksbetriebe als auch große Bauunternehmen.</p>
+                    </div>
+
+                    <button class="acc-header" aria-expanded="false">
+                        <span>Wie funktioniert das Projektmanagement bei BuildWise?</span>
+                        <span class="acc-icon">+</span>
+                    </button>
+                    <div class="acc-panel" hidden>
+                        <p>BuildWise bietet umfassendes digitales Projektmanagement für Bauprojekte: Zentrale Dokumentenverwaltung, Terminplanung, Budgetüberwachung, Kommunikationstools und Fortschrittstracking. Alle Projektbeteiligten haben Zugriff auf aktuelle Pläne, Verträge und Projektinformationen – jederzeit und von überall.</p>
                     </div>
                 </div>
             </div>
@@ -1087,10 +1326,10 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="config.js?v=2"></script>
-    <script src="script.js?v=7"></script>
+    <!-- Scripts - Performance optimiert -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="config.js?v=2" defer></script>
+    <script src="script.js?v=7" defer></script>
     <script>
       // Force SW update on version bump
       if ('serviceWorker' in navigator) {

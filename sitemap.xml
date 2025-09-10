@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Hauptseite - Höchste Priorität -->
+  <url>
+    <loc>https://www.buildwise.ch/</loc>
+    <lastmod>2024-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de-ch" href="https://www.buildwise.ch/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.buildwise.ch/" />
+  </url>
+
+  <!-- Demo-Seiten -->
+  <url>
+    <loc>https://www.buildwise.ch/demo.html</loc>
+    <lastmod>2024-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buildwise.ch/demo-new.html</loc>
+    <lastmod>2024-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Danke-Seite -->
+  <url>
+    <loc>https://www.buildwise.ch/thanks.html</loc>
+    <lastmod>2024-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Rechtliche Seiten (falls vorhanden) -->
+  <url>
+    <loc>https://www.buildwise.ch/datenschutz.html</loc>
+    <lastmod>2024-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buildwise.ch/agb.html</loc>
+    <lastmod>2024-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buildwise.ch/impressum.html</loc>
+    <lastmod>2024-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

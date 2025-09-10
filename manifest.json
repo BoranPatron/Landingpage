@@ -1,0 +1,34 @@
+{
+  "name": "BuildWise - Bauträger & Dienstleister Plattform Schweiz",
+  "short_name": "BuildWise",
+  "description": "Die führende Plattform für Bauträger und Dienstleister in der Schweiz. Finden Sie qualifizierte Partner und verwalten Sie Bauprojekte effizient.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#51646f",
+  "theme_color": "#51646f",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity"],
+  "lang": "de-CH",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/Design%20ohne%20Titel%20%2816%29.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

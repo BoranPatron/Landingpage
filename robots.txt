@@ -1,0 +1,27 @@
+# Robots.txt für BuildWise - Optimiert für SEO
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://www.buildwise.ch/sitemap.xml
+
+# Spezielle Anweisungen für wichtige Crawler
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Blockiere unwichtige Dateien
+Disallow: /api/
+Disallow: /netlify/
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /sw.js
+
+# Erlaube wichtige Ressourcen
+Allow: /logo.png
+Allow: /assets/
+Allow: /manifest.json

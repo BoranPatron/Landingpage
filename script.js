@@ -395,6 +395,13 @@ document.addEventListener('DOMContentLoaded', function() {
     (function initBubblePhysics(){
       const containers = document.querySelectorAll('.bw-physics');
       if (!containers.length) return;
+      
+      // Deaktiviere Physik auf Mobile
+      if (window.innerWidth <= 640) {
+        console.log('Bubble physics disabled on mobile to prevent overflow');
+        return;
+      }
+      
       containers.forEach(container => {
         const bubbles = Array.from(container.querySelectorAll('.bw-bubble'));
         if (!bubbles.length) return;
@@ -412,8 +419,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const b = s.el; const c = i % cols; const row = Math.floor(i / cols);
             const w = b.offsetWidth || 200; const h = b.offsetHeight || 200;
             s.r = Math.max(w, h) / 2;
-            s.x = c * cellW + cellW / 2 + (Math.random()*40 - 20);
-            s.y = row * cellH + cellH / 2 + (Math.random()*40 - 20);
+            // Sicherheitsabstand zu den Container-Rändern
+            const margin = s.r + 20;
+            s.x = Math.max(margin, Math.min(rect.width - margin, c * cellW + cellW / 2 + (Math.random()*40 - 20)));
+            s.y = Math.max(margin, Math.min(rect.height - margin, row * cellH + cellH / 2 + (Math.random()*40 - 20)));
             s.vx = (Math.random()*2 - 1) * 10;
             s.vy = (Math.random()*2 - 1) * 10;
             positionEl(s);
@@ -422,7 +431,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function step(dtMs){
           const rect = container.getBoundingClientRect();
-          const minX = -60, minY = -60, maxX = rect.width + 60, maxY = rect.height + 60;
+          // Strengere Grenzen um Überlauf zu verhindern
+          const minX = 0, minY = 0, maxX = rect.width, maxY = rect.height;
           const dt = Math.max(0.001, dtMs / 1000);
           state.forEach(s => {
             s.angle += s.freq * dt;
@@ -451,11 +461,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
           }
           state.forEach(s => {
-            const kWall = 90;
-            if (s.x < minX) s.vx += (minX - s.x) * kWall * dt;
-            if (s.x > maxX) s.vx -= (s.x - maxX) * kWall * dt;
-            if (s.y < minY) s.vy += (minY - s.y) * kWall * dt;
-            if (s.y > maxY) s.vy -= (s.y - maxY) * kWall * dt;
+            const kWall = 120; // Stärkere Rückstoßkraft
+            const margin = s.r; // Bubble-Radius als Sicherheitsabstand
+            if (s.x < minX + margin) s.vx += (minX + margin - s.x) * kWall * dt;
+            if (s.x > maxX - margin) s.vx -= (s.x - (maxX - margin)) * kWall * dt;
+            if (s.y < minY + margin) s.vy += (minY + margin - s.y) * kWall * dt;
+            if (s.y > maxY - margin) s.vy -= (s.y - (maxY - margin)) * kWall * dt;
           });
           state.forEach(s => {
             const maxV = 48;
@@ -473,8 +484,17 @@ document.addEventListener('DOMContentLoaded', function() {
           requestAnimationFrame(loop);
         }
         layout();
-        requestAnimationFrame(loop);
-        window.addEventListener('resize', () => { layout(); });
+        
+        // Nur starten wenn nicht auf Mobile
+        if (window.innerWidth > 640) {
+          requestAnimationFrame(loop);
+        }
+        
+        window.addEventListener('resize', () => { 
+          if (window.innerWidth > 640) {
+            layout(); 
+          }
+        });
       });
     })();
     
@@ -557,6 +577,21 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.bubble-toggle-btn').forEach(btn => btn.remove());
             // Initialisiere neu
             initShowMoreButtons();
+            
+            // Prüfe ob Bubble-Physik deaktiviert werden muss
+            const physicsContainers = document.querySelectorAll('.bw-physics');
+            physicsContainers.forEach(container => {
+                if (window.innerWidth <= 640) {
+                    // Deaktiviere alle Transforms und Positionierungen
+                    const bubbles = container.querySelectorAll('.bw-bubble');
+                    bubbles.forEach(bubble => {
+                        bubble.style.position = 'static';
+                        bubble.style.transform = 'none';
+                        bubble.style.left = 'auto';
+                        bubble.style.top = 'auto';
+                    });
+                }
+            });
         }, 250);
     });
 });
