@@ -1,8 +1,10 @@
-# Robots.txt für BuildWise - Optimiert für SEO
+# Robots.txt für BuildWise - Optimiert für SEO 2025
+# Letzte Aktualisierung: 10.09.2025
+
 User-agent: *
 Allow: /
 
-# Sitemap Location
+# Sitemap Location - Hauptsitemap
 Sitemap: https://www.buildwise.ch/sitemap.xml
 
 # Spezielle Anweisungen für wichtige Crawler
@@ -14,14 +16,40 @@ User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-# Blockiere unwichtige Dateien
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Blockiere unwichtige Dateien und Verzeichnisse
 Disallow: /api/
 Disallow: /netlify/
 Disallow: /*.js$
 Disallow: /*.css$
 Disallow: /sw.js
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /package*.json
+Disallow: /tsconfig*.json
+Disallow: /vite.config.*
+Disallow: /tailwind.config.*
+Disallow: /postcss.config.*
+Disallow: /eslint.config.*
 
-# Erlaube wichtige Ressourcen
+# Erlaube wichtige Ressourcen für SEO
 Allow: /logo.png
 Allow: /assets/
 Allow: /manifest.json
+Allow: /favicon.svg
+Allow: /robots.txt
+Allow: /sitemap.xml
+
+# Blockiere temporäre und Debug-Dateien
+Disallow: /debug_*
+Disallow: /test_*
+Disallow: /*.md$
+Disallow: /*.log$
+Disallow: /*.tmp$
+
+# Crawling-Richtlinien für bessere Performance
+User-agent: *
+Request-rate: 1/10s

@@ -2,62 +2,88 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-image/1.1
+        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
 
   <!-- Hauptseite - Höchste Priorität -->
   <url>
     <loc>https://www.buildwise.ch/</loc>
-    <lastmod>2024-09-10</lastmod>
+    <lastmod>2025-09-10T12:00:00+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="de-ch" href="https://www.buildwise.ch/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.buildwise.ch/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.buildwise.ch/" />
+    <image:image>
+      <image:loc>https://www.buildwise.ch/logo.png</image:loc>
+      <image:title>BuildWise Logo - Bauträger & Dienstleister Plattform</image:title>
+      <image:caption>BuildWise - Die führende Plattform für Bauträger und Dienstleister in der Schweiz</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.buildwise.ch/assets/aboutus.jpeg</image:loc>
+      <image:title>BuildWise Team - Über uns</image:title>
+      <image:caption>Das BuildWise Team - Experten für digitale Bauprozesse</image:caption>
+    </image:image>
   </url>
 
-  <!-- Demo-Seiten -->
+  <!-- Demo-Seiten - Wichtig für User Experience -->
   <url>
     <loc>https://www.buildwise.ch/demo.html</loc>
-    <lastmod>2024-09-10</lastmod>
+    <lastmod>2025-09-10T12:00:00+01:00</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de-ch" href="https://www.buildwise.ch/demo.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.buildwise.ch/demo.html" />
   </url>
 
   <url>
     <loc>https://www.buildwise.ch/demo-new.html</loc>
-    <lastmod>2024-09-10</lastmod>
+    <lastmod>2025-09-10T12:00:00+01:00</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de-ch" href="https://www.buildwise.ch/demo-new.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.buildwise.ch/demo-new.html" />
   </url>
 
-  <!-- Danke-Seite -->
+  <!-- Danke-Seite - Conversion-relevant -->
   <url>
     <loc>https://www.buildwise.ch/thanks.html</loc>
-    <lastmod>2024-09-10</lastmod>
+    <lastmod>2025-09-10T12:00:00+01:00</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
 
-  <!-- Rechtliche Seiten (falls vorhanden) -->
+  <!-- Rechtliche Seiten - Compliance wichtig -->
   <url>
     <loc>https://www.buildwise.ch/datenschutz.html</loc>
-    <lastmod>2024-09-10</lastmod>
+    <lastmod>2025-09-10T12:00:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.buildwise.ch/agb.html</loc>
-    <lastmod>2024-09-10</lastmod>
+    <lastmod>2025-09-10T12:00:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.buildwise.ch/impressum.html</loc>
-    <lastmod>2024-09-10</lastmod>
+    <lastmod>2025-09-10T12:00:00+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+
+  <!-- Wichtige statische Ressourcen -->
+  <url>
+    <loc>https://www.buildwise.ch/manifest.json</loc>
+    <lastmod>2025-09-10T12:00:00+01:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
   </url>
 
 </urlset>

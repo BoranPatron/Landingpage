@@ -3,9 +3,11 @@
   "private": true,
   "scripts": {
     "dev": "netlify dev -p 5508",
-    "build": "echo 'static site'",
+    "build": "npm run sitemap && echo 'static site'",
     "serve": "npx serve -l 5508",
-    "api": "node api/server.js"
+    "api": "node api/server.js",
+    "sitemap": "node generate-sitemap.js",
+    "sitemap:validate": "node generate-sitemap.js && curl -s https://www.buildwise.ch/sitemap.xml | head -20"
   },
   "devDependencies": {
     "@netlify/functions": "^2.7.0"

@@ -505,6 +505,7 @@ hr, .divider { border-color: var(--ci-accent) !important; }
         linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%);
     color: #f2f5f7;
     min-height: 100vh;
+    overflow-x: hidden; /* Verhindert horizontalen Scroll auf Body-Level */
 }
 
 /* Typografie-Overrides für gängige Tailwind-Grautöne innerhalb des Themes */
@@ -863,12 +864,28 @@ hr, .divider { border-color: var(--ci-accent) !important; }
     max-width: calc(100vw - 2rem) !important; 
     margin-left: 1rem !important; 
     margin-right: 1rem !important;
+    overflow-x: hidden !important;
   }
   
   /* Fix container widths */
   .container, .px-4, .sm\:px-6, .lg\:px-8 {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
+    max-width: calc(100vw - 2rem) !important;
+  }
+  
+  /* Text-Wrapping sicherstellen */
+  h1, h2, h3, h4, h5, h6, p, div {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+  }
+  
+  /* Inline-Highlight Fix */
+  .inline-highlight {
+    display: inline !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
   }
 
   /* Phases: larger touch targets, snap, rail subtle */
@@ -941,6 +958,18 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 
 /* Weitere Mobile-Optimierungen */
 @media (max-width: 640px) {
+  /* Globaler Overflow-Fix für alle Sektionen */
+  section {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+  
+  /* Container-Fixes */
+  .container, .max-w-7xl, .max-w-5xl, .max-w-3xl {
+    overflow-x: hidden !important;
+    max-width: calc(100vw - 1rem) !important;
+  }
+  
   /* Bessere Lesbarkeit */
   .text-lg { font-size: 1rem !important; }
   .text-xl { font-size: 1.1rem !important; }
@@ -992,10 +1021,31 @@ hr, .divider { border-color: var(--ci-accent) !important; }
     width: 100% !important;
   }
   
-  /* Beta-CTA kompakter */
+  /* Beta-CTA kompakter und Overflow-Fix */
+  #beta {
+    overflow-x: hidden !important; /* Nur horizontaler Overflow versteckt */
+    overflow-y: visible !important; /* Vertikaler Overflow erlaubt */
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
   #beta .grid {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
+  }
+  
+  /* Beta-Sektion Container-Fix */
+  #beta .max-w-7xl {
+    max-width: calc(100vw - 2rem) !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Absolute Blur-Kreise auf Mobile verstecken */
+  #beta .absolute {
+    display: none !important;
   }
   
   /* About-Section optimiert */
@@ -1007,6 +1057,28 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   /* Bessere Sichtbarkeit von CTAs */
   .btn-cta {
     box-shadow: 0 4px 12px rgba(0,0,0,.3) !important;
+    word-break: normal !important;
+  }
+  
+  /* Beta-Form spezifische Fixes */
+  #beta-form {
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+  
+  #beta-form input, #beta-form button {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Grid-Layout auf Mobile sicherer machen */
+  .grid {
+    overflow-x: hidden !important;
+  }
+  
+  .grid > * {
+    min-width: 0 !important; /* Verhindert Grid-Item Overflow */
+    max-width: 100% !important;
   }
 } 
 
@@ -1519,7 +1591,53 @@ hr, .divider { border-color: var(--ci-accent) !important; }
 /* Hintergrundbild im Beta-Abschnitt */
 .bg-photo { position: relative; }
 .bg-photo::before { content: ""; position: absolute; inset: 0; background-image: url('/bg_wbpage2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: .22; pointer-events: none; z-index: 0; }
-.bg-photo > * { position: relative; z-index: 1; } 
+.bg-photo > * { position: relative; z-index: 1; }
+
+/* Mobile Beta-Sektion Fixes */
+@media (max-width: 640px) {
+  .bg-photo {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+  
+  .bg-photo::before {
+    /* Hintergrundbild auf Mobile weniger stark */
+    opacity: .15;
+    /* Verhindere Überlauf des Hintergrundbilds */
+    background-size: cover;
+    background-position: center;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  
+  /* Beta-Sektion Text-Fixes */
+  #beta h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+    word-break: break-word !important;
+  }
+  
+  #beta p {
+    font-size: clamp(0.9rem, 4vw, 1rem) !important;
+    line-height: 1.4 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  #beta .grid {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+  
+  #beta .grid > div {
+    padding: 0 0.5rem !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+} 
 
 /* Hintergrundbild für "So funktioniert BuildWise" */
 .process { position: relative; }
