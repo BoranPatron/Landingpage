@@ -2,11 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
-        http://www.google.com/schemas/sitemap-image/1.1
-        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <!-- Hauptseite - Höchste Priorität -->
   <url>
@@ -17,16 +14,6 @@
     <xhtml:link rel="alternate" hreflang="de-ch" href="https://www.buildwise.ch/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.buildwise.ch/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.buildwise.ch/" />
-    <image:image>
-      <image:loc>https://www.buildwise.ch/logo.png</image:loc>
-      <image:title>BuildWise Logo - Bauträger & Dienstleister Plattform</image:title>
-      <image:caption>BuildWise - Die führende Plattform für Bauträger und Dienstleister in der Schweiz</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.buildwise.ch/assets/aboutus.jpeg</image:loc>
-      <image:title>BuildWise Team - Über uns</image:title>
-      <image:caption>Das BuildWise Team - Experten für digitale Bauprozesse</image:caption>
-    </image:image>
   </url>
 
   <!-- Demo-Seiten - Wichtig für User Experience -->
