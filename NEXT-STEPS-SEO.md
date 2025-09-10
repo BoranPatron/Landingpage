@@ -12,7 +12,7 @@
 **Warum kritisch**: Lokale SEO für "Bauträger Zürich", "Dienstleister Schweiz"
 ```
 Schritte:
-1. Google My Business Profil erstellen
+1. Google My Business Profil erstellen -> done
 2. Kategorie: "Software-Unternehmen" + "Baudienstleistungen"
 3. Adresse: Zürich (exakte Adresse aus Schema.org verwenden)
 4. Öffnungszeiten: Mo-Fr 8-18, Sa 9-12 (wie in Schema definiert)
