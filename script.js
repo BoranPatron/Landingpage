@@ -321,6 +321,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const desc = b.querySelector('.bw-desc');
         if (desc) desc.textContent = d;
       });
+      
+      // "Mehr anzeigen" Funktionalität für Mobile
+      initShowMoreButtons();
       // Hover-only Reveal; Keyboard-Nutzer sehen weiterhin Label (kein Toggle nötig)
       // Mobile/Touch: Tap-to-Reveal
       const isTouch = matchMedia('(hover: none)').matches || 'ontouchstart' in window;
@@ -474,6 +477,88 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('resize', () => { layout(); });
       });
     })();
+    
+    // "Mehr anzeigen" Buttons Funktionalität
+    function initShowMoreButtons() {
+        // Bubble "Mehr anzeigen" Button
+        const bubbleContainers = document.querySelectorAll('.bw-bubbles');
+        bubbleContainers.forEach(container => {
+            if (window.innerWidth <= 640) {
+                const bubbles = container.querySelectorAll('.bw-bubble');
+                if (bubbles.length > 4) {
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.className = 'bubble-toggle-btn';
+                    toggleBtn.textContent = 'Mehr anzeigen';
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                    
+                    toggleBtn.addEventListener('click', function() {
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                        container.classList.toggle('show-all', !isExpanded);
+                        this.setAttribute('aria-expanded', String(!isExpanded));
+                        this.textContent = isExpanded ? 'Mehr anzeigen' : 'Weniger anzeigen';
+                    });
+                    
+                    container.appendChild(toggleBtn);
+                }
+            }
+        });
+        
+        // Ranking Cards "Mehr anzeigen" Button
+        const rankingContainer = document.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-3');
+        if (rankingContainer && window.innerWidth <= 768) {
+            const cards = rankingContainer.querySelectorAll('.ranking-card');
+            if (cards.length > 3) {
+                const toggleBtn = document.createElement('button');
+                toggleBtn.className = 'bubble-toggle-btn';
+                toggleBtn.style.gridColumn = '1 / -1';
+                toggleBtn.textContent = 'Alle Rankings anzeigen';
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                
+                toggleBtn.addEventListener('click', function() {
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    rankingContainer.classList.toggle('show-all', !isExpanded);
+                    this.setAttribute('aria-expanded', String(!isExpanded));
+                    this.textContent = isExpanded ? 'Alle Rankings anzeigen' : 'Weniger anzeigen';
+                });
+                
+                rankingContainer.appendChild(toggleBtn);
+            }
+        }
+        
+        // FAQ "Mehr anzeigen" Button
+        const faqContainer = document.querySelector('.accordion');
+        if (faqContainer && window.innerWidth <= 640) {
+            const headers = faqContainer.querySelectorAll('.acc-header');
+            if (headers.length > 3) {
+                const toggleBtn = document.createElement('button');
+                toggleBtn.className = 'bubble-toggle-btn';
+                toggleBtn.style.marginTop = '1rem';
+                toggleBtn.textContent = 'Mehr FAQs anzeigen';
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                
+                toggleBtn.addEventListener('click', function() {
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    faqContainer.classList.toggle('show-all', !isExpanded);
+                    this.setAttribute('aria-expanded', String(!isExpanded));
+                    this.textContent = isExpanded ? 'Mehr FAQs anzeigen' : 'Weniger anzeigen';
+                });
+                
+                faqContainer.parentNode.appendChild(toggleBtn);
+            }
+        }
+    }
+    
+    // Responsive Anpassungen bei Resize
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            // Entferne existierende Toggle Buttons
+            document.querySelectorAll('.bubble-toggle-btn').forEach(btn => btn.remove());
+            // Initialisiere neu
+            initShowMoreButtons();
+        }, 250);
+    });
 });
 
 // Tabs logic
