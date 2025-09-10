@@ -45,16 +45,17 @@
     <link rel="alternate" hreflang="de" href="https://www.buildwise.ch/">
     <link rel="alternate" hreflang="x-default" href="https://www.buildwise.ch/">
     
-    <!-- Google Fonts - Preloaded -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <!-- Tailwind CSS - Optimiert für Performance -->
     <script src="https://cdn.tailwindcss.com" defer></script>
     
-    <!-- Custom Styles - OPTIMIERT -->
-    <link rel="stylesheet" href="styles-optimized.css?v=5">
+    <!-- AOS Animation Library - Lazy Loading -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles (cache-busting) -->
+    <link rel="stylesheet" href="styles.css?v=4">
     
     <!-- Favicon / App Icons - SEO optimiert -->
     <link rel="icon" type="image/png" sizes="32x32" href="/logo.png">
@@ -64,7 +65,11 @@
     <link rel="manifest" href="/manifest.json">
     
     <!-- Preload kritische Ressourcen -->
-    <link rel="preload" href="styles-optimized.css?v=5" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="styles.css?v=4" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     
     <!-- Schema.org Strukturierte Daten für SEO -->
@@ -1244,63 +1249,55 @@
         </div>
     </section>
 
-    <!-- About Section - OPTIMIERT -->
-    <section id="about" class="section ci-theme">
-        <div class="container">
-            <div class="grid grid-2 items-center">
+    <!-- About Section (neu) -->
+    <section id="about" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <!-- Text -->
                 <div data-aos="fade-right">
-                    <div class="mb-4 flex gap-2 flex-wrap">
+                    <div class="mb-4 flex gap-2">
                         <span class="badge">Qualität</span>
                         <span class="badge">Nähe</span>
                         <span class="badge">Partnerschaft</span>
                     </div>
-                    <h2 class="section-title">Über uns</h2>
-                    <div class="space-y-4">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Über uns</h2>
+                    <div class="space-y-4 text-gray-700">
                         <p>Als Schweizer Unternehmen kennen wir die Herausforderungen der lokalen Baubranche. Ob Dienstleister, Subunternehmer, Totalunternehmer, Bauleiter oder Bauträger in Zürich, Basel, Bern oder anderen Schweizer Städten: Alle brauchen verlässliche Partner, digitale Prozesse und effizienten Zugriff auf Bauprojekt-Dokumente. BuildWise ist die Antwort auf die Digitalisierung der Schweizer Baubranche.</p>
                         <p>Hinter BuildWise stehen Stephan aus der Tech-Branche und Janina aus Architektur und Bau, beide mit Sitz in Zürich. Seit 2018 sind wir in der Schweizer Bauwelt aktiv, seit 2022 mit klarem Fokus auf Immobilien-Planung und Baumanagement-Software. Unser lokales Know-how fließt in jede Funktion: Schweizer Dienstleister finden passgenaue Bauprojekte, Totalunternehmer steuern Budgets nach Schweizer Standards, Bauträger sichern sich bereits vor Baubeginn qualifizierte Partner aus der Region.</p>
                         <p>Unser Leitbild für die Schweizer Baubranche: Qualität, lokale Nähe, vertrauensvolle Partnerschaft. Wir gestalten die digitale Zukunft des Schweizer Bauwesens – gemeinsam mit Ihnen.</p>
                     </div>
 
                     <!-- Zielgruppen Highlights -->
-                    <div class="grid grid-2 mt-8">
-                        <div class="card p-4">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-2xl">🔧</span>
-                                <strong>Dienstleister & Subunternehmer</strong>
-                            </div>
-                            <p class="text-sm">Passgenaue Aufträge, planbare Auslastung.</p>
+                    <div class="grid md:grid-cols-2 gap-4 mt-8">
+                        <div class="panel-card p-4">
+                            <div class="flex items-center gap-2 mb-1"><span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12l2-2 4 4 8-8 2 2"/></svg></span><strong>Dienstleister & Subunternehmer</strong></div>
+                            <p class="text-sm text-gray-600">Passgenaue Aufträge, planbare Auslastung.</p>
                         </div>
-                        <div class="card p-4">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-2xl">📋</span>
-                                <strong>Totalunternehmer & Bauleiter</strong>
-                            </div>
-                            <p class="text-sm">Zentrales DMS, Budgets und Termine im Blick.</p>
+                        <div class="panel-card p-4">
+                            <div class="flex items-center gap-2 mb-1"><span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><strong>Totalunternehmer & Bauleiter</strong></div>
+                            <p class="text-sm text-gray-600">Zentrales DMS, Budgets und Termine im Blick.</p>
                         </div>
-                        <div class="card p-4" style="grid-column: 1 / -1;">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-2xl">🏗️</span>
-                                <strong>Bauträger</strong>
-                            </div>
-                            <p class="text-sm">Früher Überblick und Zugang zu qualifizierten Partnern.</p>
+                        <div class="panel-card p-4 md:col-span-2">
+                            <div class="flex items-center gap-2 mb-1"><span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11l9-7 9 7v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><strong>Bauträger</strong></div>
+                            <p class="text-sm text-gray-600">Früher Überblick und Zugang zu qualifizierten Partnern.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Bild - OPTIMIERT -->
+                <!-- Bild -->
                 <div data-aos="fade-left">
-                    <figure class="card" style="aspect-ratio: 4 / 3; padding: 0; overflow: hidden;">
-                        <img
-                            data-src="/assets/aboutus.jpeg?v=1"
-                            alt="BuildWise Team - Schweizer Baumanagement Software Entwickler"
-                            class="w-full h-full object-cover object-center lazy"
-                            loading="lazy"
-                            decoding="async"
-                            width="560" height="420"
-                            sizes="(min-width: 1024px) 560px, 100vw"
-                            style="background: linear-gradient(45deg, #f0f0f0, #e0e0e0);"
-                        />
+                    <figure class="about-figure rounded-2xl overflow-hidden shadow-xl border border-white/10 bg-white/5 backdrop-blur" style="aspect-ratio: 4 / 3;">
+                        <picture>
+                            <img
+                                src="/assets/aboutus.jpeg?v=1"
+                                alt="BuildWise Team - Schweizer Baumanagement Software Entwickler"
+                                class="w-full h-full object-cover object-center"
+                                loading="lazy"
+                                decoding="async"
+                                width="1280" height="853"
+                                sizes="(min-width: 1024px) 560px, 100vw"
+                            />
+                        </picture>
                     </figure>
                 </div>
             </div>
@@ -1591,8 +1588,5 @@
             </div>
         </div>
     </div>
-
-    <!-- Custom JavaScript - OPTIMIERT -->
-    <script src="script-optimized.js?v=5" defer></script>
 </body>
 </html> 
