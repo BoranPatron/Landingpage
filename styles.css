@@ -1601,6 +1601,38 @@ hr, .divider { border-color: var(--ci-accent) !important; }
   .phases-modern .phases-progress { transition: width .6s ease; }
 } 
 
+/* Desktop-Fix: Stabiles Grid statt absolute Floating-Bubbles in der PS-Sektion */
+@media (min-width: 1024px) {
+  /* Container als Grid, verhindert Überlagerungen und zu große Icons */
+  .ps-bubbles.bw-floating {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    justify-items: center;
+    align-items: start;
+    gap: 1.25rem !important;
+    min-height: auto !important;
+    overflow: hidden !important;
+  }
+
+  /* Bubbles statisch und in definierter Größe rendern */
+  .ps-bubbles.bw-floating .bw-bubble {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 220px !important;
+    height: 220px !important;
+  }
+}
+
+/* Hard-Limit für SVG-Größen innerhalb der PS-Bubbles (Desktop & Mobile) */
+.ps-bubbles svg {
+  width: 28px !important;
+  height: 28px !important;
+  max-width: 28px !important;
+  max-height: 28px !important;
+}
+
 /* Description inside phase cards */
 .phase-desc { margin-top: .6rem; color: #e6ebef; font-size: .95rem; opacity: .95; }
 .phase-desc ul { margin-top: .4rem; padding-left: 1rem; }
