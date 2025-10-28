@@ -64,7 +64,7 @@ body {
     font-family: var(--font-inter);
     font-size: 1rem;
     line-height: 1.6;
-    background: linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%);
+    background: linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%) !important;
     color: #f7fafc;
     overflow-x: hidden;
     min-height: 100vh;
@@ -155,12 +155,16 @@ ul, ol {
    ============================================ */
 
 #navbar {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     transition: all var(--transition-base);
-    color: #f7fafc;
+}
+
+#navbar .text-gray-600,
+#navbar .text-gray-900 {
+    color: #f7fafc !important;
 }
 
 .navbar-scrolled {
