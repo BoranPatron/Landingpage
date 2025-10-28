@@ -64,9 +64,29 @@ body {
     font-family: var(--font-inter);
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--gray-900);
-    background: white;
+    background: linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%);
+    color: #f7fafc;
     overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Globale Textfarben für dunkles Theme */
+h1, h2, h3, h4, h5, h6 {
+    color: #f7fafc;
+}
+
+p, span, div, li {
+    color: #e6ebef;
+}
+
+.text-gray-600,
+.text-gray-700,
+.text-gray-800 {
+    color: #e6ebef !important;
+}
+
+.text-gray-900 {
+    color: #f7fafc !important;
 }
 
 img {
@@ -135,10 +155,12 @@ ul, ol {
    ============================================ */
 
 #navbar {
-    background: white;
-    border-bottom: 1px solid var(--gray-200);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     transition: all var(--transition-base);
+    color: #f7fafc;
 }
 
 .navbar-scrolled {
@@ -166,7 +188,19 @@ ul, ol {
 
 .hero-section {
     padding: 7rem 0 4rem;
-    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    background: transparent;
+}
+
+.bg-gray-50 {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.bg-white {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f7fafc;
 }
 
 .hero-section h1 {
@@ -252,11 +286,18 @@ ul, ol {
    ============================================ */
 
 .benefit-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.08);
     padding: 2rem;
     border-radius: 1rem;
-    border: 1px solid var(--gray-200);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all var(--transition-base);
+    backdrop-filter: blur(10px);
+    color: #f7fafc;
+}
+
+.benefit-card h3,
+.benefit-card p {
+    color: #f7fafc;
 }
 
 .benefit-card:hover {
@@ -304,11 +345,18 @@ ul, ol {
    ============================================ */
 
 .persona-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.08);
     padding: 2.5rem;
     border-radius: 1.5rem;
-    border: 2px solid var(--gray-200);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     transition: all var(--transition-base);
+    backdrop-filter: blur(10px);
+    color: #f7fafc;
+}
+
+.persona-card h3,
+.persona-card li {
+    color: #f7fafc;
 }
 
 .persona-card:hover {
@@ -339,14 +387,21 @@ ul, ol {
    ============================================ */
 
 .pricing-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.08);
     padding: 2.5rem;
     border-radius: 1.5rem;
-    border: 2px solid var(--gray-200);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     transition: all var(--transition-base);
     height: 100%;
     display: flex;
     flex-direction: column;
+    backdrop-filter: blur(10px);
+    color: #f7fafc;
+}
+
+.pricing-card h3,
+.pricing-card li {
+    color: #f7fafc;
 }
 
 .pricing-card:hover {
@@ -362,7 +417,7 @@ ul, ol {
 .price-amount {
     font-size: 2rem;
     font-weight: 800;
-    color: var(--gray-900);
+    color: #f9c74f;
     display: block;
     margin: 0.5rem 0;
 }
@@ -376,11 +431,12 @@ ul, ol {
 }
 
 .faq-item {
-    background: white;
-    border: 1px solid var(--gray-200);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.75rem;
     overflow: hidden;
     transition: all var(--transition-base);
+    backdrop-filter: blur(10px);
 }
 
 .faq-item:hover {
@@ -398,7 +454,7 @@ ul, ol {
     border: none;
     font-size: 1rem;
     font-weight: 600;
-    color: var(--gray-900);
+    color: #f7fafc;
     cursor: pointer;
     transition: all var(--transition-base);
 }
@@ -420,9 +476,13 @@ ul, ol {
 
 .faq-answer {
     padding: 0 1.5rem 1.5rem;
-    color: var(--gray-600);
+    color: #e6ebef;
     line-height: 1.7;
     animation: slideDown 200ms ease;
+}
+
+.faq-answer p {
+    color: #e6ebef;
 }
 
 /* ============================================
@@ -434,11 +494,13 @@ ul, ol {
 #beta-form textarea {
     width: 100%;
     padding: 0.875rem 1rem;
-    border: 1px solid var(--gray-300);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 0.5rem;
     font-size: 1rem;
     transition: all var(--transition-base);
     font-family: inherit;
+    background: rgba(255, 255, 255, 0.1);
+    color: #f7fafc;
 }
 
 #beta-form input[type="email"]:focus,
@@ -446,11 +508,29 @@ ul, ol {
 #beta-form textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(249, 199, 79, 0.1);
+    box-shadow: 0 0 0 3px rgba(249, 199, 79, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#beta-form input[type="email"]::placeholder,
+#beta-form input[type="text"]::placeholder,
+#beta-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 #beta-form button[type="submit"] {
     width: 100%;
+}
+
+.form-card {
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.form-card label,
+.form-card p {
+    color: #f7fafc !important;
 }
 
 /* ============================================
