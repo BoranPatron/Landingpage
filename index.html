@@ -2,11 +2,9 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <base href="/">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    
     <!-- SEO Meta Tags -->
     <title>BuildWise - Bauträger & Dienstleister Plattform Schweiz | Bauprojekt Management Software</title>
     <meta name="description" content="BuildWise: Die führende Plattform für Bauträger und Dienstleister in der Schweiz. Finden Sie qualifizierte Partner, verwalten Sie Bauprojekte effizient und optimieren Sie Ihre Bauabläufe. Jetzt kostenlos testen!">
@@ -45,19 +43,19 @@
     <link rel="alternate" hreflang="de" href="https://www.buildwise.ch/">
     <link rel="alternate" hreflang="x-default" href="https://www.buildwise.ch/">
     
-    <!-- Tailwind CSS - Optimiert für Performance -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- AOS Animation Library - Lazy Loading -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Custom Styles (cache-busting) -->
-    <link rel="stylesheet" href="styles.css?v=4">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css?v=5">
     
-    <!-- Favicon / App Icons - SEO optimiert -->
+    <!-- Favicon / App Icons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/logo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/logo.png">
@@ -66,13 +64,10 @@
     
     <!-- Preload kritische Ressourcen -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-    <link rel="preload" href="styles.css?v=4" as="style">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://unpkg.com">
-    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     
-    <!-- Schema.org Strukturierte Daten für SEO -->
+    <!-- Schema.org Strukturierte Daten -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -105,1378 +100,506 @@
                 "areaServed": "CH",
                 "availableLanguage": "German"
             }
-        },
-        "audience": {
-            "@type": "BusinessAudience",
-            "businessFunction": "Construction"
-        },
-        "featureList": [
-            "Projektmanagement für Bauprojekte",
-            "Dienstleister-Matching",
-            "Dokumentenmanagement",
-            "Kommunikationstools",
-            "Budgetverwaltung",
-            "Terminplanung"
-        ]
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "BuildWise",
-        "url": "https://www.buildwise.ch",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.buildwise.ch/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "BuildWise AG",
-        "url": "https://www.buildwise.ch",
-        "logo": "https://www.buildwise.ch/logo.png",
-        "description": "BuildWise verbindet Bauträger und Dienstleister im Schweizer Baugewerbe durch intelligente Matching-Technologie und effizientes Projektmanagement.",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Zürich",
-            "addressRegion": "ZH",
-            "addressCountry": "CH"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+41 44 123 45 67",
-            "email": "Stephan.Schellworth@buildwise.ch",
-            "contactType": "customer service",
-            "areaServed": "CH",
-            "availableLanguage": ["German"]
-        },
-        "sameAs": [
-            "https://www.linkedin.com/company/buildwise-ch"
-        ],
-        "foundingDate": "2022",
-        "industry": "Construction Technology",
-        "numberOfEmployees": "2-10"
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "BuildWise AG",
-        "image": "https://www.buildwise.ch/logo.png",
-        "description": "Führende Baumanagement-Software und Plattform für Bauträger und Dienstleister in der Schweiz. Digitales Projektmanagement für die Baubranche.",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Bahnhofstrasse 1",
-            "addressLocality": "Zürich",
-            "postalCode": "8001",
-            "addressRegion": "ZH",
-            "addressCountry": "CH"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 47.3769,
-            "longitude": 8.5417
-        },
-        "url": "https://www.buildwise.ch",
-        "telephone": "+41 44 123 45 67",
-        "email": "Stephan.Schellworth@buildwise.ch",
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "08:00",
-                "closes": "18:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "09:00",
-                "closes": "12:00"
-            }
-        ],
-        "areaServed": {
-            "@type": "Country",
-            "name": "Switzerland"
-        },
-        "serviceArea": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": 47.3769,
-                "longitude": 8.5417
-            },
-            "geoRadius": "200000"
-        },
-        "priceRange": "CHF 0-500",
-        "currenciesAccepted": "CHF",
-        "paymentAccepted": "Credit Card, Bank Transfer",
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "BuildWise Services",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Baumanagement Software",
-                        "description": "Digitales Projektmanagement für Bauprojekte"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Dienstleister Matching",
-                        "description": "Intelligente Vermittlung von Handwerkern und Subunternehmern"
-                    }
-                }
-            ]
         }
     }
     </script>
 </head>
-<body class="font-inter ci-theme">
+<body class="font-inter">
+    
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full backdrop-blur-sm border-b border-gray-100 z-50 transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50 transition-all duration-300 shadow-sm" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="#" class="flex items-center space-x-3">
-                    <span class="ci-logo ci-logo--gradient"></span>
-                    <span class="text-xl font-bold text-gray-900">BuildWise</span>
-                </a>
+                        <img src="/logo.png" alt="BuildWise Logo" class="h-10 w-10">
+                        <span class="text-xl font-bold text-gray-900">BuildWise</span>
+                    </a>
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#problem-solution" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Problem & Lösung</a>
-                        <a href="#pricing" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Preise</a>
-                        <a href="#phases" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Ablauf</a>
-                        <a href="#faq" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">FAQ</a>
-                        <a href="#about" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Über uns</a>
-                        <a href="#contact" class="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Kontakt</a>
-                    </div>
-                </div>
-                
-                <!-- CTA Buttons -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="#beta" class="btn-cta text-sm" aria-label="Jetzt kostenlosen Beta Zugang sichern!"><span class="btn-text">Jetzt kostenlosen Beta Zugang sichern!</span></a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#benefits" class="text-gray-600 hover:text-orange-600 px-3 py-2 text-sm font-medium transition-colors">Vorteile</a>
+                    <a href="#how-it-works" class="text-gray-600 hover:text-orange-600 px-3 py-2 text-sm font-medium transition-colors">So funktioniert's</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-orange-600 px-3 py-2 text-sm font-medium transition-colors">Preise</a>
+                    <a href="#faq" class="text-gray-600 hover:text-orange-600 px-3 py-2 text-sm font-medium transition-colors">FAQ</a>
+                    <a href="#contact" class="btn-primary text-sm">
+                        Kostenlos testen
+                    </a>
                 </div>
                 
                 <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button type="button" class="text-gray-600 hover:text-orange-500" id="mobile-menu-button">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+                <button type="button" class="md:hidden text-gray-600 hover:text-orange-600" id="mobile-menu-button" aria-label="Menü öffnen">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
         </div>
         
         <!-- Mobile Navigation -->
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100">
-                <a href="#problem-solution" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Problem & Lösung</a>
-                <a href="#pricing" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Preise</a>
-                <a href="#phases" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Ablauf</a>
-                <a href="#faq" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">FAQ</a>
-                <a href="#about" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Über uns</a>
-                <a href="#contact" class="text-gray-600 hover:text-orange-500 block px-3 py-2 text-base font-medium">Kontakt</a>
-                <div class="pt-4 space-y-2">
-                    <a href="#beta" class="btn-cta block text-base" aria-label="Jetzt kostenlosen Beta Zugang sichern!"><span class="btn-text">Jetzt kostenlosen Beta Zugang sichern!</span></a>
-                </div>
+        <div class="md:hidden hidden bg-white border-t border-gray-100" id="mobile-menu">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#benefits" class="text-gray-600 hover:text-orange-600 block px-3 py-2 text-base font-medium">Vorteile</a>
+                <a href="#how-it-works" class="text-gray-600 hover:text-orange-600 block px-3 py-2 text-base font-medium">So funktioniert's</a>
+                <a href="#pricing" class="text-gray-600 hover:text-orange-600 block px-3 py-2 text-base font-medium">Preise</a>
+                <a href="#faq" class="text-gray-600 hover:text-orange-600 block px-3 py-2 text-base font-medium">FAQ</a>
+                <a href="#contact" class="btn-primary block text-center mt-4">
+                    Kostenlos testen
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-28 pb-24 relative overflow-hidden hero-section blueprint-hero has-photo">
-        <div class="absolute inset-0 blueprint-grid pointer-events-none" aria-hidden="true"></div>
-        <div class="absolute -right-10 -top-6 opacity-[0.18] hidden lg:block pointer-events-none" aria-hidden="true">
-            <!-- Subtiles Bau-Outline SVG, wird on-scroll gezeichnet -->
-            <svg class="draw-on-scroll" width="520" height="360" viewBox="0 0 520 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 300 L140 220 L260 300 L260 140 L380 70 L500 150" stroke="currentColor" stroke-width="3"/>
-                <path d="M140 220 L140 120 L220 80 L220 180" stroke="currentColor" stroke-width="3"/>
-                <path d="M90 260 L90 300 M190 260 L190 300 M290 260 L290 300" stroke="currentColor" stroke-width="3"/>
-            </svg>
-        </div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center" data-aos="fade-up">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 hero-headline">
-                    <span class="text-orange-600">Bauträger & Dienstleister</span> in der Schweiz: Finde qualifizierte Partner für deine Bauprojekte
+    <section class="hero-section pt-28 pb-16 relative overflow-hidden" id="hero">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+                    <span class="text-orange-600">Schweizer Bauträger & Dienstleister</span><br/>
+                    finden sich hier
                 </h1>
                 
-                <div class="flex justify-center">
-                    <div class="slogan-pill" data-aos="zoom-in">
-                        <span>Ein Projekt.</span>
-                        <span class="sep">•</span>
-                        <span>Viele Profis.</span>
-                        <span class="sep">•</span>
-                        <span>Eine Sprache: <span class="accent">Qualität</span></span>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
+                    Die Plattform, die Bauprojekte vereinfacht.<br/>
+                    Qualifizierte Partner in <strong>Minuten</strong> finden.
+                </p>
+                
+                <!-- Trust-Bar -->
+                <div class="trust-bar flex flex-wrap justify-center gap-6 mb-8 text-sm text-gray-700">
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>150+ registrierte Dienstleister</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>45+ aktive Bauprojekte</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-600 font-bold">✓</span>
+                        <span>Made in Switzerland</span>
                     </div>
                 </div>
-                <div class="flex flex-col gap-3 justify-center hero-ctas">
-                    <a href="#beta" class="btn-cta" aria-label="Jetzt kostenlosen Beta Zugang sichern!">
-                        <span class="btn-text">Jetzt kostenlosen Beta Zugang sichern!</span>
+                
+                <!-- Primary CTA -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                    <a href="#contact" class="btn-primary-large">
+                        Jetzt kostenlos testen
                     </a>
-                    <button id="demo-button" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg" aria-label="Demo starten">
-                        🚀 Demo starten
-                    </button>
-                    <a href="#phases" class="border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300" aria-label="So funktioniert BuildWise anzeigen">
-                        So funktioniert BuildWise
+                    <a href="#how-it-works" class="btn-secondary-large">
+                        So funktioniert's →
                     </a>
                 </div>
+                
+                <p class="text-sm text-gray-500">
+                    ✓ Keine Kreditkarte erforderlich • ✓ Kostenlos starten
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Launch Special Offers Section -->
-    <section class="py-16 bg-gradient-to-br from-orange-50 via-white to-blue-50 relative overflow-hidden">
-        <!-- Decorative Elements -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-5">
-            <div class="absolute top-10 left-10 w-20 h-20 bg-orange-500 rounded-full blur-xl"></div>
-            <div class="absolute bottom-10 right-10 w-32 h-32 bg-blue-500 rounded-full blur-xl"></div>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-green-500 rounded-full blur-2xl"></div>
+    <!-- Social Proof Section -->
+    <section class="py-12 bg-gray-50" id="social-proof">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center" data-aos="fade-up">
+                <p class="text-sm text-gray-600 mb-6">Vertraut von Schweizer Bauunternehmen</p>
+                
+                <!-- Testimonial -->
+                <blockquote class="max-w-3xl mx-auto">
+                    <p class="text-lg md:text-xl text-gray-800 italic mb-4">
+                        "BuildWise hat unsere Ausschreibungszeit von 3 Wochen auf 2 Tage reduziert. 
+                        Die Plattform spart uns Zeit und Geld bei jedem Projekt."
+                    </p>
+                    <cite class="text-sm text-gray-600 font-medium">
+                        — Max Müller, Bauleiter bei Zürcher Bauträger AG
+                    </cite>
+                </blockquote>
+            </div>
         </div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Launch Announcement Header -->
-            <div class="text-center mb-12" data-aos="fade-up">
-                <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full text-sm font-semibold mb-4 shadow-lg">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
-                    EXKLUSIVER LAUNCH
-                </div>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4">
-                    <span class="text-orange-600">24. September 25</span><br/>
-                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Einmalige Startvorteile sichern!</span>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-20 bg-white" id="benefits">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                    So einfach geht's
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Seien Sie unter den Ersten und profitieren Sie von unseren exklusiven Launch-Boni – 
-                    <strong>nur für Early Adopters verfügbar!</strong>
+                    Alles was Sie brauchen, um Bauprojekte effizient zu verwalten
                 </p>
             </div>
 
-            <!-- Launch Offers Grid -->
-            <div class="grid lg:grid-cols-2 gap-8 mb-12">
-                <!-- Dienstleister Bonus -->
-                <div class="launch-offer-card dienstleister" data-aos="fade-right" data-aos-delay="100">
-                    <div class="launch-offer-header">
-                        <div class="launch-offer-icon">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                            </svg>
-                        </div>
-                        <div class="launch-offer-badge">DIENSTLEISTER BONUS</div>
-                        <h3 class="launch-offer-title">Erste Dienstleister</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="benefit-icon bg-orange-100 text-orange-600">
+                        ⚡
                     </div>
-                    <div class="launch-offer-content">
-                        <div class="launch-offer-highlight">
-                            <span class="highlight-text">🎯 ERSTES ANGEBOT KOSTENLOS</span>
-                        </div>
-                        <ul class="launch-offer-benefits">
-                            <li>
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                <span><strong>0% Provision</strong> auf Ihr erstes angenommenes Angebot</span>
-                            </li>
-                            <li>
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                <span><strong>Keine Gebühren</strong> für die Plattformnutzung</span>
-                            </li>
-                            <li>
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                <span><strong>Prioritäts-Support</strong> beim Onboarding</span>
-                            </li>
-                            <li>
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                <span><strong>Exklusiver Zugang</strong> zu Premium-Features</span>
-                            </li>
-                        </ul>
-                        <div class="launch-offer-cta">
-                            <a href="#beta" class="btn-launch-primary">
-                                <span>Jetzt als Dienstleister registrieren</span>
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bauträger Bonus -->
-                <div class="launch-offer-card bautraeger" data-aos="fade-left" data-aos-delay="200">
-                    <div class="launch-offer-header">
-                        <div class="launch-offer-icon">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                            </svg>
-                        </div>
-                        <div class="launch-offer-badge">BAUTRÄGER BONUS</div>
-                        <h3 class="launch-offer-title">Erste Bauträger</h3>
-                    </div>
-                    <div class="launch-offer-content">
-                        <div class="launch-offer-highlight">
-                            <span class="highlight-text">🚀 DIREKTER PRO MODUS START</span>
-                        </div>
-                        <ul class="launch-offer-benefits">
-                            <li>
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                <span><strong>300 Credits gratis</strong> statt 200 (Wert: 300 CHF)</span>
-                            </li>
-                            <li>
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                <span><strong>Alle Pro-Features</strong> sofort verfügbar</span>
-                            </li>
-                            <li>
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                <span><strong>Persönlicher Onboarding-Call</strong> mit unserem Team</span>
-                            </li>
-                            <li>
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                <span><strong>VIP-Support</strong> für die ersten 6 Monate</span>
-                            </li>
-                        </ul>
-                        <div class="launch-offer-cta">
-                            <a href="#beta" class="btn-launch-primary">
-                                <span>Jetzt als Bauträger registrieren</span>
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Countdown & Urgency -->
-            <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                <div class="inline-block bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-                    <div class="flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-orange-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span class="text-lg font-semibold text-gray-900">Begrenzte Anzahl verfügbar!</span>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Diese exklusiven Launch-Boni sind nur für die <strong>ersten 100 Dienstleister</strong> und 
-                        <strong>ersten 50 Bauträger</strong> verfügbar, die sich bis zum <strong>24.09.25</strong> registrieren.
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">70% schneller</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Intelligentes Matching statt tagelange Recherche. 
+                        Finden Sie passende Dienstleister in Minuten.
                     </p>
-                    <div class="flex justify-center items-center space-x-4 text-sm text-gray-500">
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                            <span>Noch verfügbar</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-orange-500 rounded-full mr-2"></div>
-                            <span>Begrenzt</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                            <span>Ausverkauft</span>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Problem & Lösung Section -->
-    <section id="problem-solution" class="py-28">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Baumanagement Software für Bauträger und Dienstleister</h2>
-                <p class="text-lg text-gray-600">Effizientes Projektmanagement und intelligentes Matching in der Schweizer Baubranche.</p>
-            </div>
-            <!-- Tabs -->
-            <div class="flex justify-center mb-8" id="audience-tabs" role="tablist">
-                <button class="tab-btn active" data-tab="bautraeger" role="tab" aria-selected="true">Bauträger</button>
-                <button class="tab-btn" data-tab="dienstleister" role="tab" aria-selected="false">Dienstleister</button>
-            </div>
-            <!-- Panels -->
-            <div>
-                <div id="tab-bautraeger" class="tab-panel grid lg:grid-cols-1 gap-8" role="tabpanel">
-                    <div class="panel-card hover-lift" data-aos="fade-up">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="badge">Workflow</div>
-                            <div class="badge">Transparenz</div>
-                            <div class="badge">Vergabe</div>
-                        </div>
-                        <p class="text-gray-700 mb-6">BuildWise ist die führende Baumanagement-Software für Schweizer Bauträger. Unsere Plattform bündelt Projektmanagement, Dienstleister-Matching und Dokumentenverwaltung – revisionssicher, DSGVO-konform und speziell für die Baubranche entwickelt.</p>
-                        
+                <!-- Benefit 2 -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-icon bg-green-100 text-green-600">
+                        🛡️
                     </div>
-                    <!-- Kombinierte Bubbles für Bauträger -->
-                    <div class="lg:col-span-2 mt-6" data-aos="fade-up">
-                        <div class="bw-bubbles bw-physics bw-floating ps-bubbles" aria-label="Vorteile für Bauträger (kombiniert)">
-                            <button class="bw-bubble" data-title="Schnellere Ausschreibungen" data-desc="Erstelle komplette Ausschreibungen in Minuten statt Tagen." aria-label="Schnellere Ausschreibungen">
-                                <span class="bw-icon">
-                                    <!-- lucide Zap -->
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
-                                </span>
-                                <span class="bw-label">Schnellere <span class="bw-em">Ausschreibungen</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Passgenaues Matching" data-desc="Automatisch geprüfte Dienstleister, passend zu Projekt, Budget und Zeitplan." aria-label="Passgenaues Matching">
-                                <span class="bw-icon">
-                                    <!-- lucide Target -->
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 7v5l3 3"/></svg>
-                                </span>
-                                <span class="bw-label">Passgenaues <span class="bw-em">Matching</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Alles im Blick" data-desc="Kosten, Termine und Fortschritt zentral im Dashboard verwalten." aria-label="Alles im Blick">
-                                <span class="bw-icon">
-                                    <!-- lucide BarChart3 -->
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M3 3v18h18"/><path stroke-width="2" d="M7 16v-6M12 19V8M17 13V5"/></svg>
-                                </span>
-                                <span class="bw-label">Alles <span class="bw-em">im Blick</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Dokumentenmanagement" data-desc="Pläne, Verträge und Freigaben sicher hochladen und jederzeit darauf zugreifen." aria-label="Dokumentenmanagement">
-                                <span class="bw-icon">
-                                    <!-- lucide FileText -->
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path stroke-width="2" d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Dokumenten</span>management</span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Direkte Kommunikation" data-desc="Fragen und Abstimmungen schnell im integrierten Projekt‑Chat klären." aria-label="Direkte Kommunikation">
-                                <span class="bw-icon">
-                                    <!-- lucide MessageSquare -->
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
-                                </span>
-                                <span class="bw-label">Direkte <span class="bw-em">Kommunikation</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <!-- zusätzliche ehem. allgemeine Vorteile -->
-                            <button class="bw-bubble" data-title="Projektmanagement" data-desc="Verwalte Bauprojekte effizient – zentral, übersichtlich, kollaborativ." aria-label="Projektmanagement">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6m-8 4h10M7 13h4M7 17h4m2 4h3a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3M9 5a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v0a2 2 0 0 0-2-2"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Projekt</span>management</span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Dienstleister‑Netzwerk" data-desc="Finde und vernetze dich mit qualifizierten Partnern – Matching inklusive." aria-label="Dienstleister-Netzwerk">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8m8 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                                </span>
-                                <span class="bw-label">Dienstleister‑<span class="bw-em">Netzwerk</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Finanzen" data-desc="Budgets, Kosten und Forecasts stets im Blick – transparent und sicher." aria-label="Finanzen">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7h-7a5 5 0 0 0-5 5v0a5 5 0 0 0 5 5h7M3 12h9M3 16h9"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Finanzen</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Termine" data-desc="Kalender, Meilensteine, Erinnerungen – alles nahtlos verknüpft." aria-label="Termine">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 2v4m8-4v4M3 10h18M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Termine</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Dokumente" data-desc="Pläne, Verträge, Fotos – zentral, versioniert und durchsuchbar." aria-label="Dokumente">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Dokumente</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Updates" data-desc="Bleib auf dem neuesten Stand – Benachrichtigungen in Echtzeit." aria-label="Updates">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Updates</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div id="tab-dienstleister" class="tab-panel hidden grid lg:grid-cols-1 gap-8" role="tabpanel" aria-hidden="true">
-                    <div class="panel-card hover-lift" data-aos="fade-up">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="badge">Sichtbarkeit</div>
-                            <div class="badge">Matching</div>
-                            <div class="badge">Pipeline</div>
-                        </div>
-                        <p class="text-gray-700 mb-6">Als Dienstleister, Subunternehmer oder Handwerker in der Schweiz erhalten Sie über BuildWise nur qualifizierte Projektanfragen, die zu Ihrem Gewerk, Einsatzgebiet und Ihrer aktuellen Auslastung passen. Optimieren Sie Ihre Auftragsgewinnung in der Baubranche.</p>
-                    </div>
-                    <!-- Kombinierte Bubbles für Dienstleister -->
-                    <div class="lg:col-span-2 mt-6" data-aos="fade-up">
-                        <div class="bw-bubbles bw-physics bw-floating ps-bubbles" aria-label="Vorteile für Dienstleister (kombiniert)">
-                            <button class="bw-bubble" data-title="Gezielte Anfragen" data-desc="Erhalte nur Projekte, die zu Gewerk, Einsatzgebiet und Auslastung passen." aria-label="Gezielte Anfragen">
-                                <span class="bw-icon">
-                                    <!-- lucide Target -->
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 7v5l3 3"/></svg>
-                                </span>
-                                <span class="bw-label">Gezielte <span class="bw-em">Anfragen</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Mehr Sichtbarkeit" data-desc="Referenzen, Qualifikationen und Bewertungen im Profil präsentieren." aria-label="Mehr Sichtbarkeit">
-                                <span class="bw-icon">
-                                    <!-- lucide Eye -->
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
-                                </span>
-                                <span class="bw-label">Mehr <span class="bw-em">Sichtbarkeit</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Einfache Angebotsabgabe" data-desc="Direkt auf Ausschreibungen antworten – ohne Papierarbeit." aria-label="Einfache Angebotsabgabe">
-                                <span class="bw-icon">
-                                    <!-- lucide ClipboardList -->
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M9 5h6M7 9h10M7 13h6"/><rect x="5" y="3" width="14" height="18" rx="2"/></svg>
-                                </span>
-                                <span class="bw-label">Einfache <span class="bw-em">Angebote</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Planbare Auslastung" data-desc="Freie Kapazitäten hinterlegen und Aufträge im passenden Zeitraum sichern." aria-label="Planbare Auslastung">
-                                <span class="bw-icon">
-                                    <!-- lucide Calendar -->
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M8 2v4m8-4v4M3 10h18M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2"/></svg>
-                                </span>
-                                <span class="bw-label">Planbare <span class="bw-em">Auslastung</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Projektübersicht" data-desc="Alle Projekte, Umsätze und Bewertungen gesammelt im Blick behalten." aria-label="Projektübersicht">
-                                <span class="bw-icon">
-                                    <!-- lucide BarChart3 -->
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M3 3v18h18"/><path stroke-width="2" d="M7 16v-6M12 19V8M17 13V5"/></svg>
-                                </span>
-                                <span class="bw-label">Projekt<span class="bw-em">übersicht</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <!-- zusätzliche ehem. allgemeine Vorteile -->
-                            <button class="bw-bubble" data-title="Projektmanagement" data-desc="Verwalte Bauprojekte effizient – zentral, übersichtlich, kollaborativ." aria-label="Projektmanagement">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6m-8 4h10M7 13h4M7 17h4m2 4h3a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3M9 5a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v0a2 2 0 0 0-2-2"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Projekt</span>management</span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Dienstleister‑Netzwerk" data-desc="Finde und vernetze dich mit qualifizierten Partnern – Matching inklusive." aria-label="Dienstleister-Netzwerk">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8m8 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                                </span>
-                                <span class="bw-label">Dienstleister‑<span class="bw-em">Netzwerk</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Finanzen" data-desc="Budgets, Kosten und Forecasts stets im Blick – transparent und sicher." aria-label="Finanzen">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7h-7a5 5 0 0 0-5 5v0a5 5 0 0 0 5 5h7M3 12h9M3 16h9"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Finanzen</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Termine" data-desc="Kalender, Meilensteine, Erinnerungen – alles nahtlos verknüpft." aria-label="Termine">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 2v4m8-4v4M3 10h18M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Termine</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Dokumente" data-desc="Pläne, Verträge, Fotos – zentral, versioniert und durchsuchbar." aria-label="Dokumente">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Dokumente</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                            <button class="bw-bubble" data-title="Updates" data-desc="Bleib auf dem neuesten Stand – Benachrichtigungen in Echtzeit." aria-label="Updates">
-                                <span class="bw-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
-                                </span>
-                                <span class="bw-label"><span class="bw-em">Updates</span></span>
-                                <span class="bw-desc"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Beta CTA Section -->
-    <section id="beta" class="py-24 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white relative bg-photo">
-        <div class="hidden md:block absolute -top-32 -right-32 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"></div>
-        <div class="hidden md:block absolute -bottom-32 -left-32 w-96 h-96 bg-orange-400/20 rounded-full blur-3xl"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Sei unter den Ersten und gestalte die Zukunft mit!</h2>
-                    <p class="text-lg text-gray-300 mb-8">
-                        Wir sind bereit, unsere Plattform am <strong class="text-orange-400">24. September 25</strong> zu launchen und brauchen dein Feedback, um sie perfekt zu machen.
-                        Melde dich jetzt für unsere exklusive, kostenlose Beta-Version an und sei Teil einer neuen Generation der Bauwirtschaft.
-                        <br/>
-                        <span class="inline-highlight">Beta-Zugang ganz unkompliziert per E‑Mail auf die Warteliste schreiben – keine Registrierung notwendig.</span>
-                        <br/><br/>
-                        <strong class="text-green-400">🎁 Launch-Bonus:</strong> <span class="text-yellow-300">Erste Dienstleister erhalten ihr erstes Angebot kostenlos, erste Bauträger starten direkt im Pro Modus!</span>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">100% geprüft</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Alle Dienstleister sind verifiziert und bewertet. 
+                        Vertrauen Sie auf Qualität.
                     </p>
-                    <div class="hidden md:block text-gray-400 text-sm">100% DSGVO-konform · Kein Spam · Du kannst dich jederzeit abmelden</div>
                 </div>
-                <div data-aos="fade-left">
-                    <form id="beta-form" class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur" novalidate aria-describedby="beta-status">
-                        <label for="beta-email" class="block text-sm font-medium text-gray-300 mb-2">E-Mail-Adresse</label>
-                        <div class="flex flex-col gap-3">
-                            <input id="beta-email" name="email" type="email" required placeholder="dein.name@unternehmen.ch" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg placeholder-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-orange-500" aria-invalid="false" aria-describedby="beta-email-error">
-                            <button type="submit" class="btn-cta w-full" aria-label="Jetzt kostenlosen Beta Zugang sichern!">
-                                <span class="btn-text">Jetzt kostenlosen Beta Zugang sichern!</span>
-                            </button>
-                        </div>
-                        <p id="beta-email-error" class="text-red-400 text-sm mt-2" hidden></p>
-                        <div id="beta-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
-                        <p class="mt-3 text-xs text-gray-400">Mit deiner Anmeldung erklärst du dich mit unserer Datenschutzerklärung einverstanden.</p>
-                    </form>
+
+                <!-- Benefit 3 -->
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-icon bg-blue-100 text-blue-600">
+                        💰
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Transparent & fair</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Keine versteckten Kosten. 
+                        Erst zahlen, wenn ein Auftrag zustande kommt.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Phases Section (modern) directly after Features -->
-    <section id="phases" class="py-20 process">
+    <!-- How It Works Section -->
+    <section class="py-20 bg-gray-50" id="how-it-works">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Bauprojekt Management: So funktioniert BuildWise</h2>
-                <p class="text-lg text-gray-600">Vom Bedarf bis zur Vergabe – digitales Projektmanagement für die moderne Baubranche.</p>
-            </div>
-
-            <!-- Vertikaler, moderner Workflow -->
-            <div class="wf-vert" data-aos="fade-up">
-                <div class="wf-row">
-                    <div class="wf-row-head">
-                        <span class="wf-index">01</span>
-                        <div class="wf-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3>Bedarf erfassen</h3>
-                    </div>
-                    <p class="wf-lead">Leistungsumfang, Termine, Budget – in Minuten erfasst.</p>
-                </div>
-
-                <div class="wf-row">
-                    <div class="wf-row-head">
-                        <span class="wf-index">02</span>
-                        <div class="wf-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                        </div>
-                        <h3>Ausschreiben</h3>
-                    </div>
-                    <p class="wf-lead">Vorlagen & Matching – passende Dienstleister erreichen.</p>
-                </div>
-
-                <div class="wf-row">
-                    <div class="wf-row-head">
-                        <span class="wf-index">03</span>
-                        <div class="wf-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7V3m0 4h4.414a2 2 0 011.414.586l5.586 5.586a2 2 0 010 2.828l-3.586 3.586a2 2 0 01-2.828 0L6.414 14A2 2 0 015.828 12.586L9 9" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01" />
-                            </svg>
-                        </div>
-                        <h3>Angebote</h3>
-                    </div>
-                    <p class="wf-lead">Vergleichen, Rückfragen, entscheiden – transparent.</p>
-                </div>
-
-                <div class="wf-row">
-                    <div class="wf-row-head">
-                        <span class="wf-index">04</span>
-                        <div class="wf-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <h3>Vergabe</h3>
-                    </div>
-                    <p class="wf-lead">Zusage, Vertrag, Übergabe – aus einer Hand.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bezahlmodell & Provisionen Section -->
-    <section id="pricing" class="py-20 bg-gradient-to-br from-slate-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Header -->
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Preise für Baumanagement Software in der Schweiz
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                    So einfach geht's
                 </h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Transparente und faire Preismodelle für Bauträger und Dienstleister in der Schweizer Baubranche.
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    In 4 einfachen Schritten zum passenden Partner
                 </p>
             </div>
 
-            <!-- Tab Navigation -->
-            <div class="flex justify-center mb-12" data-aos="fade-up" data-aos-delay="50">
-                <div class="pricing-tabs" role="tablist">
-                    <button class="pricing-tab active" data-tab="dienstleister" role="tab" aria-selected="true" aria-controls="tab-dienstleister-pricing">
-                        <span class="tab-icon">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                            </svg>
-                        </span>
-                        Dienstleister
-                    </button>
-                    <button class="pricing-tab" data-tab="bautraeger" role="tab" aria-selected="false" aria-controls="tab-bautraeger-pricing">
-                        <span class="tab-icon">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                            </svg>
-                        </span>
-                        Bauträger
-                    </button>
-                </div>
-            </div>
-
-            <!-- Tab Content -->
-            <div class="pricing-tab-content">
-                <!-- Dienstleister Tab -->
-                <div id="tab-dienstleister-pricing" class="pricing-tab-panel active" role="tabpanel" aria-labelledby="dienstleister-tab">
-                    <div class="text-center mb-8">
-                        <p class="text-lg text-gray-600">
-                            Für Dienstleister: Gebühren fallen nur bei erfolgreicher Auftragsvermittlung an.
-                        </p>
-                    </div>
-
-                    <!-- Phasen für Dienstleister -->
-                    <div class="space-y-8 mb-16" data-aos="fade-up" data-aos-delay="100">
-                <!-- Phase 1: Beta -->
-                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-                    <!-- Launch Bonus Badge -->
-                    <div class="absolute top-4 right-4">
-                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg">
-                            🎁 LAUNCH BONUS
-                        </span>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:items-center gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                                1
-                            </div>
-                        </div>
-                        <div class="flex-grow">
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-                                Betaphase <span class="text-green-600">(kostenlos)</span>
-                            </h3>
-                            <p class="text-gray-600 mb-3">
-                                Registrieren Sie sich jetzt kostenlos. Es werden <strong>keine Gebühren</strong> erhoben.
-                            </p>
-                            <div class="bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200 rounded-lg p-3">
-                                <p class="text-sm text-orange-800 font-semibold">
-                                    ⚡ <strong>Exklusiver Launch-Bonus:</strong> Erstes angenommenes Angebot <strong>0% Provision</strong> für Dienstleister!
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                Aktuell
-                            </span>
-                        </div>
-                    </div>
+            <div class="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                <!-- Step 1 -->
+                <div class="step-card" data-aos="fade-up">
+                    <div class="step-number">1</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Projekt erfassen</h3>
+                    <p class="text-gray-600 text-sm">Leistung, Termine, Budget – alles in einem Formular</p>
                 </div>
 
-                <!-- Phase 2: Soft Launch -->
-                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                    <div class="flex flex-col md:flex-row md:items-center gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                                2
-                            </div>
-                        </div>
-                        <div class="flex-grow">
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-                                Soft Launch <span class="text-gray-500">(24.09.25 – 31.12.25)</span>
-                            </h3>
-                            <p class="text-gray-600">
-                                Einheitliche Provision von <strong class="text-blue-600">2,7&nbsp;%</strong> pro vermitteltem Auftrag.
-                            </p>
-                        </div>
-                    </div>
+                <!-- Step 2 -->
+                <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">2</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Matches erhalten</h3>
+                    <p class="text-gray-600 text-sm">Automatisch passende Dienstleister in Ihrer Region</p>
                 </div>
 
-                <!-- Phase 3: Regulärer Launch -->
-                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                    <div class="flex flex-col md:flex-row md:items-center gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                                3
-                            </div>
-                        </div>
-                        <div class="flex-grow">
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-                                Regulärer Launch <span class="text-gray-500">(ab 01.01.26)</span>
-                            </h3>
-                            <p class="text-gray-600">
-                                Die Provision richtet sich nach Ihrem Ranking: Je höher der Rang, desto geringer die Provision.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ranking-Kacheln -->
-            <div class="text-center mb-8" data-aos="fade-up" data-aos-delay="200">
-                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Ranking-basierte Provisionen</h3>
-                <p class="text-gray-600">Je höher Ihr Rang, desto niedriger die Provision</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6" data-aos="fade-up" data-aos-delay="300">
-                <!-- Pionier -->
-                <div class="ranking-card pionier text-center">
-                    <div class="mb-4">
-                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-3 shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                            </svg>
-                        </div>
-                        <h4 class="text-lg font-bold text-gray-900">Pionier</h4>
-                    </div>
-                    <div class="text-4xl font-extrabold text-red-500 mb-2">4.7%</div>
-                    <div class="text-sm text-gray-500">Höchste Provision</div>
-                    
-                    <!-- Hover Overlay -->
-                    <div class="ranking-overlay">
-                        <h5>Pionier-Status</h5>
-                        <ul>
-                            <li>Erste Schritte in der Branche</li>
-                            <li>Weniger als 5 abgeschlossene Projekte</li>
-                            <li>Aufbau der ersten Referenzen</li>
-                            <li>Höchste Provision als Startunterstützung</li>
-                            <li>Schneller Aufstieg bei guter Performance möglich</li>
-                        </ul>
-                    </div>
+                <!-- Step 3 -->
+                <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">3</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Angebote vergleichen</h3>
+                    <p class="text-gray-600 text-sm">Alle Angebote im Überblick – Entscheidung leicht gemacht</p>
                 </div>
 
-                <!-- Quartiers-Meister -->
-                <div class="ranking-card quartiers-meister text-center">
-                    <div class="mb-4">
-                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-rose-500 to-pink-600 rounded-2xl flex items-center justify-center mb-3 shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                            </svg>
-                        </div>
-                        <h4 class="text-lg font-bold text-gray-900">Quartiers-Meister</h4>
-                    </div>
-                    <div class="text-4xl font-extrabold text-rose-500 mb-2">4.0%</div>
-                    <div class="text-sm text-gray-500">Regional etabliert</div>
-                    
-                    <!-- Hover Overlay -->
-                    <div class="ranking-overlay">
-                        <h5>Quartiers-Meister</h5>
-                        <ul>
-                            <li>5-15 erfolgreich abgeschlossene Projekte</li>
-                            <li>Erste positive Kundenbewertungen</li>
-                            <li>Regional bekannt und geschätzt</li>
-                            <li>Solide Qualitätsstandards etabliert</li>
-                            <li>Zuverlässiger Partner im lokalen Umfeld</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Baustellenkoryphäe Experte -->
-                <div class="ranking-card baustellenkoryphae text-center sm:col-span-2 lg:col-span-1">
-                    <div class="mb-4">
-                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center mb-3 shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                            </svg>
-                        </div>
-                        <h4 class="text-lg font-bold text-gray-900">Baustellenkoryphäe<br/>Experte</h4>
-                    </div>
-                    <div class="text-4xl font-extrabold text-orange-500 mb-2">3.7%</div>
-                    <div class="text-sm text-gray-500">Fachlich anerkannt</div>
-                    
-                    <!-- Hover Overlay -->
-                    <div class="ranking-overlay">
-                        <h5>Baustellenkoryphäe</h5>
-                        <ul>
-                            <li>15-30 erfolgreich abgeschlossene Projekte</li>
-                            <li>Überdurchschnittliche Bewertungen</li>
-                            <li>Fachlich anerkannter Experte</li>
-                            <li>Spezialisierung in bestimmten Bereichen</li>
-                            <li>Mentor für andere Dienstleister</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Nachbarschaftsheld -->
-                <div class="ranking-card nachbarschaftsheld text-center">
-                    <div class="mb-4">
-                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-sky-500 to-blue-600 rounded-2xl flex items-center justify-center mb-3 shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                            </svg>
-                        </div>
-                        <h4 class="text-lg font-bold text-gray-900">Nachbarschaftsheld</h4>
-                    </div>
-                    <div class="text-4xl font-extrabold text-sky-600 mb-2">3.0%</div>
-                    <div class="text-sm text-gray-500">Lokal geschätzt</div>
-                    
-                    <!-- Hover Overlay -->
-                    <div class="ranking-overlay">
-                        <h5>Nachbarschaftsheld</h5>
-                        <ul>
-                            <li>30-50 erfolgreich abgeschlossene Projekte</li>
-                            <li>Exzellente Kundenbewertungen</li>
-                            <li>Bekannt für außergewöhnlichen Service</li>
-                            <li>Starke lokale Reputation</li>
-                            <li>Empfohlen von zufriedenen Kunden</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Branchen-Legende -->
-                <div class="ranking-card branchen-legende text-center">
-                    <div class="mb-4">
-                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-3 shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
-                            </svg>
-                        </div>
-                        <h4 class="text-lg font-bold text-gray-900">Branchen-Legende</h4>
-                    </div>
-                    <div class="text-4xl font-extrabold text-green-600 mb-2">2.7%</div>
-                    <div class="text-sm text-gray-500">Niedrigste Provision</div>
-                    
-                    <!-- Hover Overlay -->
-                    <div class="ranking-overlay">
-                        <h5>Branchen-Legende</h5>
-                        <ul>
-                            <li>Über 50 erfolgreich abgeschlossene Projekte</li>
-                            <li>Durchgehend höchste Bewertungen</li>
-                            <li>Branchenführer und Vorbild</li>
-                            <li>Niedrigste Provision als Belohnung</li>
-                            <li>VIP-Status mit besonderen Vorteilen</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-                    <!-- Hinweis für Dienstleister -->
-                    <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                        <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4 max-w-2xl mx-auto">
-                            <strong>Hinweis:</strong> Ihr Ranking basiert auf abgeschlossenen Projekten, Kundenbewertungen und Qualitätskriterien. 
-                            Je mehr erfolgreiche Projekte Sie abschließen, desto höher steigt Ihr Rang und desto niedriger wird Ihre Provision.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Bauträger Tab -->
-                <div id="tab-bautraeger-pricing" class="pricing-tab-panel" role="tabpanel" aria-labelledby="bautraeger-tab" hidden>
-                    <div class="text-center mb-8">
-                        <p class="text-lg text-gray-600">
-                            Für Bauträger: Credit-basiertes System mit fairen Monatsgebühren und Belohnungen.
-                        </p>
-                    </div>
-
-                    <!-- Credit-System Erklärung -->
-                    <div class="credit-hero-card p-6 md:p-8 mb-12" data-aos="fade-up" data-aos-delay="100">
-                        <div class="text-center mb-6">
-                            <div class="w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
-                                </svg>
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">BuildWise Credits</h3>
-                            <p class="text-gray-600">Unsere interne Währung für faire und transparente Abrechnung</p>
-                        </div>
-                        
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="credit-info-card info-what">
-                                <h4 class="font-bold text-gray-900 mb-3">💰 Was sind Credits?</h4>
-                                <ul class="space-y-2 text-sm text-gray-700">
-                                    <li>• 1 Credit = 1 CHF Wert</li>
-                                    <li>• Bezahlung der monatlichen Pro-Gebühren</li>
-                                    <li>• Täglich wird 1 Credit abgezogen</li>
-                                    <li>• Verdienen Sie Credits durch Aktivitäten</li>
-                                </ul>
-                            </div>
-                            <div class="credit-info-card info-earn">
-                                <h4 class="font-bold text-gray-900 mb-3">⭐ Credits verdienen</h4>
-                                <ul class="space-y-2 text-sm text-gray-700">
-                                    <li>• Angebot annehmen: +Credits</li>
-                                    <li>• Projekt erfolgreich abschließen: +Credits</li>
-                                    <li>• Freunde einladen: +Credits</li>
-                                    <li>• Plattform-Feedback: +Credits</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Credit-Pakete -->
-                    <div class="grid md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="200">
-                        <!-- Beta-User Paket -->
-                        <div class="credit-package beta-package relative overflow-hidden">
-                            <!-- Launch Bonus Badge -->
-                            <div class="absolute top-4 right-4 z-10">
-                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg">
-                                    🚀 LAUNCH BONUS
-                                </span>
-                            </div>
-                            <div class="package-header">
-                                <div class="package-badge">Beta-Launch</div>
-                                <h3 class="package-title">Frühe Unterstützer</h3>
-                                <div class="package-credits">300 Credits</div>
-                                <div class="package-value">Im Wert von 300 CHF <span class="text-sm text-green-600 font-bold">(+100 Bonus!)</span></div>
-                            </div>
-                            <div class="package-content">
-                                <div class="package-duration">
-                                    <span class="duration-label">Laufzeit:</span>
-                                    <span class="duration-value">~10 Monate</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li>Kostenloser Zugang zur Beta</li>
-                                    <li>Alle Pro-Features inklusive</li>
-                                    <li>Direkter Support-Kanal</li>
-                                    <li>Einfluss auf Produktentwicklung</li>
-                                    <li>Credits durch Aktivitäten verlängerbar</li>
-                                    <li class="text-orange-600 font-semibold">🎁 +100 Bonus Credits für Early Adopters</li>
-                                    <li class="text-orange-600 font-semibold">🎯 Persönlicher Onboarding-Call</li>
-                                </ul>
-                                <div class="package-highlight bg-gradient-to-r from-orange-100 to-yellow-100 border-orange-300">
-                                    <strong>Launch-Special:</strong> Jetzt anmelden und 300 Credits sichern!
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Standard-Paket -->
-                        <div class="credit-package standard-package">
-                            <div class="package-header">
-                                <div class="package-badge standard">Standard</div>
-                                <h3 class="package-title">Nach der Beta</h3>
-                                <div class="package-credits">90 Credits</div>
-                                <div class="package-value">Im Wert von 90 CHF</div>
-                            </div>
-                            <div class="package-content">
-                                <div class="package-duration">
-                                    <span class="duration-label">Laufzeit:</span>
-                                    <span class="duration-value">~3 Monate</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li>Startguthaben für neue Nutzer</li>
-                                    <li>Alle Pro-Features inklusive</li>
-                                    <li>Standard-Support</li>
-                                    <li>Credits durch Aktivitäten verdienen</li>
-                                    <li>Nachkauf von Credits möglich</li>
-                                </ul>
-                                <div class="package-note">
-                                    Verfügbar ab 01.01.2026
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Credit-Verbrauch Beispiel -->
-                    <div class="mt-12 calc-card" data-aos="fade-up" data-aos-delay="300">
-                        <h3 class="calc-title">Beispiel‑Rechnung</h3>
-                        <div class="calc-flow">
-                            <div class="calc-item">
-                                <div class="calc-head">
-                                    <span class="calc-icon start">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l5 5L20 7"/></svg>
-                                    </span>
-                                    <span class="calc-title-sm">Start</span>
-                                </div>
-                                <div class="calc-sub">300 Credits bei Beta‑Anmeldung (Launch-Bonus!)</div>
-                                <div class="chip chip-neutral">Startguthaben 300</div>
-                            </div>
-
-                            <div class="calc-connector"></div>
-
-                            <div class="calc-item">
-                                <div class="calc-head">
-                                    <span class="calc-icon use">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m4-4H8"/></svg>
-                                    </span>
-                                    <span class="calc-title-sm">Verbrauch</span>
-                                </div>
-                                <div class="calc-sub">-1 Credit pro Tag ≈ −30/Monat</div>
-                                <div class="chip chip-negative">−30 Credits / Monat</div>
-                            </div>
-
-                            <div class="calc-connector"></div>
-
-                            <div class="calc-item">
-                                <div class="calc-head">
-                                    <span class="calc-icon earn">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m-4-4h8"/></svg>
-                                    </span>
-                                    <span class="calc-title-sm">Verdienen</span>
-                                </div>
-                                <div class="calc-sub">+Credits durch erfolgreiche Projekte</div>
-                                <div class="chip chip-positive">+X Credits / Projekt</div>
-                            </div>
-                        </div>
-                        <div class="calc-summary">
-                            Beispiel: <strong>300 Start‑Credits</strong> − 30/Monat + verdiente Credits ⇒ Laufzeit <strong>verlängerbar</strong> durch Aktivität.
-                        </div>
-                    </div>
+                <!-- Step 4 -->
+                <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">4</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Partner beauftragen</h3>
+                    <p class="text-gray-600 text-sm">Vertrag digital abschließen und loslegen</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section (neu) -->
-    <section id="about" class="py-20">
+    <!-- Personas Section -->
+    <section class="py-20 bg-white" id="personas">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Text -->
-                <div data-aos="fade-right">
-                    <div class="mb-4 flex gap-2">
-                        <span class="badge">Qualität</span>
-                        <span class="badge">Nähe</span>
-                        <span class="badge">Partnerschaft</span>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Über uns</h2>
-                    <div class="space-y-4 text-gray-700">
-                        <p>Als Schweizer Unternehmen kennen wir die Herausforderungen der lokalen Baubranche. Ob Dienstleister, Subunternehmer, Totalunternehmer, Bauleiter oder Bauträger in Zürich, Basel, Bern oder anderen Schweizer Städten: Alle brauchen verlässliche Partner, digitale Prozesse und effizienten Zugriff auf Bauprojekt-Dokumente. BuildWise ist die Antwort auf die Digitalisierung der Schweizer Baubranche.</p>
-                        <p>Hinter BuildWise stehen Stephan aus der Tech-Branche und Janina aus Architektur und Bau, beide mit Sitz in Zürich. Seit 2018 sind wir in der Schweizer Bauwelt aktiv, seit 2022 mit klarem Fokus auf Immobilien-Planung und Baumanagement-Software. Unser lokales Know-how fließt in jede Funktion: Schweizer Dienstleister finden passgenaue Bauprojekte, Totalunternehmer steuern Budgets nach Schweizer Standards, Bauträger sichern sich bereits vor Baubeginn qualifizierte Partner aus der Region.</p>
-                        <p>Unser Leitbild für die Schweizer Baubranche: Qualität, lokale Nähe, vertrauensvolle Partnerschaft. Wir gestalten die digitale Zukunft des Schweizer Bauwesens – gemeinsam mit Ihnen.</p>
-                    </div>
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                    Für beide Seiten perfekt
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Egal ob Sie Projekte haben oder suchen
+                </p>
+            </div>
 
-                    <!-- Zielgruppen Highlights -->
-                    <div class="grid md:grid-cols-2 gap-4 mt-8">
-                        <div class="panel-card p-4">
-                            <div class="flex items-center gap-2 mb-1"><span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12l2-2 4 4 8-8 2 2"/></svg></span><strong>Dienstleister & Subunternehmer</strong></div>
-                            <p class="text-sm text-gray-600">Passgenaue Aufträge, planbare Auslastung.</p>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Bauträger -->
+                <div class="persona-card bautraeger" data-aos="fade-right">
+                    <div class="persona-badge bg-orange-100 text-orange-800">
+                        Für Bauträger
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Finden & Verwalten</h3>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-xl">✓</span>
+                            <span class="text-gray-700">Qualifizierte Dienstleister finden</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-xl">✓</span>
+                            <span class="text-gray-700">Projekte effizient managen</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-xl">✓</span>
+                            <span class="text-gray-700">Zeit & Kosten sparen</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-xl">✓</span>
+                            <span class="text-gray-700">Alles an einem Ort</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-primary w-full text-center block">
+                        Als Bauträger starten
+                    </a>
+                </div>
+
+                <!-- Dienstleister -->
+                <div class="persona-card dienstleister" data-aos="fade-left">
+                    <div class="persona-badge bg-blue-100 text-blue-800">
+                        Für Dienstleister
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Aufträge & Wachstum</h3>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-xl">✓</span>
+                            <span class="text-gray-700">Passende Aufträge erhalten</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-xl">✓</span>
+                            <span class="text-gray-700">Auslastung planbar machen</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-xl">✓</span>
+                            <span class="text-gray-700">Sichtbarkeit erhöhen</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600 text-xl">✓</span>
+                            <span class="text-gray-700">Weniger Akquise, mehr Umsatz</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-primary w-full text-center block">
+                        Als Dienstleister starten
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Preview -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-gray-100" id="pricing">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                    Transparent & fair
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Keine versteckten Kosten. Erst zahlen bei Erfolg.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Bauträger Pricing -->
+                <div class="pricing-card bautraeger" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="pricing-header">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Für Bauträger</h3>
+                        <div class="price">
+                            <span class="price-amount">Ab 0 CHF</span>
                         </div>
-                        <div class="panel-card p-4">
-                            <div class="flex items-center gap-2 mb-1"><span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><strong>Totalunternehmer & Bauleiter</strong></div>
-                            <p class="text-sm text-gray-600">Zentrales DMS, Budgets und Termine im Blick.</p>
+                        <p class="text-gray-600 text-sm">Credit-System, nur zahlen wenn genutzt</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600">✓</span>
+                            <span class="text-gray-700 text-sm">300 Credits gratis zum Start</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600">✓</span>
+                            <span class="text-gray-700 text-sm">Alle Pro-Features inklusive</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600">✓</span>
+                            <span class="text-gray-700 text-sm">Credits durch Aktivität verlängerbar</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-primary w-full text-center block">
+                        Jetzt starten
+                    </a>
+                </div>
+
+                <!-- Dienstleister Pricing -->
+                <div class="pricing-card dienstleister" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="pricing-header">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Für Dienstleister</h3>
+                        <div class="price">
+                            <span class="price-amount">2.7-4.7%</span>
                         </div>
-                        <div class="panel-card p-4 md:col-span-2">
-                            <div class="flex items-center gap-2 mb-1"><span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11l9-7 9 7v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><strong>Bauträger</strong></div>
-                            <p class="text-sm text-gray-600">Früher Überblick und Zugang zu qualifizierten Partnern.</p>
-                        </div>
+                        <p class="text-gray-600 text-sm">Provision nur bei Auftragserfolg</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600">✓</span>
+                            <span class="text-gray-700 text-sm">Keine Gebühren für Plattformnutzung</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600">✓</span>
+                            <span class="text-gray-700 text-sm">Gezielte Projektanfragen</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-600">✓</span>
+                            <span class="text-gray-700 text-sm">Ranking-basierte Kosten</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-primary w-full text-center block">
+                        Jetzt registrieren
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="#pricing-details" class="text-orange-600 hover:text-orange-700 font-semibold">
+                    Alle Preise im Detail anzeigen ↓
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-orange-600 to-orange-700" id="final-cta">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6">
+                Bereit für effizientere Bauprojekte?
+            </h2>
+            <p class="text-xl text-orange-100 mb-8">
+                Starten Sie kostenlos und testen Sie BuildWise 14 Tage lang.
+            </p>
+            <a href="#contact" class="btn-cta-final inline-block mb-4">
+                Jetzt kostenlos testen
+            </a>
+            <p class="text-sm text-orange-100">
+                ✓ Keine Kreditkarte erforderlich • ✓ 14 Tage kostenlos
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white" id="faq">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                    Häufige Fragen
+                </h2>
+                <p class="text-lg text-gray-600">
+                    Alles was Sie wissen müssen
+                </p>
+            </div>
+
+            <div class="faq-container space-y-4">
+                <div class="faq-item" data-aos="fade-up">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Wie finde ich qualifizierte Dienstleister?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" hidden>
+                        <p>BuildWise nutzt intelligentes Matching nach Gewerk, Standort, Kapazität und Bewertungen. So finden Sie schnell die passenden Partner für Ihre Projekte.</p>
                     </div>
                 </div>
 
-                <!-- Bild -->
-                <div data-aos="fade-left">
-                    <figure class="about-figure rounded-2xl overflow-hidden shadow-xl border border-white/10 bg-white/5 backdrop-blur" style="aspect-ratio: 4 / 3;">
-                        <picture>
-                            <img
-                                src="/assets/aboutus.jpeg?v=1"
-                                alt="BuildWise Team - Schweizer Baumanagement Software Entwickler"
-                                class="w-full h-full object-cover object-center"
-                                loading="lazy"
-                                decoding="async"
-                                width="1280" height="853"
-                                sizes="(min-width: 1024px) 560px, 100vw"
-                            />
-                        </picture>
-                    </figure>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="50">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Was kostet BuildWise?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" hidden>
+                        <p>BuildWise ist für Bauträger mit einem Credit-System (ab 0 CHF) und für Dienstleister mit einer Provision von 2,7-4,7% nur bei erfolgreicher Vermittlung verfügbar. Alle Preise in CHF.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Ist BuildWise DSGVO-konform?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" hidden>
+                        <p>Ja. Datenhaltung in der EU/CH, verschlüsselte Übertragung, Rollen & Rechte und vollständige Audit-Logs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Welche Gewerke sind vertreten?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" hidden>
+                        <p>Auf BuildWise finden Sie alle wichtigen Gewerke: Maurer, Elektriker, Sanitär, Heizung, Zimmerer, Dachdecker, Maler, Gipser und viele mehr.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20">
+    <section class="py-20 bg-gray-50" id="contact">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Kontaktiere uns
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                    Kostenlos starten
                 </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Hast du Fragen? Wir sind für dich da!
+                <p class="text-xl text-gray-600">
+                    Melden Sie sich an und erhalten Sie Zugang zur Beta
                 </p>
             </div>
-            
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div data-aos="fade-right">
-                    <form class="space-y-6" id="contact-form" novalidate aria-describedby="contact-status">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors" required aria-invalid="false" aria-describedby="err-name">
-                            <p id="err-name" class="text-red-500 text-sm mt-1" hidden></p>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">E-Mail</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors" required aria-invalid="false" aria-describedby="err-email">
-                            <p id="err-email" class="text-red-500 text-sm mt-1" hidden></p>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Nachricht</label>
-                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors" required aria-invalid="false" aria-describedby="err-message"></textarea>
-                            <p id="err-message" class="text-red-500 text-sm mt-1" hidden></p>
-                        </div>
-                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors" aria-label="Nachricht senden">
-                            Nachricht senden
-                        </button>
-                        <div id="contact-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
-                    </form>
-                </div>
-                
-                <div data-aos="fade-left">
-                    <div class="space-y-8">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Kontaktinformationen</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center">
-                                    <svg class="w-5 h-5 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                    </svg>
-                                    <a href="mailto:Stephan.Schellworth@buildwise.ch" class="text-gray-600 hover:text-orange-600 hover:underline break-all" aria-label="E-Mail an Stephan Schellworth">
-                                        Stephan.Schellworth@buildwise.ch
-                                    </a>
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-5 h-5 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                    </svg>
-                                    <span class="text-gray-600">+41 44 123 45 67</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-5 h-5 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    <span class="text-gray-600">Zürich, Schweiz - Schweizweite Baubranche</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Geschäftszeiten</h3>
-                            <div class="space-y-2 text-gray-600">
-                                <div>Montag - Freitag: 8:00 - 18:00</div>
-                                <div>Samstag: 9:00 - 12:00</div>
-                                <div>Sonntag: Geschlossen</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="max-w-md mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <form id="beta-form" class="bg-white rounded-2xl p-8 shadow-lg">
+                    <label for="beta-email" class="block text-sm font-medium text-gray-700 mb-2">
+                        E-Mail-Adresse
+                    </label>
+                    <input 
+                        id="beta-email" 
+                        name="email" 
+                        type="email" 
+                        required 
+                        placeholder="ihr.name@firma.ch" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent mb-4"
+                        aria-invalid="false"
+                        aria-describedby="beta-email-error"
+                    >
+                    <p id="beta-email-error" class="text-red-500 text-sm mb-4" hidden></p>
+                    <button type="submit" class="btn-primary w-full">
+                        Kostenlos starten
+                    </button>
+                    <p class="text-xs text-gray-500 mt-4 text-center">
+                        Mit der Anmeldung erklären Sie sich mit unserer Datenschutzerklärung einverstanden.
+                    </p>
+                </form>
             </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-20">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Häufige Fragen</h2>
-                <p class="text-lg text-gray-600">Alles Wichtige auf einen Blick.</p>
-            </div>
-            <div class="faq">
-                <div class="accordion" data-accordion>
-                    <button class="acc-header" aria-expanded="false">
-                        <span>Wie finde ich qualifizierte Dienstleister und Handwerker in der Schweiz?</span>
-                        <span class="acc-icon">+</span>
-                    </button>
-                    <div class="acc-panel" hidden>
-                        <p>BuildWise nutzt intelligentes Matching nach Gewerk, Standort in der Schweiz, verfügbarer Kapazität und Qualitätsbewertungen. So finden Bauträger schnell die passenden Subunternehmer, Handwerker und Dienstleister für ihre Bauprojekte – transparent, effizient und regional fokussiert.</p>
-                    </div>
-
-                    <button class="acc-header" aria-expanded="false">
-                        <span>Ist BuildWise DSGVO-konform?</span>
-                        <span class="acc-icon">+</span>
-                    </button>
-                    <div class="acc-panel" hidden>
-                        <p>Ja. Datenhaltung in der EU/CH, Audit-Logs, Rollen & Rechte sowie verschlüsselte Übertragung.</p>
-                    </div>
-
-                    <button class="acc-header" aria-expanded="false">
-                        <span>Was kostet die Baumanagement-Software für Schweizer Unternehmen?</span>
-                        <span class="acc-icon">+</span>
-                    </button>
-                    <div class="acc-panel" hidden>
-                        <p>BuildWise bietet transparente Preismodelle für die Schweizer Baubranche: Kostenlose Beta-Version für Early Adopters, faire Provisionsmodelle für Dienstleister (2,7-4,7% je nach Ranking) und Credit-basierte Abrechnung für Bauträger. Alle Preise in CHF, speziell für den Schweizer Markt entwickelt.</p>
-                    </div>
-
-                    <button class="acc-header" aria-expanded="false">
-                        <span>Welche Gewerke und Dienstleister sind auf BuildWise vertreten?</span>
-                        <span class="acc-icon">+</span>
-                    </button>
-                    <div class="acc-panel" hidden>
-                        <p>Auf BuildWise finden Sie alle wichtigen Gewerke der Schweizer Baubranche: Maurer, Elektriker, Sanitär-Installateure, Heizungsbauer, Zimmerer, Dachdecker, Maler, Gipser, Bodenleger, Schreiner und viele weitere Handwerker und Subunternehmer. Auch spezialisierte Dienstleister wie Architekten, Bauleiter und Totalunternehmer sind vertreten.</p>
-                    </div>
-
-                    <button class="acc-header" aria-expanded="false">
-                        <span>Ist BuildWise für kleine und große Bauprojekte geeignet?</span>
-                        <span class="acc-icon">+</span>
-                    </button>
-                    <div class="acc-panel" hidden>
-                        <p>Ja, BuildWise eignet sich für Bauprojekte jeder Größe in der Schweiz: Von Einfamilienhäusern und Renovierungen bis hin zu großen Wohnbauprojekten, Gewerbebauten und Infrastrukturprojekten. Unsere Plattform skaliert mit Ihren Anforderungen und unterstützt sowohl kleine Handwerksbetriebe als auch große Bauunternehmen.</p>
-                    </div>
-
-                    <button class="acc-header" aria-expanded="false">
-                        <span>Wie funktioniert das Projektmanagement bei BuildWise?</span>
-                        <span class="acc-icon">+</span>
-                    </button>
-                    <div class="acc-panel" hidden>
-                        <p>BuildWise bietet umfassendes digitales Projektmanagement für Bauprojekte: Zentrale Dokumentenverwaltung, Terminplanung, Budgetüberwachung, Kommunikationstools und Fortschrittstracking. Alle Projektbeteiligten haben Zugriff auf aktuelle Pläne, Verträge und Projektinformationen – jederzeit und von überall.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Abbinder / Closer -->
-    <section class="closer py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <hr class="closer-divider"/>
-            <p class="closer-text">
-                Die Plattform, die Bauträger und Dienstleister zusammenbringt – einfach, schnell und effizient.
-            </p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
-                    <span class="ci-logo ci-logo--gradient"></span>
-                    <span class="text-xl font-bold">BuildWise</span>
-                </div>
-                    <p class="text-gray-400 mb-4">
-                        Die intelligente Plattform für Bauprojekte. 
-                        Vernetze dich mit qualifizierten Dienstleistern.
+                        <img src="/logo.png" alt="BuildWise Logo" class="h-10 w-10">
+                        <span class="text-xl font-bold">BuildWise</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Die intelligente Plattform für Bauprojekte in der Schweiz.
                     </p>
                 </div>
                 
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Produkt</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#problem-solution" class="hover:text-white transition-colors">Problem & Lösung</a></li>
+                        <li><a href="#benefits" class="hover:text-white transition-colors">Vorteile</a></li>
+                        <li><a href="#how-it-works" class="hover:text-white transition-colors">Funktionen</a></li>
                         <li><a href="#pricing" class="hover:text-white transition-colors">Preise</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">API</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Dokumentation</a></li>
                     </ul>
                 </div>
                 
@@ -1484,109 +607,34 @@
                     <h3 class="text-lg font-semibold mb-4">Unternehmen</h3>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#about" class="hover:text-white transition-colors">Über uns</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Karriere</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Presse</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Kontakt</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Support</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#contact" class="hover:text-white transition-colors">Kontakt</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Hilfe-Center</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                        <li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Hilfe</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <div class="text-gray-400 text-sm">
-                    © 2024 BuildWise. Alle Rechte vorbehalten.
+                    © 2024 BuildWise AG. Alle Rechte vorbehalten.
                 </div>
                 <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="/datenschutz.html" aria-label="Datenschutz" class="text-gray-400 hover:text-white transition-colors">Datenschutz</a>
-                    <a href="/agb.html" aria-label="AGB" class="text-gray-400 hover:text-white transition-colors">AGB</a>
-                    <a href="/impressum.html" aria-label="Impressum" class="text-gray-400 hover:text-white transition-colors">Impressum</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Datenschutz</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">AGB</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Impressum</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts - Performance optimiert -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-    <script src="config.js?v=2" defer></script>
-    <script src="script.js?v=7" defer></script>
-    <script>
-      // Force SW update on version bump
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.update()));
-      }
-    </script>
-    <!-- Globale ARIA Live Region -->
-    <div id="global-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
-    <!-- Bottom Sheet für Mobile Bubble-Details -->
-    <div class="bw-sheet-backdrop" id="bwSheetBackdrop" hidden></div>
-    <div class="bw-sheet" id="bwSheet" hidden>
-        <button class="bw-close" id="bwSheetClose" aria-label="Schließen">×</button>
-        <h4 id="bwSheetTitle"></h4>
-        <p id="bwSheetText"></p>
-    </div>
-
-    <!-- Demo Modal -->
-    <div id="demo-modal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center p-4" style="display: none;">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all duration-300 scale-95 opacity-0" id="demo-modal-content">
-            <div class="text-center mb-6">
-                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <span class="text-white text-2xl">🚀</span>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-2">BuildWise Demo</h2>
-                <p class="text-gray-600">Wählen Sie Ihre Rolle, um die passende Demo-Ansicht zu erleben</p>
-            </div>
-
-            <div class="space-y-4 mb-6">
-                <button id="demo-bautraeger" class="w-full p-4 border-2 border-gray-200 rounded-xl hover:border-orange-500 hover:bg-orange-50 transition-all duration-300 text-left group">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-900">Bauträger</h3>
-                            <p class="text-sm text-gray-600">Projektmanagement & Dienstleister-Matching</p>
-                        </div>
-                    </div>
-                </button>
-
-                <button id="demo-dienstleister" class="w-full p-4 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 text-left group">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-900">Dienstleister</h3>
-                            <p class="text-sm text-gray-600">Auftragsmanagement & Angebotserstellung</p>
-                        </div>
-                    </div>
-                </button>
-            </div>
-
-            <div class="flex justify-between">
-                <button id="demo-close" class="px-6 py-2 text-gray-600 hover:text-gray-800 transition-colors">
-                    Abbrechen
-                </button>
-                <div class="text-xs text-gray-500 flex items-center">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                    </svg>
-                    Sichere Demo-Umgebung
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js?v=8"></script>
 </body>
-</html> 
+</html>
