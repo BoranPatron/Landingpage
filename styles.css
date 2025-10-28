@@ -58,6 +58,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    background: linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%) !important;
 }
 
 body {
