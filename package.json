@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "cross-env DEPLOYMENT_MODE=local node generate-config.js && npx netlify dev --dir . --port 5508",
     "dev:simple": "cross-env DEPLOYMENT_MODE=local node generate-config.js && npm run serve",
-    "build": "npm run build:timeline && npm run config && npm run sitemap && echo 'static site'",
+    "build": "npm run build:css && npm run build:timeline && npm run config && npm run sitemap && echo 'static site'",
+    "build:css": "node -e \"require('fs').mkdirSync('dist', {recursive: true})\" && tailwindcss -i ./src/input.css -o ./dist/tailwind.css --minify",
     "build:timeline": "vite build",
     "config": "cross-env DEPLOYMENT_MODE=production node generate-config.js",
     "config:local": "cross-env DEPLOYMENT_MODE=local node generate-config.js",
@@ -18,8 +19,11 @@
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
     "cross-env": "^7.0.3",
     "netlify-cli": "^23.9.5",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.8"
   },
