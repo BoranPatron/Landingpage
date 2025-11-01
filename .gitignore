@@ -8,6 +8,7 @@ node_modules/
 # Environment files
 .env
 .env.local
+.env.production
 
 # OS files
 .DS_Store
@@ -18,3 +19,6 @@ dist/
 build/
 *.log
 
+
+# Local Netlify folder
+.netlify

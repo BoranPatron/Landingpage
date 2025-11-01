@@ -4,6 +4,14 @@ services:
     env: static
     rootDir: .
     staticPublishPath: ./
+    buildCommand: npm run config
+    environment:
+      - key: DEPLOYMENT_MODE
+        value: production
+      - key: API_BASE_URL
+        value: https://buildwise-api.onrender.com
+      - key: FRONTEND_URL
+        value: https://www.buildwise.ch
     routes:
       - type: rewrite
         source: /*

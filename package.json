@@ -2,20 +2,36 @@
   "name": "buildwise-landing",
   "private": true,
   "scripts": {
-    "dev": "netlify dev -p 5508",
-    "build": "npm run sitemap && echo 'static site'",
+    "dev": "cross-env DEPLOYMENT_MODE=local node generate-config.js && npx netlify dev --dir . --port 5508",
+    "dev:simple": "cross-env DEPLOYMENT_MODE=local node generate-config.js && npm run serve",
+    "build": "npm run build:timeline && npm run config && npm run sitemap && echo 'static site'",
+    "build:timeline": "vite build",
+    "config": "cross-env DEPLOYMENT_MODE=production node generate-config.js",
+    "config:local": "cross-env DEPLOYMENT_MODE=local node generate-config.js",
     "serve": "npx serve -l 5508",
     "api": "node api/server.js",
     "sitemap": "node generate-sitemap.js",
     "sitemap:validate": "node generate-sitemap.js && curl -s https://www.buildwise.ch/sitemap.xml | head -20"
   },
   "devDependencies": {
-    "@netlify/functions": "^2.7.0"
+    "@netlify/functions": "^2.7.0",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "cross-env": "^7.0.3",
+    "netlify-cli": "^23.9.5",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.12",
+    "clsx": "^2.1.1",
     "cors": "^2.8.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "framer-motion": "^10.16.16",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^3.3.1"
   }
 }
-
-

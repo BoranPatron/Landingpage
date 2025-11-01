@@ -1,0 +1,38 @@
+=== BuildWise Environment Setup ===
+
+Das System verwendet .env-Dateien für lokale vs. Production URLs.
+
+SCHRITT 1: Erstelle .env für lokale Entwicklung
+-----------------------------------------------
+Erstelle eine Datei namens ".env" im Projekt-Root mit folgendem Inhalt:
+
+DEPLOYMENT_MODE=local
+API_BASE_URL=http://localhost:10000
+FRONTEND_URL=http://localhost:5508
+BREVO_API_KEY=your_local_key
+
+SCHRITT 2: Erstelle .env.production für Git Push Deployment
+----------------------------------------------------------
+Erstelle eine Datei namens ".env.production" mit:
+
+DEPLOYMENT_MODE=production
+API_BASE_URL=https://buildwise-api.onrender.com
+FRONTEND_URL=https://www.buildwise.ch
+BREVO_API_KEY=${BREVO_API_KEY}
+
+HINWEIS: Die .env.production sollte NICHT Git-committed werden.
+Netlify/Render verwenden ihre eigenen Umgebungsvariablen.
+
+SCHRITT 3: Verwendung
+---------------------
+Lokales Testen:
+  npm run dev          → verwendet .env (localhost URLs)
+
+Production Build:
+  npm run build        → verwendet .env.production (production URLs)
+
+Die config.js wird automatisch generiert basierend auf der DEPLOYMENT_MODE Umgebungsvariable.
+
+
+
+

@@ -16,27 +16,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ============================================
-    // Mobile Menu Toggle
+    // Hero Rotating Text Animation
     // ============================================
     
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
+    const heroRotatingItems = document.querySelectorAll('.hero-rotating-item');
+    let currentTitleIndex = 0;
+    let rotationTimeout = null;
     
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-            const isExpanded = !mobileMenu.classList.contains('hidden');
-            mobileMenuButton.setAttribute('aria-expanded', isExpanded);
-            mobileMenuButton.setAttribute('aria-label', isExpanded ? 'Menü schließen' : 'Menü öffnen');
+    if (heroRotatingItems.length > 0) {
+        const titles = Array.from(heroRotatingItems);
+        
+        // Initialize: hide all items except first
+        titles.forEach((item, index) => {
+            if (index === 0) {
+                item.classList.add('hero-rotating-active');
+            } else {
+                item.classList.add('hero-rotating-hidden');
+            }
         });
         
-        // Close mobile menu when clicking on links
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-            });
+        // Function to rotate titles
+        function rotateTitle() {
+            const prevIndex = currentTitleIndex;
+            currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+            
+            const prevItem = titles[prevIndex];
+            const nextItem = titles[currentTitleIndex];
+            
+            // Remove active class from previous
+            prevItem.classList.remove('hero-rotating-active');
+            prevItem.classList.add('hero-rotating-exit');
+            
+            // Set up next item
+            nextItem.classList.remove('hero-rotating-hidden');
+            nextItem.classList.add('hero-rotating-enter');
+            
+            // After transition, clean up classes
+            setTimeout(() => {
+                prevItem.classList.remove('hero-rotating-exit');
+                prevItem.classList.add('hero-rotating-hidden');
+                
+                nextItem.classList.remove('hero-rotating-enter');
+                nextItem.classList.add('hero-rotating-active');
+            }, 300);
+            
+            // Schedule next rotation
+            rotationTimeout = setTimeout(rotateTitle, 2000);
+        }
+        
+        // Start rotation after initial delay
+        rotationTimeout = setTimeout(rotateTitle, 2000);
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (rotationTimeout) {
+                clearTimeout(rotationTimeout);
+            }
         });
     }
     
@@ -62,27 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // ============================================
-    // Navbar Scroll Effect
-    // ============================================
-    
-    const navbar = document.getElementById('navbar');
-    if (navbar) {
-        let lastScrollTop = 0;
-        
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
-            
-            lastScrollTop = scrollTop;
-        }, { passive: true });
-    }
     
     // ============================================
     // FAQ Accordion

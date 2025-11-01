@@ -1,8 +1,24 @@
 [build]
+  command = "npm run build"
   publish = "Landingpage"
   functions = "Landingpage/netlify/functions"
+  environment = { DEPLOYMENT_MODE = "production" }
 
-# Optional: Redirect API path to function (nice URL)
+# Netlify Environment Variables
+# Setze diese im Netlify Dashboard:
+# - API_BASE_URL (z.B. https://buildwise-api.onrender.com)
+# - FRONTEND_URL (z.B. https://www.buildwise.ch)
+# - BREVO_API_KEY (dein API Key)
+
+# SPA Routing: Alle nicht-existierenden Pfade zu index.html
+# Beachte: Diese Regel gilt nur für nicht-existierende Dateien
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# API Redirect für Netlify Functions
 [[redirects]]
   from = "/api/beta-subscribe"
   to = "/.netlify/functions/brevo-beta-subscribe"
