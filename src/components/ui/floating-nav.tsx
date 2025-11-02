@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-// Icons are passed via props from main.tsx
 
 export interface FloatingNavProps {
   navItems: {
@@ -11,7 +10,7 @@ export interface FloatingNavProps {
   className?: string;
 }
 
-// Section name mapping - entspricht den Nav-Item Namen für Highlighting
+// Section name mapping
 const sectionNames: { [key: string]: string } = {
   "#hero": "Zukunft",
   "#personas": "Rollen",
@@ -23,6 +22,19 @@ const sectionNames: { [key: string]: string } = {
 
 export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
   const [activeSectionName, setActiveSectionName] = useState<string>("Zukunft");
+
+  // iOS Safari: Ensure body overflow-y is set correctly
+  useEffect(() => {
+    // Ensure body has overflow-y: auto for iOS Safari
+    const body = document.body;
+    const html = document.documentElement;
+    if (body && body.style.overflowY !== 'auto') {
+      body.style.overflowY = 'auto';
+    }
+    if (html && html.style.overflowY !== 'auto') {
+      html.style.overflowY = 'auto';
+    }
+  }, []);
 
   // Track active section with IntersectionObserver
   useEffect(() => {
@@ -70,7 +82,6 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
       }
     };
 
-    // Check after a short delay to ensure DOM is ready
     setTimeout(checkInitialSection, 100);
 
     return () => {
@@ -78,18 +89,20 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     };
   }, []);
 
-  // Navbar bleibt immer sichtbar - keine Scroll-Hide-Logik
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>, href: string) => {
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>, 
+    href: string
+  ) => {
     e.preventDefault();
     e.stopPropagation();
+    
     const targetId = href;
     if (targetId === '#' || !targetId) return;
     
     const targetElement = document.querySelector(targetId);
     
     if (targetElement) {
-      const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
+      const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 100;
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
@@ -104,102 +117,170 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
 
   return (
     <div
-        className={cn(
-          "floating-navbar-container flex max-w-7xl fixed top-10 left-4 right-4 sm:inset-x-0 sm:mx-auto border border-white/20 rounded-full bg-[#51646f]/20 backdrop-blur-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08),0_0_20px_rgba(81,100,111,0.2)] px-2 sm:px-5 py-2 sm:py-2.5 items-center justify-between gap-1 sm:gap-3 overflow-hidden",
-          className
-        )}
+      className={cn(
+        "floating-navbar-container",
+        "flex items-center justify-between",
+        "fixed top-6 left-4 right-4",
+        "sm:top-10 sm:left-auto sm:right-auto sm:inset-x-0 sm:mx-auto",
+        "max-w-7xl",
+        "px-3 py-2.5 sm:px-5 sm:py-3",
+        "rounded-full",
+        "gap-2 sm:gap-4",
+        className
+      )}
+      style={{
+        // iOS Safari: Vernünftiger z-index (nicht extrem hoch)
+        zIndex: 9999,
+        position: 'fixed',
+        
+        // iOS Safari: Backdrop und Background
+        background: 'rgba(81, 100, 111, 0.75)',
+        WebkitBackdropFilter: 'blur(12px) saturate(150%)',
+        backdropFilter: 'blur(12px) saturate(150%)',
+        
+        // iOS Safari: Border
+        border: '1px solid rgba(255, 255, 255, 0.25)',
+        borderRadius: '9999px',
+        
+        // iOS Safari: Shadow
+        boxShadow: '0 4px 24px rgba(0, 0, 0, 0.25), 0 0 40px rgba(81, 100, 111, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+        
+        // iOS Safari: Clickability
+        pointerEvents: 'auto',
+        touchAction: 'manipulation',
+        WebkitTouchCallout: 'none',
+        
+        // iOS Safari: Hardware acceleration
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        willChange: 'transform',
+        
+        // iOS Safari: Visibility
+        display: 'flex',
+        visibility: 'visible',
+        opacity: 1,
+        
+        // iOS Safari: Containment Fix - NICHT verwenden, blockiert visibility
+        contain: 'layout style',
+      }}
+    >
+      {/* Logo */}
+      <a
+        href="#hero"
+        onClick={(e) => handleLinkClick(e, "#hero")}
+        onTouchEnd={(e) => handleLinkClick(e, "#hero")}
+        aria-label="Zur Startseite - BuildWise"
+        className="flex items-center flex-shrink-0 hover:opacity-80 transition-opacity"
         style={{
-          boxShadow: '0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08), 0 0 30px rgba(81,100,111,0.25), 0 0 60px rgba(249,199,79,0.15)',
-          transition: 'box-shadow 0.3s ease',
-          // iOS Safari: Ensure clickability and proper stacking - MAXIMUM PRIORITY
-          position: 'fixed',
-          pointerEvents: 'auto',
+          WebkitTapHighlightColor: 'rgba(249, 199, 79, 0.3)',
           touchAction: 'manipulation',
-          WebkitTransform: 'translate3d(0, 0, 0)',
-          transform: 'translate3d(0, 0, 0)',
-          WebkitBackfaceVisibility: 'hidden',
-          backfaceVisibility: 'hidden',
-          zIndex: 2147483647,
-          WebkitTouchCallout: 'none',
-          // Force hardware acceleration
-          willChange: 'transform',
-          // Ensure visibility
-          display: 'flex',
-          visibility: 'visible',
-          opacity: 1,
+          pointerEvents: 'auto',
+          cursor: 'pointer',
+          padding: '0.25rem 0.5rem',
+          minWidth: 'fit-content',
         }}
       >
-        {/* Logo */}
-        <a
-          href="#hero"
-          onClick={(e) => handleLinkClick(e, "#hero")}
-          onTouchStart={(e) => handleLinkClick(e, "#hero")}
-          aria-label="Zur Startseite - BuildWise"
-          className="flex items-center pr-2 sm:pr-6 hover:opacity-80 transition-opacity flex-shrink-0"
+        <img 
+          src="/favicon.png" 
+          alt="BuildWise Logo" 
+          className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
           style={{
-            WebkitTapHighlightColor: 'rgba(249, 199, 79, 0.3)',
-            touchAction: 'manipulation',
-            pointerEvents: 'auto',
-            cursor: 'pointer',
-            zIndex: 2147483647,
+            display: 'block',
+            maxWidth: '100%',
+            height: 'auto',
           }}
-        >
-          <img 
-            src="/favicon.png" 
-            alt="BuildWise Logo - Bauträger Plattform Schweiz" 
-            className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
-            loading="lazy"
-            onError={(e) => {
-              // Fallback to logo.png if favicon.png doesn't exist
-              const target = e.target as HTMLImageElement;
-              if (target.src !== window.location.origin + "/logo.png") {
-                target.src = "/logo.png";
-              }
-            }}
-          />
-        </a>
+          loading="eager"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            if (target.src !== window.location.origin + "/logo.png") {
+              target.src = "/logo.png";
+            }
+          }}
+        />
+      </a>
 
-        {/* Navigation Items */}
-        <nav className="flex items-center gap-1 sm:gap-4 flex-1 justify-center min-w-0 overflow-x-auto scrollbar-hide" aria-label="Hauptnavigation">
-          {navItems.map((navItem: any, idx: number) => {
-            const isActive = isActiveSection(navItem.link);
-            return (
-              <a
-                key={`link=${idx}`}
-                href={navItem.link}
-                onClick={(e) => handleLinkClick(e, navItem.link)}
-                onTouchStart={(e) => handleLinkClick(e, navItem.link)}
-                aria-label={`Navigation zu ${navItem.name} Sektion`}
-                className={cn(
-                  "relative items-center flex gap-1 sm:gap-2 text-sm px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-all duration-300 flex-shrink-0 whitespace-nowrap",
-                  isActive
-                    ? "text-[#f9c74f] font-bold bg-[#f9c74f]/10 border border-[#f9c74f]/30"
-                    : "text-[#f7fafc] hover:text-[#f9c74f] hover:bg-white/10"
-                )}
-                style={{
-                  textShadow: isActive ? '0 0 10px rgba(249,199,79,0.5)' : 'none',
-                  WebkitTapHighlightColor: 'rgba(249, 199, 79, 0.3)',
-                  touchAction: 'manipulation',
-                  pointerEvents: 'auto',
-                  cursor: 'pointer',
-                  WebkitTouchCallout: 'none',
-                  WebkitUserSelect: 'none',
-                  userSelect: 'none',
-                  zIndex: 2147483647,
-                }}
-              >
-                {navItem.icon && (
-                  <span className="block sm:hidden flex-shrink-0">
-                    {React.cloneElement(navItem.icon as React.ReactElement, { className: "h-4 w-4 sm:h-5 sm:w-5" })}
-                  </span>
-                )}
-                <span className="hidden sm:block text-base">{navItem.name}</span>
-              </a>
-            );
-          })}
-        </nav>
-
-      </div>
+      {/* Navigation Items */}
+      <nav 
+        className="flex items-center gap-1 sm:gap-3 flex-1 justify-center min-w-0" 
+        aria-label="Hauptnavigation"
+        style={{
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}
+      >
+        {navItems.map((navItem: any, idx: number) => {
+          const isActive = isActiveSection(navItem.link);
+          return (
+            <a
+              key={`nav-link-${idx}`}
+              href={navItem.link}
+              onClick={(e) => handleLinkClick(e, navItem.link)}
+              onTouchEnd={(e) => handleLinkClick(e, navItem.link)}
+              aria-label={`Navigation zu ${navItem.name}`}
+              aria-current={isActive ? 'page' : undefined}
+              className={cn(
+                "relative flex items-center",
+                "gap-1 sm:gap-2",
+                "px-2.5 py-1.5 sm:px-3.5 sm:py-2",
+                "rounded-full",
+                "text-sm sm:text-base",
+                "font-medium",
+                "transition-all duration-300",
+                "flex-shrink-0",
+                "whitespace-nowrap",
+                isActive
+                  ? "text-[#f9c74f] font-bold"
+                  : "text-white/90 hover:text-[#f9c74f]"
+              )}
+              style={{
+                // iOS Safari: Active State
+                background: isActive ? 'rgba(249, 199, 79, 0.15)' : 'transparent',
+                border: isActive ? '1px solid rgba(249, 199, 79, 0.4)' : '1px solid transparent',
+                textShadow: isActive ? '0 0 10px rgba(249, 199, 79, 0.6)' : 'none',
+                
+                // iOS Safari: Touch
+                WebkitTapHighlightColor: 'rgba(249, 199, 79, 0.3)',
+                touchAction: 'manipulation',
+                pointerEvents: 'auto',
+                cursor: 'pointer',
+                WebkitTouchCallout: 'none',
+                WebkitUserSelect: 'none',
+                userSelect: 'none',
+                
+                // iOS Safari: Min touch target
+                minHeight: '44px',
+                minWidth: 'fit-content',
+                
+                // iOS Safari: Hover effect
+                ...(isActive ? {} : {
+                  ':hover': {
+                    background: 'rgba(255, 255, 255, 0.1)',
+                  }
+                })
+              }}
+            >
+              {/* Icon - nur auf Mobile */}
+              {navItem.icon && (
+                <span className="block sm:hidden flex-shrink-0">
+                  {React.cloneElement(navItem.icon as React.ReactElement, { 
+                    className: "h-4 w-4",
+                    style: {
+                      color: isActive ? '#f9c74f' : 'white',
+                    }
+                  })}
+                </span>
+              )}
+              {/* Text - nur auf Desktop */}
+              <span className="hidden sm:block">{navItem.name}</span>
+            </a>
+          );
+        })}
+      </nav>
+    </div>
   );
 };
-

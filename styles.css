@@ -59,6 +59,7 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     background: linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%) !important;
+    overflow-y: auto !important; /* iOS Safari: Allow vertical scrolling */
 }
 
 body {
@@ -68,6 +69,7 @@ body {
     background: linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%) !important;
     color: #f7fafc;
     overflow-x: hidden;
+    overflow-y: auto !important; /* iOS Safari: Allow vertical scrolling */
     min-height: 100vh;
     /* Mobile Typography: Mindestens 16px für Touch-Geräte (verhindert Zoom) */
     -webkit-text-size-adjust: 100%;
@@ -738,17 +740,19 @@ ul, ol {
 
 /* Global fix: Ensure navbar is always visible and clickable */
 .floating-navbar-container {
-    z-index: 2147483647 !important;
+    z-index: 9999 !important;
     position: fixed !important;
     pointer-events: auto !important;
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
+    /* iOS Safari: Containment without paint to allow visibility */
+    contain: layout style !important;
 }
 
 /* iOS Safari Fixes for Floating Navbar - MAXIMUM PRIORITY */
 @supports (-webkit-touch-callout: none) {
-    /* iOS Safari specific fixes - Force highest z-index */
+    /* iOS Safari specific fixes - Use reasonable z-index */
     .floating-navbar-container {
         -webkit-transform: translate3d(0, 0, 0) !important;
         transform: translate3d(0, 0, 0) !important;
@@ -756,15 +760,22 @@ ul, ol {
         backface-visibility: hidden !important;
         pointer-events: auto !important;
         position: fixed !important;
-        z-index: 2147483647 !important;
+        z-index: 9999 !important;
         touch-action: manipulation !important;
         will-change: transform !important;
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
+        /* iOS Safari: Backdrop filter with fallback */
+        background: rgba(81, 100, 111, 0.85) !important;
+        -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
+        backdrop-filter: blur(12px) saturate(150%) !important;
+        /* iOS Safari: Containment without paint */
+        contain: layout style !important;
     }
     
     /* Ensure navigation links are clickable on iOS */
+    #floating-nav-root a,
     .floating-navbar-container a {
         -webkit-tap-highlight-color: rgba(249, 199, 79, 0.3) !important;
         pointer-events: auto !important;
@@ -774,10 +785,11 @@ ul, ol {
         -webkit-user-select: none !important;
         user-select: none !important;
         position: relative !important;
-        z-index: 2147483647 !important;
+        z-index: inherit !important;
     }
     
     /* Ensure navbar container is always clickable */
+    #floating-nav-root > * > *,
     .floating-navbar-container > * {
         pointer-events: auto !important;
         touch-action: manipulation !important;
@@ -787,13 +799,21 @@ ul, ol {
     .floating-navbar-container nav {
         pointer-events: auto !important;
         touch-action: manipulation !important;
-        z-index: 2147483647 !important;
+        z-index: inherit !important;
         position: relative !important;
     }
 }
 
 /* Mobile Navbar - Ensure items stay within bounds */
 @media (max-width: 640px) {
+    /* iOS Safari: Mobile positioning adjustments */
+    .floating-navbar-container {
+        top: 1.5rem !important; /* 24px instead of 40px for iOS UI */
+        left: 1rem !important;
+        right: 1rem !important;
+        padding: 0.625rem 0.75rem !important;
+    }
+    
     /* Ensure navbar container doesn't overflow */
     [class*="fixed"][class*="top-10"] {
         max-width: calc(100vw - 2rem) !important;
