@@ -71,9 +71,29 @@ body {
     overflow-x: hidden;
     overflow-y: auto !important; /* iOS Safari: Allow vertical scrolling */
     min-height: 100vh;
+    /* iOS Safari: Use dynamic viewport height */
+    min-height: -webkit-fill-available;
     /* Mobile Typography: Mindestens 16px für Touch-Geräte (verhindert Zoom) */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+}
+
+/* iOS Safari Viewport Fixes - Support for 100dvh */
+@supports (-webkit-touch-callout: none) {
+    html {
+        /* iOS Safari: Use dynamic viewport height */
+        height: -webkit-fill-available;
+    }
+    
+    body {
+        /* iOS Safari: Use dynamic viewport height instead of 100vh */
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        /* Fallback for browsers that don't support -webkit-fill-available */
+        @supports (height: 100dvh) {
+            min-height: 100dvh;
+        }
+    }
 }
 
 /* Mobile Typography Optimierungen */
@@ -802,16 +822,69 @@ ul, ol {
         z-index: inherit !important;
         position: relative !important;
     }
+    
+    /* iOS 18 Safari: Additional Stacking Context Fix */
+    .floating-navbar-container {
+        isolation: isolate !important;
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
+        transform-style: preserve-3d !important;
+        -webkit-transform-style: preserve-3d !important;
+    }
+    
+    /* iOS 18 Safari: Ensure all child elements respect pointer events */
+    .floating-navbar-container * {
+        pointer-events: auto !important;
+    }
+    
+    /* iOS 18 Safari: Fix for backdrop-filter stacking context issues */
+    .floating-navbar-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        pointer-events: none;
+        z-index: -1;
+    }
+}
+
+/* iOS 18 Safari: Additional fixes for Liquid Glass Design */
+@supports (-webkit-touch-callout: none) {
+    /* iOS 18: Ensure navbar is always on top of content */
+    body {
+        position: relative;
+        z-index: 0;
+    }
+    
+    /* iOS 18: Prevent content from overlaying navbar */
+    main,
+    section {
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* iOS 18: Explicit touch target sizes */
+    @media (max-width: 640px) {
+        .floating-navbar-container a {
+            min-width: 44px !important;
+            min-height: 44px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+    }
 }
 
 /* Mobile Navbar - Ensure items stay within bounds */
 @media (max-width: 640px) {
-    /* iOS Safari: Mobile positioning adjustments */
+    /* iOS Safari: Mobile positioning adjustments with safe area insets */
     .floating-navbar-container {
-        top: 1.5rem !important; /* 24px instead of 40px for iOS UI */
-        left: 1rem !important;
-        right: 1rem !important;
+        top: max(1.5rem, env(safe-area-inset-top)) !important; /* 24px or safe area, whichever is larger */
+        left: max(1rem, env(safe-area-inset-left)) !important;
+        right: max(1rem, env(safe-area-inset-right)) !important;
         padding: 0.625rem 0.75rem !important;
+        padding-top: max(0.625rem, env(safe-area-inset-top)) !important;
+        padding-bottom: max(0.625rem, env(safe-area-inset-bottom)) !important;
     }
     
     /* Ensure navbar container doesn't overflow */

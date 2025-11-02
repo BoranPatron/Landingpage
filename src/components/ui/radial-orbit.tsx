@@ -369,7 +369,7 @@ export default function RadialOrbitalTimeline({
               {/* Expanded Card */}
               {isExpanded && (
                 <div
-                  className="fixed inset-0 flex items-center justify-center z-[9999] p-4"
+                  className="fixed inset-0 flex items-center justify-center z-[10000] p-4"
                   style={{
                     backgroundColor: "rgba(0, 0, 0, 0.5)",
                     backdropFilter: "blur(8px)",

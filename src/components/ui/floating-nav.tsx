@@ -133,6 +133,9 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         zIndex: 9999,
         position: 'fixed',
         
+        // iOS Safari: Stacking Context Isolation - verhindert Interferenzen
+        isolation: 'isolate',
+        
         // iOS Safari: Backdrop und Background
         background: 'rgba(81, 100, 111, 0.75)',
         WebkitBackdropFilter: 'blur(12px) saturate(150%)',
