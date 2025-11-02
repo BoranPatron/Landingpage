@@ -736,6 +736,28 @@ ul, ol {
     display: none;
 }
 
+/* iOS Safari Fixes for Floating Navbar */
+@supports (-webkit-touch-callout: none) {
+    /* iOS Safari specific fixes */
+    #floating-nav-root > * {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        pointer-events: auto !important;
+        position: relative;
+        z-index: 10000 !important;
+    }
+    
+    /* Ensure navigation links are clickable on iOS */
+    #floating-nav-root a {
+        -webkit-tap-highlight-color: rgba(249, 199, 79, 0.3);
+        pointer-events: auto !important;
+        cursor: pointer;
+        touch-action: manipulation;
+    }
+}
+
 /* Mobile Navbar - Ensure items stay within bounds */
 @media (max-width: 640px) {
     /* Ensure navbar container doesn't overflow */
