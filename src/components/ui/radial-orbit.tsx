@@ -13,235 +13,92 @@ export default function RadialOrbitalTimeline({
   timelineData,
 }: RadialOrbitalTimelineProps) {
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
-  const [viewMode] = useState<"orbital">("orbital");
-  const rotationAngleRef = useRef<number>(0);
   const [rotationAngle, setRotationAngle] = useState<number>(0);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const [pulseEffect, setPulseEffect] = useState<Record<number, boolean>>({});
-  const [centerOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [activeNodeId, setActiveNodeId] = useState<number | null>(null);
-  const [radius, setRadius] = useState<number>(350);
-  const [glowSize, setGlowSize] = useState<{ base: number; multiplier: number }>({ 
-    base: 60, 
-    multiplier: 0.8 
-  });
+  const [radius, setRadius] = useState<number>(200);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [isIOS, setIsIOS] = useState<boolean>(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
-  const orbitRef = useRef<HTMLDivElement>(null);
-  const nodeRefs = useRef<Record<number, HTMLDivElement | null>>({});
-  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const lastFrameTimeRef = useRef<number>(0);
-  const touchStartTimeRef = useRef<Record<number, number>>({});
-  const expandedItemsRef = useRef(expandedItems);
+  const rotationAngleRef = useRef<number>(0);
 
-  // iOS Detection
+  // Detect iOS
   useEffect(() => {
-    const detectIOS = () => {
-      const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      setIsIOS(isIOSDevice);
-      console.log('iOS Detection:', isIOSDevice);
-    };
-    detectIOS();
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    console.log('iOS detected:', isIOS);
   }, []);
 
-  // Responsive Radius/Glow-Size
+  // Responsive radius
   useEffect(() => {
-    const updateResponsiveSizes = () => {
+    const updateRadius = () => {
       const width = window.innerWidth;
       const mobile = width < 768;
       setIsMobile(mobile);
       
       if (mobile) {
-        setRadius(180);
-        setGlowSize({ base: 48, multiplier: 0.5 });
+        setRadius(140); // Kleinerer Radius für Mobile
       } else if (width < 1024) {
-        setRadius(260);
-        setGlowSize({ base: 54, multiplier: 0.65 });
+        setRadius(200);
       } else {
-        setRadius(320);
-        setGlowSize({ base: 58, multiplier: 0.75 });
+        setRadius(250);
       }
     };
 
-    updateResponsiveSizes();
-
-    const handleResize = () => {
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
-      }
-      resizeTimeoutRef.current = setTimeout(updateResponsiveSizes, 150);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
-      }
-    };
+    updateRadius();
+    window.addEventListener('resize', updateRadius);
+    return () => window.removeEventListener('resize', updateRadius);
   }, []);
 
-  // Sync expandedItems to ref
-  useEffect(() => {
-    expandedItemsRef.current = expandedItems;
-  }, [expandedItems]);
+  // Calculate position - SIMPLIFIED for iOS
+  const calculatePosition = useCallback((index: number, angle: number) => {
+    const totalItems = timelineData.length;
+    const itemAngle = (index / totalItems) * 360;
+    const currentAngle = (itemAngle + angle) % 360;
+    const radian = (currentAngle * Math.PI) / 180;
 
-  const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === containerRef.current || e.target === orbitRef.current) {
-      setExpandedItems({});
-      setActiveNodeId(null);
-      setPulseEffect({});
-      setAutoRotate(true);
-    }
-  };
-
-  const getRelatedItems = useCallback((itemId: number): number[] => {
-    const currentItem = timelineData.find((item) => item.id === itemId);
-    return currentItem ? currentItem.relatedIds : [];
-  }, [timelineData]);
-
-  const toggleItem = useCallback((id: number) => {
-    try {
-      setExpandedItems((prev) => {
-        const newState = { ...prev };
-        Object.keys(newState).forEach((key) => {
-          if (parseInt(key) !== id) {
-            newState[parseInt(key)] = false;
-          }
-        });
-        newState[id] = !prev[id];
-
-        if (!prev[id]) {
-          setActiveNodeId(id);
-          setAutoRotate(false);
-          const relatedItems = getRelatedItems(id);
-          const newPulseEffect: Record<number, boolean> = {};
-          relatedItems.forEach((relId) => {
-            newPulseEffect[relId] = true;
-          });
-          setPulseEffect(newPulseEffect);
-          
-          // Center view on node
-          const nodeIndex = timelineData.findIndex((item) => item.id === id);
-          const totalNodes = timelineData.length;
-          const targetAngle = (nodeIndex / totalNodes) * 360;
-          const newAngle = 270 - targetAngle;
-          rotationAngleRef.current = newAngle;
-          setRotationAngle(newAngle);
-        } else {
-          setActiveNodeId(null);
-          setAutoRotate(true);
-          setPulseEffect({});
-        }
-
-        return newState;
-      });
-    } catch (error) {
-      console.error('Error in toggleItem:', error);
-    }
-  }, [timelineData, getRelatedItems]);
-
-  // Touch handlers for iOS
-  const handleTouchStart = useCallback((id: number, e: React.TouchEvent) => {
-    try {
-      e.stopPropagation();
-      touchStartTimeRef.current[id] = Date.now();
-    } catch (error) {
-      console.error('Error in handleTouchStart:', error);
-    }
-  }, []);
-
-  const handleTouchEnd = useCallback((id: number, e: React.TouchEvent) => {
-    try {
-      e.stopPropagation();
-      e.preventDefault();
-      const touchDuration = touchStartTimeRef.current[id] 
-        ? Date.now() - touchStartTimeRef.current[id] 
-        : 0;
-      if (touchDuration < 500) {
-        toggleItem(id);
-      }
-    } catch (error) {
-      console.error('Error in handleTouchEnd:', error);
-    }
-  }, [toggleItem]);
-
-  // KRITISCH: Position-Berechnung als stabile Funktion
-  const calculatePosition = useCallback((index: number, currentAngle: number) => {
-    const angle = ((index / timelineData.length) * 360 + currentAngle) % 360;
-    const radian = (angle * Math.PI) / 180;
-
-    // iOS Safari: Verwende Math.round für pixelgenaue Positionierung
+    // iOS Safari: Simple calculations with rounding
     const x = Math.round(radius * Math.cos(radian));
     const y = Math.round(radius * Math.sin(radian));
-    const zIndex = Math.round(100 + 50 * Math.cos(radian));
-    const opacity = Math.max(0.4, Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2)));
+    
+    // Z-depth for layering
+    const z = Math.round(50 + 50 * Math.cos(radian));
+    
+    // Opacity based on position
+    const opacity = 0.5 + 0.5 * ((1 + Math.sin(radian)) / 2);
 
-    return { x, y, angle, zIndex, opacity };
+    return { x, y, z, opacity: Math.max(0.4, Math.min(1, opacity)) };
   }, [timelineData.length, radius]);
 
-  // KRITISCH: Initiale Positionen für SSR/Initial Render
-  const initialPositions = useMemo(() => {
-    return timelineData.map((_, index) => 
-      calculatePosition(index, rotationAngle)
-    );
-  }, [timelineData, rotationAngle, calculatePosition]);
+  // Current positions state
+  const [positions, setPositions] = useState(() => 
+    timelineData.map((_, i) => calculatePosition(i, 0))
+  );
 
-  // KRITISCH: State für aktuelle Positionen (wird von Animation aktualisiert)
-  const [currentPositions, setCurrentPositions] = useState(initialPositions);
-
-  // Update positions when rotation angle changes (for manual rotation)
+  // Animation loop
   useEffect(() => {
-    const newPositions = timelineData.map((_, index) => 
-      calculatePosition(index, rotationAngle)
-    );
-    setCurrentPositions(newPositions);
-  }, [rotationAngle, timelineData, calculatePosition]);
+    if (!autoRotate) return;
 
-  // Animation Loop mit requestAnimationFrame
-  useEffect(() => {
-    if (!autoRotate || viewMode !== "orbital") {
-      return;
-    }
+    let isRunning = true;
+    const speed = isMobile ? 0.1 : 0.15; // Slower on mobile
 
-    let shouldAnimate = true;
-    const rotationSpeed = isMobile ? 0.15 : 0.2;
+    const animate = (time: number) => {
+      if (!isRunning) return;
 
-    const animate = (currentTime: number) => {
-      if (!shouldAnimate) return;
-
-      const deltaTime = currentTime - lastFrameTimeRef.current;
-      const angleIncrement = (rotationSpeed * deltaTime) / 16.67;
-
-      rotationAngleRef.current = (rotationAngleRef.current + angleIncrement) % 360;
-      lastFrameTimeRef.current = currentTime;
+      const delta = time - lastFrameTimeRef.current;
+      const increment = (speed * delta) / 16.67;
+      
+      rotationAngleRef.current = (rotationAngleRef.current + increment) % 360;
+      lastFrameTimeRef.current = time;
 
       // Update positions
-      const newPositions = timelineData.map((_, index) => 
-        calculatePosition(index, rotationAngleRef.current)
+      const newPositions = timelineData.map((_, i) => 
+        calculatePosition(i, rotationAngleRef.current)
       );
-      setCurrentPositions(newPositions);
-
-      // iOS Safari: Direkte DOM-Updates für flüssige Animation
-      timelineData.forEach((item, index) => {
-        const nodeElement = nodeRefs.current[item.id];
-        if (!nodeElement) return;
-
-        const pos = newPositions[index];
-        const isExpanded = expandedItemsRef.current[item.id];
-        const finalOpacity = isExpanded ? 1 : pos.opacity;
-
-        // iOS Safari: Vollständige WebKit-Prefixes
-        const transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
-        nodeElement.style.webkitTransform = transform;
-        nodeElement.style.transform = transform;
-        nodeElement.style.opacity = String(finalOpacity);
-        nodeElement.style.zIndex = String(isExpanded ? 200 : pos.zIndex);
-      });
+      setPositions(newPositions);
 
       animationFrameRef.current = requestAnimationFrame(animate);
     };
@@ -250,267 +107,260 @@ export default function RadialOrbitalTimeline({
     animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      shouldAnimate = false;
-      if (animationFrameRef.current !== null) {
+      isRunning = false;
+      if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [autoRotate, viewMode, isMobile, timelineData, calculatePosition]);
+  }, [autoRotate, isMobile, timelineData, calculatePosition]);
+
+  const handleContainerClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === containerRef.current) {
+      setExpandedItems({});
+      setActiveNodeId(null);
+      setPulseEffect({});
+      setAutoRotate(true);
+    }
+  }, []);
+
+  const getRelatedItems = useCallback((itemId: number): number[] => {
+    const item = timelineData.find(i => i.id === itemId);
+    return item?.relatedIds || [];
+  }, [timelineData]);
+
+  const toggleItem = useCallback((id: number) => {
+    setExpandedItems(prev => {
+      const newState = Object.keys(prev).reduce((acc, key) => {
+        acc[parseInt(key)] = parseInt(key) === id ? !prev[id] : false;
+        return acc;
+      }, {} as Record<number, boolean>);
+      
+      newState[id] = !prev[id];
+
+      if (!prev[id]) {
+        setActiveNodeId(id);
+        setAutoRotate(false);
+        
+        const related = getRelatedItems(id);
+        const pulses: Record<number, boolean> = {};
+        related.forEach(relId => { pulses[relId] = true; });
+        setPulseEffect(pulses);
+        
+        // Center on node
+        const index = timelineData.findIndex(i => i.id === id);
+        const targetAngle = (index / timelineData.length) * 360;
+        rotationAngleRef.current = 270 - targetAngle;
+      } else {
+        setActiveNodeId(null);
+        setAutoRotate(true);
+        setPulseEffect({});
+      }
+
+      return newState;
+    });
+  }, [timelineData, getRelatedItems]);
 
   const isRelatedToActive = useCallback((itemId: number): boolean => {
     if (!activeNodeId) return false;
-    const relatedItems = getRelatedItems(activeNodeId);
-    return relatedItems.includes(itemId);
+    return getRelatedItems(activeNodeId).includes(itemId);
   }, [activeNodeId, getRelatedItems]);
 
   const getStatusStyles = (status: RadialOrbitItem["status"]): string => {
     switch (status) {
-      case "completed":
-        return "text-white bg-black border-white";
-      case "in-progress":
-        return "text-black bg-white border-black";
-      case "pending":
-        return "text-white bg-black/40 border-white/50";
-      default:
-        return "text-white bg-black/40 border-white/50";
+      case "completed": return "text-white bg-black border-white";
+      case "in-progress": return "text-black bg-white border-black";
+      case "pending": return "text-white bg-black/40 border-white/50";
+      default: return "text-white bg-black/40 border-white/50";
     }
   };
 
   return (
     <div
-      className="w-full min-h-[600px] md:min-h-[700px] lg:min-h-[900px] flex flex-col items-center justify-center bg-transparent overflow-visible relative"
       ref={containerRef}
       onClick={handleContainerClick}
+      className="w-full min-h-screen flex items-center justify-center bg-transparent relative"
+      style={{
+        minHeight: isMobile ? "600px" : "800px",
+        padding: isMobile ? "80px 20px" : "100px 40px",
+      }}
     >
-      <div className="relative w-full max-w-6xl flex items-center justify-center py-12 md:py-16 lg:py-20 min-h-[600px] md:min-h-[700px] lg:min-h-[900px]">
-        {/* iOS Safari: Perspective Wrapper (separiert von Transform Container) */}
+      {/* Orbit Container - SIMPLIFIED */}
+      <div
+        className="relative flex items-center justify-center"
+        style={{
+          width: `${radius * 2 + 200}px`,
+          height: `${radius * 2 + 200}px`,
+          maxWidth: "90vw",
+          maxHeight: "90vh",
+        }}
+      >
+        {/* Center Hub */}
         <div
-          className="absolute w-full h-full flex items-center justify-center"
+          className="absolute left-1/2 top-1/2 rounded-full bg-gradient-to-br from-[#f9c74f] via-[#d4af3a] to-[#51646f] flex items-center justify-center shadow-xl shadow-[#f9c74f]/50"
           style={{
-            WebkitPerspective: "1000px",
-            perspective: "1000px",
-            WebkitPerspectiveOrigin: "center center",
-            perspectiveOrigin: "center center",
+            width: isMobile ? "60px" : "80px",
+            height: isMobile ? "60px" : "80px",
+            marginLeft: isMobile ? "-30px" : "-40px",
+            marginTop: isMobile ? "-30px" : "-40px",
+            zIndex: 5,
           }}
         >
-          {/* iOS Safari: Transform Container */}
           <div
-            ref={orbitRef}
-            className="absolute w-full h-full flex items-center justify-center"
+            className="rounded-full bg-white/90 shadow-lg"
             style={{
-              WebkitTransformStyle: "preserve-3d",
-              transformStyle: "preserve-3d",
-              WebkitTransform: `translate3d(${centerOffset.x}px, ${centerOffset.y}px, 0)`,
-              transform: `translate3d(${centerOffset.x}px, ${centerOffset.y}px, 0)`,
-              WebkitBackfaceVisibility: "hidden",
-              backfaceVisibility: "hidden",
-              willChange: autoRotate ? "transform" : "auto",
+              width: isMobile ? "28px" : "36px",
+              height: isMobile ? "28px" : "36px",
             }}
-          >
-            {/* Center Hub */}
-            <div 
-              className="absolute rounded-full bg-gradient-to-br from-[#f9c74f] via-[#d4af3a] to-[#51646f] flex items-center justify-center z-10 shadow-xl shadow-[#f9c74f]/50"
-              style={{
-                width: isMobile ? "64px" : "80px",
-                height: isMobile ? "64px" : "80px",
-                WebkitBorderRadius: "50%",
-                borderRadius: "50%",
-                WebkitTransform: "translate3d(0, 0, 0)",
-                transform: "translate3d(0, 0, 0)",
-                WebkitBackfaceVisibility: "hidden",
-                backfaceVisibility: "hidden",
+          />
+        </div>
+
+        {/* Orbit Ring */}
+        <div
+          className="absolute left-1/2 top-1/2 rounded-full border border-[#f9c74f]/20"
+          style={{
+            width: `${radius * 2}px`,
+            height: `${radius * 2}px`,
+            marginLeft: `-${radius}px`,
+            marginTop: `-${radius}px`,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Orbital Nodes */}
+        {timelineData.map((item, index) => {
+          const pos = positions[index];
+          const isExpanded = expandedItems[item.id];
+          const isRelated = isRelatedToActive(item.id);
+          const isPulsing = pulseEffect[item.id];
+          const Icon = item.icon;
+
+          // iOS Safari: Direct positioning with left/top instead of transform
+          const nodeStyle: React.CSSProperties = {
+            position: "absolute",
+            // Center the orbit container, then offset by calculated position
+            left: "50%",
+            top: "50%",
+            // iOS Safari: Use margin for positioning (more reliable than transform on iOS)
+            marginLeft: `${pos.x - 32}px`, // 32 = half of node width (64px)
+            marginTop: `${pos.y - 32}px`,  // 32 = half of node height (64px)
+            zIndex: isExpanded ? 200 : pos.z,
+            opacity: isExpanded ? 1 : pos.opacity,
+            transition: "opacity 0.3s ease-out, margin 0.3s ease-out",
+            cursor: "pointer",
+          };
+
+          return (
+            <div
+              key={item.id}
+              style={nodeStyle}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleItem(item.id);
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleItem(item.id);
               }}
             >
-              {!isMobile && (
-                <>
-                  <div 
-                    className="absolute rounded-full border border-[#f9c74f]/30 animate-ping opacity-70"
-                    style={{
-                      width: "112px",
-                      height: "112px",
-                      WebkitBorderRadius: "50%",
-                      borderRadius: "50%",
-                      WebkitTransform: "translate3d(0, 0, 0)",
-                      transform: "translate3d(0, 0, 0)",
-                      pointerEvents: "none",
-                    }}
-                  />
-                  <div
-                    className="absolute rounded-full border border-[#f9c74f]/20 animate-ping opacity-50"
-                    style={{
-                      width: "144px",
-                      height: "144px",
-                      animationDelay: "0.5s",
-                      WebkitBorderRadius: "50%",
-                      borderRadius: "50%",
-                      WebkitTransform: "translate3d(0, 0, 0)",
-                      transform: "translate3d(0, 0, 0)",
-                      pointerEvents: "none",
-                    }}
-                  />
-                </>
-              )}
-              <div 
-                className="rounded-full bg-white/90 backdrop-blur-md shadow-lg"
+              {/* Glow Effect */}
+              <div
+                className={`absolute rounded-full ${isPulsing ? "animate-pulse" : ""}`}
                 style={{
-                  width: isMobile ? "32px" : "48px",
-                  height: isMobile ? "32px" : "48px",
-                  WebkitBorderRadius: "50%",
-                  borderRadius: "50%",
-                  WebkitTransform: "translate3d(0, 0, 0)",
-                  transform: "translate3d(0, 0, 0)",
+                  width: `${item.energy * 0.6 + 50}px`,
+                  height: `${item.energy * 0.6 + 50}px`,
+                  left: "50%",
+                  top: "50%",
+                  marginLeft: `${-(item.energy * 0.6 + 50) / 2}px`,
+                  marginTop: `${-(item.energy * 0.6 + 50) / 2}px`,
+                  background: `radial-gradient(circle, rgba(249,199,79,0.3) 0%, transparent 70%)`,
+                  pointerEvents: "none",
+                  zIndex: -1,
                 }}
               />
-            </div>
 
-            {/* Orbit Ring */}
-            <div 
-              className="absolute rounded-full border border-[#f9c74f]/20 shadow-inner"
-              style={{
-                width: `${radius * 2}px`,
-                height: `${radius * 2}px`,
-                WebkitBorderRadius: "50%",
-                borderRadius: "50%",
-                WebkitTransform: "translate3d(0, 0, 0)",
-                transform: "translate3d(0, 0, 0)",
-                pointerEvents: "none",
-              }}
-            />
+              {/* Node Circle */}
+              <div
+                className={`
+                  flex items-center justify-center rounded-full
+                  ${isExpanded ? "bg-white text-black" : isRelated ? "bg-[#f9c74f]/80 text-black" : "bg-[#51646f]/90 text-white"}
+                  border-2
+                  ${isExpanded ? "border-white shadow-lg" : isRelated ? "border-[#f9c74f] animate-pulse" : "border-[#f9c74f]/50"}
+                  transition-all duration-300
+                  ${isExpanded ? "scale-150" : "hover:scale-110"}
+                `}
+                style={{
+                  width: "64px",
+                  height: "64px",
+                  position: "relative",
+                }}
+              >
+                <Icon className="w-6 h-6" />
+              </div>
 
-            {/* Orbital Nodes */}
-            {timelineData.map((item, index) => {
-              const position = currentPositions[index] || initialPositions[index];
-              const isExpanded = expandedItems[item.id];
-              const isRelated = isRelatedToActive(item.id);
-              const isPulsing = pulseEffect[item.id];
-              const Icon = item.icon;
+              {/* Title */}
+              <div
+                className={`
+                  absolute whitespace-nowrap text-center font-semibold tracking-wider
+                  ${isExpanded ? "text-[#f9c74f] scale-125" : "text-white/90"}
+                `}
+                style={{
+                  top: "72px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  fontSize: isMobile ? "0.7rem" : "0.875rem",
+                  textShadow: isExpanded
+                    ? "0 0 8px rgba(249,199,79,0.8)"
+                    : "0 2px 6px rgba(0,0,0,1), 0 0 8px rgba(249,199,79,0.6)",
+                  pointerEvents: "none",
+                  maxWidth: "120px",
+                  lineHeight: "1.2",
+                }}
+              >
+                {item.title}
+              </div>
 
-              return (
+              {/* Expanded Card */}
+              {isExpanded && (
                 <div
-                  key={item.id}
-                  ref={(el) => (nodeRefs.current[item.id] = el)}
-                  className="absolute cursor-pointer transition-all duration-300 ease-out"
+                  className="fixed inset-0 flex items-center justify-center z-[9999] p-4"
                   style={{
-                    // KRITISCH: Initiale Transform-Werte im Style (nicht nur via DOM)
-                    WebkitTransform: `translate3d(${position.x}px, ${position.y}px, 0)`,
-                    transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
-                    zIndex: isExpanded ? 200 : position.zIndex,
-                    opacity: isExpanded ? 1 : position.opacity,
-                    WebkitBackfaceVisibility: "hidden",
-                    backfaceVisibility: "hidden",
-                    willChange: autoRotate ? "transform, opacity" : "auto",
+                    backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    backdropFilter: "blur(8px)",
                   }}
-                  onTouchStart={(e) => handleTouchStart(item.id, e)}
-                  onTouchEnd={(e) => handleTouchEnd(item.id, e)}
                   onClick={(e) => {
                     e.stopPropagation();
-                    if (!('ontouchstart' in window)) {
-                      toggleItem(item.id);
-                    }
+                    toggleItem(item.id);
                   }}
                 >
-                  {/* Glow Effect */}
-                  <div
-                    className={`absolute rounded-full ${isPulsing ? "animate-pulse" : ""}`}
-                    style={{
-                      width: `${item.energy * glowSize.multiplier + glowSize.base}px`,
-                      height: `${item.energy * glowSize.multiplier + glowSize.base}px`,
-                      left: "50%",
-                      top: "50%",
-                      WebkitTransform: "translate3d(-50%, -50%, 0)",
-                      transform: "translate3d(-50%, -50%, 0)",
-                      boxShadow: `0 0 ${item.energy * 0.8 + 20}px rgba(249,199,79,0.4)`,
-                      WebkitBorderRadius: "50%",
-                      borderRadius: "50%",
-                      pointerEvents: "none",
-                      zIndex: -1,
-                    }}
-                  />
-
-                  {/* Node Icon Container */}
-                  <div
-                    className={`
-                      flex items-center justify-center
-                      ${isExpanded ? "bg-white text-black" : isRelated ? "bg-[#f9c74f]/80 text-black" : "bg-[#51646f]/90 text-white"}
-                      border-2
-                      ${isExpanded ? "border-white shadow-lg shadow-[#f9c74f]/50" : isRelated ? "border-[#f9c74f] animate-pulse" : "border-[#f9c74f]/50"}
-                      transition-transform duration-300
-                      ${isExpanded ? "scale-150" : "hover:scale-110"}
-                    `}
-                    style={{
-                      width: isMobile ? "56px" : "64px",
-                      height: isMobile ? "56px" : "64px",
-                      WebkitBorderRadius: "50%",
-                      borderRadius: "50%",
-                      overflow: "hidden",
-                      WebkitTransform: "translate3d(0, 0, 0)",
-                      transform: "translate3d(0, 0, 0)",
-                      WebkitBackfaceVisibility: "hidden",
-                      backfaceVisibility: "hidden",
-                    }}
+                  <Card
+                    className="w-full max-w-md bg-black/95 border-white/30 shadow-2xl"
+                    onClick={(e) => e.stopPropagation()}
                   >
-                    <Icon className={isMobile ? "w-5 h-5" : "w-6 h-6"} />
-                  </div>
-
-                  {/* Node Title */}
-                  <div
-                    className={`
-                      absolute whitespace-nowrap font-semibold tracking-wider
-                      ${isExpanded ? "text-[#f9c74f] scale-125" : "text-white/90"}
-                    `}
-                    style={{
-                      top: isMobile ? "68px" : "76px",
-                      left: "50%",
-                      WebkitTransform: "translateX(-50%)",
-                      transform: "translateX(-50%)",
-                      fontSize: isMobile ? "0.75rem" : "0.875rem",
-                      textShadow: isExpanded 
-                        ? "0 0 8px rgba(249,199,79,0.8)" 
-                        : "0 2px 4px rgba(0,0,0,0.9), 0 0 6px rgba(249,199,79,0.5)",
-                      WebkitFontSmoothing: "antialiased",
-                      pointerEvents: "none",
-                      zIndex: 100,
-                    }}
-                  >
-                    {item.title}
-                  </div>
-
-                  {/* Expanded Card */}
-                  {isExpanded && (
-                    <div
-                      className="fixed inset-0 flex items-center justify-center z-[9999] px-4"
-                      style={{
-                        pointerEvents: "none",
-                      }}
-                    >
-                      <Card 
-                        className="w-full max-w-md bg-black/95 backdrop-blur-lg border-white/30 shadow-xl"
-                        style={{
-                          pointerEvents: "auto",
-                          backdropFilter: "blur(20px)",
-                          WebkitBackdropFilter: "blur(20px)",
-                        }}
-                      >
-                        <CardHeader className="pb-3">
-                          <div className="flex justify-between items-center gap-2">
-                            <Badge className={`px-2 text-xs ${getStatusStyles(item.status)}`}>
-                              {item.status === "completed" ? "COMPLETE" : item.status === "in-progress" ? "IN PROGRESS" : "PENDING"}
-                            </Badge>
-                            <span className="text-xs font-mono text-white/50">{item.date}</span>
-                          </div>
-                          <CardTitle className="text-lg mt-3">{item.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="text-sm text-white/80">
-                          <p>{item.content}</p>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  )}
+                    <CardHeader className="pb-3">
+                      <div className="flex justify-between items-center gap-2 mb-3">
+                        <Badge className={`px-2 text-xs ${getStatusStyles(item.status)}`}>
+                          {item.status === "completed"
+                            ? "COMPLETE"
+                            : item.status === "in-progress"
+                            ? "IN PROGRESS"
+                            : "PENDING"}
+                        </Badge>
+                        <span className="text-xs font-mono text-white/50">
+                          {item.date}
+                        </span>
+                      </div>
+                      <CardTitle className="text-lg text-white">{item.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="text-sm text-white/80">
+                      <p>{item.content}</p>
+                    </CardContent>
+                  </Card>
                 </div>
-              );
-            })}
-          </div>
-        </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
