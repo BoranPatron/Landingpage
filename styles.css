@@ -770,74 +770,55 @@ ul, ol {
     /* contain: layout style !important; */ /* DEAKTIVIERT */
 }
 
-/* iOS Safari Fixes for Floating Navbar - MAXIMUM PRIORITY */
+/* iOS Safari Fixes for Floating Navbar - Consolidated & Optimized */
 @supports (-webkit-touch-callout: none) {
-    /* iOS Safari specific fixes - Use reasonable z-index */
+    /* iOS Safari: Ensure navbar is always on top of content */
+    body {
+        position: relative;
+        z-index: 0;
+    }
+    
+    /* iOS Safari: Prevent content from overlaying navbar */
+    main,
+    section {
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* iOS Safari: Navbar container - Consolidated rules */
     .floating-navbar-container {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-        -webkit-backface-visibility: hidden !important;
-        backface-visibility: hidden !important;
-        pointer-events: auto !important;
+        /* Positioning & Stacking */
         position: fixed !important;
         z-index: 9999 !important;
-        touch-action: manipulation !important;
-        will-change: transform !important;
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        /* iOS Safari: Backdrop filter with fallback */
-        background: rgba(81, 100, 111, 0.85) !important;
-        -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
-        backdrop-filter: blur(12px) saturate(150%) !important;
-        /* iOS Safari: Containment REMOVED - blockiert pointer events in iOS 18 */
-        /* contain: layout style !important; */ /* DEAKTIVIERT */
-    }
-    
-    /* Ensure navigation links are clickable on iOS */
-    #floating-nav-root a,
-    .floating-navbar-container a {
-        -webkit-tap-highlight-color: rgba(249, 199, 79, 0.3) !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-        touch-action: manipulation !important;
-        -webkit-touch-callout: none !important;
-        -webkit-user-select: none !important;
-        user-select: none !important;
-        position: relative !important;
-        z-index: inherit !important;
-    }
-    
-    /* Ensure navbar container is always clickable */
-    #floating-nav-root > * > *,
-    .floating-navbar-container > * {
-        pointer-events: auto !important;
-        touch-action: manipulation !important;
-    }
-    
-    /* Force navbar above everything */
-    .floating-navbar-container nav {
-        pointer-events: auto !important;
-        touch-action: manipulation !important;
-        z-index: inherit !important;
-        position: relative !important;
-    }
-    
-    /* iOS 18 Safari: Additional Stacking Context Fix */
-    .floating-navbar-container {
         isolation: isolate !important;
+        
+        /* Transform & Hardware Acceleration */
         transform: translateZ(0) !important;
         -webkit-transform: translateZ(0) !important;
         transform-style: preserve-3d !important;
         -webkit-transform-style: preserve-3d !important;
-    }
-    
-    /* iOS 18 Safari: Ensure all child elements respect pointer events */
-    .floating-navbar-container * {
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+        will-change: transform !important;
+        
+        /* Visibility & Display */
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        
+        /* Pointer Events & Touch */
         pointer-events: auto !important;
+        touch-action: manipulation !important;
+        
+        /* Background & Backdrop */
+        background: rgba(81, 100, 111, 0.85) !important;
+        -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
+        backdrop-filter: blur(12px) saturate(150%) !important;
+        
+        /* iOS Safari: Containment REMOVED - blockiert pointer events in iOS 18 */
     }
     
-    /* iOS 18 Safari: Fix for backdrop-filter stacking context issues */
+    /* iOS Safari: Fix for backdrop-filter stacking context issues */
     .floating-navbar-container::before {
         content: '';
         position: absolute;
@@ -846,24 +827,42 @@ ul, ol {
         pointer-events: none;
         z-index: -1;
     }
-}
-
-/* iOS 18 Safari: Additional fixes for Liquid Glass Design */
-@supports (-webkit-touch-callout: none) {
-    /* iOS 18: Ensure navbar is always on top of content */
-    body {
-        position: relative;
-        z-index: 0;
+    
+    /* iOS Safari: Ensure all child elements respect pointer events */
+    .floating-navbar-container * {
+        pointer-events: auto !important;
     }
     
-    /* iOS 18: Prevent content from overlaying navbar */
-    main,
-    section {
-        position: relative;
-        z-index: 1;
+    /* Navigation links - clickable on iOS */
+    #floating-nav-root a,
+    .floating-navbar-container a {
+        position: relative !important;
+        z-index: inherit !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: rgba(249, 199, 79, 0.3) !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        user-select: none !important;
     }
     
-    /* iOS 18: Explicit touch target sizes */
+    /* Navbar container children */
+    #floating-nav-root > * > *,
+    .floating-navbar-container > * {
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+    }
+    
+    /* Navbar nav element */
+    .floating-navbar-container nav {
+        position: relative !important;
+        z-index: inherit !important;
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+    }
+    
+    /* iOS 18: Explicit touch target sizes for mobile */
     @media (max-width: 640px) {
         .floating-navbar-container a {
             min-width: 44px !important;
@@ -879,12 +878,24 @@ ul, ol {
 @media (max-width: 640px) {
     /* iOS Safari: Mobile positioning adjustments with safe area insets */
     .floating-navbar-container {
-        top: max(1.5rem, env(safe-area-inset-top)) !important; /* 24px or safe area, whichever is larger */
+        /* Top position: Account for Safari browser UI and safe area */
+        /* Safari UI can be up to 88px on iPhone with Dynamic Island, safe area usually 44-59px */
+        top: max(1.5rem, calc(env(safe-area-inset-top) + 0.5rem)) !important;
         left: max(1rem, env(safe-area-inset-left)) !important;
         right: max(1rem, env(safe-area-inset-right)) !important;
         padding: 0.625rem 0.75rem !important;
-        padding-top: max(0.625rem, env(safe-area-inset-top)) !important;
+        padding-top: max(0.625rem, calc(env(safe-area-inset-top) + 0.25rem)) !important;
         padding-bottom: max(0.625rem, env(safe-area-inset-bottom)) !important;
+        /* Ensure navbar doesn't overlap with Safari UI */
+        margin-top: 0 !important;
+    }
+    
+    /* iOS Safari: Additional fix for Safari browser UI variations */
+    @supports (-webkit-touch-callout: none) {
+        .floating-navbar-container {
+            /* Safari with tab bar at bottom: add extra top margin */
+            top: max(1.5rem, max(env(safe-area-inset-top), 24px)) !important;
+        }
     }
     
     /* Ensure navbar container doesn't overflow */

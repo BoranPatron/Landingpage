@@ -22,8 +22,9 @@ const sectionNames: { [key: string]: string } = {
 
 export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
   const [activeSectionName, setActiveSectionName] = useState<string>("Zukunft");
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
-  // iOS Safari: Ensure body overflow-y is set correctly
+  // iOS Safari: Ensure body overflow-y is set correctly and component is mounted
   useEffect(() => {
     // Ensure body has overflow-y: auto for iOS Safari
     const body = document.body;
@@ -34,7 +35,43 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     if (html && html.style.overflowY !== 'auto') {
       html.style.overflowY = 'auto';
     }
+    
+    // iOS Safari: Mark as mounted after short delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 50);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
+
+  // iOS Safari: Ensure navbar container is clickable after render
+  useEffect(() => {
+    if (!isMounted) return;
+    
+    // Wait a bit for React to render the navbar
+    const timer = setTimeout(() => {
+      const navbarContainer = document.querySelector('.floating-navbar-container');
+      if (navbarContainer) {
+        // Force repaint to ensure navbar is clickable on iOS Safari
+        const container = navbarContainer as HTMLElement;
+        container.style.display = 'flex';
+        container.style.visibility = 'visible';
+        container.style.opacity = '1';
+        container.style.pointerEvents = 'auto';
+        container.style.zIndex = '9999';
+        
+        // iOS Safari: Force hardware acceleration
+        container.style.transform = 'translateZ(0)';
+        container.style.webkitTransform = 'translateZ(0)';
+      }
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isMounted]);
 
   // Track active section with IntersectionObserver
   useEffect(() => {
@@ -93,6 +130,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>, 
     href: string
   ) => {
+    // iOS Safari: Prevent default and stop propagation
     e.preventDefault();
     e.stopPropagation();
     
@@ -110,10 +148,35 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     }
   };
 
+  // iOS Safari: Enhanced touch handler with fallback
+  const handleTouchStart = (
+    e: React.TouchEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    // iOS Safari: Allow touch events to propagate but ensure they're handled
+    e.stopPropagation();
+  };
+
+  // iOS Safari: Enhanced click handler with fallback
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    handleLinkClick(e, href);
+    // iOS Safari: Ensure click event doesn't bubble to parent
+    e.stopPropagation();
+    return false;
+  };
+
   const isActiveSection = (link: string) => {
     const sectionName = sectionNames[link] || link.replace("#", "");
     return activeSectionName === sectionName;
   };
+
+  // iOS Safari: Don't render until mounted to ensure DOM is ready
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div
@@ -172,8 +235,10 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
       {/* Logo */}
       <a
         href="#hero"
-        onClick={(e) => handleLinkClick(e, "#hero")}
+        onClick={(e) => handleClick(e, "#hero")}
+        onTouchStart={(e) => handleTouchStart(e, "#hero")}
         onTouchEnd={(e) => handleLinkClick(e, "#hero")}
+        onTouchCancel={(e) => e.stopPropagation()}
         aria-label="Zur Startseite - BuildWise"
         className="flex items-center flex-shrink-0 hover:opacity-80 transition-opacity"
         style={{
@@ -222,8 +287,10 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
             <a
               key={`nav-link-${idx}`}
               href={navItem.link}
-              onClick={(e) => handleLinkClick(e, navItem.link)}
+              onClick={(e) => handleClick(e, navItem.link)}
+              onTouchStart={(e) => handleTouchStart(e, navItem.link)}
               onTouchEnd={(e) => handleLinkClick(e, navItem.link)}
+              onTouchCancel={(e) => e.stopPropagation()}
               aria-label={`Navigation zu ${navItem.name}`}
               aria-current={isActive ? 'page' : undefined}
               className={cn(
