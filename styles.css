@@ -737,8 +737,7 @@ ul, ol {
 }
 
 /* Global fix: Ensure navbar is always visible and clickable */
-.floating-navbar-container,
-#floating-nav-root > * {
+.floating-navbar-container {
     z-index: 2147483647 !important;
     position: fixed !important;
     pointer-events: auto !important;
@@ -750,8 +749,6 @@ ul, ol {
 /* iOS Safari Fixes for Floating Navbar - MAXIMUM PRIORITY */
 @supports (-webkit-touch-callout: none) {
     /* iOS Safari specific fixes - Force highest z-index */
-    #floating-nav-root,
-    #floating-nav-root > *,
     .floating-navbar-container {
         -webkit-transform: translate3d(0, 0, 0) !important;
         transform: translate3d(0, 0, 0) !important;
@@ -768,7 +765,6 @@ ul, ol {
     }
     
     /* Ensure navigation links are clickable on iOS */
-    #floating-nav-root a,
     .floating-navbar-container a {
         -webkit-tap-highlight-color: rgba(249, 199, 79, 0.3) !important;
         pointer-events: auto !important;
@@ -782,7 +778,6 @@ ul, ol {
     }
     
     /* Ensure navbar container is always clickable */
-    #floating-nav-root > * > *,
     .floating-navbar-container > * {
         pointer-events: auto !important;
         touch-action: manipulation !important;
