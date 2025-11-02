@@ -125,11 +125,13 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
           // iOS Safari: Ensure clickability and proper stacking
           position: 'fixed',
           pointerEvents: 'auto',
+          touchAction: 'manipulation',
           WebkitTransform: 'translate3d(0, 0, 0)',
           transform: 'translate3d(0, 0, 0)',
           WebkitBackfaceVisibility: 'hidden',
           backfaceVisibility: 'hidden',
           zIndex: 99999,
+          WebkitTouchCallout: 'none',
         }}
       >
         {/* Logo */}
@@ -138,6 +140,12 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
           onClick={(e) => handleLinkClick(e, "#hero")}
           aria-label="Zur Startseite - BuildWise"
           className="flex items-center pr-2 sm:pr-6 hover:opacity-80 transition-opacity flex-shrink-0"
+          style={{
+            WebkitTapHighlightColor: 'rgba(249, 199, 79, 0.3)',
+            touchAction: 'manipulation',
+            pointerEvents: 'auto',
+            cursor: 'pointer',
+          }}
         >
           <img 
             src="/favicon.png" 
@@ -172,6 +180,13 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
                 )}
                 style={{
                   textShadow: isActive ? '0 0 10px rgba(249,199,79,0.5)' : 'none',
+                  WebkitTapHighlightColor: 'rgba(249, 199, 79, 0.3)',
+                  touchAction: 'manipulation',
+                  pointerEvents: 'auto',
+                  cursor: 'pointer',
+                  WebkitTouchCallout: 'none',
+                  WebkitUserSelect: 'none',
+                  userSelect: 'none',
                 }}
               >
                 {navItem.icon && (
