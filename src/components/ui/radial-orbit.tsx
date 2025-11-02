@@ -16,7 +16,9 @@ export default function RadialOrbitalTimeline({
     {}
   );
   const [viewMode, setViewMode] = useState<"orbital">("orbital");
-  const [rotationAngle, setRotationAngle] = useState<number>(0);
+  // useRef für rotationAngle verhindert Re-Renders während Animation
+  const rotationAngleRef = useRef<number>(0);
+  const [rotationAngle, setRotationAngle] = useState<number>(0); // Nur für initial render
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const [pulseEffect, setPulseEffect] = useState<Record<number, boolean>>({});
   const [centerOffset, setCenterOffset] = useState<{ x: number; y: number }>({
@@ -31,6 +33,8 @@ export default function RadialOrbitalTimeline({
   const orbitRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Record<number, HTMLDivElement | null>>({});
   const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastFrameTimeRef = useRef<number>(0);
 
   // Mobile Detection und Responsive Radius/Glow-Size basierend auf Screen-Size
   useEffect(() => {
@@ -112,26 +116,70 @@ export default function RadialOrbitalTimeline({
     });
   };
 
-  // Rotation-Interval: Desktop 50ms (20 FPS), Mobile 80ms (12.5 FPS) für bessere Performance
+  // requestAnimationFrame für perfekte 60 FPS Synchronisation mit Browser-Repaints
+  // expandedItems wird via ref gehandhabt um Closure-Probleme zu vermeiden
+  const expandedItemsRef = useRef(expandedItems);
   useEffect(() => {
-    let rotationTimer: NodeJS.Timeout;
+    expandedItemsRef.current = expandedItems;
+  }, [expandedItems]);
+
+  useEffect(() => {
+    let shouldAnimate = false;
+
+    const animate = (currentTime: number) => {
+      if (!shouldAnimate) return;
+
+      const deltaTime = currentTime - lastFrameTimeRef.current;
+      const rotationSpeed = isMobile ? 0.15 : 0.2; // Langsamere Rotation auf Mobile (Grad pro Frame bei 60 FPS)
+      
+      // Angle-Increment basierend auf Frame-Time für konstante Geschwindigkeit
+      const angleIncrement = (rotationSpeed * deltaTime) / 16.67; // Normalisiert auf 16.67ms (60 FPS)
+
+      rotationAngleRef.current = (rotationAngleRef.current + angleIncrement) % 360;
+      lastFrameTimeRef.current = currentTime;
+
+      // Direkte DOM-Updates für alle Nodes (vermeidet Re-Renders)
+      timelineData.forEach((item, index) => {
+        const nodeElement = nodeRefs.current[item.id];
+        if (!nodeElement) return;
+
+        const angle = ((index / timelineData.length) * 360 + rotationAngleRef.current) % 360;
+        const radian = (angle * Math.PI) / 180;
+
+        // Sub-Pixel-Rounding für alle Browser (eliminiert jitter)
+        const x = Math.round(radius * Math.cos(radian) + centerOffset.x);
+        const y = Math.round(radius * Math.sin(radian) + centerOffset.y);
+        
+        // Opacity wird nur berechnet wenn nicht expanded (expanded = immer 1)
+        const expandedState = expandedItemsRef.current[item.id];
+        const opacity = expandedState 
+          ? 1 
+          : Math.max(0.4, Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2)));
+
+        // Direkte DOM-Updates mit Browser-spezifischen Prefixes für Safari, Chrome und Firefox
+        const transform = `translate3d(${x}px, ${y}px, 0)`;
+        nodeElement.style.transform = transform;
+        nodeElement.style.webkitTransform = transform;
+        (nodeElement.style as any).MozTransform = transform; // Firefox prefix
+        nodeElement.style.opacity = String(opacity);
+      });
+
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
 
     if (autoRotate && viewMode === "orbital") {
-      const interval = isMobile ? 80 : 50; // Langsamere Rotation auf Mobile
-      rotationTimer = setInterval(() => {
-        setRotationAngle((prev) => {
-          const newAngle = (prev + 0.3) % 360;
-          return Number(newAngle.toFixed(3));
-        });
-      }, interval);
+      shouldAnimate = true;
+      lastFrameTimeRef.current = performance.now();
+      animationFrameRef.current = requestAnimationFrame(animate);
     }
 
     return () => {
-      if (rotationTimer) {
-        clearInterval(rotationTimer);
+      shouldAnimate = false;
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [autoRotate, viewMode, isMobile]);
+  }, [autoRotate, viewMode, isMobile, timelineData, radius, centerOffset]);
 
   const centerViewOnNode = (nodeId: number) => {
     if (viewMode !== "orbital" || !nodeRefs.current[nodeId]) return;
@@ -140,17 +188,19 @@ export default function RadialOrbitalTimeline({
     const totalNodes = timelineData.length;
     const targetAngle = (nodeIndex / totalNodes) * 360;
 
-    setRotationAngle(270 - targetAngle);
+    rotationAngleRef.current = 270 - targetAngle;
+    setRotationAngle(270 - targetAngle); // State für initial re-render wenn nötig
   };
 
-  // useMemo für Positionsberechnungen - optimiert Performance
+  // Initial positions für ersten Render (wird dann von requestAnimationFrame übernommen)
   const nodePositions = useMemo(() => {
     return timelineData.map((_, index) => {
       const angle = ((index / timelineData.length) * 360 + rotationAngle) % 360;
       const radian = (angle * Math.PI) / 180;
 
-      const x = radius * Math.cos(radian) + centerOffset.x;
-      const y = radius * Math.sin(radian) + centerOffset.y;
+      // Sub-Pixel-Rounding für alle Browser
+      const x = Math.round(radius * Math.cos(radian) + centerOffset.x);
+      const y = Math.round(radius * Math.sin(radian) + centerOffset.y);
       const zIndex = Math.round(100 + 50 * Math.cos(radian));
 
       const opacity = Math.max(
@@ -201,13 +251,21 @@ export default function RadialOrbitalTimeline({
           className="absolute w-full h-full flex items-center justify-center"
           ref={orbitRef}
           style={{
+            WebkitPerspective: "1000px",
             perspective: "1000px",
             transform: `translate3d(${centerOffset.x}px, ${centerOffset.y}px, 0)`,
-            willChange: "transform",
+            WebkitTransform: `translate3d(${centerOffset.x}px, ${centerOffset.y}px, 0)`,
+            MozTransform: `translate3d(${centerOffset.x}px, ${centerOffset.y}px, 0)`,
+            willChange: autoRotate ? "transform" : "auto",
+            WebkitBackfaceVisibility: "hidden",
             backfaceVisibility: "hidden",
           }}
         >
-          <div className="absolute w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-[#f9c74f] via-[#d4af3a] to-[#51646f] animate-pulse flex items-center justify-center z-10 shadow-xl shadow-[#f9c74f]/50" style={{ willChange: "transform", backfaceVisibility: "hidden" }}>
+          <div className="absolute w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-[#f9c74f] via-[#d4af3a] to-[#51646f] animate-pulse flex items-center justify-center z-10 shadow-xl shadow-[#f9c74f]/50" style={{ 
+            willChange: autoRotate ? "transform" : "auto",
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden" 
+          }}>
             {/* Reduziere animate-ping auf Mobile für bessere Performance */}
             {!isMobile && (
               <>
@@ -231,10 +289,15 @@ export default function RadialOrbitalTimeline({
             const Icon = item.icon;
 
             const nodeStyle = {
+              // Browser-spezifische Prefixes für Safari, Chrome und Firefox
               transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+              WebkitTransform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+              MozTransform: `translate3d(${position.x}px, ${position.y}px, 0)`,
               zIndex: isExpanded ? 200 : position.zIndex,
               opacity: isExpanded ? 1 : position.opacity,
-              willChange: "transform, opacity",
+              // will-change nur temporär während Animation (wird von requestAnimationFrame gehandhabt)
+              willChange: autoRotate ? "transform, opacity" : "auto",
+              WebkitBackfaceVisibility: "hidden",
               backfaceVisibility: "hidden",
               contain: "layout style paint",
             };
@@ -243,7 +306,7 @@ export default function RadialOrbitalTimeline({
               <div
                 key={item.id}
                 ref={(el) => (nodeRefs.current[item.id] = el)}
-                className={`absolute cursor-pointer ${isMobile ? "transition-all duration-500" : "transition-all duration-700"}`}
+                className={`absolute cursor-pointer ${isMobile ? "transition-transform duration-300 ease-out" : "transition-transform duration-500 ease-out"}`}
                 style={nodeStyle}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -282,7 +345,7 @@ export default function RadialOrbitalTimeline({
                       ? "border-[#f9c74f] animate-pulse shadow-lg shadow-[#f9c74f]/40"
                       : "border-[#f9c74f]/50 shadow-md shadow-[#f9c74f]/20"
                   }
-                  transition-all duration-300 transform
+                  transition-transform duration-300 ease-out transform
                   ${isExpanded ? "scale-150" : ""}
                    hover:scale-110
                  `}
@@ -294,7 +357,7 @@ export default function RadialOrbitalTimeline({
                    className={`
                    absolute top-14 md:top-16 lg:top-20 whitespace-nowrap
                    text-xs md:text-sm lg:text-base font-semibold tracking-wider
-                  transition-all duration-300
+                  transition-opacity duration-300 ease-out
                   ${isExpanded ? "text-[#f9c74f] scale-125 drop-shadow-lg" : "text-white/80 drop-shadow-md"}
                 `}
                   style={{
