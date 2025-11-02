@@ -121,11 +121,12 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
           backfaceVisibility: 'hidden',
           zIndex: 2147483647,
           WebkitTouchCallout: 'none',
-          top: '2.5rem',
-          left: '1rem',
-          right: '1rem',
           // Force hardware acceleration
           willChange: 'transform',
+          // Ensure visibility
+          display: 'flex',
+          visibility: 'visible',
+          opacity: 1,
         }}
       >
         {/* Logo */}
