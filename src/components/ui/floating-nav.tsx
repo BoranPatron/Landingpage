@@ -165,8 +165,8 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         visibility: 'visible',
         opacity: 1,
         
-        // iOS Safari: Containment Fix - NICHT verwenden, blockiert visibility
-        contain: 'layout style',
+        // iOS Safari: Containment REMOVED - blockiert pointer events in iOS 18
+        // contain: 'layout style', // DEAKTIVIERT für iOS Safari Clickability
       }}
     >
       {/* Logo */}

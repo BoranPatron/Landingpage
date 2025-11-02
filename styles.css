@@ -766,8 +766,8 @@ ul, ol {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-    /* iOS Safari: Containment without paint to allow visibility */
-    contain: layout style !important;
+    /* iOS Safari: Containment REMOVED - blockiert pointer events in iOS 18 */
+    /* contain: layout style !important; */ /* DEAKTIVIERT */
 }
 
 /* iOS Safari Fixes for Floating Navbar - MAXIMUM PRIORITY */
@@ -790,8 +790,8 @@ ul, ol {
         background: rgba(81, 100, 111, 0.85) !important;
         -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
         backdrop-filter: blur(12px) saturate(150%) !important;
-        /* iOS Safari: Containment without paint */
-        contain: layout style !important;
+        /* iOS Safari: Containment REMOVED - blockiert pointer events in iOS 18 */
+        /* contain: layout style !important; */ /* DEAKTIVIERT */
     }
     
     /* Ensure navigation links are clickable on iOS */
