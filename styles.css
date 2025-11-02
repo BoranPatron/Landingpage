@@ -799,10 +799,22 @@ ul, ol {
     main,
     section {
         position: relative;
-        z-index: 1;
+        z-index: 1 !important; /* EXPLICITLY lower than navbar (2147483647) */
         /* iOS Safari: NO transform to prevent stacking context issues */
         transform: none !important;
         -webkit-transform: none !important;
+    }
+    
+    /* iOS Safari 26: CRITICAL - Force all content elements below navbar z-index during scroll */
+    main *,
+    section * {
+        z-index: auto !important; /* Reset all nested z-index */
+    }
+    
+    /* iOS Safari 26: Force sticky/fixed elements below navbar */
+    [class*="sticky"]:not(.floating-navbar-container),
+    [class*="fixed"]:not(.floating-navbar-container):not(#floating-nav-root) {
+        z-index: 1 !important; /* Maximum z-index for content elements */
     }
     
     /* iOS Safari: nav Root Element - React renders navbar INSIDE this */
@@ -840,6 +852,12 @@ ul, ol {
         backface-visibility: hidden !important;
         will-change: transform !important;
         
+        /* iOS Safari 26: CRITICAL - Force separate compositing layer during scroll */
+        /* NO isolation - it creates stacking context that can break z-index */
+        /* Use transform + will-change for hardware acceleration instead */
+        -webkit-perspective: 1000px !important;
+        perspective: 1000px !important;
+        
         /* Visibility & Display */
         display: flex !important;
         visibility: visible !important;
@@ -851,9 +869,6 @@ ul, ol {
         
         /* Background - Backdrop-Filter moved to ::before pseudo-element */
         background: rgba(81, 100, 111, 0.75) !important;
-        
-        /* iOS Safari: Containment EXPLICITLY DISABLED */
-        contain: none !important;
     }
     
     /* iOS Safari: Desktop positioning override (sm: 640px+) */
@@ -945,6 +960,20 @@ ul, ol {
 
 /* Mobile Navbar - Ensure items stay within bounds */
 @media (max-width: 640px) {
+    /* iOS Safari 26: CRITICAL - Force navbar to stay on top during scroll on mobile */
+    #floating-nav-root,
+    .floating-navbar-container {
+        z-index: 2147483647 !important; /* RE-ENFORCE maximum z-index on mobile */
+        position: fixed !important;
+        /* iOS Safari: Force hardware layer to prevent content overlay during scroll */
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
+        will-change: transform !important;
+        /* iOS Safari: Ensure navbar stays visible during scroll */
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
     /* iOS Safari: Mobile positioning adjustments with safe area insets */
     .floating-navbar-container {
         /* Top position: Account for Safari browser UI and safe area */
