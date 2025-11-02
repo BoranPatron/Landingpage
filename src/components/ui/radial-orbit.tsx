@@ -29,12 +29,25 @@ export default function RadialOrbitalTimeline({
   const [radius, setRadius] = useState<number>(350);
   const [glowSize, setGlowSize] = useState<{ base: number; multiplier: number }>({ base: 60, multiplier: 0.8 });
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isIOS, setIsIOS] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const textRefs = useRef<Record<number, HTMLDivElement | null>>({});
   const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const lastFrameTimeRef = useRef<number>(0);
+  const touchStartTimeRef = useRef<Record<number, number>>({});
+
+  // iOS Detection
+  useEffect(() => {
+    const detectIOS = () => {
+      const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      setIsIOS(isIOSDevice);
+    };
+    detectIOS();
+  }, []);
 
   // Mobile Detection und Responsive Radius/Glow-Size basierend auf Screen-Size
   useEffect(() => {
@@ -87,34 +100,80 @@ export default function RadialOrbitalTimeline({
   };
 
   const toggleItem = (id: number) => {
-    setExpandedItems((prev) => {
-      const newState = { ...prev };
-      Object.keys(newState).forEach((key) => {
-        if (parseInt(key) !== id) {
-          newState[parseInt(key)] = false;
-        }
-      });
-      newState[id] = !prev[id];
-
-      if (!prev[id]) {
-        setActiveNodeId(id);
-        setAutoRotate(false);
-        const relatedItems = getRelatedItems(id);
-        const newPulseEffect: Record<number, boolean> = {};
-        relatedItems.forEach((relId) => {
-          newPulseEffect[relId] = true;
+    try {
+      setExpandedItems((prev) => {
+        const newState = { ...prev };
+        Object.keys(newState).forEach((key) => {
+          if (parseInt(key) !== id) {
+            newState[parseInt(key)] = false;
+          }
         });
-        setPulseEffect(newPulseEffect);
-        centerViewOnNode(id);
-      } else {
-        setActiveNodeId(null);
-        setAutoRotate(true);
-        setPulseEffect({});
-      }
+        newState[id] = !prev[id];
 
-      return newState;
-    });
+        if (!prev[id]) {
+          setActiveNodeId(id);
+          setAutoRotate(false);
+          const relatedItems = getRelatedItems(id);
+          const newPulseEffect: Record<number, boolean> = {};
+          relatedItems.forEach((relId) => {
+            newPulseEffect[relId] = true;
+          });
+          setPulseEffect(newPulseEffect);
+          centerViewOnNode(id);
+        } else {
+          setActiveNodeId(null);
+          setAutoRotate(true);
+          setPulseEffect({});
+        }
+
+        return newState;
+      });
+    } catch (error) {
+      console.error('Error in toggleItem:', error);
+    }
   };
+
+  // iOS Safari: Touch-Event Handler - robust gegen Fehler
+  const handleTouchStart = (id: number, e: React.TouchEvent) => {
+    try {
+      e.stopPropagation();
+      touchStartTimeRef.current[id] = Date.now();
+    } catch (error) {
+      console.error('Error in handleTouchStart:', error);
+    }
+  };
+
+  const handleTouchEnd = (id: number, e: React.TouchEvent) => {
+    try {
+      e.stopPropagation();
+      e.preventDefault();
+      const touchDuration = touchStartTimeRef.current[id] 
+        ? Date.now() - touchStartTimeRef.current[id] 
+        : 0;
+      // Nur bei kurzen Touches (kein Long-Press)
+      if (touchDuration < 500) {
+        toggleItem(id);
+      }
+    } catch (error) {
+      console.error('Error in handleTouchEnd:', error);
+    }
+  };
+
+  // iOS Safari: Text-Rendering mit useEffect für Direct DOM-Manipulation
+  useEffect(() => {
+    // Setze Text direkt via DOM für iOS Safari Kompatibilität
+    timelineData.forEach((item) => {
+      const textElement = textRefs.current[item.id];
+      if (textElement) {
+        // Direkte DOM-Manipulation für iOS Safari
+        textElement.textContent = item.title;
+        // Fallback: innerHTML falls textContent nicht funktioniert
+        if (!textElement.textContent) {
+          textElement.innerHTML = item.title;
+        }
+      }
+    });
+  }, [timelineData, expandedItems]);
 
   // requestAnimationFrame für perfekte 60 FPS Synchronisation mit Browser-Repaints
   // expandedItems wird via ref gehandhabt um Closure-Probleme zu vermeiden
@@ -362,16 +421,26 @@ export default function RadialOrbitalTimeline({
             };
 
             return (
-              <div
-                key={item.id}
-                ref={(el) => (nodeRefs.current[item.id] = el)}
-                className={`absolute cursor-pointer ${isMobile ? "transition-transform duration-300 ease-out" : "transition-transform duration-500 ease-out"}`}
-                style={nodeStyle}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleItem(item.id);
-                }}
-              >
+                <div
+                  key={item.id}
+                  ref={(el) => (nodeRefs.current[item.id] = el)}
+                  className={`absolute cursor-pointer ${isMobile ? "transition-transform duration-300 ease-out" : "transition-transform duration-500 ease-out"}`}
+                  style={nodeStyle}
+                  // iOS Safari: Touch-Events statt onClick für bessere Kompatibilität
+                  onTouchStart={(e) => handleTouchStart(item.id, e)}
+                  onTouchEnd={(e) => handleTouchEnd(item.id, e)}
+                  onClick={(e) => {
+                    try {
+                      e.stopPropagation();
+                      // Nur bei Desktop/Maus verwenden
+                      if (!('ontouchstart' in window)) {
+                        toggleItem(item.id);
+                      }
+                    } catch (error) {
+                      console.error('Error in onClick:', error);
+                    }
+                  }}
+                >
                  {/* iOS 18: Glow als Box-Shadow Alternative für bessere Kompatibilität */}
                  <div
                    className={`absolute rounded-full ${
@@ -408,10 +477,10 @@ export default function RadialOrbitalTimeline({
                    }}
                  ></div>
 
-                 {/* iOS 18: Item-Container mit Isolation und Stacking-Kontext */}
+                 {/* iOS Safari: Item-Container mit robuster border-radius Strategie */}
                  <div
                    className={`
-                   rounded-full flex items-center justify-center relative
+                   flex items-center justify-center relative
                   ${
                     isExpanded
                       ? "bg-white text-black"
@@ -433,27 +502,30 @@ export default function RadialOrbitalTimeline({
                   ${isMobile ? "w-14 h-14" : "w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"}
                  `}
                  style={{
-                   // iOS 18: Stacking-Kontext Fix - position + z-index erstellt neuen Kontext
+                   // iOS Safari: Stacking-Kontext Fix - position + z-index erstellt neuen Kontext
                    position: "relative",
                    zIndex: 0,
-                   // iOS 18: Isolation-Kontext für korrektes border-radius Rendering
+                   // iOS Safari: Isolation-Kontext für korrektes border-radius Rendering
                    isolation: "isolate",
                    WebkitIsolation: "isolate",
-                   // iOS Safari border-radius Fix - explizite WebKit-Prefixes - KRITISCH
+                   // iOS Safari: Robuste border-radius Strategie - ALLE Varianten parallel
                    WebkitBorderRadius: "50%",
                    borderRadius: "50%",
                    MozBorderRadius: "50%",
-                   // iOS 18: Overflow hidden ZWINGT runde Form - mit Isolation funktioniert es
+                   // iOS Safari: Overflow hidden ZWINGT runde Form - mit Isolation funktioniert es
                    overflow: "hidden",
-                   // iOS 18: Neue Rendering-Ebene mit translate3d für border-radius
+                   // iOS Safari: Neue Rendering-Ebene mit translate3d für border-radius
                    WebkitTransform: "translate3d(0, 0, 0)",
                    transform: "translate3d(0, 0, 0)",
                    // iOS Safari Rendering Fix - verhindert eckige Frames
                    WebkitBackfaceVisibility: "hidden",
                    backfaceVisibility: "hidden",
-                   // iOS 18: Clip-Path Fallback für perfekte Rundung
+                   // iOS Safari: Clip-Path Fallback für perfekte Rundung
                    WebkitClipPath: "circle(50% at 50% 50%)",
                    clipPath: "circle(50% at 50% 50%)",
+                   // iOS Safari: SVG-Mask als absoluter Fallback (wird via CSS gesetzt)
+                   mask: "radial-gradient(circle, black 50%, transparent 50%)",
+                   WebkitMask: "radial-gradient(circle, black 50%, transparent 50%)",
                    // z-index für korrekte Layering über Glow
                    zIndex: 10,
                  }}
@@ -461,8 +533,9 @@ export default function RadialOrbitalTimeline({
                    <Icon className={`${isMobile ? "w-5 h-5" : "w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"}`} />
                  </div>
 
-                 {/* iOS 18: Text außerhalb von transformiertem Container für korrekte Darstellung */}
+                 {/* iOS Safari: Text-Rendering mit Direct DOM-Manipulation für maximale Kompatibilität */}
                  <div
+                   ref={(el) => (textRefs.current[item.id] = el)}
                    className={`
                    absolute whitespace-nowrap
                    font-semibold tracking-wider
@@ -471,14 +544,14 @@ export default function RadialOrbitalTimeline({
                   ${isMobile ? "top-20 text-xs" : "top-16 md:top-20 lg:top-24 text-xs md:text-sm lg:text-base"}
                 `}
                   style={{
-                    // iOS 18: Text-Positionierung mit transform auf Text-Element selbst (nicht Parent)
+                    // iOS Safari: Text-Positionierung mit transform auf Text-Element selbst (nicht Parent)
                     left: "50%",
                     transform: "translateX(-50%) translateZ(0)",
                     WebkitTransform: "translateX(-50%) translateZ(0)",
                     top: isMobile ? "72px" : undefined, // Mobile: 72px = 4.5rem (unter 56px Item + 16px Abstand)
-                    // iOS 18: Position absolute mit expliziten Koordinaten
+                    // iOS Safari: Position absolute mit expliziten Koordinaten
                     position: "absolute",
-                    // iOS 18: Isolation-Kontext für Text-Rendering
+                    // iOS Safari: Isolation-Kontext für Text-Rendering
                     isolation: "isolate",
                     WebkitIsolation: "isolate",
                     textShadow: isExpanded 
@@ -486,22 +559,22 @@ export default function RadialOrbitalTimeline({
                       : isMobile
                       ? "0 2px 4px rgba(0,0,0,0.9), 0 0 6px rgba(249,199,79,0.5)" // Stärkerer Schatten für Mobile Lesbarkeit
                       : "0 1px 2px rgba(0,0,0,0.8), 0 0 4px rgba(249,199,79,0.3)",
-                    // iOS 18 Safari Text-Rendering Fix - verstärkt
+                    // iOS Safari Text-Rendering Fix - verstärkt
                     WebkitFontSmoothing: "antialiased",
                     MozOsxFontSmoothing: "grayscale",
                     fontSmoothing: "antialiased",
-                    // iOS 18: Text-Darstellung Fix - zwingt Text-Rendering
+                    // iOS Safari: Text-Darstellung Fix - zwingt Text-Rendering
                     WebkitTextRendering: "optimizeLegibility",
                     textRendering: "optimizeLegibility",
-                    // iOS 18: Will-Render Fix - verhindert fehlenden Text
+                    // iOS Safari: Will-Render Fix - verhindert fehlenden Text
                     WebkitWillChange: "opacity",
                     willChange: "opacity",
-                    // iOS 18: Display Fix - zwingt Darstellung
+                    // iOS Safari: Display Fix - zwingt Darstellung
                     display: "block",
                     visibility: "visible",
                     opacity: 1,
                     WebkitTextStroke: "0.5px transparent",
-                    // iOS 18: Neue Rendering-Ebene für Text
+                    // iOS Safari: Neue Rendering-Ebene für Text
                     WebkitBackfaceVisibility: "visible",
                     backfaceVisibility: "visible",
                     // z-index für Text über allen anderen Elementen
@@ -512,13 +585,30 @@ export default function RadialOrbitalTimeline({
                     // Mobile Font-Size explizit setzen
                     fontSize: isMobile ? "0.75rem" : undefined, // 12px auf Mobile für gute Lesbarkeit
                     lineHeight: "1.4",
+                    // iOS Safari: Font-Weight explizit setzen
+                    fontWeight: 600,
                   }}
                 >
                   {item.title}
                 </div>
 
                 {isExpanded && (
-                  <Card className="absolute top-[4.5rem] md:top-20 lg:top-24 left-1/2 -translate-x-1/2 w-[85vw] max-w-md md:max-w-lg lg:max-w-xl bg-black/90 backdrop-blur-lg border-white/30 shadow-xl shadow-white/10 overflow-visible z-50">
+                  <Card className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-md md:max-w-lg lg:max-w-xl bg-black/95 backdrop-blur-lg border-white/30 shadow-xl shadow-white/10 overflow-visible z-[9999]" style={{
+                    // iOS Safari: Fixed Position für Popup
+                    position: "fixed",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    WebkitTransform: "translate(-50%, -50%)",
+                    // iOS Safari: Maximaler z-index
+                    zIndex: 9999,
+                    // iOS Safari: Isolation für korrektes Rendering
+                    isolation: "isolate",
+                    WebkitIsolation: "isolate",
+                    // iOS Safari: Backdrop-Filter mit Fallback
+                    backdropFilter: "blur(20px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(20px) saturate(180%)",
+                  }}>
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-white/50"></div>
                     <CardHeader className="pb-3">
                       <div className="flex justify-between items-center flex-wrap gap-2">
