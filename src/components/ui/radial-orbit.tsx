@@ -215,17 +215,24 @@ export default function RadialOrbitalTimeline({
           ? 1 
           : Math.max(0.4, Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2)));
 
-        // Direkte DOM-Updates mit Browser-spezifischen Prefixes für Safari, Chrome und Firefox
-        // Performance: Batch DOM-Updates mit transform3d für Hardware-Beschleunigung
+        // Direkte DOM-Updates mit vollständigen WebKit-Prefixes für iOS Safari Kompatibilität
+        // Performance: Batch DOM-Updates mit translate3d für Hardware-Beschleunigung
         const transform = `translate3d(${x}px, ${y}px, 0)`;
-        nodeElement.style.transform = transform;
+        // iOS Safari: Vollständige WebKit-Prefixes für alle Transform-Properties
         nodeElement.style.webkitTransform = transform;
+        nodeElement.style.transform = transform;
         (nodeElement.style as any).MozTransform = transform; // Firefox prefix
+        (nodeElement.style as any).msTransform = transform; // IE prefix
         nodeElement.style.opacity = String(opacity);
-        // Mobile Performance: Vermeide Layout-Shifts mit will-change nur wenn nötig
-        if (isMobile && autoRotate) {
+        // iOS Safari: Hardware-Beschleunigung - will-change für alle animierten Elemente
+        if (autoRotate) {
           nodeElement.style.willChange = "transform, opacity";
-        } else if (!autoRotate) {
+          // iOS Safari: Layer-Hack für GPU-Rendering
+          if (!nodeElement.style.webkitBackfaceVisibility) {
+            nodeElement.style.webkitBackfaceVisibility = "hidden";
+            nodeElement.style.backfaceVisibility = "hidden";
+          }
+        } else {
           nodeElement.style.willChange = "auto";
         }
       });
@@ -313,32 +320,50 @@ export default function RadialOrbitalTimeline({
       onClick={handleContainerClick}
     >
       <div className="relative w-full max-w-6xl flex items-center justify-center py-12 md:py-16 lg:py-20 min-h-[600px] md:min-h-[700px] lg:min-h-[900px]" style={{ overflow: "visible" }}>
+        {/* iOS Safari: Orbit-Container mit position absolute (NICHT fixed) für Perspective/Transform Konflikt */}
         <div
           className="absolute w-full h-full flex items-center justify-center"
           ref={orbitRef}
           style={{
+            // iOS Safari: Position absolute statt fixed für Perspective/Transform Kompatibilität
+            position: "absolute",
+            // iOS Safari: Transform-Style mit WebKit-Prefix
+            WebkitTransformStyle: "preserve-3d",
+            transformStyle: "preserve-3d",
+            // iOS Safari: Perspective mit vollständigen Prefixes
             WebkitPerspective: "1000px",
             perspective: "1000px",
-            transform: `translate3d(${centerOffset.x}px, ${centerOffset.y}px, 0)`,
+            // iOS Safari: Transform mit WebKit-Prefix
             WebkitTransform: `translate3d(${centerOffset.x}px, ${centerOffset.y}px, 0)`,
+            transform: `translate3d(${centerOffset.x}px, ${centerOffset.y}px, 0)`,
             MozTransform: `translate3d(${centerOffset.x}px, ${centerOffset.y}px, 0)`,
+            // iOS Safari: Hardware-Beschleunigung
             willChange: autoRotate ? "transform" : "auto",
+            WebkitWillChange: autoRotate ? "transform" : "auto",
+            // iOS Safari: Backface-Visibility für alle transformierten Elemente
             WebkitBackfaceVisibility: "hidden",
             backfaceVisibility: "hidden",
+            // iOS Safari: Containment für Performance
+            contain: "layout style paint",
           }}
         >
           <div className="absolute w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-[#f9c74f] via-[#d4af3a] to-[#51646f] animate-pulse flex items-center justify-center z-10 shadow-xl shadow-[#f9c74f]/50" style={{ 
-            willChange: autoRotate ? "transform" : "auto",
+            // iOS Safari: Hardware-Beschleunigung
+            willChange: autoRotate ? "transform, opacity" : "auto",
+            WebkitWillChange: autoRotate ? "transform, opacity" : "auto",
             WebkitBackfaceVisibility: "hidden",
             backfaceVisibility: "hidden",
-            // iOS Safari border-radius Fix für zentrale Kreis
+            // iOS Safari: Border-Radius mit WebKit-Prefix
             WebkitBorderRadius: "50%",
             borderRadius: "50%",
             MozBorderRadius: "50%",
-            // iOS Safari Hardware-Beschleunigung
-            WebkitTransform: "translateZ(0)",
-            transform: "translateZ(0)",
-            // iOS Safari Clip-Path Fix
+            // iOS Safari: translate3d statt translateZ für Hardware-Beschleunigung
+            WebkitTransform: "translate3d(0, 0, 0)",
+            transform: "translate3d(0, 0, 0)",
+            // iOS Safari: WebKit-Prefixes für Transition
+            WebkitTransition: "transform 0.3s ease-out, opacity 0.3s ease-out",
+            transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
+            // iOS Safari: Clip-Path Fix
             WebkitClipPath: "inset(0 round 50%)",
             clipPath: "inset(0 round 50%)",
             overflow: "hidden",
@@ -350,8 +375,13 @@ export default function RadialOrbitalTimeline({
                   WebkitBorderRadius: "50%",
                   borderRadius: "50%",
                   MozBorderRadius: "50%",
-                  WebkitTransform: "translateZ(0)",
-                  transform: "translateZ(0)",
+                  // iOS Safari: translate3d für Hardware-Beschleunigung
+                  WebkitTransform: "translate3d(0, 0, 0)",
+                  transform: "translate3d(0, 0, 0)",
+                  // iOS Safari: Hardware-Beschleunigung
+                  WebkitBackfaceVisibility: "hidden",
+                  backfaceVisibility: "hidden",
+                  pointerEvents: "none",
                 }}></div>
                 <div
                   className="absolute w-24 h-24 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full border border-[#f9c74f]/20 animate-ping opacity-50"
@@ -360,8 +390,13 @@ export default function RadialOrbitalTimeline({
                     WebkitBorderRadius: "50%",
                     borderRadius: "50%",
                     MozBorderRadius: "50%",
-                    WebkitTransform: "translateZ(0)",
-                    transform: "translateZ(0)",
+                    // iOS Safari: translate3d für Hardware-Beschleunigung
+                    WebkitTransform: "translate3d(0, 0, 0)",
+                    transform: "translate3d(0, 0, 0)",
+                    // iOS Safari: Hardware-Beschleunigung
+                    WebkitBackfaceVisibility: "hidden",
+                    backfaceVisibility: "hidden",
+                    pointerEvents: "none",
                   }}
                 ></div>
               </>
@@ -370,8 +405,12 @@ export default function RadialOrbitalTimeline({
               WebkitBorderRadius: "50%",
               borderRadius: "50%",
               MozBorderRadius: "50%",
-              WebkitTransform: "translateZ(0)",
-              transform: "translateZ(0)",
+              // iOS Safari: translate3d für Hardware-Beschleunigung
+              WebkitTransform: "translate3d(0, 0, 0)",
+              transform: "translate3d(0, 0, 0)",
+              // iOS Safari: Hardware-Beschleunigung
+              WebkitBackfaceVisibility: "hidden",
+              backfaceVisibility: "hidden",
               WebkitClipPath: "inset(0 round 50%)",
               clipPath: "inset(0 round 50%)",
               overflow: "hidden",
@@ -382,8 +421,13 @@ export default function RadialOrbitalTimeline({
             WebkitBorderRadius: "50%",
             borderRadius: "50%",
             MozBorderRadius: "50%",
-            WebkitTransform: "translateZ(0)",
-            transform: "translateZ(0)",
+            // iOS Safari: translate3d für Hardware-Beschleunigung
+            WebkitTransform: "translate3d(0, 0, 0)",
+            transform: "translate3d(0, 0, 0)",
+            // iOS Safari: Hardware-Beschleunigung
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden",
+            pointerEvents: "none",
           }}></div>
 
           {timelineData.map((item, index) => {
@@ -394,29 +438,29 @@ export default function RadialOrbitalTimeline({
             const Icon = item.icon;
 
             const nodeStyle: React.CSSProperties = {
-              // Browser-spezifische Prefixes für Safari, Chrome und Firefox
-              transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+              // iOS Safari: Vollständige WebKit-Prefixes für alle Transform-Properties
               WebkitTransform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+              transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
               MozTransform: `translate3d(${position.x}px, ${position.y}px, 0)`,
-              // iOS 18 Safari/Chrome: Stacking-Kontext Fix - Parent in neuen Stacking-Kontext
+              // iOS Safari: Position relative für Stacking-Kontext
               position: "relative",
               zIndex: 0, // z-index: 0 mit position: relative erstellt neuen Stacking-Kontext
-              // iOS 18: Isolation-Kontext für korrektes border-radius Rendering
+              // iOS Safari: Isolation-Kontext für korrektes border-radius Rendering
               isolation: "isolate",
               WebkitIsolation: "isolate",
-              // iOS Safari Hardware-Beschleunigung Fix
+              // iOS Safari: Hardware-Beschleunigung - backface-visibility mit WebKit-Prefix
               WebkitBackfaceVisibility: "hidden",
               backfaceVisibility: "hidden",
-              WebkitPerspective: "1000px",
-              perspective: "1000px",
-              // iOS Safari Rendering Fix - zwingt Hardware-Beschleunigung
-              transformStyle: "preserve-3d",
+              // iOS Safari: Transform-Style mit WebKit-Prefix
               WebkitTransformStyle: "preserve-3d",
+              transformStyle: "preserve-3d",
               // z-index für Layering
               zIndex: isExpanded ? 200 : position.zIndex,
               opacity: isExpanded ? 1 : position.opacity,
-              // will-change nur temporär während Animation (wird von requestAnimationFrame gehandhabt)
-              willChange: autoRotate ? "transform" : "auto",
+              // iOS Safari: will-change für Hardware-Beschleunigung (wird auch in DOM-Updates gesetzt)
+              willChange: autoRotate ? "transform, opacity" : "auto",
+              WebkitWillChange: autoRotate ? "transform, opacity" : "auto",
+              // iOS Safari: Containment für Performance
               contain: "layout style paint",
             };
 
@@ -441,7 +485,7 @@ export default function RadialOrbitalTimeline({
                     }
                   }}
                 >
-                 {/* iOS 18: Glow als Box-Shadow Alternative für bessere Kompatibilität */}
+                 {/* iOS Safari: Glow-Effekt mit pointer-events: none für Performance während Animation */}
                  <div
                    className={`absolute rounded-full ${
                      isPulsing ? "animate-pulse duration-1000" : ""
@@ -451,28 +495,31 @@ export default function RadialOrbitalTimeline({
                      height: `${item.energy * glowSize.multiplier + glowSize.base}px`,
                      left: `50%`,
                      top: `50%`,
-                     transform: `translate(-50%, -50%) translateZ(0)`,
-                     WebkitTransform: `translate(-50%, -50%) translateZ(0)`,
-                     // iOS 18: Box-Shadow statt radial-gradient für Glow
+                     // iOS Safari: translate3d statt translate für Hardware-Beschleunigung
+                     WebkitTransform: `translate3d(-50%, -50%, 0)`,
+                     transform: `translate3d(-50%, -50%, 0)`,
+                     // iOS Safari: WebKit-Prefixes für Transition
+                     WebkitTransition: "transform 0.3s ease-out, opacity 0.3s ease-out",
+                     transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
+                     // iOS Safari: Box-Shadow für Glow
                      boxShadow: `0 0 ${item.energy * 0.8 + 20}px rgba(249,199,79,0.4), 0 0 ${item.energy * 0.6 + 15}px rgba(249,199,79,0.3), 0 0 ${item.energy * 0.4 + 10}px rgba(249,199,79,0.2)`,
                      WebkitBoxShadow: `0 0 ${item.energy * 0.8 + 20}px rgba(249,199,79,0.4), 0 0 ${item.energy * 0.6 + 15}px rgba(249,199,79,0.3), 0 0 ${item.energy * 0.4 + 10}px rgba(249,199,79,0.2)`,
-                     // iOS 18: border-radius Fix mit Isolation
+                     // iOS Safari: border-radius Fix
                      WebkitBorderRadius: "50%",
                      borderRadius: "50%",
                      MozBorderRadius: "50%",
-                     // iOS 18: Isolation für border-radius
+                     // iOS Safari: Isolation für border-radius
                      isolation: "isolate",
                      WebkitIsolation: "isolate",
-                     // iOS 18: Stacking-Kontext für border-radius
                      position: "absolute",
                      zIndex: 0,
-                     // iOS Safari Hardware-Beschleunigung
+                     // iOS Safari: Hardware-Beschleunigung
                      WebkitBackfaceVisibility: "hidden",
                      backfaceVisibility: "hidden",
-                     // iOS 18: Clip-Path Fallback für perfekte Rundung
+                     // iOS Safari: Clip-Path Fallback
                      WebkitClipPath: "circle(50% at 50% 50%)",
                      clipPath: "circle(50% at 50% 50%)",
-                     // Kein overflow auf Glow - iOS 18 Bug mit overflow + transform
+                     // iOS Safari: pointer-events: none während Animation für Performance
                      pointerEvents: "none",
                    }}
                  ></div>
@@ -502,31 +549,37 @@ export default function RadialOrbitalTimeline({
                   ${isMobile ? "w-14 h-14" : "w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"}
                  `}
                  style={{
-                   // iOS Safari: Stacking-Kontext Fix - position + z-index erstellt neuen Kontext
+                   // iOS Safari: Stacking-Kontext Fix
                    position: "relative",
                    zIndex: 0,
-                   // iOS Safari: Isolation-Kontext für korrektes border-radius Rendering
+                   // iOS Safari: Isolation-Kontext
                    isolation: "isolate",
                    WebkitIsolation: "isolate",
-                   // iOS Safari: Robuste border-radius Strategie - ALLE Varianten parallel
+                   // iOS Safari: Border-Radius mit WebKit-Prefix
                    WebkitBorderRadius: "50%",
                    borderRadius: "50%",
                    MozBorderRadius: "50%",
-                   // iOS Safari: Overflow hidden ZWINGT runde Form - mit Isolation funktioniert es
+                   // iOS Safari: Overflow hidden für runde Form
                    overflow: "hidden",
-                   // iOS Safari: Neue Rendering-Ebene mit translate3d für border-radius
+                   // iOS Safari: translate3d für Hardware-Beschleunigung (Layer-Hack)
                    WebkitTransform: "translate3d(0, 0, 0)",
                    transform: "translate3d(0, 0, 0)",
-                   // iOS Safari Rendering Fix - verhindert eckige Frames
+                   // iOS Safari: WebKit-Prefixes für Transition
+                   WebkitTransition: "transform 0.3s ease-out, opacity 0.3s ease-out",
+                   transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
+                   // iOS Safari: Hardware-Beschleunigung - backface-visibility
                    WebkitBackfaceVisibility: "hidden",
                    backfaceVisibility: "hidden",
-                   // iOS Safari: Clip-Path Fallback für perfekte Rundung
+                   // iOS Safari: will-change für Hardware-Beschleunigung
+                   willChange: "transform, opacity",
+                   WebkitWillChange: "transform, opacity",
+                   // iOS Safari: Clip-Path Fallback
                    WebkitClipPath: "circle(50% at 50% 50%)",
                    clipPath: "circle(50% at 50% 50%)",
-                   // iOS Safari: SVG-Mask als absoluter Fallback (wird via CSS gesetzt)
+                   // iOS Safari: SVG-Mask Fallback
                    mask: "radial-gradient(circle, black 50%, transparent 50%)",
                    WebkitMask: "radial-gradient(circle, black 50%, transparent 50%)",
-                   // z-index für korrekte Layering über Glow
+                   // z-index für Layering
                    zIndex: 10,
                  }}
                  >
