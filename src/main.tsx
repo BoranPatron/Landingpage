@@ -27,12 +27,16 @@ function initRadialOrbit() {
   const rootElement = document.getElementById("radial-orbit-root");
   
   if (rootElement) {
+    console.log("RadialOrbit root element found, initializing component...");
     const root = ReactDOM.createRoot(rootElement);
     root.render(
       <React.StrictMode>
         <RadialOrbitalTimeline timelineData={radialOrbitData} />
       </React.StrictMode>
     );
+    console.log("RadialOrbit component rendered");
+  } else {
+    console.warn("RadialOrbit root element not found");
   }
 }
 
@@ -64,12 +68,16 @@ function initProfileCard() {
   const rootElement = document.getElementById("about-profile-root");
   
   if (rootElement) {
+    console.log("ProfileCard root element found, initializing component...");
     const root = ReactDOM.createRoot(rootElement);
     root.render(
       <React.StrictMode>
         <ProfileCard />
       </React.StrictMode>
     );
+    console.log("ProfileCard component rendered");
+  } else {
+    console.warn("ProfileCard root element not found");
   }
 }
 
