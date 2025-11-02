@@ -806,9 +806,10 @@ ul, ol {
     }
     
     /* iOS Safari 26: CRITICAL - Force all content elements below navbar z-index during scroll */
-    main *,
-    section * {
-        z-index: auto !important; /* Reset all nested z-index */
+    /* EXCLUDE navbar elements to ensure they are not affected */
+    main *:not(.floating-navbar-container):not(#floating-nav-root),
+    section *:not(.floating-navbar-container):not(#floating-nav-root) {
+        z-index: auto !important; /* Reset all nested z-index, except navbar */
     }
     
     /* iOS Safari 26: Force sticky/fixed elements below navbar */
@@ -854,9 +855,8 @@ ul, ol {
         
         /* iOS Safari 26: CRITICAL - Force separate compositing layer during scroll */
         /* NO isolation - it creates stacking context that can break z-index */
-        /* Use transform + will-change for hardware acceleration instead */
-        -webkit-perspective: 1000px !important;
-        perspective: 1000px !important;
+        /* NO perspective - it creates 3D context that can make navbar invisible on iOS Safari */
+        /* Use transform: translateZ(0) + will-change for hardware acceleration instead */
         
         /* Visibility & Display */
         display: flex !important;
