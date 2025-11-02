@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 // Icons are passed via props from main.tsx
 
@@ -81,8 +80,9 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
 
   // Navbar bleibt immer sichtbar - keine Scroll-Hide-Logik
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    e.stopPropagation();
     const targetId = href;
     if (targetId === '#' || !targetId) return;
     
@@ -103,26 +103,15 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
   };
 
   return (
-    <motion.div
-      initial={{
-        opacity: 1,
-        y: 0,
-      }}
-      animate={{
-        y: 0,
-        opacity: 1,
-      }}
-      transition={{
-        duration: 0.2,
-      }}
+    <div
         className={cn(
-          "flex max-w-7xl fixed top-10 left-4 right-4 sm:inset-x-0 sm:mx-auto border border-white/20 rounded-full bg-[#51646f]/20 backdrop-blur-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08),0_0_20px_rgba(81,100,111,0.2)] px-2 sm:px-5 py-2 sm:py-2.5 items-center justify-between gap-1 sm:gap-3 overflow-hidden",
+          "floating-navbar-container flex max-w-7xl fixed top-10 left-4 right-4 sm:inset-x-0 sm:mx-auto border border-white/20 rounded-full bg-[#51646f]/20 backdrop-blur-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08),0_0_20px_rgba(81,100,111,0.2)] px-2 sm:px-5 py-2 sm:py-2.5 items-center justify-between gap-1 sm:gap-3 overflow-hidden",
           className
         )}
         style={{
           boxShadow: '0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08), 0 0 30px rgba(81,100,111,0.25), 0 0 60px rgba(249,199,79,0.15)',
           transition: 'box-shadow 0.3s ease',
-          // iOS Safari: Ensure clickability and proper stacking
+          // iOS Safari: Ensure clickability and proper stacking - MAXIMUM PRIORITY
           position: 'fixed',
           pointerEvents: 'auto',
           touchAction: 'manipulation',
@@ -130,14 +119,20 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
           transform: 'translate3d(0, 0, 0)',
           WebkitBackfaceVisibility: 'hidden',
           backfaceVisibility: 'hidden',
-          zIndex: 99999,
+          zIndex: 2147483647,
           WebkitTouchCallout: 'none',
+          top: '2.5rem',
+          left: '1rem',
+          right: '1rem',
+          // Force hardware acceleration
+          willChange: 'transform',
         }}
       >
         {/* Logo */}
         <a
           href="#hero"
           onClick={(e) => handleLinkClick(e, "#hero")}
+          onTouchStart={(e) => handleLinkClick(e, "#hero")}
           aria-label="Zur Startseite - BuildWise"
           className="flex items-center pr-2 sm:pr-6 hover:opacity-80 transition-opacity flex-shrink-0"
           style={{
@@ -145,6 +140,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
             touchAction: 'manipulation',
             pointerEvents: 'auto',
             cursor: 'pointer',
+            zIndex: 2147483647,
           }}
         >
           <img 
@@ -171,6 +167,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
                 key={`link=${idx}`}
                 href={navItem.link}
                 onClick={(e) => handleLinkClick(e, navItem.link)}
+                onTouchStart={(e) => handleLinkClick(e, navItem.link)}
                 aria-label={`Navigation zu ${navItem.name} Sektion`}
                 className={cn(
                   "relative items-center flex gap-1 sm:gap-2 text-sm px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-all duration-300 flex-shrink-0 whitespace-nowrap",
@@ -187,6 +184,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
                   WebkitTouchCallout: 'none',
                   WebkitUserSelect: 'none',
                   userSelect: 'none',
+                  zIndex: 2147483647,
                 }}
               >
                 {navItem.icon && (
@@ -200,7 +198,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
           })}
         </nav>
 
-      </motion.div>
+      </div>
   );
 };
 

@@ -736,36 +736,61 @@ ul, ol {
     display: none;
 }
 
-/* iOS Safari Fixes for Floating Navbar */
+/* iOS Safari Fixes for Floating Navbar - MAXIMUM PRIORITY */
 @supports (-webkit-touch-callout: none) {
-    /* iOS Safari specific fixes */
-    #floating-nav-root > * {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
+    /* iOS Safari specific fixes - Force highest z-index */
+    #floating-nav-root,
+    #floating-nav-root > *,
+    .floating-navbar-container {
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
         pointer-events: auto !important;
         position: fixed !important;
-        z-index: 99999 !important;
-        touch-action: manipulation;
+        z-index: 2147483647 !important;
+        touch-action: manipulation !important;
+        will-change: transform !important;
+        top: 2.5rem !important;
+        left: 1rem !important;
+        right: 1rem !important;
     }
     
     /* Ensure navigation links are clickable on iOS */
-    #floating-nav-root a {
-        -webkit-tap-highlight-color: rgba(249, 199, 79, 0.3);
+    #floating-nav-root a,
+    .floating-navbar-container a {
+        -webkit-tap-highlight-color: rgba(249, 199, 79, 0.3) !important;
         pointer-events: auto !important;
-        cursor: pointer;
+        cursor: pointer !important;
         touch-action: manipulation !important;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        user-select: none !important;
+        position: relative !important;
+        z-index: 2147483647 !important;
     }
     
     /* Ensure navbar container is always clickable */
-    #floating-nav-root > * > * {
+    #floating-nav-root > * > *,
+    .floating-navbar-container > * {
         pointer-events: auto !important;
-        touch-action: manipulation;
+        touch-action: manipulation !important;
     }
+    
+    /* Force navbar above everything */
+    .floating-navbar-container nav {
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+        z-index: 2147483647 !important;
+        position: relative !important;
+    }
+}
+
+/* Global fix: Ensure nothing can be above navbar */
+.floating-navbar-container {
+    z-index: 2147483647 !important;
+    position: fixed !important;
+    pointer-events: auto !important;
 }
 
 /* Mobile Navbar - Ensure items stay within bounds */
