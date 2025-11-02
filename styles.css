@@ -1780,11 +1780,21 @@ input:focus-visible {
         border-radius: 0.75rem !important; /* Moderate Border-Radius auf Mobile */
     }
     
-    /* Containment für bessere Performance */
+    /* Containment für bessere Performance - aber Text muss sichtbar bleiben */
     .hero-section,
-    #radial-orbit-root,
     #timeline-root {
         contain: layout style paint;
+    }
+    
+    /* Radial Orbit Root - overflow visible für Text-Labels */
+    #radial-orbit-root {
+        overflow: visible !important;
+        contain: layout style; /* Nur layout und style, nicht paint - damit Text sichtbar */
+    }
+    
+    /* Radial Orbit Items Text sichtbar machen */
+    #radial-orbit-root * {
+        overflow: visible !important;
     }
 }
 

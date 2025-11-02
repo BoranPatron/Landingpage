@@ -249,11 +249,11 @@ export default function RadialOrbitalTimeline({
 
   return (
     <div
-      className="w-full min-h-[600px] md:min-h-[700px] lg:min-h-[900px] flex flex-col items-center justify-center bg-transparent overflow-hidden relative"
+      className="w-full min-h-[600px] md:min-h-[700px] lg:min-h-[900px] flex flex-col items-center justify-center bg-transparent overflow-visible relative"
       ref={containerRef}
       onClick={handleContainerClick}
     >
-      <div className="relative w-full max-w-6xl flex items-center justify-center py-12 md:py-16 lg:py-20 min-h-[600px] md:min-h-[700px] lg:min-h-[900px]">
+      <div className="relative w-full max-w-6xl flex items-center justify-center py-12 md:py-16 lg:py-20 min-h-[600px] md:min-h-[700px] lg:min-h-[900px]" style={{ overflow: "visible" }}>
         <div
           className="absolute w-full h-full flex items-center justify-center"
           ref={orbitRef}
@@ -371,26 +371,33 @@ export default function RadialOrbitalTimeline({
                      isPulsing ? "animate-pulse duration-1000" : ""
                    }`}
                    style={{
-                     background: `radial-gradient(circle, rgba(249,199,79,0.3) 0%, rgba(249,199,79,0) 70%)`,
+                     background: `radial-gradient(circle at center, rgba(249,199,79,0.3) 0%, rgba(249,199,79,0.15) 40%, rgba(249,199,79,0) 70%)`,
                      width: `${item.energy * glowSize.multiplier + glowSize.base}px`,
                      height: `${item.energy * glowSize.multiplier + glowSize.base}px`,
-                     left: `-${(item.energy * glowSize.multiplier) / 2}px`,
-                     top: `-${(item.energy * glowSize.multiplier) / 2}px`,
-                     // iOS Safari border-radius Fix für Glow
+                     left: `50%`,
+                     top: `50%`,
+                     transform: `translate(-50%, -50%) translateZ(0)`,
+                     WebkitTransform: `translate(-50%, -50%) translateZ(0)`,
+                     // iOS Safari border-radius Fix für Glow - kritisch für runde Form
                      WebkitBorderRadius: "50%",
                      borderRadius: "50%",
                      MozBorderRadius: "50%",
+                     // iOS Safari: Overflow hidden zwingt runde Form
+                     overflow: "hidden",
                      // iOS Safari Hardware-Beschleunigung
-                     WebkitTransform: "translateZ(0)",
-                     transform: "translateZ(0)",
                      WebkitBackfaceVisibility: "hidden",
                      backfaceVisibility: "hidden",
+                     // iOS Safari: Clip-Path für perfekte Rundung
+                     WebkitClipPath: "circle(50% at center)",
+                     clipPath: "circle(50% at center)",
+                     // z-index für korrekte Layering
+                     zIndex: 0,
                    }}
                  ></div>
 
                  <div
                    className={`
-                   w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full flex items-center justify-center
+                   rounded-full flex items-center justify-center relative z-10
                   ${
                     isExpanded
                       ? "bg-white text-black"
@@ -409,38 +416,50 @@ export default function RadialOrbitalTimeline({
                   transition-transform duration-300 ease-out transform
                   ${isExpanded ? "scale-150" : ""}
                    hover:scale-110
+                  ${isMobile ? "w-14 h-14" : "w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"}
                  `}
                  style={{
-                   // iOS Safari border-radius Fix - explizite WebKit-Prefixes
+                   // iOS Safari border-radius Fix - explizite WebKit-Prefixes - KRITISCH
                    WebkitBorderRadius: "50%",
                    borderRadius: "50%",
                    MozBorderRadius: "50%",
+                   // iOS Safari: Overflow hidden ZWINGT runde Form - wichtigste Fix
+                   overflow: "hidden",
                    // iOS Safari Hardware-Beschleunigung - zwingt GPU-Rendering
                    WebkitTransform: "translateZ(0)",
                    transform: "translateZ(0)",
                    // iOS Safari Rendering Fix - verhindert eckige Frames
                    WebkitBackfaceVisibility: "hidden",
                    backfaceVisibility: "hidden",
-                   // iOS Safari Clip-Path Fix für runde Elemente
-                   WebkitClipPath: "inset(0 round 50%)",
-                   clipPath: "inset(0 round 50%)",
-                   // iOS Safari Overflow Fix
-                   overflow: "hidden",
+                   // iOS Safari Clip-Path Fix für PERFEKTE Rundung
+                   WebkitClipPath: "circle(50% at 50% 50%)",
+                   clipPath: "circle(50% at 50% 50%)",
+                   // z-index für korrekte Layering
+                   position: "relative",
+                   zIndex: 10,
                  }}
                  >
-                   <Icon className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                   <Icon className={`${isMobile ? "w-5 h-5" : "w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"}`} />
                  </div>
 
                  <div
                    className={`
-                   absolute top-16 md:top-20 lg:top-24 whitespace-nowrap
-                   text-xs md:text-sm lg:text-base font-semibold tracking-wider
+                   absolute whitespace-nowrap
+                   font-semibold tracking-wider
                   transition-opacity duration-300 ease-out
                   ${isExpanded ? "text-[#f9c74f] scale-125 drop-shadow-lg" : "text-white/80 drop-shadow-md"}
+                  ${isMobile ? "top-20 text-xs" : "top-16 md:top-20 lg:top-24 text-xs md:text-sm lg:text-base"}
                 `}
                   style={{
+                    // Mobile Positionierung - sicherstellen dass Text sichtbar ist
+                    left: isMobile ? "50%" : "50%",
+                    transform: isMobile ? "translateX(-50%) translateZ(0)" : "translateX(-50%) translateZ(0)",
+                    WebkitTransform: isMobile ? "translateX(-50%) translateZ(0)" : "translateX(-50%) translateZ(0)",
+                    top: isMobile ? "72px" : undefined, // Mobile: 72px = 4.5rem (unter 56px Item + 16px Abstand)
                     textShadow: isExpanded 
                       ? "0 0 8px rgba(249,199,79,0.8), 0 0 16px rgba(249,199,79,0.4)" 
+                      : isMobile
+                      ? "0 2px 4px rgba(0,0,0,0.9), 0 0 6px rgba(249,199,79,0.5)" // Stärkerer Schatten für Mobile Lesbarkeit
                       : "0 1px 2px rgba(0,0,0,0.8), 0 0 4px rgba(249,199,79,0.3)",
                     // iOS Safari Text-Rendering Fix
                     WebkitFontSmoothing: "antialiased",
@@ -449,15 +468,22 @@ export default function RadialOrbitalTimeline({
                     // iOS Safari Text-Darstellung Fix - zwingt Text-Rendering
                     WebkitTextRendering: "optimizeLegibility",
                     textRendering: "optimizeLegibility",
-                    // iOS Safari Transform Fix für Text - Hardware-Beschleunigung
-                    WebkitTransform: "translateZ(0)",
-                    transform: "translateZ(0)",
                     // iOS Safari Will-Render Fix - verhindert fehlenden Text
                     WebkitWillChange: "transform, opacity",
                     willChange: "transform, opacity",
-                    // iOS Safari Display Fix
+                    // iOS Safari Display Fix - zwingt Darstellung
                     display: "block",
+                    visibility: "visible",
+                    opacity: 1,
                     WebkitTextStroke: "0.5px transparent",
+                    // z-index für Text über allen anderen Elementen
+                    zIndex: isExpanded ? 300 : 150,
+                    // Sicherstellen dass Text nicht versteckt wird
+                    pointerEvents: "none",
+                    whiteSpace: "nowrap",
+                    // Mobile Font-Size explizit setzen
+                    fontSize: isMobile ? "0.75rem" : undefined, // 12px auf Mobile für gute Lesbarkeit
+                    lineHeight: "1.4",
                   }}
                 >
                   {item.title}

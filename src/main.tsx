@@ -78,14 +78,7 @@ function initFlowButton() {
     
     const useStrictMode = true;
     const handleClick = () => {
-      const targetElement = document.getElementById("contact") || document.querySelector("#faq");
-      if (targetElement) {
-        const offsetTop = targetElement.offsetTop - 80;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
-      }
+      window.location.href = 'https://build-wise.app/login';
     };
     
     if (typeof ReactDOM !== 'undefined' && ReactDOM.createRoot) {
