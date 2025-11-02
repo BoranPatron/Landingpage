@@ -116,19 +116,20 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         duration: 0.2,
       }}
         className={cn(
-          "flex max-w-7xl fixed top-10 left-4 right-4 sm:inset-x-0 sm:mx-auto border border-white/20 rounded-full bg-[#51646f]/20 backdrop-blur-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08),0_0_20px_rgba(81,100,111,0.2)] z-[10000] px-2 sm:px-5 py-2 sm:py-2.5 items-center justify-between gap-1 sm:gap-3 overflow-hidden",
+          "flex max-w-7xl fixed top-10 left-4 right-4 sm:inset-x-0 sm:mx-auto border border-white/20 rounded-full bg-[#51646f]/20 backdrop-blur-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08),0_0_20px_rgba(81,100,111,0.2)] px-2 sm:px-5 py-2 sm:py-2.5 items-center justify-between gap-1 sm:gap-3 overflow-hidden",
           className
         )}
         style={{
           boxShadow: '0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08), 0 0 30px rgba(81,100,111,0.25), 0 0 60px rgba(249,199,79,0.15)',
           transition: 'box-shadow 0.3s ease',
           // iOS Safari: Ensure clickability and proper stacking
+          position: 'fixed',
           pointerEvents: 'auto',
           WebkitTransform: 'translate3d(0, 0, 0)',
           transform: 'translate3d(0, 0, 0)',
           WebkitBackfaceVisibility: 'hidden',
           backfaceVisibility: 'hidden',
-          isolation: 'isolate',
+          zIndex: 99999,
         }}
       >
         {/* Logo */}
