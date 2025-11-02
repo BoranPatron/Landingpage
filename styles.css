@@ -758,11 +758,25 @@ ul, ol {
     display: none;
 }
 
-/* Global fix: Ensure navbar is always visible and clickable */
+/* CRITICAL: Style nav Root Element - React renders navbar INSIDE this element */
+#floating-nav-root {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 2147483647 !important; /* Maximum int32 for iOS 18 Root View Hit Testing Fix */
+    pointer-events: none !important; /* Clicks pass through to child elements */
+    width: 100% !important;
+    height: auto !important;
+    /* iOS Safari: No containment to prevent stacking context issues */
+    contain: none !important;
+}
+
+/* Global fix: Ensure navbar container is always visible and clickable */
 .floating-navbar-container {
     z-index: 2147483647 !important; /* Maximum int32 for iOS 18 Root View Hit Testing Fix */
     position: fixed !important;
-    pointer-events: auto !important;
+    pointer-events: auto !important; /* Receive clicks from parent nav */
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -776,6 +790,9 @@ ul, ol {
     body {
         position: relative;
         z-index: 0;
+        /* iOS Safari: NO transform to prevent stacking context issues */
+        transform: none !important;
+        -webkit-transform: none !important;
     }
     
     /* iOS Safari: Prevent content from overlaying navbar */
@@ -783,6 +800,25 @@ ul, ol {
     section {
         position: relative;
         z-index: 1;
+        /* iOS Safari: NO transform to prevent stacking context issues */
+        transform: none !important;
+        -webkit-transform: none !important;
+    }
+    
+    /* iOS Safari: nav Root Element - React renders navbar INSIDE this */
+    #floating-nav-root {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 2147483647 !important;
+        pointer-events: none !important; /* Clicks pass through to child */
+        width: 100% !important;
+        height: auto !important;
+        contain: none !important;
+        /* iOS Safari: NO transform to prevent stacking context issues */
+        transform: none !important;
+        -webkit-transform: none !important;
     }
     
     /* iOS Safari: Navbar container - Consolidated rules */
@@ -847,6 +883,11 @@ ul, ol {
         z-index: -1;
     }
     
+    /* iOS Safari 18: Pointer Events Chain */
+    /* Parent nav: pointer-events: none (defined above) */
+    /* Container: pointer-events: auto (defined above) */
+    /* All children: pointer-events: auto */
+    
     /* iOS Safari 18 Root View Hit Testing Fix: Touch-Action for all navbar elements */
     .floating-navbar-container,
     .floating-navbar-container * {
@@ -854,21 +895,32 @@ ul, ol {
         -webkit-touch-callout: default !important;
         -webkit-user-select: none !important;
         user-select: none !important;
-        pointer-events: auto !important;
+        pointer-events: auto !important; /* CRITICAL: All children must have auto */
     }
     
     /* Navigation links - iOS Safari 18 Root View Hit Testing Fix */
+    /* CRITICAL: Links must explicitly have pointer-events: auto to receive clicks */
     #floating-nav-root a,
     .floating-navbar-container a {
         position: relative !important;
         z-index: inherit !important;
-        pointer-events: auto !important;
+        pointer-events: auto !important; /* EXPLICITLY enable pointer events on links */
         cursor: pointer !important;
         touch-action: manipulation !important;
         -webkit-tap-highlight-color: rgba(249, 199, 79, 0.3) !important;
         -webkit-touch-callout: default !important;
         -webkit-user-select: none !important;
         user-select: none !important;
+    }
+    
+    /* iOS Safari 18: Ensure nav element itself allows pointer events to pass through */
+    #floating-nav-root {
+        pointer-events: none !important; /* Clicks pass through to child */
+    }
+    
+    /* iOS Safari 18: Container receives clicks from parent */
+    .floating-navbar-container {
+        pointer-events: auto !important; /* Container receives clicks */
     }
     
     /* Navbar nav element */
@@ -951,6 +1003,10 @@ ul, ol {
 .hero-section {
     padding: 7rem 0 4rem;
     background: transparent;
+    /* iOS Safari: overflow-hidden can clip fixed navbar - use visible for y-axis */
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    /* Alternative: overflow: visible - but can break layout on some devices */
 }
 
 .bg-gray-50 {
