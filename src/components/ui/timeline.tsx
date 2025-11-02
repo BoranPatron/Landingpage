@@ -53,11 +53,11 @@ export const Timeline: React.FC = () => {
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto py-24 md:py-32 px-4 md:px-8 lg:px-10">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl mb-6 text-white dark:text-white mx-auto font-bold">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl mb-3 text-white dark:text-white mx-auto font-bold">
             So funktioniert BuildWise
           </h2>
-          <p className="text-neutral-300 dark:text-neutral-300 text-base md:text-lg max-w-3xl mx-auto mb-12 md:mb-16">
+          <p className="text-neutral-300 dark:text-neutral-300 text-base md:text-lg max-w-3xl mx-auto mb-6 md:mb-8">
             Entdecken Sie, wie BuildWise die Bauwirtschaft revolutioniert – 
             speziell zugeschnitten auf Ihre Rolle.
           </p>
