@@ -116,7 +116,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         duration: 0.2,
       }}
         className={cn(
-          "flex max-w-7xl fixed top-10 inset-x-0 mx-auto border border-white/20 rounded-full bg-[#51646f]/20 backdrop-blur-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08),0_0_20px_rgba(81,100,111,0.2)] z-[5000] px-5 py-2.5 items-center justify-between space-x-3",
+          "flex max-w-7xl fixed top-10 left-4 right-4 sm:inset-x-0 sm:mx-auto border border-white/20 rounded-full bg-[#51646f]/20 backdrop-blur-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08),0_0_20px_rgba(81,100,111,0.2)] z-[5000] px-2 sm:px-5 py-2 sm:py-2.5 items-center justify-between gap-1 sm:gap-3 overflow-hidden",
           className
         )}
         style={{
@@ -129,12 +129,12 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
           href="#hero"
           onClick={(e) => handleLinkClick(e, "#hero")}
           aria-label="Zur Startseite - BuildWise"
-          className="flex items-center pr-6 hover:opacity-80 transition-opacity"
+          className="flex items-center pr-2 sm:pr-6 hover:opacity-80 transition-opacity flex-shrink-0"
         >
           <img 
             src="/favicon.png" 
             alt="BuildWise Logo - Bauträger Plattform Schweiz" 
-            className="h-10 w-10 object-contain"
+            className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
             loading="lazy"
             onError={(e) => {
               // Fallback to logo.png if favicon.png doesn't exist
@@ -147,7 +147,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         </a>
 
         {/* Navigation Items */}
-        <nav className="flex items-center space-x-4 flex-1 justify-center" aria-label="Hauptnavigation">
+        <nav className="flex items-center gap-1 sm:gap-4 flex-1 justify-center min-w-0 overflow-x-auto scrollbar-hide" aria-label="Hauptnavigation">
           {navItems.map((navItem: any, idx: number) => {
             const isActive = isActiveSection(navItem.link);
             return (
@@ -157,7 +157,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
                 onClick={(e) => handleLinkClick(e, navItem.link)}
                 aria-label={`Navigation zu ${navItem.name} Sektion`}
                 className={cn(
-                  "relative items-center flex space-x-2 text-sm px-3 py-1.5 rounded-full transition-all duration-300",
+                  "relative items-center flex gap-1 sm:gap-2 text-sm px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-all duration-300 flex-shrink-0 whitespace-nowrap",
                   isActive
                     ? "text-[#f9c74f] font-bold bg-[#f9c74f]/10 border border-[#f9c74f]/30"
                     : "text-[#f7fafc] hover:text-[#f9c74f] hover:bg-white/10"
@@ -167,8 +167,8 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
                 }}
               >
                 {navItem.icon && (
-                  <span className="block sm:hidden">
-                    {React.cloneElement(navItem.icon as React.ReactElement, { className: "h-5 w-5" })}
+                  <span className="block sm:hidden flex-shrink-0">
+                    {React.cloneElement(navItem.icon as React.ReactElement, { className: "h-4 w-4 sm:h-5 sm:w-5" })}
                   </span>
                 )}
                 <span className="hidden sm:block text-base">{navItem.name}</span>

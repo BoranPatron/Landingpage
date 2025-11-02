@@ -27,7 +27,7 @@ export default function RadialOrbitalTimeline({
   });
   const [activeNodeId, setActiveNodeId] = useState<number | null>(null);
   const [radius, setRadius] = useState<number>(350);
-  const [glowSize, setGlowSize] = useState<{ base: number; multiplier: number }>({ base: 56, multiplier: 0.8 });
+  const [glowSize, setGlowSize] = useState<{ base: number; multiplier: number }>({ base: 60, multiplier: 0.8 });
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
@@ -45,13 +45,13 @@ export default function RadialOrbitalTimeline({
       
       if (mobile) {
         setRadius(200); // Mobile
-        setGlowSize({ base: 48, multiplier: 0.6 });
+        setGlowSize({ base: 52, multiplier: 0.6 });
       } else if (width < 1024) {
         setRadius(280); // Tablet
-        setGlowSize({ base: 52, multiplier: 0.7 });
+        setGlowSize({ base: 56, multiplier: 0.7 });
       } else {
         setRadius(350); // Desktop
-        setGlowSize({ base: 56, multiplier: 0.8 });
+        setGlowSize({ base: 60, multiplier: 0.8 });
       }
     };
 
@@ -157,11 +157,18 @@ export default function RadialOrbitalTimeline({
           : Math.max(0.4, Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2)));
 
         // Direkte DOM-Updates mit Browser-spezifischen Prefixes für Safari, Chrome und Firefox
+        // Performance: Batch DOM-Updates mit transform3d für Hardware-Beschleunigung
         const transform = `translate3d(${x}px, ${y}px, 0)`;
         nodeElement.style.transform = transform;
         nodeElement.style.webkitTransform = transform;
         (nodeElement.style as any).MozTransform = transform; // Firefox prefix
         nodeElement.style.opacity = String(opacity);
+        // Mobile Performance: Vermeide Layout-Shifts mit will-change nur wenn nötig
+        if (isMobile && autoRotate) {
+          nodeElement.style.willChange = "transform, opacity";
+        } else if (!autoRotate) {
+          nodeElement.style.willChange = "auto";
+        }
       });
 
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -264,22 +271,61 @@ export default function RadialOrbitalTimeline({
           <div className="absolute w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-[#f9c74f] via-[#d4af3a] to-[#51646f] animate-pulse flex items-center justify-center z-10 shadow-xl shadow-[#f9c74f]/50" style={{ 
             willChange: autoRotate ? "transform" : "auto",
             WebkitBackfaceVisibility: "hidden",
-            backfaceVisibility: "hidden" 
+            backfaceVisibility: "hidden",
+            // iOS Safari border-radius Fix für zentrale Kreis
+            WebkitBorderRadius: "50%",
+            borderRadius: "50%",
+            MozBorderRadius: "50%",
+            // iOS Safari Hardware-Beschleunigung
+            WebkitTransform: "translateZ(0)",
+            transform: "translateZ(0)",
+            // iOS Safari Clip-Path Fix
+            WebkitClipPath: "inset(0 round 50%)",
+            clipPath: "inset(0 round 50%)",
+            overflow: "hidden",
           }}>
             {/* Reduziere animate-ping auf Mobile für bessere Performance */}
             {!isMobile && (
               <>
-                <div className="absolute w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full border border-[#f9c74f]/30 animate-ping opacity-70"></div>
+                <div className="absolute w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full border border-[#f9c74f]/30 animate-ping opacity-70" style={{
+                  WebkitBorderRadius: "50%",
+                  borderRadius: "50%",
+                  MozBorderRadius: "50%",
+                  WebkitTransform: "translateZ(0)",
+                  transform: "translateZ(0)",
+                }}></div>
                 <div
                   className="absolute w-24 h-24 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full border border-[#f9c74f]/20 animate-ping opacity-50"
-                  style={{ animationDelay: "0.5s" }}
+                  style={{ 
+                    animationDelay: "0.5s",
+                    WebkitBorderRadius: "50%",
+                    borderRadius: "50%",
+                    MozBorderRadius: "50%",
+                    WebkitTransform: "translateZ(0)",
+                    transform: "translateZ(0)",
+                  }}
                 ></div>
               </>
             )}
-            <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full bg-white/90 backdrop-blur-md shadow-lg"></div>
+            <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full bg-white/90 backdrop-blur-md shadow-lg" style={{
+              WebkitBorderRadius: "50%",
+              borderRadius: "50%",
+              MozBorderRadius: "50%",
+              WebkitTransform: "translateZ(0)",
+              transform: "translateZ(0)",
+              WebkitClipPath: "inset(0 round 50%)",
+              clipPath: "inset(0 round 50%)",
+              overflow: "hidden",
+            }}></div>
           </div>
 
-          <div className="absolute w-[400px] h-[400px] md:w-[550px] md:h-[550px] lg:w-[700px] lg:h-[700px] rounded-full border border-[#f9c74f]/20 shadow-inner"></div>
+          <div className="absolute w-[400px] h-[400px] md:w-[550px] md:h-[550px] lg:w-[700px] lg:h-[700px] rounded-full border border-[#f9c74f]/20 shadow-inner" style={{
+            WebkitBorderRadius: "50%",
+            borderRadius: "50%",
+            MozBorderRadius: "50%",
+            WebkitTransform: "translateZ(0)",
+            transform: "translateZ(0)",
+          }}></div>
 
           {timelineData.map((item, index) => {
             const position = calculateNodePosition(index);
@@ -288,17 +334,23 @@ export default function RadialOrbitalTimeline({
             const isPulsing = pulseEffect[item.id];
             const Icon = item.icon;
 
-            const nodeStyle = {
+            const nodeStyle: React.CSSProperties = {
               // Browser-spezifische Prefixes für Safari, Chrome und Firefox
               transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
               WebkitTransform: `translate3d(${position.x}px, ${position.y}px, 0)`,
               MozTransform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+              // iOS Safari Hardware-Beschleunigung Fix
+              WebkitBackfaceVisibility: "hidden",
+              backfaceVisibility: "hidden",
+              WebkitPerspective: "1000px",
+              perspective: "1000px",
+              // iOS Safari Rendering Fix - zwingt Hardware-Beschleunigung
+              transformStyle: "preserve-3d",
+              WebkitTransformStyle: "preserve-3d",
               zIndex: isExpanded ? 200 : position.zIndex,
               opacity: isExpanded ? 1 : position.opacity,
               // will-change nur temporär während Animation (wird von requestAnimationFrame gehandhabt)
               willChange: autoRotate ? "transform, opacity" : "auto",
-              WebkitBackfaceVisibility: "hidden",
-              backfaceVisibility: "hidden",
               contain: "layout style paint",
             };
 
@@ -324,12 +376,21 @@ export default function RadialOrbitalTimeline({
                      height: `${item.energy * glowSize.multiplier + glowSize.base}px`,
                      left: `-${(item.energy * glowSize.multiplier) / 2}px`,
                      top: `-${(item.energy * glowSize.multiplier) / 2}px`,
+                     // iOS Safari border-radius Fix für Glow
+                     WebkitBorderRadius: "50%",
+                     borderRadius: "50%",
+                     MozBorderRadius: "50%",
+                     // iOS Safari Hardware-Beschleunigung
+                     WebkitTransform: "translateZ(0)",
+                     transform: "translateZ(0)",
+                     WebkitBackfaceVisibility: "hidden",
+                     backfaceVisibility: "hidden",
                    }}
                  ></div>
 
                  <div
                    className={`
-                   w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center
+                   w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full flex items-center justify-center
                   ${
                     isExpanded
                       ? "bg-white text-black"
@@ -349,13 +410,30 @@ export default function RadialOrbitalTimeline({
                   ${isExpanded ? "scale-150" : ""}
                    hover:scale-110
                  `}
+                 style={{
+                   // iOS Safari border-radius Fix - explizite WebKit-Prefixes
+                   WebkitBorderRadius: "50%",
+                   borderRadius: "50%",
+                   MozBorderRadius: "50%",
+                   // iOS Safari Hardware-Beschleunigung - zwingt GPU-Rendering
+                   WebkitTransform: "translateZ(0)",
+                   transform: "translateZ(0)",
+                   // iOS Safari Rendering Fix - verhindert eckige Frames
+                   WebkitBackfaceVisibility: "hidden",
+                   backfaceVisibility: "hidden",
+                   // iOS Safari Clip-Path Fix für runde Elemente
+                   WebkitClipPath: "inset(0 round 50%)",
+                   clipPath: "inset(0 round 50%)",
+                   // iOS Safari Overflow Fix
+                   overflow: "hidden",
+                 }}
                  >
-                   <Icon className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
+                   <Icon className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
                  </div>
 
                  <div
                    className={`
-                   absolute top-14 md:top-16 lg:top-20 whitespace-nowrap
+                   absolute top-16 md:top-20 lg:top-24 whitespace-nowrap
                    text-xs md:text-sm lg:text-base font-semibold tracking-wider
                   transition-opacity duration-300 ease-out
                   ${isExpanded ? "text-[#f9c74f] scale-125 drop-shadow-lg" : "text-white/80 drop-shadow-md"}
@@ -363,7 +441,23 @@ export default function RadialOrbitalTimeline({
                   style={{
                     textShadow: isExpanded 
                       ? "0 0 8px rgba(249,199,79,0.8), 0 0 16px rgba(249,199,79,0.4)" 
-                      : "0 1px 2px rgba(0,0,0,0.8), 0 0 4px rgba(249,199,79,0.3)"
+                      : "0 1px 2px rgba(0,0,0,0.8), 0 0 4px rgba(249,199,79,0.3)",
+                    // iOS Safari Text-Rendering Fix
+                    WebkitFontSmoothing: "antialiased",
+                    MozOsxFontSmoothing: "grayscale",
+                    fontSmoothing: "antialiased",
+                    // iOS Safari Text-Darstellung Fix - zwingt Text-Rendering
+                    WebkitTextRendering: "optimizeLegibility",
+                    textRendering: "optimizeLegibility",
+                    // iOS Safari Transform Fix für Text - Hardware-Beschleunigung
+                    WebkitTransform: "translateZ(0)",
+                    transform: "translateZ(0)",
+                    // iOS Safari Will-Render Fix - verhindert fehlenden Text
+                    WebkitWillChange: "transform, opacity",
+                    willChange: "transform, opacity",
+                    // iOS Safari Display Fix
+                    display: "block",
+                    WebkitTextStroke: "0.5px transparent",
                   }}
                 >
                   {item.title}
