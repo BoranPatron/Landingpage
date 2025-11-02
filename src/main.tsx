@@ -253,12 +253,13 @@ function initializeAllComponents() {
       document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           console.log("Initializing React components after DOMContentLoaded...");
+          // CRITICAL: FloatingNav MUSS als ERSTES initialisiert werden für iOS Safari Clickability
+          initFloatingNav();
           initTimeline();
           initRadialOrbit();
           initFlowButton();
           initProfileCard();
           initPricingSection();
-          initFloatingNav();
           initFAQs();
         }, 100); // Verzögerung für iOS Safari DOM-Bereitschaft
       });
@@ -266,12 +267,13 @@ function initializeAllComponents() {
       // Kurze Verzögerung für iOS Safari - sicherstellen dass DOM vollständig bereit ist
       setTimeout(() => {
         console.log("Initializing React components...");
+        // CRITICAL: FloatingNav MUSS als ERSTES initialisiert werden für iOS Safari Clickability
+        initFloatingNav();
         initTimeline();
         initRadialOrbit();
         initFlowButton();
         initProfileCard();
         initPricingSection();
-        initFloatingNav();
         initFAQs();
       }, 100); // Verzögerung für iOS Safari
     }

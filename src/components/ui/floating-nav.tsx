@@ -192,17 +192,16 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         className
       )}
       style={{
-        // iOS Safari: Vernünftiger z-index (nicht extrem hoch)
-        zIndex: 9999,
+        // iOS Safari: EXTREM HOHER z-index für absolute Priorität
+        zIndex: 999999,
         position: 'fixed',
         
-        // iOS Safari: Stacking Context Isolation - verhindert Interferenzen
-        isolation: 'isolate',
+        // iOS Safari: Stacking Context - KEINE Isolation, konkurriert global
+        // isolation: 'isolate', // ENTFERNT - verhindert globale z-index Konkurrenz
         
-        // iOS Safari: Backdrop und Background
+        // iOS Safari: Backdrop und Background - WIRD VERSCHOBEN zu ::before Pseudo-Element
         background: 'rgba(81, 100, 111, 0.75)',
-        WebkitBackdropFilter: 'blur(12px) saturate(150%)',
-        backdropFilter: 'blur(12px) saturate(150%)',
+        // Backdrop-Filter wird in separatem Layer gerendert (siehe CSS)
         
         // iOS Safari: Border
         border: '1px solid rgba(255, 255, 255, 0.25)',
@@ -211,7 +210,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         // iOS Safari: Shadow
         boxShadow: '0 4px 24px rgba(0, 0, 0, 0.25), 0 0 40px rgba(81, 100, 111, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
         
-        // iOS Safari: Clickability
+        // iOS Safari: Clickability - MAXIMALE Priorität
         pointerEvents: 'auto',
         touchAction: 'manipulation',
         WebkitTouchCallout: 'none',
@@ -228,8 +227,8 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         visibility: 'visible',
         opacity: 1,
         
-        // iOS Safari: Containment REMOVED - blockiert pointer events in iOS 18
-        // contain: 'layout style', // DEAKTIVIERT für iOS Safari Clickability
+        // iOS Safari: Containment EXPLICITLY DISABLED
+        contain: 'none',
       }}
     >
       {/* Logo */}

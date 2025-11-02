@@ -760,14 +760,14 @@ ul, ol {
 
 /* Global fix: Ensure navbar is always visible and clickable */
 .floating-navbar-container {
-    z-index: 9999 !important;
+    z-index: 999999 !important;
     position: fixed !important;
     pointer-events: auto !important;
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-    /* iOS Safari: Containment REMOVED - blockiert pointer events in iOS 18 */
-    /* contain: layout style !important; */ /* DEAKTIVIERT */
+    /* iOS Safari: Containment EXPLICITLY DISABLED - blockiert pointer events in iOS 18 */
+    contain: none !important;
 }
 
 /* iOS Safari Fixes for Floating Navbar - Consolidated & Optimized */
@@ -789,8 +789,8 @@ ul, ol {
     .floating-navbar-container {
         /* Positioning & Stacking */
         position: fixed !important;
-        z-index: 9999 !important;
-        isolation: isolate !important;
+        z-index: 999999 !important;
+        /* NO isolation - allow global z-index competition */
         
         /* Transform & Hardware Acceleration */
         transform: translateZ(0) !important;
@@ -810,21 +810,24 @@ ul, ol {
         pointer-events: auto !important;
         touch-action: manipulation !important;
         
-        /* Background & Backdrop */
-        background: rgba(81, 100, 111, 0.85) !important;
-        -webkit-backdrop-filter: blur(12px) saturate(150%) !important;
-        backdrop-filter: blur(12px) saturate(150%) !important;
+        /* Background - Backdrop-Filter moved to ::before pseudo-element */
+        background: rgba(81, 100, 111, 0.75) !important;
         
-        /* iOS Safari: Containment REMOVED - blockiert pointer events in iOS 18 */
+        /* iOS Safari: Containment EXPLICITLY DISABLED */
+        contain: none !important;
     }
     
-    /* iOS Safari: Fix for backdrop-filter stacking context issues */
+    /* iOS Safari: Backdrop-Filter in separate layer to avoid pointer-events block */
     .floating-navbar-container::before {
         content: '';
         position: absolute;
         inset: 0;
         border-radius: 9999px;
-        pointer-events: none;
+        /* Backdrop-Filter ONLY on this layer */
+        -webkit-backdrop-filter: blur(12px) saturate(150%);
+        backdrop-filter: blur(12px) saturate(150%);
+        /* NO pointer events on backdrop layer */
+        pointer-events: none !important;
         z-index: -1;
     }
     

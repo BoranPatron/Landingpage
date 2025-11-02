@@ -81,6 +81,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
+        // iOS Safari: Skip floating navbar links - they have their own handlers
+        if (link.closest('.floating-navbar-container')) {
+            return; // React component handles these
+        }
+        
         link.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
             if (targetId === '#' || !targetId) return;
