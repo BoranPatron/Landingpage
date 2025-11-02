@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Badge } from "./badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./card";
 import { RadialOrbitItem } from "../../radial-orbit-data";
@@ -13,7 +13,6 @@ export default function RadialOrbitalTimeline({
   timelineData,
 }: RadialOrbitalTimelineProps) {
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
-  const [rotationAngle, setRotationAngle] = useState<number>(0);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const [pulseEffect, setPulseEffect] = useState<Record<number, boolean>>({});
   const [activeNodeId, setActiveNodeId] = useState<number | null>(null);
@@ -329,7 +328,6 @@ export default function RadialOrbitalTimeline({
                   overflow: "hidden",
                   // iOS Safari: Isolation-Kontext für korrektes border-radius Rendering
                   isolation: "isolate",
-                  WebkitIsolation: "isolate",
                   // iOS Safari: Clip-Path Fallback für perfekte Rundung
                   WebkitClipPath: "circle(50% at 50% 50%)",
                   clipPath: "circle(50% at 50% 50%)",
@@ -383,7 +381,6 @@ export default function RadialOrbitalTimeline({
                 >
                   <Card
                     className="w-full max-w-md bg-black/95 border-white/30 shadow-2xl"
-                    onClick={(e) => e.stopPropagation()}
                   >
                     <CardHeader className="pb-3">
                       <div className="flex justify-between items-center gap-2 mb-3">
