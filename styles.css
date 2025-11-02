@@ -760,7 +760,7 @@ ul, ol {
 
 /* Global fix: Ensure navbar is always visible and clickable */
 .floating-navbar-container {
-    z-index: 999999 !important;
+    z-index: 2147483647 !important; /* Maximum int32 for iOS 18 Root View Hit Testing Fix */
     position: fixed !important;
     pointer-events: auto !important;
     display: flex !important;
@@ -789,8 +789,11 @@ ul, ol {
     .floating-navbar-container {
         /* Positioning & Stacking */
         position: fixed !important;
-        z-index: 999999 !important;
+        z-index: 2147483647 !important; /* Maximum int32 for iOS 18 Root View Hit Testing Fix */
         /* NO isolation - allow global z-index competition */
+        
+        /* Positioning: Mobile (default from inline styles) */
+        /* Desktop: Override positioning for sm+ screens */
         
         /* Transform & Hardware Acceleration */
         transform: translateZ(0) !important;
@@ -817,6 +820,19 @@ ul, ol {
         contain: none !important;
     }
     
+    /* iOS Safari: Desktop positioning override (sm: 640px+) */
+    @media (min-width: 640px) {
+        .floating-navbar-container {
+            top: 2.5rem !important; /* sm:top-10 = 40px */
+            left: auto !important;
+            right: auto !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            padding: 0.75rem 1.25rem !important; /* sm:py-3 px-5 */
+            gap: 1rem !important; /* sm:gap-4 */
+        }
+    }
+    
     /* iOS Safari: Backdrop-Filter in separate layer to avoid pointer-events block */
     .floating-navbar-container::before {
         content: '';
@@ -831,12 +847,17 @@ ul, ol {
         z-index: -1;
     }
     
-    /* iOS Safari: Ensure all child elements respect pointer events */
+    /* iOS Safari 18 Root View Hit Testing Fix: Touch-Action for all navbar elements */
+    .floating-navbar-container,
     .floating-navbar-container * {
+        touch-action: manipulation !important;
+        -webkit-touch-callout: default !important;
+        -webkit-user-select: none !important;
+        user-select: none !important;
         pointer-events: auto !important;
     }
     
-    /* Navigation links - clickable on iOS */
+    /* Navigation links - iOS Safari 18 Root View Hit Testing Fix */
     #floating-nav-root a,
     .floating-navbar-container a {
         position: relative !important;
@@ -845,16 +866,9 @@ ul, ol {
         cursor: pointer !important;
         touch-action: manipulation !important;
         -webkit-tap-highlight-color: rgba(249, 199, 79, 0.3) !important;
-        -webkit-touch-callout: none !important;
+        -webkit-touch-callout: default !important;
         -webkit-user-select: none !important;
         user-select: none !important;
-    }
-    
-    /* Navbar container children */
-    #floating-nav-root > * > *,
-    .floating-navbar-container > * {
-        pointer-events: auto !important;
-        touch-action: manipulation !important;
     }
     
     /* Navbar nav element */

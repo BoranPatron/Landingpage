@@ -22,9 +22,8 @@ const sectionNames: { [key: string]: string } = {
 
 export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
   const [activeSectionName, setActiveSectionName] = useState<string>("Zukunft");
-  const [isMounted, setIsMounted] = useState<boolean>(false);
 
-  // iOS Safari: Ensure body overflow-y is set correctly and component is mounted
+  // iOS Safari: Ensure body overflow-y is set correctly on mount
   useEffect(() => {
     // Ensure body has overflow-y: auto for iOS Safari
     const body = document.body;
@@ -35,43 +34,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     if (html && html.style.overflowY !== 'auto') {
       html.style.overflowY = 'auto';
     }
-    
-    // iOS Safari: Mark as mounted after short delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      setIsMounted(true);
-    }, 50);
-
-    return () => {
-      clearTimeout(timer);
-    };
   }, []);
-
-  // iOS Safari: Ensure navbar container is clickable after render
-  useEffect(() => {
-    if (!isMounted) return;
-    
-    // Wait a bit for React to render the navbar
-    const timer = setTimeout(() => {
-      const navbarContainer = document.querySelector('.floating-navbar-container');
-      if (navbarContainer) {
-        // Force repaint to ensure navbar is clickable on iOS Safari
-        const container = navbarContainer as HTMLElement;
-        container.style.display = 'flex';
-        container.style.visibility = 'visible';
-        container.style.opacity = '1';
-        container.style.pointerEvents = 'auto';
-        container.style.zIndex = '9999';
-        
-        // iOS Safari: Force hardware acceleration
-        container.style.transform = 'translateZ(0)';
-        container.style.webkitTransform = 'translateZ(0)';
-      }
-    }, 100);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [isMounted]);
 
   // Track active section with IntersectionObserver
   useEffect(() => {
@@ -126,14 +89,8 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     };
   }, []);
 
-  const handleLinkClick = (
-    e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>, 
-    href: string
-  ) => {
-    // iOS Safari: Prevent default and stop propagation
-    e.preventDefault();
-    e.stopPropagation();
-    
+  // iOS Safari 18: Navigation handler WITHOUT preventDefault for native click support
+  const handleNavigation = (href: string) => {
     const targetId = href;
     if (targetId === '#' || !targetId) return;
     
@@ -148,24 +105,28 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     }
   };
 
-  // iOS Safari: Enhanced touch handler with fallback
-  const handleTouchStart = (
-    e: React.TouchEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    // iOS Safari: Allow touch events to propagate but ensure they're handled
-    e.stopPropagation();
-  };
-
-  // iOS Safari: Enhanced click handler with fallback
+  // iOS Safari 18: onClick handler - NO preventDefault to allow native click events
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    handleLinkClick(e, href);
-    // iOS Safari: Ensure click event doesn't bubble to parent
+    // iOS Safari: Allow native click event - NO preventDefault
+    handleNavigation(href);
+    // Stop propagation to prevent double-handling
     e.stopPropagation();
-    return false;
+  };
+
+  // iOS Safari 18: onTouchEnd handler - preventDefault ONLY here for touch devices
+  const handleTouchEnd = (
+    e: React.TouchEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    // iOS Safari: Only preventDefault on touch devices to convert touch to click
+    if ('ontouchstart' in window) {
+      e.preventDefault();
+      handleNavigation(href);
+    }
+    e.stopPropagation();
   };
 
   const isActiveSection = (link: string) => {
@@ -173,28 +134,25 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     return activeSectionName === sectionName;
   };
 
-  // iOS Safari: Don't render until mounted to ensure DOM is ready
-  if (!isMounted) {
-    return null;
-  }
-
+  // iOS Safari: Render IMMEDIATELY - no delayed rendering to prevent other components from occupying touch layer
   return (
     <div
       className={cn(
         "floating-navbar-container",
         "flex items-center justify-between",
-        "fixed top-6 left-4 right-4",
-        "sm:top-10 sm:left-auto sm:right-auto sm:inset-x-0 sm:mx-auto",
         "max-w-7xl",
-        "px-3 py-2.5 sm:px-5 sm:py-3",
         "rounded-full",
-        "gap-2 sm:gap-4",
         className
       )}
       style={{
-        // iOS Safari: EXTREM HOHER z-index für absolute Priorität
-        zIndex: 999999,
+        // iOS Safari 18: MAXIMUM z-index (2147483647 = max int32) für Root View Hit Testing Fix
+        zIndex: 2147483647,
         position: 'fixed',
+        
+        // iOS Safari 18: Positioning in inline styles - NO Tailwind classes for positioning
+        top: '1.5rem', // Mobile: 24px
+        left: '1rem', // Mobile: 16px
+        right: '1rem', // Mobile: 16px
         
         // iOS Safari: Stacking Context - KEINE Isolation, konkurriert global
         // isolation: 'isolate', // ENTFERNT - verhindert globale z-index Konkurrenz
@@ -206,6 +164,10 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         // iOS Safari: Border
         border: '1px solid rgba(255, 255, 255, 0.25)',
         borderRadius: '9999px',
+        
+        // iOS Safari: Padding - Mobile first
+        padding: '0.625rem 0.75rem', // Mobile: py-2.5 px-3
+        gap: '0.5rem', // Mobile: gap-2
         
         // iOS Safari: Shadow
         boxShadow: '0 4px 24px rgba(0, 0, 0, 0.25), 0 0 40px rgba(81, 100, 111, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
@@ -235,8 +197,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
       <a
         href="#hero"
         onClick={(e) => handleClick(e, "#hero")}
-        onTouchStart={(e) => handleTouchStart(e, "#hero")}
-        onTouchEnd={(e) => handleLinkClick(e, "#hero")}
+        onTouchEnd={(e) => handleTouchEnd(e, "#hero")}
         onTouchCancel={(e) => e.stopPropagation()}
         aria-label="Zur Startseite - BuildWise"
         className="flex items-center flex-shrink-0 hover:opacity-80 transition-opacity"
@@ -287,8 +248,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
               key={`nav-link-${idx}`}
               href={navItem.link}
               onClick={(e) => handleClick(e, navItem.link)}
-              onTouchStart={(e) => handleTouchStart(e, navItem.link)}
-              onTouchEnd={(e) => handleLinkClick(e, navItem.link)}
+              onTouchEnd={(e) => handleTouchEnd(e, navItem.link)}
               onTouchCancel={(e) => e.stopPropagation()}
               aria-label={`Navigation zu ${navItem.name}`}
               aria-current={isActive ? 'page' : undefined}
