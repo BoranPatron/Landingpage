@@ -134,7 +134,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     return activeSectionName === sectionName;
   };
 
-  // iOS Safari: Render IMMEDIATELY - no delayed rendering to prevent other components from occupying touch layer
+  // Simplified render without complex inline styles
   return (
     <div
       className={cn(
@@ -144,54 +144,6 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         "rounded-full",
         className
       )}
-      style={{
-        // iOS Safari 18: MAXIMUM z-index (2147483647 = max int32) für Root View Hit Testing Fix
-        zIndex: 2147483647,
-        position: 'fixed',
-        
-        // iOS Safari 18: Positioning in inline styles - NO Tailwind classes for positioning
-        top: '1.5rem', // Mobile: 24px
-        left: '1rem', // Mobile: 16px
-        right: '1rem', // Mobile: 16px
-        
-        // iOS Safari: Stacking Context - KEINE Isolation, konkurriert global
-        // isolation: 'isolate', // ENTFERNT - verhindert globale z-index Konkurrenz
-        
-        // iOS Safari: Backdrop und Background - WIRD VERSCHOBEN zu ::before Pseudo-Element
-        background: 'rgba(81, 100, 111, 0.75)',
-        // Backdrop-Filter wird in separatem Layer gerendert (siehe CSS)
-        
-        // iOS Safari: Border
-        border: '1px solid rgba(255, 255, 255, 0.25)',
-        borderRadius: '9999px',
-        
-        // iOS Safari: Padding - Mobile first
-        padding: '0.625rem 0.75rem', // Mobile: py-2.5 px-3
-        gap: '0.5rem', // Mobile: gap-2
-        
-        // iOS Safari: Shadow
-        boxShadow: '0 4px 24px rgba(0, 0, 0, 0.25), 0 0 40px rgba(81, 100, 111, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
-        
-        // iOS Safari: Clickability - MAXIMALE Priorität
-        pointerEvents: 'auto',
-        touchAction: 'manipulation',
-        WebkitTouchCallout: 'none',
-        
-        // iOS Safari: Hardware acceleration
-        WebkitTransform: 'translateZ(0)',
-        transform: 'translateZ(0)',
-        WebkitBackfaceVisibility: 'hidden',
-        backfaceVisibility: 'hidden',
-        willChange: 'transform',
-        
-        // iOS Safari: Visibility
-        display: 'flex',
-        visibility: 'visible',
-        opacity: 1,
-        
-        // iOS Safari: Containment EXPLICITLY DISABLED
-        contain: 'none',
-      }}
     >
       {/* Logo */}
       <a
@@ -200,25 +152,12 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         onTouchEnd={(e) => handleTouchEnd(e, "#hero")}
         onTouchCancel={(e) => e.stopPropagation()}
         aria-label="Zur Startseite - BuildWise"
-        className="flex items-center flex-shrink-0 hover:opacity-80 transition-opacity"
-        style={{
-          WebkitTapHighlightColor: 'rgba(249, 199, 79, 0.3)',
-          touchAction: 'manipulation',
-          pointerEvents: 'auto',
-          cursor: 'pointer',
-          padding: '0.25rem 0.5rem',
-          minWidth: 'fit-content',
-        }}
+        className="flex items-center flex-shrink-0 hover:opacity-80 transition-opacity px-2 py-1 cursor-pointer"
       >
         <img 
           src="/favicon.png" 
           alt="BuildWise Logo" 
-          className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
-          style={{
-            display: 'block',
-            maxWidth: '100%',
-            height: 'auto',
-          }}
+          className="h-8 w-8 sm:h-10 sm:w-10 object-contain block max-w-full h-auto"
           loading="eager"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
@@ -231,15 +170,8 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
 
       {/* Navigation Items */}
       <nav 
-        className="flex items-center gap-1 sm:gap-3 flex-1 justify-center min-w-0" 
+        className="flex items-center gap-1 sm:gap-3 flex-1 justify-center min-w-0 overflow-x-auto" 
         aria-label="Hauptnavigation"
-        style={{
-          overflowX: 'auto',
-          overflowY: 'hidden',
-          WebkitOverflowScrolling: 'touch',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-        }}
       >
         {navItems.map((navItem: any, idx: number) => {
           const isActive = isActiveSection(navItem.link);
@@ -262,45 +194,18 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
                 "transition-all duration-300",
                 "flex-shrink-0",
                 "whitespace-nowrap",
+                "cursor-pointer",
+                "min-h-[44px]",
                 isActive
-                  ? "text-[#f9c74f] font-bold"
-                  : "text-white/90 hover:text-[#f9c74f]"
+                  ? "text-[#f9c74f] font-bold bg-[#f9c74f]/15 border border-[#f9c74f]/40"
+                  : "text-white/90 hover:text-[#f9c74f] hover:bg-white/10 border border-transparent"
               )}
-              style={{
-                // iOS Safari: Active State
-                background: isActive ? 'rgba(249, 199, 79, 0.15)' : 'transparent',
-                border: isActive ? '1px solid rgba(249, 199, 79, 0.4)' : '1px solid transparent',
-                textShadow: isActive ? '0 0 10px rgba(249, 199, 79, 0.6)' : 'none',
-                
-                // iOS Safari: Touch
-                WebkitTapHighlightColor: 'rgba(249, 199, 79, 0.3)',
-                touchAction: 'manipulation',
-                pointerEvents: 'auto',
-                cursor: 'pointer',
-                WebkitTouchCallout: 'none',
-                WebkitUserSelect: 'none',
-                userSelect: 'none',
-                
-                // iOS Safari: Min touch target
-                minHeight: '44px',
-                minWidth: 'fit-content',
-                
-                // iOS Safari: Hover effect
-                ...(isActive ? {} : {
-                  ':hover': {
-                    background: 'rgba(255, 255, 255, 0.1)',
-                  }
-                })
-              }}
             >
               {/* Icon - nur auf Mobile */}
               {navItem.icon && (
                 <span className="block sm:hidden flex-shrink-0">
                   {React.cloneElement(navItem.icon as React.ReactElement, { 
-                    className: "h-4 w-4",
-                    style: {
-                      color: isActive ? '#f9c74f' : 'white',
-                    }
+                    className: cn("h-4 w-4", isActive ? "text-[#f9c74f]" : "text-white")
                   })}
                 </span>
               )}

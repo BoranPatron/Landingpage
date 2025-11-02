@@ -237,66 +237,35 @@ function initFAQs() {
   }
 }
 
-// Execute when DOM is ready - mit iOS Safari Optimierungen
+// Execute when DOM is ready - Simplified without timing hacks
 function initializeAllComponents() {
-  // React/ReactDOM sind im Bundle eingebettet, sollten direkt verfügbar sein
-  // Aber für iOS Safari: zusätzliche Wartezeit und Checks
   try {
-    // Prüfe ob DOM-Elemente verfügbar sind
-    const hasElements = 
-      document.getElementById("timeline-root") ||
-      document.getElementById("radial-orbit-root") ||
-      document.getElementById("hero-flow-button-root");
+    console.log('[BuildWise] Initializing React components...');
     
-    if (!hasElements && (document.readyState === 'loading' || !document.body)) {
-      // Warte auf DOM
-      document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-          console.log("Initializing React components after DOMContentLoaded...");
-          // CRITICAL: FloatingNav MUSS als ERSTES initialisiert werden für iOS Safari Clickability
-          initFloatingNav();
-          initTimeline();
-          initRadialOrbit();
-          initFlowButton();
-          initProfileCard();
-          initPricingSection();
-          initFAQs();
-        }, 100); // Verzögerung für iOS Safari DOM-Bereitschaft
-      });
-    } else {
-      // Kurze Verzögerung für iOS Safari - sicherstellen dass DOM vollständig bereit ist
-      setTimeout(() => {
-        console.log("Initializing React components...");
-        // CRITICAL: FloatingNav MUSS als ERSTES initialisiert werden für iOS Safari Clickability
-        initFloatingNav();
-        initTimeline();
-        initRadialOrbit();
-        initFlowButton();
-        initProfileCard();
-        initPricingSection();
-        initFAQs();
-      }, 100); // Verzögerung für iOS Safari
-    }
+    // Initialize FloatingNav first - critical for navigation
+    console.log('[FloatingNav] Initializing...');
+    initFloatingNav();
+    console.log('[FloatingNav] Initialized');
+    
+    // Initialize other components
+    initTimeline();
+    initRadialOrbit();
+    initFlowButton();
+    initProfileCard();
+    initPricingSection();
+    initFAQs();
+    
+    console.log('[BuildWise] All components initialized');
   } catch (error) {
-    console.error("Error in initializeAllComponents:", error);
-    // Retry nach kurzer Wartezeit
-    setTimeout(initializeAllComponents, 200);
+    console.error("[BuildWise] Error initializing components:", error);
   }
 }
 
-// Starte Initialisierung - warte auf vollständiges Laden des Bundles
-// iOS Safari manchmal verzögertes Laden
-if (document.readyState === 'complete' || (document.readyState !== 'loading' && document.body)) {
-  // Sofort initialisieren wenn bereits geladen
-  initializeAllComponents();
+// Start initialization when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeAllComponents);
 } else {
-  // Warte auf DOMContentLoaded oder window.load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeAllComponents);
-  }
-  // Zusätzlicher Fallback für iOS Safari
-  window.addEventListener('load', () => {
-    setTimeout(initializeAllComponents, 50);
-  });
+  // DOM is already ready
+  initializeAllComponents();
 }
 

@@ -784,244 +784,44 @@ ul, ol {
     contain: none !important;
 }
 
-/* iOS Safari Fixes for Floating Navbar - Consolidated & Optimized */
-@supports (-webkit-touch-callout: none) {
-    /* iOS Safari: Ensure navbar is always on top of content */
-    body {
-        position: relative;
-        z-index: 0;
-        /* iOS Safari: NO transform to prevent stacking context issues */
-        transform: none !important;
-        -webkit-transform: none !important;
-    }
-    
-    /* iOS Safari: Prevent content from overlaying navbar */
-    main,
-    section {
-        position: relative;
-        z-index: 1 !important; /* EXPLICITLY lower than navbar (2147483647) */
-        /* iOS Safari: NO transform to prevent stacking context issues */
-        transform: none !important;
-        -webkit-transform: none !important;
-    }
-    
-    /* iOS Safari 26: CRITICAL - Force all content elements below navbar z-index during scroll */
-    /* EXCLUDE navbar elements to ensure they are not affected */
-    main *:not(.floating-navbar-container):not(#floating-nav-root),
-    section *:not(.floating-navbar-container):not(#floating-nav-root) {
-        z-index: auto !important; /* Reset all nested z-index, except navbar */
-    }
-    
-    /* iOS Safari 26: Force sticky/fixed elements below navbar */
-    [class*="sticky"]:not(.floating-navbar-container),
-    [class*="fixed"]:not(.floating-navbar-container):not(#floating-nav-root) {
-        z-index: 1 !important; /* Maximum z-index for content elements */
-    }
-    
-    /* iOS Safari: nav Root Element - React renders navbar INSIDE this */
-    #floating-nav-root {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 2147483647 !important;
-        pointer-events: none !important; /* Clicks pass through to child */
-        width: 100% !important;
-        height: auto !important;
-        contain: none !important;
-        /* iOS Safari: NO transform to prevent stacking context issues */
-        transform: none !important;
-        -webkit-transform: none !important;
-    }
-    
-    /* iOS Safari: Navbar container - Consolidated rules */
+/* Simplified Navbar Styles - Works on all browsers including iOS Safari */
+
+/* Desktop: Centered navbar */
+@media (min-width: 640px) {
     .floating-navbar-container {
-        /* Positioning & Stacking */
-        position: fixed !important;
-        z-index: 2147483647 !important; /* Maximum int32 for iOS 18 Root View Hit Testing Fix */
-        /* NO isolation - allow global z-index competition */
-        
-        /* Positioning: Mobile (default from inline styles) */
-        /* Desktop: Override positioning for sm+ screens */
-        
-        /* Transform & Hardware Acceleration */
-        transform: translateZ(0) !important;
-        -webkit-transform: translateZ(0) !important;
-        transform-style: preserve-3d !important;
-        -webkit-transform-style: preserve-3d !important;
-        -webkit-backface-visibility: hidden !important;
-        backface-visibility: hidden !important;
-        will-change: transform !important;
-        
-        /* iOS Safari 26: CRITICAL - Force separate compositing layer during scroll */
-        /* NO isolation - it creates stacking context that can break z-index */
-        /* NO perspective - it creates 3D context that can make navbar invisible on iOS Safari */
-        /* Use transform: translateZ(0) + will-change for hardware acceleration instead */
-        
-        /* Visibility & Display */
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        
-        /* Pointer Events & Touch */
-        pointer-events: auto !important;
-        touch-action: manipulation !important;
-        
-        /* Background - Backdrop-Filter moved to ::before pseudo-element */
-        background: rgba(81, 100, 111, 0.75) !important;
-    }
-    
-    /* iOS Safari: Desktop positioning override (sm: 640px+) */
-    @media (min-width: 640px) {
-        .floating-navbar-container {
-            top: 2.5rem !important; /* sm:top-10 = 40px */
-            left: auto !important;
-            right: auto !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            padding: 0.75rem 1.25rem !important; /* sm:py-3 px-5 */
-            gap: 1rem !important; /* sm:gap-4 */
-        }
-    }
-    
-    /* iOS Safari: Backdrop-Filter in separate layer to avoid pointer-events block */
-    .floating-navbar-container::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: 9999px;
-        /* Backdrop-Filter ONLY on this layer */
-        -webkit-backdrop-filter: blur(12px) saturate(150%);
-        backdrop-filter: blur(12px) saturate(150%);
-        /* NO pointer events on backdrop layer */
-        pointer-events: none !important;
-        z-index: -1;
-    }
-    
-    /* iOS Safari 18: Pointer Events Chain */
-    /* Parent nav: pointer-events: none (defined above) */
-    /* Container: pointer-events: auto (defined above) */
-    /* All children: pointer-events: auto */
-    
-    /* iOS Safari 18 Root View Hit Testing Fix: Touch-Action for all navbar elements */
-    .floating-navbar-container,
-    .floating-navbar-container * {
-        touch-action: manipulation !important;
-        -webkit-touch-callout: default !important;
-        -webkit-user-select: none !important;
-        user-select: none !important;
-        pointer-events: auto !important; /* CRITICAL: All children must have auto */
-    }
-    
-    /* Navigation links - iOS Safari 18 Root View Hit Testing Fix */
-    /* CRITICAL: Links must explicitly have pointer-events: auto to receive clicks */
-    #floating-nav-root a,
-    .floating-navbar-container a {
-        position: relative !important;
-        z-index: inherit !important;
-        pointer-events: auto !important; /* EXPLICITLY enable pointer events on links */
-        cursor: pointer !important;
-        touch-action: manipulation !important;
-        -webkit-tap-highlight-color: rgba(249, 199, 79, 0.3) !important;
-        -webkit-touch-callout: default !important;
-        -webkit-user-select: none !important;
-        user-select: none !important;
-    }
-    
-    /* iOS Safari 18: Ensure nav element itself allows pointer events to pass through */
-    #floating-nav-root {
-        pointer-events: none !important; /* Clicks pass through to child */
-    }
-    
-    /* iOS Safari 18: Container receives clicks from parent */
-    .floating-navbar-container {
-        pointer-events: auto !important; /* Container receives clicks */
-    }
-    
-    /* Navbar nav element */
-    .floating-navbar-container nav {
-        position: relative !important;
-        z-index: inherit !important;
-        pointer-events: auto !important;
-        touch-action: manipulation !important;
-    }
-    
-    /* iOS 18: Explicit touch target sizes for mobile */
-    @media (max-width: 640px) {
-        .floating-navbar-container a {
-            min-width: 44px !important;
-            min-height: 44px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-        }
+        top: 2.5rem !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        max-width: 1200px !important;
+        padding: 0.75rem 1.25rem !important;
     }
 }
 
-/* Mobile Navbar - Ensure items stay within bounds */
+/* Mobile: Simple positioning without complex overrides */
 @media (max-width: 640px) {
-    /* iOS Safari 26: CRITICAL - Force navbar to stay on top during scroll on mobile */
-    #floating-nav-root,
     .floating-navbar-container {
-        z-index: 2147483647 !important; /* RE-ENFORCE maximum z-index on mobile */
-        position: fixed !important;
-        /* iOS Safari: Force hardware layer to prevent content overlay during scroll */
-        -webkit-transform: translateZ(0) !important;
-        transform: translateZ(0) !important;
-        will-change: transform !important;
-        /* iOS Safari: Ensure navbar stays visible during scroll */
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-    
-    /* iOS Safari: Mobile positioning adjustments with safe area insets */
-    .floating-navbar-container {
-        /* Top position: Account for Safari browser UI and safe area */
-        /* Safari UI can be up to 88px on iPhone with Dynamic Island, safe area usually 44-59px */
-        top: max(1.5rem, calc(env(safe-area-inset-top) + 0.5rem)) !important;
-        left: max(1rem, env(safe-area-inset-left)) !important;
-        right: max(1rem, env(safe-area-inset-right)) !important;
+        top: 1.5rem !important;
+        left: 1rem !important;
+        right: 1rem !important;
         padding: 0.625rem 0.75rem !important;
-        padding-top: max(0.625rem, calc(env(safe-area-inset-top) + 0.25rem)) !important;
-        padding-bottom: max(0.625rem, env(safe-area-inset-bottom)) !important;
-        /* Ensure navbar doesn't overlap with Safari UI */
-        margin-top: 0 !important;
     }
     
-    /* iOS Safari: Additional fix for Safari browser UI variations */
-    @supports (-webkit-touch-callout: none) {
-        .floating-navbar-container {
-            /* Safari with tab bar at bottom: add extra top margin */
-            top: max(1.5rem, max(env(safe-area-inset-top), 24px)) !important;
-        }
-    }
-    
-    /* Ensure navbar container doesn't overflow */
-    [class*="fixed"][class*="top-10"] {
-        max-width: calc(100vw - 2rem) !important;
-        box-sizing: border-box !important;
-    }
-    
-    /* Prevent nav items from overflowing */
+    /* Horizontal scrolling for nav items on mobile */
     nav[aria-label="Hauptnavigation"] {
-        min-width: 0;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
-        scroll-behavior: smooth;
-        max-width: 100%;
-        flex: 1 1 0%;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
     
-    /* Ensure nav items don't shrink below minimum */
+    nav[aria-label="Hauptnavigation"]::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Nav items don't shrink */
     nav[aria-label="Hauptnavigation"] a {
-        min-width: fit-content;
         flex-shrink: 0;
-    }
-    
-    /* Ensure logo doesn't cause overflow */
-    [class*="fixed"][class*="top-10"] > a:first-child {
-        flex-shrink: 0;
-        min-width: auto;
     }
 }
 
