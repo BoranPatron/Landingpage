@@ -194,7 +194,7 @@ export default function RadialOrbitalTimeline({
           maxHeight: "90vh",
         }}
       >
-        {/* Center Hub */}
+        {/* Center Hub - iOS Safari: Round Fix */}
         <div
           className="absolute left-1/2 top-1/2 rounded-full bg-gradient-to-br from-[#f9c74f] via-[#d4af3a] to-[#51646f] flex items-center justify-center shadow-xl shadow-[#f9c74f]/50"
           style={{
@@ -203,6 +203,15 @@ export default function RadialOrbitalTimeline({
             marginLeft: isMobile ? "-30px" : "-40px",
             marginTop: isMobile ? "-30px" : "-40px",
             zIndex: 5,
+            // iOS Safari: Border-Radius mit WebKit-Prefixes
+            WebkitBorderRadius: "50%",
+            borderRadius: "50%",
+            MozBorderRadius: "50%",
+            // iOS Safari: Overflow hidden für runde Form
+            overflow: "hidden",
+            // iOS Safari: Clip-Path Fallback
+            WebkitClipPath: "circle(50% at 50% 50%)",
+            clipPath: "circle(50% at 50% 50%)",
           }}
         >
           <div
@@ -210,11 +219,17 @@ export default function RadialOrbitalTimeline({
             style={{
               width: isMobile ? "28px" : "36px",
               height: isMobile ? "28px" : "36px",
+              // iOS Safari: Border-Radius mit WebKit-Prefixes
+              WebkitBorderRadius: "50%",
+              borderRadius: "50%",
+              MozBorderRadius: "50%",
+              // iOS Safari: Overflow hidden für runde Form
+              overflow: "hidden",
             }}
           />
         </div>
 
-        {/* Orbit Ring */}
+        {/* Orbit Ring - iOS Safari: Round Fix */}
         <div
           className="absolute left-1/2 top-1/2 rounded-full border border-[#f9c74f]/20"
           style={{
@@ -223,6 +238,10 @@ export default function RadialOrbitalTimeline({
             marginLeft: `-${radius}px`,
             marginTop: `-${radius}px`,
             pointerEvents: "none",
+            // iOS Safari: Border-Radius mit WebKit-Prefixes
+            WebkitBorderRadius: "50%",
+            borderRadius: "50%",
+            MozBorderRadius: "50%",
           }}
         />
 
@@ -263,7 +282,7 @@ export default function RadialOrbitalTimeline({
                 toggleItem(item.id);
               }}
             >
-              {/* Glow Effect */}
+              {/* Glow Effect - iOS Safari: Round Fix */}
               <div
                 className={`absolute rounded-full ${isPulsing ? "animate-pulse" : ""}`}
                 style={{
@@ -276,10 +295,19 @@ export default function RadialOrbitalTimeline({
                   background: `radial-gradient(circle, rgba(249,199,79,0.3) 0%, transparent 70%)`,
                   pointerEvents: "none",
                   zIndex: -1,
+                  // iOS Safari: Border-Radius mit WebKit-Prefixes
+                  WebkitBorderRadius: "50%",
+                  borderRadius: "50%",
+                  MozBorderRadius: "50%",
+                  // iOS Safari: Clip-Path Fallback
+                  WebkitClipPath: "circle(50% at 50% 50%)",
+                  clipPath: "circle(50% at 50% 50%)",
+                  // iOS Safari: Overflow für Glow (kann weggelassen werden, aber hilft bei Rendering)
+                  overflow: "hidden",
                 }}
               />
 
-              {/* Node Circle */}
+              {/* Node Circle - iOS Safari: Round Fix */}
               <div
                 className={`
                   flex items-center justify-center rounded-full
@@ -293,6 +321,26 @@ export default function RadialOrbitalTimeline({
                   width: "64px",
                   height: "64px",
                   position: "relative",
+                  // iOS Safari: Border-Radius mit vollständigen WebKit-Prefixes
+                  WebkitBorderRadius: "50%",
+                  borderRadius: "50%",
+                  MozBorderRadius: "50%",
+                  // iOS Safari: Overflow hidden ZWINGT runde Form
+                  overflow: "hidden",
+                  // iOS Safari: Isolation-Kontext für korrektes border-radius Rendering
+                  isolation: "isolate",
+                  WebkitIsolation: "isolate",
+                  // iOS Safari: Clip-Path Fallback für perfekte Rundung
+                  WebkitClipPath: "circle(50% at 50% 50%)",
+                  clipPath: "circle(50% at 50% 50%)",
+                  // iOS Safari: SVG-Mask Fallback
+                  mask: "radial-gradient(circle, black 50%, transparent 50%)",
+                  WebkitMask: "radial-gradient(circle, black 50%, transparent 50%)",
+                  // iOS Safari: Hardware-Beschleunigung für runde Form
+                  WebkitTransform: "translate3d(0, 0, 0)",
+                  transform: "translate3d(0, 0, 0)",
+                  WebkitBackfaceVisibility: "hidden",
+                  backfaceVisibility: "hidden",
                 }}
               >
                 <Icon className="w-6 h-6" />
