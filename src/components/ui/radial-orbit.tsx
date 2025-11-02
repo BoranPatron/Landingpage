@@ -339,6 +339,12 @@ export default function RadialOrbitalTimeline({
               transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
               WebkitTransform: `translate3d(${position.x}px, ${position.y}px, 0)`,
               MozTransform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+              // iOS 18 Safari/Chrome: Stacking-Kontext Fix - Parent in neuen Stacking-Kontext
+              position: "relative",
+              zIndex: 0, // z-index: 0 mit position: relative erstellt neuen Stacking-Kontext
+              // iOS 18: Isolation-Kontext für korrektes border-radius Rendering
+              isolation: "isolate",
+              WebkitIsolation: "isolate",
               // iOS Safari Hardware-Beschleunigung Fix
               WebkitBackfaceVisibility: "hidden",
               backfaceVisibility: "hidden",
@@ -347,10 +353,11 @@ export default function RadialOrbitalTimeline({
               // iOS Safari Rendering Fix - zwingt Hardware-Beschleunigung
               transformStyle: "preserve-3d",
               WebkitTransformStyle: "preserve-3d",
+              // z-index für Layering
               zIndex: isExpanded ? 200 : position.zIndex,
               opacity: isExpanded ? 1 : position.opacity,
               // will-change nur temporär während Animation (wird von requestAnimationFrame gehandhabt)
-              willChange: autoRotate ? "transform, opacity" : "auto",
+              willChange: autoRotate ? "transform" : "auto",
               contain: "layout style paint",
             };
 
@@ -365,39 +372,46 @@ export default function RadialOrbitalTimeline({
                   toggleItem(item.id);
                 }}
               >
-                 {/* Energy Glow Effect - responsive sizing */}
+                 {/* iOS 18: Glow als Box-Shadow Alternative für bessere Kompatibilität */}
                  <div
-                   className={`absolute rounded-full -inset-1 ${
+                   className={`absolute rounded-full ${
                      isPulsing ? "animate-pulse duration-1000" : ""
                    }`}
                    style={{
-                     background: `radial-gradient(circle at center, rgba(249,199,79,0.3) 0%, rgba(249,199,79,0.15) 40%, rgba(249,199,79,0) 70%)`,
                      width: `${item.energy * glowSize.multiplier + glowSize.base}px`,
                      height: `${item.energy * glowSize.multiplier + glowSize.base}px`,
                      left: `50%`,
                      top: `50%`,
                      transform: `translate(-50%, -50%) translateZ(0)`,
                      WebkitTransform: `translate(-50%, -50%) translateZ(0)`,
-                     // iOS Safari border-radius Fix für Glow - kritisch für runde Form
+                     // iOS 18: Box-Shadow statt radial-gradient für Glow
+                     boxShadow: `0 0 ${item.energy * 0.8 + 20}px rgba(249,199,79,0.4), 0 0 ${item.energy * 0.6 + 15}px rgba(249,199,79,0.3), 0 0 ${item.energy * 0.4 + 10}px rgba(249,199,79,0.2)`,
+                     WebkitBoxShadow: `0 0 ${item.energy * 0.8 + 20}px rgba(249,199,79,0.4), 0 0 ${item.energy * 0.6 + 15}px rgba(249,199,79,0.3), 0 0 ${item.energy * 0.4 + 10}px rgba(249,199,79,0.2)`,
+                     // iOS 18: border-radius Fix mit Isolation
                      WebkitBorderRadius: "50%",
                      borderRadius: "50%",
                      MozBorderRadius: "50%",
-                     // iOS Safari: Overflow hidden zwingt runde Form
-                     overflow: "hidden",
+                     // iOS 18: Isolation für border-radius
+                     isolation: "isolate",
+                     WebkitIsolation: "isolate",
+                     // iOS 18: Stacking-Kontext für border-radius
+                     position: "absolute",
+                     zIndex: 0,
                      // iOS Safari Hardware-Beschleunigung
                      WebkitBackfaceVisibility: "hidden",
                      backfaceVisibility: "hidden",
-                     // iOS Safari: Clip-Path für perfekte Rundung
-                     WebkitClipPath: "circle(50% at center)",
-                     clipPath: "circle(50% at center)",
-                     // z-index für korrekte Layering
-                     zIndex: 0,
+                     // iOS 18: Clip-Path Fallback für perfekte Rundung
+                     WebkitClipPath: "circle(50% at 50% 50%)",
+                     clipPath: "circle(50% at 50% 50%)",
+                     // Kein overflow auf Glow - iOS 18 Bug mit overflow + transform
+                     pointerEvents: "none",
                    }}
                  ></div>
 
+                 {/* iOS 18: Item-Container mit Isolation und Stacking-Kontext */}
                  <div
                    className={`
-                   rounded-full flex items-center justify-center relative z-10
+                   rounded-full flex items-center justify-center relative
                   ${
                     isExpanded
                       ? "bg-white text-black"
@@ -419,29 +433,35 @@ export default function RadialOrbitalTimeline({
                   ${isMobile ? "w-14 h-14" : "w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"}
                  `}
                  style={{
+                   // iOS 18: Stacking-Kontext Fix - position + z-index erstellt neuen Kontext
+                   position: "relative",
+                   zIndex: 0,
+                   // iOS 18: Isolation-Kontext für korrektes border-radius Rendering
+                   isolation: "isolate",
+                   WebkitIsolation: "isolate",
                    // iOS Safari border-radius Fix - explizite WebKit-Prefixes - KRITISCH
                    WebkitBorderRadius: "50%",
                    borderRadius: "50%",
                    MozBorderRadius: "50%",
-                   // iOS Safari: Overflow hidden ZWINGT runde Form - wichtigste Fix
+                   // iOS 18: Overflow hidden ZWINGT runde Form - mit Isolation funktioniert es
                    overflow: "hidden",
-                   // iOS Safari Hardware-Beschleunigung - zwingt GPU-Rendering
-                   WebkitTransform: "translateZ(0)",
-                   transform: "translateZ(0)",
+                   // iOS 18: Neue Rendering-Ebene mit translate3d für border-radius
+                   WebkitTransform: "translate3d(0, 0, 0)",
+                   transform: "translate3d(0, 0, 0)",
                    // iOS Safari Rendering Fix - verhindert eckige Frames
                    WebkitBackfaceVisibility: "hidden",
                    backfaceVisibility: "hidden",
-                   // iOS Safari Clip-Path Fix für PERFEKTE Rundung
+                   // iOS 18: Clip-Path Fallback für perfekte Rundung
                    WebkitClipPath: "circle(50% at 50% 50%)",
                    clipPath: "circle(50% at 50% 50%)",
-                   // z-index für korrekte Layering
-                   position: "relative",
+                   // z-index für korrekte Layering über Glow
                    zIndex: 10,
                  }}
                  >
                    <Icon className={`${isMobile ? "w-5 h-5" : "w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"}`} />
                  </div>
 
+                 {/* iOS 18: Text außerhalb von transformiertem Container für korrekte Darstellung */}
                  <div
                    className={`
                    absolute whitespace-nowrap
@@ -451,31 +471,39 @@ export default function RadialOrbitalTimeline({
                   ${isMobile ? "top-20 text-xs" : "top-16 md:top-20 lg:top-24 text-xs md:text-sm lg:text-base"}
                 `}
                   style={{
-                    // Mobile Positionierung - sicherstellen dass Text sichtbar ist
-                    left: isMobile ? "50%" : "50%",
-                    transform: isMobile ? "translateX(-50%) translateZ(0)" : "translateX(-50%) translateZ(0)",
-                    WebkitTransform: isMobile ? "translateX(-50%) translateZ(0)" : "translateX(-50%) translateZ(0)",
+                    // iOS 18: Text-Positionierung mit transform auf Text-Element selbst (nicht Parent)
+                    left: "50%",
+                    transform: "translateX(-50%) translateZ(0)",
+                    WebkitTransform: "translateX(-50%) translateZ(0)",
                     top: isMobile ? "72px" : undefined, // Mobile: 72px = 4.5rem (unter 56px Item + 16px Abstand)
+                    // iOS 18: Position absolute mit expliziten Koordinaten
+                    position: "absolute",
+                    // iOS 18: Isolation-Kontext für Text-Rendering
+                    isolation: "isolate",
+                    WebkitIsolation: "isolate",
                     textShadow: isExpanded 
                       ? "0 0 8px rgba(249,199,79,0.8), 0 0 16px rgba(249,199,79,0.4)" 
                       : isMobile
                       ? "0 2px 4px rgba(0,0,0,0.9), 0 0 6px rgba(249,199,79,0.5)" // Stärkerer Schatten für Mobile Lesbarkeit
                       : "0 1px 2px rgba(0,0,0,0.8), 0 0 4px rgba(249,199,79,0.3)",
-                    // iOS Safari Text-Rendering Fix
+                    // iOS 18 Safari Text-Rendering Fix - verstärkt
                     WebkitFontSmoothing: "antialiased",
                     MozOsxFontSmoothing: "grayscale",
                     fontSmoothing: "antialiased",
-                    // iOS Safari Text-Darstellung Fix - zwingt Text-Rendering
+                    // iOS 18: Text-Darstellung Fix - zwingt Text-Rendering
                     WebkitTextRendering: "optimizeLegibility",
                     textRendering: "optimizeLegibility",
-                    // iOS Safari Will-Render Fix - verhindert fehlenden Text
-                    WebkitWillChange: "transform, opacity",
-                    willChange: "transform, opacity",
-                    // iOS Safari Display Fix - zwingt Darstellung
+                    // iOS 18: Will-Render Fix - verhindert fehlenden Text
+                    WebkitWillChange: "opacity",
+                    willChange: "opacity",
+                    // iOS 18: Display Fix - zwingt Darstellung
                     display: "block",
                     visibility: "visible",
                     opacity: 1,
                     WebkitTextStroke: "0.5px transparent",
+                    // iOS 18: Neue Rendering-Ebene für Text
+                    WebkitBackfaceVisibility: "visible",
+                    backfaceVisibility: "visible",
                     // z-index für Text über allen anderen Elementen
                     zIndex: isExpanded ? 300 : 150,
                     // Sicherstellen dass Text nicht versteckt wird
@@ -484,9 +512,11 @@ export default function RadialOrbitalTimeline({
                     // Mobile Font-Size explizit setzen
                     fontSize: isMobile ? "0.75rem" : undefined, // 12px auf Mobile für gute Lesbarkeit
                     lineHeight: "1.4",
+                    // iOS 18: Content property als Fallback (falls Text nicht rendert)
+                    content: `"${item.title}"`,
                   }}
+                  dangerouslySetInnerHTML={{ __html: item.title }}
                 >
-                  {item.title}
                 </div>
 
                 {isExpanded && (
