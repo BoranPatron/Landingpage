@@ -4,49 +4,16 @@ services:
     env: static
     rootDir: .
     staticPublishPath: ./
-    buildCommand: npm run config
-    environment:
+    buildCommand: npm run build
+    envVars:
+      - key: NODE_VERSION
+        value: 18
       - key: DEPLOYMENT_MODE
         value: production
       - key: API_BASE_URL
         value: https://buildwise-api.onrender.com
       - key: FRONTEND_URL
         value: https://www.buildwise.ch
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-    headers:
-      - path: /*
-        name: X-Frame-Options
-        value: DENY
-      - path: /*
-        name: X-Content-Type-Options
-        value: nosniff
-      - path: /*
-        name: X-XSS-Protection
-        value: 1; mode=block
-      - path: /*
-        name: Referrer-Policy
-        value: strict-origin-when-cross-origin
-      - path: /*
-        name: Content-Security-Policy
-        value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.onrender.com;"
-      - path: /*
-        name: Cache-Control
-        value: "public, max-age=31536000, immutable"
-      - path: /assets/*
-        name: Cache-Control
-        value: "public, max-age=31536000, immutable"
-      - path: /*.css
-        name: Cache-Control
-        value: "public, max-age=31536000, immutable"
-      - path: /*.js
-        name: Cache-Control
-        value: "public, max-age=31536000, immutable"
-      - path: /assets/*
-        name: Cache-Control
-        value: "public, max-age=31536000"
   - type: web
     name: buildwise-api
     env: node

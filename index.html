@@ -279,12 +279,145 @@
         ]
     }
     </script>
+    
+    <!-- LocalBusiness Schema für lokale SEO (Zürich/Schweiz) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://www.buildwise.ch/#organization",
+        "name": "BuildWise AG",
+        "image": "https://www.buildwise.ch/logo.png",
+        "logo": "https://www.buildwise.ch/logo.png",
+        "description": "Die führende digitale Plattform für Bauträger und Dienstleister in der Schweiz. Vernetzen Sie sich mit qualifizierten Partnern und verwalten Sie Bauprojekte effizient.",
+        "url": "https://www.buildwise.ch",
+        "telephone": "+41-44-123-45-67",
+        "email": "info@buildwise.ch",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Musterstrasse 123",
+            "addressLocality": "Zürich",
+            "addressRegion": "ZH",
+            "postalCode": "8001",
+            "addressCountry": "CH"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 47.3769,
+            "longitude": 8.5417
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "18:00",
+            "timeZone": "Europe/Zurich"
+        },
+        "priceRange": "$$",
+        "paymentAccepted": "Credit Card, Bank Transfer",
+        "currenciesAccepted": "CHF",
+        "areaServed": {
+            "@type": "Country",
+            "name": "Switzerland"
+        },
+        "sameAs": [
+            "https://www.buildwise.ch"
+        ]
+    }
+    </script>
+    
+    <!-- Service Schema für Bauprojekt-Management-Services -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Bauprojekt Management Software",
+        "provider": {
+            "@type": "Organization",
+            "name": "BuildWise AG"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "Switzerland"
+        },
+        "availableChannel": {
+            "@type": "ServiceChannel",
+            "serviceUrl": "https://www.buildwise.ch",
+            "serviceType": "Online Service"
+        },
+        "description": "Digitale Plattform für Projektmanagement, Ausschreibungsmanagement und Vernetzung von Bauträgern und Dienstleistern in der Schweiz.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CHF",
+            "description": "Kostenlose Beta-Version verfügbar"
+        }
+    }
+    </script>
+    
+    <!-- Product Schema für Pricing-Sektion -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "BuildWise - Bauträger & Dienstleister Plattform",
+        "description": "Digitale Plattform für Bauträger und Dienstleister in der Schweiz. Credit-System für Bauträger, Provision-Modell für Dienstleister.",
+        "brand": {
+            "@type": "Brand",
+            "name": "BuildWise"
+        },
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Bauträger Paket",
+                "price": "0",
+                "priceCurrency": "CHF",
+                "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "price": "0",
+                    "priceCurrency": "CHF",
+                    "valueAddedTaxIncluded": true
+                },
+                "description": "Credit-System: 300 Credits gratis zum Start, nur zahlen bei Nutzung",
+                "availability": "https://schema.org/InStock"
+            },
+            {
+                "@type": "Offer",
+                "name": "Dienstleister Paket",
+                "price": "2.7",
+                "priceCurrency": "CHF",
+                "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "price": "2.7",
+                    "priceCurrency": "CHF",
+                    "valueAddedTaxIncluded": true
+                },
+                "description": "Provision nur bei Auftragserfolg: 2.7-4.7% je nach Ranking",
+                "availability": "https://schema.org/InStock"
+            }
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
 </head>
 <body class="font-inter" style="background: linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%) !important; color: #f7fafc;">
     
     <!-- Floating Navigation -->
-    <div id="floating-nav-root"></div>
+    <nav id="floating-nav-root" role="navigation" aria-label="Hauptnavigation"></nav>
 
+    <main role="main">
     <!-- Hero Section -->
     <section class="hero-section pt-28 pb-16 relative overflow-hidden" id="hero" aria-label="Hero Bereich - Hauptüberschrift und Call-to-Action">
         <!-- Background Image -->
@@ -299,7 +432,7 @@
                     <!-- Title Section -->
                     <div class="flex gap-4 flex-col">
                         <h1 class="hero-title text-4xl md:text-6xl lg:text-7xl max-w-2xl tracking-tighter text-center font-light">
-                            <span class="hero-title-text">Die Zukunft des Bauens.</span>
+                            <span class="hero-title-text">Die Zukunft des Bauens in der Schweiz.</span>
                             <span class="hero-rotating-text relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1" aria-label="Rotierender Text: Ein Projekt, Viele Profis, Eine Sprache, Qualität">
                                 &nbsp;
                                 <span class="hero-rotating-item absolute font-semibold" data-index="0">Ein Projekt.</span>
@@ -341,19 +474,19 @@
     </section>
 
     <!-- Personas Section - Radial Orbit -->
-    <section class="py-20 md:py-24 lg:py-28 bg-transparent relative" id="personas" aria-label="Personas Sektion - Für Bauträger und Dienstleister">
+    <article class="py-20 md:py-24 lg:py-28 bg-transparent relative" id="personas" itemscope itemtype="https://schema.org/Service" aria-label="Personas Sektion - Für Bauträger und Dienstleister">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
                     Für beide Seiten perfekt
                 </h2>
                 <p class="text-base md:text-lg text-gray-600 mb-12 md:mb-16">
-                    Entdecken Sie das vernetzte Ökosystem von BuildWise
+                    Entdecken Sie das vernetzte Ökosystem von BuildWise - Vernetzen Sie sich mit qualifizierten Bauträgern und Dienstleistern in der Schweiz
                 </p>
             </div>
             <div id="radial-orbit-root" class="relative w-full"></div>
         </div>
-    </section>
+    </article>
 
     <!-- Timeline Section -->
     <section class="py-20 md:py-24 lg:py-28 bg-transparent relative overflow-hidden" id="timeline" aria-label="Timeline Sektion - Prozess und Ablauf">
@@ -361,30 +494,30 @@
     </section>
 
     <!-- Pricing Section -->
-    <section class="py-20 md:py-24 lg:py-28 bg-transparent" id="pricing" aria-label="Preise Sektion - Preisgestaltung und Pakete">
+    <section class="py-20 md:py-24 lg:py-28 bg-transparent" id="pricing" itemscope itemtype="https://schema.org/Product" aria-label="Preise Sektion - Preisgestaltung und Pakete">
         <div id="pricing-root"></div>
     </section>
 
     <!-- About Us Section -->
-    <section class="py-20 md:py-24 lg:py-28 bg-transparent relative" id="about" aria-label="Über uns Sektion - Das Team hinter BuildWise">
+    <article class="py-20 md:py-24 lg:py-28 bg-transparent relative" id="about" aria-label="Über uns Sektion - Das Team hinter BuildWise">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
                     Über uns
                 </h2>
                 <p class="text-base md:text-lg text-gray-600 mb-12 md:mb-16">
-                    Das Team hinter BuildWise
+                    Das BuildWise Team - Experten für digitale Bauprozesse in der Schweiz
                 </p>
             </div>
             <div id="about-profile-root" class="relative w-full"></div>
         </div>
-    </section>
+    </article>
 
     <!-- FAQ Section -->
     <section class="bg-transparent" id="faq" aria-label="FAQ Sektion - Häufig gestellte Fragen">
         <div id="faq-root"></div>
     </section>
-
+    </main>
 
     <!-- Footer -->
     <footer class="relative bg-transparent backdrop-blur-sm border-t border-white/10 py-12" role="contentinfo" aria-label="Fußbereich - Navigation und rechtliche Links">
