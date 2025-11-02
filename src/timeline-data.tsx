@@ -1,4 +1,3 @@
-import React from "react";
 import { TimelineEntry } from "./timeline-entry";
 
 export const bautraegerTimelineData: TimelineEntry[] = [
@@ -10,22 +9,22 @@ export const bautraegerTimelineData: TimelineEntry[] = [
           Erstellen Sie Ihr Bauprojekt in Minuten und verwalten Sie alle Gewerke an einem Ort. 
           Von der Planung bis zur Abnahme - alles digital und transparent.
         </p>
-        <div className="grid grid-cols-2 gap-6">
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Projekte verwalten</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Alle Bauprojekte im Überblick</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-full">
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Projekte verwalten</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Alle Bauprojekte im Überblick</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Gewerke publizieren</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Ausschreibungen in Sekunden</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Gewerke publizieren</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Ausschreibungen in Sekunden</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Angebote vergleichen</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Qualität & Preis im Vergleich</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Angebote vergleichen</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Qualität & Preis im Vergleich</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Digital dokumentieren</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Alles organisiert & sicher</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Digital dokumentieren</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Alles organisiert & sicher</p>
           </div>
         </div>
       </div>
@@ -43,22 +42,22 @@ export const bautraegerTimelineData: TimelineEntry[] = [
           Sparen Sie Zeit und Geld durch intelligentes Matching. Unsere Plattform reduziert Ihre 
           Ausschreibungszeit um bis zu 70% und hilft Ihnen, die besten Angebote zu finden.
         </p>
-        <div className="grid grid-cols-2 gap-6">
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Geo-Suche</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Partner in der Nähe finden</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-full">
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Geo-Suche</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Partner in der Nähe finden</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Qualitätsprüfung</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Verifizierte Dienstleister</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Qualitätsprüfung</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Verifizierte Dienstleister</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Zeitersparnis</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">70% schnelleres Matching</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Zeitersparnis</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">70% schnelleres Matching</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Kostenkontrolle</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Budget & Finanzen im Blick</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Kostenkontrolle</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Budget & Finanzen im Blick</p>
           </div>
         </div>
       </div>
@@ -89,14 +88,14 @@ export const bautraegerTimelineData: TimelineEntry[] = [
             Kollaborative Canvas-Zeichnungen
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-6">
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Zentrales Management</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Alles an einem Ort</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-full">
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Zentrales Management</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Alles an einem Ort</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Transparenz</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Vollständige Übersicht</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Transparenz</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Vollständige Übersicht</p>
           </div>
         </div>
       </div>
@@ -113,22 +112,22 @@ export const dienstleisterTimelineData: TimelineEntry[] = [
           Entdecken Sie passende Projekte in Ihrer Nähe. Unsere geo-basierte Suche zeigt Ihnen 
           Ausschreibungen in Ihrer Region - gefiltert nach Kategorie, Budget und Priorität.
         </p>
-        <div className="grid grid-cols-2 gap-6">
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Projekte finden</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">In Ihrer Nähe</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-full">
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Projekte finden</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">In Ihrer Nähe</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Angebote abgeben</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Schnell & einfach</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Angebote abgeben</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Schnell & einfach</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Aufträge gewinnen</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Mehr Geschäft</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Aufträge gewinnen</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Mehr Geschäft</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Ressourcen planen</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Optimal organisiert</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Ressourcen planen</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Optimal organisiert</p>
           </div>
         </div>
       </div>
@@ -146,22 +145,22 @@ export const dienstleisterTimelineData: TimelineEntry[] = [
           Reichen Sie Angebote digital ein und erhalten Sie schnelles Feedback. Keine langen 
           Wartezeiten mehr - kommunizieren Sie direkt mit Bauträgern.
         </p>
-        <div className="grid grid-cols-2 gap-6">
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Profil erstellen</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Professionell präsentieren</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-full">
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Profil erstellen</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Professionell präsentieren</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Direkter Kontakt</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Schnelle Kommunikation</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Direkter Kontakt</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Schnelle Kommunikation</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Digitale Angebote</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Einfach einreichen</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Digitale Angebote</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Einfach einreichen</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Status-Updates</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Immer informiert</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Status-Updates</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Immer informiert</p>
           </div>
         </div>
       </div>
@@ -192,14 +191,14 @@ export const dienstleisterTimelineData: TimelineEntry[] = [
             ✅ Dokumentenzugriff für alle Projekte
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-6">
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Mehr Aufträge</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Bessere Auslastung</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-full">
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Mehr Aufträge</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Bessere Auslastung</p>
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300">
-            <h4 className="text-base md:text-lg font-bold text-[#f9c74f] mb-3">Effizienz steigern</h4>
-            <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">Weniger Aufwand</p>
+          <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">
+            <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#f9c74f] mb-3 break-words">Effizienz steigern</h4>
+            <p className="text-xs md:text-sm lg:text-base text-neutral-700 dark:text-neutral-300 break-words">Weniger Aufwand</p>
           </div>
         </div>
       </div>

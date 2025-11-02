@@ -49,7 +49,7 @@ export const Timeline: React.FC = () => {
 
   return (
     <div
-      className="w-full bg-transparent font-sans md:px-10"
+      className="w-full bg-transparent font-sans md:px-10 overflow-x-hidden"
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto py-24 md:py-32 px-4 md:px-8 lg:px-10">
@@ -66,13 +66,13 @@ export const Timeline: React.FC = () => {
           <TimelineTabs activeRole={activeRole} onRoleChange={setActiveRole} />
         </div>
       </div>
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-32">
+      <div ref={ref} className="relative max-w-7xl mx-auto pb-32 overflow-x-hidden">
         {data.map((item, index) => (
           <div
             key={index}
             className="flex justify-start pt-16 md:pt-60 md:gap-16"
           >
-            <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-sm lg:max-w-md md:w-full">
+            <div className="md:sticky relative flex flex-col md:flex-row z-40 items-center md:top-40 self-start max-w-sm lg:max-w-md md:w-full">
               <div className="h-16 w-16 absolute left-4 md:left-4 rounded-full bg-gradient-to-br from-[#51646f]/40 to-[#41535c]/40 backdrop-blur-xl border-2 border-[#f9c74f]/50 flex items-center justify-center shadow-[0_0_32px_rgba(249,199,79,0.3)]">
                 <div className="h-6 w-6 rounded-full bg-gradient-to-br from-[#f9c74f] to-[#d4af3a] border-2 border-[#f9c74f] shadow-[0_0_20px_rgba(249,199,79,0.5)]" />
               </div>
@@ -80,11 +80,11 @@ export const Timeline: React.FC = () => {
                 {item.title}
               </h3>
             </div>
-            <div className="relative pl-24 pr-4 md:pl-8 w-full">
+            <div className="relative pl-16 md:pl-8 pr-4 w-full max-w-full overflow-hidden">
               <h3 className="md:hidden block text-xl md:text-2xl lg:text-3xl mb-6 text-left font-semibold text-white dark:text-white">
                 {item.title}
               </h3>
-              <div className="text-base md:text-lg">
+              <div className="text-base md:text-lg break-words overflow-wrap-anywhere">
                 {item.content}
               </div>
             </div>
