@@ -512,11 +512,9 @@ export default function RadialOrbitalTimeline({
                     // Mobile Font-Size explizit setzen
                     fontSize: isMobile ? "0.75rem" : undefined, // 12px auf Mobile für gute Lesbarkeit
                     lineHeight: "1.4",
-                    // iOS 18: Content property als Fallback (falls Text nicht rendert)
-                    content: `"${item.title}"`,
                   }}
-                  dangerouslySetInnerHTML={{ __html: item.title }}
                 >
+                  {item.title}
                 </div>
 
                 {isExpanded && (
