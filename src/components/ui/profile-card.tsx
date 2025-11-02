@@ -19,7 +19,7 @@ export function ProfileCard(props: ProfileCardProps) {
   const {
     name = "Stephan Schellworth & Janina Hankus",
     title = "Gründer & Geschäftsführer, BuildWise",
-    description = "Stephan Schellworth und Janina Hankus sind die Gründer von BuildWise. Mit ihrer Vision einer digitalen Plattform für das Baugewerbe revolutionieren sie die Art und Weise, wie Bauträger und Dienstleister zusammenarbeiten. Ihre Leidenschaft für Innovation und Qualität treibt BuildWise voran, um die Bauindustrie in der Schweiz zu modernisieren.",
+    description = "Wir sind die Gründer von BuildWise. Mit unserer Vision einer digitalen Plattform für das Baugewerbe revolutionieren wir die Art und Weise, wie Bauträger und Dienstleister zusammenarbeiten. Unsere Leidenschaft für Innovation und Qualität treibt BuildWise voran, um die Bauindustrie in der Schweiz zu modernisieren.",
     imageUrl = "/assets/aboutus.jpeg",
     linkedinUrl = "#",
     className,

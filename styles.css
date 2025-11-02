@@ -2500,5 +2500,60 @@ footer .border-t {
 }
 
 /* ============================================
+   Footer - Responsive Optimierungen
+   ============================================ */
+
+/* Mobile Optimierungen (< 640px) */
+@media (max-width: 639px) {
+    footer {
+        padding: 2rem 0 !important;
+    }
+    
+    footer .grid {
+        gap: 1.5rem !important;
+    }
+    
+    footer h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    footer ul {
+        gap: 0.5rem !important;
+    }
+    
+    footer a,
+    footer p {
+        font-size: 0.875rem !important;
+    }
+    
+    footer .flex-wrap a {
+        font-size: 0.8125rem !important;
+        white-space: nowrap;
+    }
+}
+
+/* Tablet Optimierungen (640px - 768px) */
+@media (min-width: 640px) and (max-width: 767px) {
+    footer {
+        padding: 2.5rem 0 !important;
+    }
+    
+    footer .grid {
+        gap: 1.5rem !important;
+    }
+    
+    footer h3 {
+        font-size: 1.125rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    footer a,
+    footer p {
+        font-size: 0.9375rem !important;
+    }
+}
+
+/* ============================================
    End of File
    ============================================ */
