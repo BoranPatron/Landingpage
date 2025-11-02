@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Badge } from "./badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./card";
 import { RadialOrbitItem } from "../../radial-orbit-data";
@@ -26,15 +26,20 @@ export default function RadialOrbitalTimeline({
   const [activeNodeId, setActiveNodeId] = useState<number | null>(null);
   const [radius, setRadius] = useState<number>(350);
   const [glowSize, setGlowSize] = useState<{ base: number; multiplier: number }>({ base: 56, multiplier: 0.8 });
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Responsive Radius und Glow-Size basierend auf Screen-Size
+  // Mobile Detection und Responsive Radius/Glow-Size basierend auf Screen-Size
   useEffect(() => {
     const updateResponsiveSizes = () => {
       const width = window.innerWidth;
-      if (width < 768) {
+      const mobile = width < 768;
+      setIsMobile(mobile);
+      
+      if (mobile) {
         setRadius(200); // Mobile
         setGlowSize({ base: 48, multiplier: 0.6 });
       } else if (width < 1024) {
@@ -46,9 +51,26 @@ export default function RadialOrbitalTimeline({
       }
     };
 
+    // Initial check
     updateResponsiveSizes();
-    window.addEventListener('resize', updateResponsiveSizes);
-    return () => window.removeEventListener('resize', updateResponsiveSizes);
+
+    // Throttled resize handler
+    const handleResize = () => {
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+      resizeTimeoutRef.current = setTimeout(() => {
+        updateResponsiveSizes();
+      }, 150); // Throttle to max 6-7 calls per second
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+    };
   }, []);
 
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -90,16 +112,18 @@ export default function RadialOrbitalTimeline({
     });
   };
 
+  // Rotation-Interval: Desktop 50ms (20 FPS), Mobile 80ms (12.5 FPS) für bessere Performance
   useEffect(() => {
     let rotationTimer: NodeJS.Timeout;
 
     if (autoRotate && viewMode === "orbital") {
+      const interval = isMobile ? 80 : 50; // Langsamere Rotation auf Mobile
       rotationTimer = setInterval(() => {
         setRotationAngle((prev) => {
           const newAngle = (prev + 0.3) % 360;
           return Number(newAngle.toFixed(3));
         });
-      }, 50);
+      }, interval);
     }
 
     return () => {
@@ -107,7 +131,7 @@ export default function RadialOrbitalTimeline({
         clearInterval(rotationTimer);
       }
     };
-  }, [autoRotate, viewMode]);
+  }, [autoRotate, viewMode, isMobile]);
 
   const centerViewOnNode = (nodeId: number) => {
     if (viewMode !== "orbital" || !nodeRefs.current[nodeId]) return;
@@ -119,20 +143,27 @@ export default function RadialOrbitalTimeline({
     setRotationAngle(270 - targetAngle);
   };
 
-  const calculateNodePosition = (index: number, total: number) => {
-    const angle = ((index / total) * 360 + rotationAngle) % 360;
-    const radian = (angle * Math.PI) / 180;
+  // useMemo für Positionsberechnungen - optimiert Performance
+  const nodePositions = useMemo(() => {
+    return timelineData.map((_, index) => {
+      const angle = ((index / timelineData.length) * 360 + rotationAngle) % 360;
+      const radian = (angle * Math.PI) / 180;
 
-    const x = radius * Math.cos(radian) + centerOffset.x;
-    const y = radius * Math.sin(radian) + centerOffset.y;
-    const zIndex = Math.round(100 + 50 * Math.cos(radian));
+      const x = radius * Math.cos(radian) + centerOffset.x;
+      const y = radius * Math.sin(radian) + centerOffset.y;
+      const zIndex = Math.round(100 + 50 * Math.cos(radian));
 
-    const opacity = Math.max(
-      0.4,
-      Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2))
-    );
+      const opacity = Math.max(
+        0.4,
+        Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2))
+      );
 
-    return { x, y, angle, zIndex, opacity };
+      return { x, y, angle, zIndex, opacity };
+    });
+  }, [timelineData.length, rotationAngle, radius, centerOffset]);
+
+  const calculateNodePosition = (index: number) => {
+    return nodePositions[index];
   };
 
   const getRelatedItems = (itemId: number): number[] => {
@@ -171,38 +202,48 @@ export default function RadialOrbitalTimeline({
           ref={orbitRef}
           style={{
             perspective: "1000px",
-            transform: `translate(${centerOffset.x}px, ${centerOffset.y}px)`,
+            transform: `translate3d(${centerOffset.x}px, ${centerOffset.y}px, 0)`,
+            willChange: "transform",
+            backfaceVisibility: "hidden",
           }}
         >
-          <div className="absolute w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-[#f9c74f] via-[#d4af3a] to-[#51646f] animate-pulse flex items-center justify-center z-10 shadow-xl shadow-[#f9c74f]/50">
-            <div className="absolute w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full border border-[#f9c74f]/30 animate-ping opacity-70"></div>
-            <div
-              className="absolute w-24 h-24 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full border border-[#f9c74f]/20 animate-ping opacity-50"
-              style={{ animationDelay: "0.5s" }}
-            ></div>
+          <div className="absolute w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-[#f9c74f] via-[#d4af3a] to-[#51646f] animate-pulse flex items-center justify-center z-10 shadow-xl shadow-[#f9c74f]/50" style={{ willChange: "transform", backfaceVisibility: "hidden" }}>
+            {/* Reduziere animate-ping auf Mobile für bessere Performance */}
+            {!isMobile && (
+              <>
+                <div className="absolute w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full border border-[#f9c74f]/30 animate-ping opacity-70"></div>
+                <div
+                  className="absolute w-24 h-24 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full border border-[#f9c74f]/20 animate-ping opacity-50"
+                  style={{ animationDelay: "0.5s" }}
+                ></div>
+              </>
+            )}
             <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full bg-white/90 backdrop-blur-md shadow-lg"></div>
           </div>
 
           <div className="absolute w-[400px] h-[400px] md:w-[550px] md:h-[550px] lg:w-[700px] lg:h-[700px] rounded-full border border-[#f9c74f]/20 shadow-inner"></div>
 
           {timelineData.map((item, index) => {
-            const position = calculateNodePosition(index, timelineData.length);
+            const position = calculateNodePosition(index);
             const isExpanded = expandedItems[item.id];
             const isRelated = isRelatedToActive(item.id);
             const isPulsing = pulseEffect[item.id];
             const Icon = item.icon;
 
             const nodeStyle = {
-              transform: `translate(${position.x}px, ${position.y}px)`,
+              transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
               zIndex: isExpanded ? 200 : position.zIndex,
               opacity: isExpanded ? 1 : position.opacity,
+              willChange: "transform, opacity",
+              backfaceVisibility: "hidden",
+              contain: "layout style paint",
             };
 
             return (
               <div
                 key={item.id}
                 ref={(el) => (nodeRefs.current[item.id] = el)}
-                className="absolute transition-all duration-700 cursor-pointer"
+                className={`absolute cursor-pointer ${isMobile ? "transition-all duration-500" : "transition-all duration-700"}`}
                 style={nodeStyle}
                 onClick={(e) => {
                   e.stopPropagation();
