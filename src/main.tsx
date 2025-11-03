@@ -78,7 +78,7 @@ function initFlowButton() {
     
     const useStrictMode = true;
     const handleClick = () => {
-      window.location.href = 'https://build-wise.app/login';
+      window.open('https://build-wise.app/login', '_blank', 'noopener,noreferrer');
     };
     
     if (typeof ReactDOM !== 'undefined' && ReactDOM.createRoot) {
