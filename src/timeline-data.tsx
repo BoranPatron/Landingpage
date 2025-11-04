@@ -109,8 +109,8 @@ export const dienstleisterTimelineData: TimelineEntry[] = [
     content: (
       <div>
         <p className="text-neutral-800 dark:text-neutral-200 text-base md:text-lg font-normal mb-10">
-          Entdecken Sie passende Projekte in Ihrer Nähe. Unsere geo-basierte Suche zeigt Ihnen 
-          Ausschreibungen in Ihrer Region - gefiltert nach Kategorie, Budget und Priorität.
+          Entdecken Sie passende Bauprojekte in Ihrer Nähe in der Schweiz. Unsere geo-basierte Suche zeigt Ihnen 
+          Ausschreibungen in Ihrer Region - gefiltert nach Kategorie, Budget und Priorität. Bauprojekte erhalten war noch nie so einfach!
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-full">
           <div className="rounded-xl bg-gradient-to-br from-[#51646f]/30 to-[#41535c]/30 backdrop-blur-xl border-2 border-[#f9c74f]/30 p-4 md:p-6 lg:p-8 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1),_0_2px_0_rgba(249,199,79,0.2)_inset] hover:border-[#f9c74f]/50 hover:shadow-[0_0_48px_rgba(249,199,79,0.3)] transition-all duration-300 max-w-full break-words overflow-wrap-anywhere">

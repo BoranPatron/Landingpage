@@ -56,7 +56,7 @@ export const dienstleisterUserJourneyData: UserJourneyFeature[] = [
   {
     step: "Geo-Suche",
     title: "Ausschreibungen finden",
-    content: "Finden Sie passende Ausschreibungen in Ihrer Nähe. Geo-basierte Suche mit Radius-Filter für optimale Standort-Matching. Entdecken Sie neue Projekte in Ihrer Region.",
+    content: "Finden Sie passende Ausschreibungen und Bauprojekte in Ihrer Nähe in der Schweiz. Geo-basierte Suche mit Radius-Filter für optimale Standort-Matching. Entdecken Sie neue Bauaufträge in Ihrer Region und erhalten Sie mehr Bauprojekte.",
     image: "/assets/DL_GeoSearch.png",
   },
   {

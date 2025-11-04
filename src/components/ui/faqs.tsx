@@ -89,15 +89,15 @@ export default function FAQs() {
   const faqsLeft: FAQItem[] = [
     {
       question: "Was ist BuildWise?",
-      answer: "BuildWise ist eine umfassende digitale Plattform für die Bauwirtschaft, die Bauträger und Dienstleister vernetzt. Die Plattform bietet Projektmanagement, Ausschreibungsmanagement, Dokumentenverwaltung, Finanzanalyse und Kommunikationstools."
+      answer: "BuildWise ist eine umfassende digitale Ausschreibungsplattform für die Bauwirtschaft in der Schweiz, die Bauträger und Dienstleister vernetzt. Die Plattform bietet Projektmanagement, Ausschreibungsmanagement, Dokumentenverwaltung, Finanzanalyse und Kommunikationstools."
     },
     {
-      question: "Welche Rollen gibt es auf BuildWise?",
-      answer: "BuildWise unterscheidet zwischen zwei Hauptrollen:\n\n• Bauträger: Vollzugriff auf Projekte, können Ausschreibungen erstellen, Angebote bewerten und das Credit-System nutzen.\n• Dienstleister: Zugriff auf öffentliche Ausschreibungen, können Angebote einreichen, Ressourcen verwalten und Rechnungen erstellen."
+      question: "Wie finde ich Bauprojekte in der Schweiz?",
+      answer: "Als Dienstleister können Sie auf BuildWise einfach Bauprojekte erhalten und Bauaufträge in der Schweiz finden. Nutzen Sie unsere geo-basierte Suche, um Ausschreibungen nach Standort, Kategorie, Budget und Radius zu filtern. Die Plattform zeigt Ihnen alle verfügbaren Bauausschreibungen in der Schweiz an."
     },
     {
-      question: "Wie funktioniert das Projektmanagement?",
-      answer: "Das Projektmanagement ermöglicht die vollständige Verwaltung von Bauprojekten mit Budget-, Termin- und Statusverfolgung. Sie können:\n\n• Projekte erstellen, bearbeiten und mit Budget und Terminen verwalten\n• Dokumente hochladen und nach Kategorien organisieren\n• Bauphasen verfolgen (länderspezifisch für CH, DE, AT)\n• Aufgaben über ein Kanban-Board verwalten\n• Finanzanalysen und Budget-Tracking durchführen"
+      question: "Wie funktioniert die Ausschreibungsplattform Schweiz?",
+      answer: "Unsere Ausschreibungsplattform Schweiz verbindet Bauträger und Dienstleister:\n\n• Bauträger erstellen Ausschreibungen (Gewerke) für ihre Bauprojekte\n• Dienstleister finden Bauprojekte erhalten und Bauaufträge in der Schweiz über geo-basierte Suche\n• Einfaches Angebotsverfahren mit automatischer Bestätigung\n• Digitale Ausschreibungsplattform für moderne Bauprozesse in der Schweiz"
     },
     {
       question: "Wie funktionieren Ausschreibungen?",
@@ -107,6 +107,10 @@ export default function FAQs() {
 
   const faqsRight: FAQItem[] = [
     {
+      question: "Wie kann ich Bauaufträge in der Schweiz finden?",
+      answer: "Mit BuildWise finden Sie Bauaufträge in der Schweiz einfach und schnell:\n\n• Registrieren Sie sich als Dienstleister auf unserer Ausschreibungsplattform Schweiz\n• Nutzen Sie die geo-basierte Suche nach Bauausschreibungen\n• Filtern Sie nach Standort, Gewerke und Budget\n• Reichen Sie Angebote direkt über die Plattform ein\n• Bauprojekte erhalten war noch nie so einfach!"
+    },
+    {
       question: "Was ist das Credit-System?",
       answer: "Das Credit-System ist ein Belohnungssystem für Bauträger. Credits können für Angebotsannahmen und Premiumfunktionen verwendet werden. Sie erhalten Credits beim Start und können diese durch verschiedene Aktivitäten auf der Plattform verdienen."
     },
@@ -115,12 +119,8 @@ export default function FAQs() {
       answer: "Sicherheit und Datenschutz haben für BuildWise höchste Priorität:\n\n• Datenhaltung in der EU/Schweiz (DSGVO-konform)\n• Verschlußelte Übertragung und Speicherung\n• Rollenbasierte Zugriffskontrolle\n• Vollständige Audit-Logs für alle Aktivitäten\n• Projektbezogene Berechtigungen"
     },
     {
-      question: "Kann ich BuildWise auf dem Mobilgerät nutzen?",
-      answer: "Ja, BuildWise ist vollständig für mobile Geräte optimiert:\n\n• Vollständig responsive Oberfläche für alle Bildschirmgrößen\n• Touch-optimierte UI und Swipe-Gesten\n• Lazy Loading und Caching für schnelle Performance\n• Mobile-spezifische Views und Komponenten"
-    },
-    {
-      question: "Wie starte ich mit BuildWise?",
-      answer: "Der Einstieg in BuildWise ist einfach:\n\n1. Wählen Sie Ihre Rolle (Bauträger oder Dienstleister)\n2. Geben Sie Ihre Firmenadresse ein\n3. Folgen Sie der Dashboard-Tour\n4. Erhalten Sie Ihre Willkommensnachricht und Start-Credits\n\nNach dem Onboarding können Sie sofort mit der Erstellung von Projekten oder der Suche nach Ausschreibungen beginnen."
+      question: "Wie starte ich mit der Ausschreibungsplattform Schweiz?",
+      answer: "Der Einstieg in BuildWise als Ausschreibungsplattform Schweiz ist einfach:\n\n1. Wählen Sie Ihre Rolle (Bauträger oder Dienstleister)\n2. Geben Sie Ihre Firmenadresse in der Schweiz ein\n3. Folgen Sie der Dashboard-Tour\n4. Erhalten Sie Ihre Willkommensnachricht und Start-Credits\n\nNach dem Onboarding können Sie sofort Bauprojekte erhalten, Bauaufträge finden oder Ausschreibungen erstellen."
     }
   ];
 
