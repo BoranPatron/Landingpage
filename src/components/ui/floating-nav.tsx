@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 export interface FloatingNavProps {
@@ -22,6 +22,7 @@ const sectionNames: { [key: string]: string } = {
 
 export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
   const [activeSectionName, setActiveSectionName] = useState<string>("Rollen");
+  const isManualNavigation = useRef(false);
 
   // iOS Safari: Ensure body overflow-y is set correctly on mount
   useEffect(() => {
@@ -47,14 +48,30 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      // Finde alle intersecting Sections und wähle die oberste (nächste zum oberen Rand)
+      const intersectingSections: Array<{ id: string; top: number }> = [];
+      
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const sectionId = entry.target.id;
-          const sectionLink = `#${sectionId}`;
-          const sectionName = sectionNames[sectionLink] || sectionId;
-          setActiveSectionName(sectionName);
+          const rect = (entry.target as HTMLElement).getBoundingClientRect();
+          intersectingSections.push({
+            id: sectionId,
+            top: rect.top
+          });
         }
       });
+      
+      // Wenn Sections intersecting sind, wähle die oberste
+      // IGNORIERE wenn manuelle Navigation aktiv ist
+      if (intersectingSections.length > 0 && !isManualNavigation.current) {
+        // Sortiere nach top-Wert (niedrigster = am nächsten zum oberen Rand)
+        intersectingSections.sort((a, b) => a.top - b.top);
+        const topSection = intersectingSections[0];
+        const sectionLink = `#${topSection.id}`;
+        const sectionName = sectionNames[sectionLink] || topSection.id;
+        setActiveSectionName(sectionName);
+      }
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
@@ -89,6 +106,63 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     };
   }, []);
 
+  // Scroll-Listener: Nach dem Scrollen die aktivste Section finden
+  useEffect(() => {
+    const sections = ["personas", "timeline", "journey", "pricing", "about", "faq"];
+    
+    const handleScroll = () => {
+      // Finde die Section, die am nächsten zum oberen Rand ist (innerhalb eines bestimmten Bereichs)
+      const viewportTop = window.scrollY + 100; // Offset für Navbar
+      let closestSection: { id: string; distance: number } | null = null;
+      
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const elementTop = window.scrollY + rect.top;
+          const distance = Math.abs(elementTop - viewportTop);
+          
+          // Berücksichtige nur Sections, die im Viewport sind oder knapp darüber
+          if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+            if (!closestSection || distance < closestSection.distance) {
+              closestSection = { id: sectionId, distance };
+            }
+          }
+        }
+      });
+      
+      // Wenn eine Section gefunden wurde, setze sie als aktiv
+      // IGNORIERE wenn manuelle Navigation aktiv ist
+      if (closestSection && !isManualNavigation.current) {
+        const sectionLink = `#${closestSection.id}`;
+        const sectionName = sectionNames[sectionLink] || closestSection.id;
+        setActiveSectionName(sectionName);
+      }
+    };
+    
+    // Throttle scroll events für bessere Performance
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+    const throttledHandleScroll = () => {
+      if (scrollTimeout) return;
+      scrollTimeout = setTimeout(() => {
+        handleScroll();
+        scrollTimeout = null;
+      }, 100);
+    };
+    
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    
+    // Initial check nach kurzer Verzögerung
+    setTimeout(handleScroll, 150);
+    
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
+  }, []);
+
   // iOS Safari 18: Navigation handler WITHOUT preventDefault for native click support
   const handleNavigation = (href: string) => {
     const targetId = href;
@@ -97,11 +171,49 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
     const targetElement = document.querySelector(targetId);
     
     if (targetElement) {
+      // Setze Flag für manuelle Navigation
+      isManualNavigation.current = true;
+      
+      // Direkt activeSectionName setzen basierend auf href BEVOR scrollt
+      const sectionName = sectionNames[href] || href.replace("#", "");
+      setActiveSectionName(sectionName);
+      
       const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 100;
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
       });
+      
+      // Nach dem Scroll-Ende nochmal sicherstellen, dass der richtige Zustand gesetzt ist
+      // und dann das Flag wieder zurücksetzen
+      const checkAfterScroll = () => {
+        const currentTop = window.scrollY;
+        const targetTop = offsetTop;
+        const distance = Math.abs(currentTop - targetTop);
+        
+        if (distance < 50) {
+          // Wir sind nah genug am Ziel, setze den aktiven Zustand
+          setActiveSectionName(sectionName);
+          // Warte noch kurz bevor wir das Flag zurücksetzen
+          setTimeout(() => {
+            isManualNavigation.current = false;
+          }, 200);
+        } else {
+          // Noch nicht angekommen, prüfe nochmal nach kurzer Zeit
+          setTimeout(checkAfterScroll, 100);
+        }
+      };
+      
+      // Warte bis das smooth scroll abgeschlossen ist
+      setTimeout(checkAfterScroll, 100);
+      setTimeout(checkAfterScroll, 500);
+      setTimeout(() => {
+        checkAfterScroll();
+        // Sicherheitshalber: Reset Flag nach 2 Sekunden
+        setTimeout(() => {
+          isManualNavigation.current = false;
+        }, 200);
+      }, 1500);
     }
   };
 
