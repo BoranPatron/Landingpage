@@ -12,7 +12,6 @@ export interface FloatingNavProps {
 
 // Section name mapping
 const sectionNames: { [key: string]: string } = {
-  "#hero": "Zukunft",
   "#personas": "Rollen",
   "#timeline": "Prozess",
   "#pricing": "Preise",
@@ -21,7 +20,7 @@ const sectionNames: { [key: string]: string } = {
 };
 
 export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
-  const [activeSectionName, setActiveSectionName] = useState<string>("Zukunft");
+  const [activeSectionName, setActiveSectionName] = useState<string>("Rollen");
 
   // iOS Safari: Ensure body overflow-y is set correctly on mount
   useEffect(() => {
@@ -38,7 +37,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
 
   // Track active section with IntersectionObserver
   useEffect(() => {
-    const sections = ["hero", "personas", "timeline", "pricing", "about", "faq"];
+    const sections = ["personas", "timeline", "pricing", "about", "faq"];
     
     const observerOptions = {
       root: null,
@@ -142,6 +141,10 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
         "flex items-center justify-between",
         "max-w-7xl",
         "rounded-full",
+        "bg-white/10 backdrop-blur-md",
+        "border border-white/20",
+        "shadow-lg shadow-black/20",
+        "px-4 py-2",
         className
       )}
     >

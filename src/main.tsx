@@ -161,11 +161,6 @@ function initFloatingNav() {
     const useStrictMode = true;
     const navItems = [
       {
-        name: "Zukunft",
-        link: "#hero",
-        icon: <Home className="h-4 w-4" />,
-      },
-      {
         name: "Rollen",
         link: "#personas",
         icon: <Users className="h-4 w-4" />,
