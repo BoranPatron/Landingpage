@@ -14,6 +14,7 @@ export interface FloatingNavProps {
 const sectionNames: { [key: string]: string } = {
   "#personas": "Rollen",
   "#timeline": "Prozess",
+  "#journey": "Features",
   "#pricing": "Preise",
   "#about": "Über uns",
   "#faq": "FAQ",
@@ -37,7 +38,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
 
   // Track active section with IntersectionObserver
   useEffect(() => {
-    const sections = ["personas", "timeline", "pricing", "about", "faq"];
+    const sections = ["personas", "timeline", "journey", "pricing", "about", "faq"];
     
     const observerOptions = {
       root: null,

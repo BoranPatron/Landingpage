@@ -225,7 +225,7 @@ function initUserJourney() {
         <FeatureSteps 
           bautraegerFeatures={bautraegerUserJourneyData} 
           dienstleisterFeatures={dienstleisterUserJourneyData} 
-          title="So funktioniert BuildWise" 
+          title="Was BuildWise bietet" 
         />
       );
       root.render(useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content);
@@ -236,7 +236,7 @@ function initUserJourney() {
         <FeatureSteps 
           bautraegerFeatures={bautraegerUserJourneyData} 
           dienstleisterFeatures={dienstleisterUserJourneyData} 
-          title="So funktioniert BuildWise" 
+          title="Was BuildWise bietet" 
         />
       );
       ReactDOM.render(
