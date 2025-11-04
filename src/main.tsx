@@ -7,8 +7,10 @@ import { ProfileCard } from "./components/ui/profile-card";
 import PricingSection5 from "./components/ui/pricing-section";
 import { FloatingNav } from "./components/ui/floating-nav";
 import FAQs from "./components/ui/faqs";
+import { FeatureSteps } from "./components/ui/feature-steps";
 import { radialOrbitData } from "./radial-orbit-data";
-import { Home, Users, Clock, DollarSign, Info, HelpCircle } from "lucide-react";
+import { bautraegerUserJourneyData, dienstleisterUserJourneyData } from "./user-journey-data";
+import { Home, Users, Clock, DollarSign, Info, HelpCircle, Sparkles } from "lucide-react";
 
 function initTimeline() {
   try {
@@ -174,6 +176,11 @@ function initFloatingNav() {
         icon: <Clock className="h-4 w-4" />,
       },
       {
+        name: "Features",
+        link: "#journey",
+        icon: <Sparkles className="h-4 w-4" />,
+      },
+      {
         name: "Preise",
         link: "#pricing",
         icon: <DollarSign className="h-4 w-4" />,
@@ -203,6 +210,49 @@ function initFloatingNav() {
     }
   } catch (error) {
     console.error("Error initializing FloatingNav:", error);
+  }
+}
+
+function initUserJourney() {
+  try {
+    const rootElement = document.getElementById("user-journey-root");
+    if (!rootElement) {
+      console.warn("UserJourney root element not found");
+      return;
+    }
+    
+    const useStrictMode = true;
+    
+    if (typeof ReactDOM !== 'undefined' && ReactDOM.createRoot) {
+      console.log("UserJourney root element found, initializing component...");
+      const root = ReactDOM.createRoot(rootElement);
+      const content = (
+        <FeatureSteps 
+          bautraegerFeatures={bautraegerUserJourneyData} 
+          dienstleisterFeatures={dienstleisterUserJourneyData} 
+          title="So funktioniert BuildWise" 
+        />
+      );
+      root.render(useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content);
+      console.log("UserJourney component rendered");
+    } else if (typeof ReactDOM !== 'undefined' && ReactDOM.render) {
+      console.log("UserJourney: Using ReactDOM.render fallback");
+      const content = (
+        <FeatureSteps 
+          bautraegerFeatures={bautraegerUserJourneyData} 
+          dienstleisterFeatures={dienstleisterUserJourneyData} 
+          title="So funktioniert BuildWise" 
+        />
+      );
+      ReactDOM.render(
+        useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content,
+        rootElement
+      );
+    } else {
+      console.warn("UserJourney: ReactDOM not available");
+    }
+  } catch (error) {
+    console.error("Error initializing UserJourney:", error);
   }
 }
 
@@ -252,6 +302,7 @@ function initializeAllComponents() {
     initRadialOrbit();
     initFlowButton();
     initProfileCard();
+    initUserJourney();
     initPricingSection();
     initFAQs();
     

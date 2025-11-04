@@ -4,10 +4,10 @@
 
 window.BUILDWISE_CONFIG = {
     // API Base URL - wird zur Laufzeit gesetzt
-    API_BASE: 'https://buildwise-api.onrender.com',
+    API_BASE: 'http://localhost:10000',
     
     // Frontend URL für Demo-Weiterleitung
-    FRONTEND_URL: 'https://www.buildwise.ch',
+    FRONTEND_URL: 'http://localhost:5508',
     
     // Feature Flags
     FEATURES: {
