@@ -97,7 +97,44 @@
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "CHF",
-            "description": "Kostenlose Beta-Version verfügbar"
+            "priceValidUntil": "2025-12-31",
+            "description": "Kostenlose Beta-Version verfügbar",
+            "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "CH",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                "merchantReturnDays": 30,
+                "returnMethod": "https://schema.org/ReturnByMail",
+                "returnFees": "https://schema.org/FreeReturn"
+            },
+            "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                    "@type": "MonetaryAmount",
+                    "value": "0",
+                    "currency": "CHF"
+                },
+                "deliveryTime": {
+                    "@type": "ShippingDeliveryTime",
+                    "handlingTime": {
+                        "@type": "QuantitativeValue",
+                        "minValue": 0,
+                        "maxValue": 0,
+                        "unitCode": "DAY"
+                    },
+                    "transitTime": {
+                        "@type": "QuantitativeValue",
+                        "minValue": 0,
+                        "maxValue": 0,
+                        "unitCode": "DAY"
+                    }
+                },
+                "shippingDestination": {
+                    "@type": "DefinedRegion",
+                    "addressCountry": "CH"
+                },
+                "deliveryMethod": "https://schema.org/DigitalDelivery"
+            }
         },
         "provider": {
             "@type": "Organization",
@@ -381,6 +418,10 @@
         "@type": "Product",
         "name": "BuildWise - Bauträger & Dienstleister Plattform",
         "description": "Digitale Plattform für Bauträger und Dienstleister in der Schweiz. Credit-System für Bauträger, Provision-Modell für Dienstleister.",
+        "image": [
+            "https://www.buildwise.ch/logo.png",
+            "https://www.buildwise.ch/assets/Background.png"
+        ],
         "brand": {
             "@type": "Brand",
             "name": "BuildWise"
@@ -391,6 +432,7 @@
                 "name": "Bauträger Paket",
                 "price": "0",
                 "priceCurrency": "CHF",
+                "priceValidUntil": "2025-12-31",
                 "priceSpecification": {
                     "@type": "PriceSpecification",
                     "price": "0",
@@ -398,13 +440,50 @@
                     "valueAddedTaxIncluded": true
                 },
                 "description": "Credit-System: 300 Credits gratis zum Start, nur zahlen bei Nutzung",
-                "availability": "https://schema.org/InStock"
+                "availability": "https://schema.org/InStock",
+                "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "applicableCountry": "CH",
+                    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                    "merchantReturnDays": 30,
+                    "returnMethod": "https://schema.org/ReturnByMail",
+                    "returnFees": "https://schema.org/FreeReturn"
+                },
+                "shippingDetails": {
+                    "@type": "OfferShippingDetails",
+                    "shippingRate": {
+                        "@type": "MonetaryAmount",
+                        "value": "0",
+                        "currency": "CHF"
+                    },
+                    "deliveryTime": {
+                        "@type": "ShippingDeliveryTime",
+                        "handlingTime": {
+                            "@type": "QuantitativeValue",
+                            "minValue": 0,
+                            "maxValue": 0,
+                            "unitCode": "DAY"
+                        },
+                        "transitTime": {
+                            "@type": "QuantitativeValue",
+                            "minValue": 0,
+                            "maxValue": 0,
+                            "unitCode": "DAY"
+                        }
+                    },
+                    "shippingDestination": {
+                        "@type": "DefinedRegion",
+                        "addressCountry": "CH"
+                    },
+                    "deliveryMethod": "https://schema.org/DigitalDelivery"
+                }
             },
             {
                 "@type": "Offer",
                 "name": "Dienstleister Paket",
                 "price": "2.7",
                 "priceCurrency": "CHF",
+                "priceValidUntil": "2025-12-31",
                 "priceSpecification": {
                     "@type": "PriceSpecification",
                     "price": "2.7",
@@ -412,7 +491,44 @@
                     "valueAddedTaxIncluded": true
                 },
                 "description": "Provision nur bei Auftragserfolg: 2.7-4.7% je nach Ranking",
-                "availability": "https://schema.org/InStock"
+                "availability": "https://schema.org/InStock",
+                "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "applicableCountry": "CH",
+                    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                    "merchantReturnDays": 30,
+                    "returnMethod": "https://schema.org/ReturnByMail",
+                    "returnFees": "https://schema.org/FreeReturn"
+                },
+                "shippingDetails": {
+                    "@type": "OfferShippingDetails",
+                    "shippingRate": {
+                        "@type": "MonetaryAmount",
+                        "value": "0",
+                        "currency": "CHF"
+                    },
+                    "deliveryTime": {
+                        "@type": "ShippingDeliveryTime",
+                        "handlingTime": {
+                            "@type": "QuantitativeValue",
+                            "minValue": 0,
+                            "maxValue": 0,
+                            "unitCode": "DAY"
+                        },
+                        "transitTime": {
+                            "@type": "QuantitativeValue",
+                            "minValue": 0,
+                            "maxValue": 0,
+                            "unitCode": "DAY"
+                        },
+                        "cutoffTime": "18:00"
+                    },
+                    "shippingDestination": {
+                        "@type": "DefinedRegion",
+                        "addressCountry": "CH"
+                    },
+                    "deliveryMethod": "https://schema.org/DigitalDelivery"
+                }
             }
         ],
         "aggregateRating": {
