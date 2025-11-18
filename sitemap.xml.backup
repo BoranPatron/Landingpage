@@ -8,11 +8,11 @@
         http://www.google.com/schemas/sitemap-image/1.1
         http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
 
-  <!-- Automatisch generiert am 2025-11-18T09:24:00+01:00 -->
+  <!-- Automatisch generiert am 2025-11-18T09:25:18+01:00 -->
   <!-- demo-new.html - Hohe Priorität -->
   <url>
     <loc>https://www.buildwise.ch/demo-new.html</loc>
-    <lastmod>2025-11-18T09:24:00+01:00</lastmod>
+    <lastmod>2025-11-18T09:25:18+01:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="de-ch" href="https://www.buildwise.ch/demo-new" />
@@ -22,7 +22,7 @@
   <!-- demo.html - Hohe Priorität -->
   <url>
     <loc>https://www.buildwise.ch/demo.html</loc>
-    <lastmod>2025-11-18T09:24:00+01:00</lastmod>
+    <lastmod>2025-11-18T09:25:18+01:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="de-ch" href="https://www.buildwise.ch/demo" />
@@ -32,7 +32,7 @@
   <!-- index.html - Hohe Priorität -->
   <url>
     <loc>https://www.buildwise.ch/</loc>
-    <lastmod>2025-11-18T09:24:00+01:00</lastmod>
+    <lastmod>2025-11-18T09:25:18+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
     <xhtml:link rel="alternate" hreflang="de-ch" href="https://www.buildwise.ch/" />
@@ -52,7 +52,7 @@
   <!-- thanks.html - Mittlere Priorität -->
   <url>
     <loc>https://www.buildwise.ch/thanks.html</loc>
-    <lastmod>2025-11-18T09:24:00+01:00</lastmod>
+    <lastmod>2025-11-18T09:25:18+01:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -60,7 +60,7 @@
   <!-- Zusätzliche wichtige Ressourcen -->
   <url>
     <loc>https://www.buildwise.ch/manifest.json</loc>
-    <lastmod>2025-11-18T09:24:00+01:00</lastmod>
+    <lastmod>2025-11-18T09:25:18+01:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>

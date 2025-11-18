@@ -314,8 +314,9 @@ const InteractiveSelector = () => {
       {/* Image Expansion Modal */}
       {expandedImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-[fadeIn_0.3s_ease-out]"
+          className="fixed inset-0 z-[9998] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-[fadeIn_0.3s_ease-out]"
           onClick={handleCloseModal}
+          style={{ zIndex: 9998 }}
         >
           <div
             className="relative max-w-7xl w-full max-h-[90vh] bg-gradient-to-br from-[#51646f]/95 to-[#2f3c43]/95 backdrop-blur-xl rounded-2xl border-2 border-[#f9c74f]/30 shadow-[0_0_60px_rgba(249,199,79,0.15)] overflow-hidden flex flex-col animate-[scaleIn_0.3s_ease-out]"
@@ -333,35 +334,7 @@ const InteractiveSelector = () => {
               <X size={24} />
             </button>
 
-            {/* Navigation Arrows */}
-            {options.length > 1 && (
-              <>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handlePrevImage();
-                  }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-[#f9c74f]/90 hover:bg-[#f9c74f] text-gray-900 rounded-full p-3 shadow-lg transition-all duration-200 backdrop-blur-sm border-2 border-[#f9c74f] hidden md:flex items-center justify-center"
-                  aria-label="Vorheriges Bild"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M15 18l-6-6 6-6"/>
-                  </svg>
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleNextImage();
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-[#f9c74f]/90 hover:bg-[#f9c74f] text-gray-900 rounded-full p-3 shadow-lg transition-all duration-200 backdrop-blur-sm border-2 border-[#f9c74f] hidden md:flex items-center justify-center"
-                  aria-label="Nächstes Bild"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M9 18l6-6-6-6"/>
-                  </svg>
-                </button>
-              </>
-            )}
+            {/* Navigation Arrows removed - Navigation via Swipe-Gesten and Keyboard (Arrow keys) */}
 
             {/* Image Container */}
             <div className="flex-1 overflow-auto p-6 md:p-8">

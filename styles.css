@@ -46,6 +46,88 @@
 }
 
 /* ============================================
+   Chrome CSS Reset & Compatibility Fixes
+   ============================================ */
+
+/* Chrome: Comprehensive Box-Sizing Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box !important;
+}
+
+/* Chrome: Container Class Override - Ensure consistent behavior */
+.container,
+.max-w-7xl,
+.max-w-6xl,
+.max-w-5xl,
+.max-w-4xl,
+.max-w-3xl,
+.max-w-2xl,
+.max-w-xl,
+.max-w-lg,
+.max-w-md,
+.max-w-sm {
+    box-sizing: border-box !important;
+    width: 100% !important;
+}
+
+/* Chrome: Fix for Tailwind + Custom CSS Container conflicts */
+.container.mx-auto,
+.max-w-7xl.mx-auto,
+.max-w-6xl.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+}
+
+/* Chrome: Flexbox/Grid Reset for consistent behavior */
+.flex,
+.grid {
+    box-sizing: border-box !important;
+}
+
+/* Chrome: Positioning Reset */
+.relative,
+.absolute,
+.fixed,
+.sticky {
+    box-sizing: border-box !important;
+    position: relative;
+}
+
+.absolute {
+    position: absolute !important;
+}
+
+.fixed {
+    position: fixed !important;
+}
+
+.sticky {
+    position: sticky !important;
+}
+
+/* Chrome: Transform Origin Default */
+[style*="transform"],
+.transform,
+[class*="transform"] {
+    transform-origin: center center !important;
+}
+
+/* Chrome: Prevent layout shifts from font loading */
+body {
+    font-display: swap;
+}
+
+/* Chrome: Ensure consistent text rendering */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* ============================================
    Global Reset & Base
    ============================================ */
 
@@ -70,9 +152,7 @@ body {
     color: #f7fafc;
     overflow-x: hidden;
     overflow-y: auto !important; /* iOS Safari: Allow vertical scrolling */
-    min-height: 100vh;
-    /* iOS Safari: Use dynamic viewport height */
-    min-height: -webkit-fill-available;
+    /* Chrome: Viewport height handled separately below to avoid conflicts */
     /* Mobile Typography: Mindestens 16px für Touch-Geräte (verhindert Zoom) */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
@@ -92,6 +172,53 @@ body {
         /* Fallback for browsers that don't support -webkit-fill-available */
         @supports (height: 100dvh) {
             min-height: 100dvh;
+        }
+    }
+}
+
+/* Chrome: Viewport unit fixes - Single, non-conflicting declarations */
+/* Chrome: Use 100vh as primary, 100dvh as enhancement */
+html {
+    height: 100vh; /* Chrome: Primary viewport height */
+}
+
+@supports (height: 100dvh) {
+    /* Chrome: Use dynamic viewport units when available, but only once */
+    html {
+        height: 100dvh; /* Chrome: Dynamic viewport height when supported */
+    }
+}
+
+body {
+    min-height: 100vh; /* Chrome: Primary minimum height */
+}
+
+@supports (height: 100dvh) {
+    /* Chrome: Dynamic viewport height when supported */
+    body {
+        min-height: 100dvh; /* Chrome: Single declaration, no conflicts */
+    }
+}
+
+/* Chrome: Mobile viewport fix - Single declaration per property */
+@media (max-width: 767px) {
+    html {
+        height: 100vh; /* Chrome: Mobile primary */
+    }
+    
+    @supports (height: 100dvh) {
+        html {
+            height: 100dvh; /* Chrome: Mobile dynamic when supported */
+        }
+    }
+    
+    body {
+        min-height: 100vh; /* Chrome: Mobile primary */
+    }
+    
+    @supports (height: 100dvh) {
+        body {
+            min-height: 100dvh; /* Chrome: Mobile dynamic when supported */
         }
     }
 }
@@ -674,6 +801,7 @@ ul, ol {
     margin-right: auto;
     padding-left: 1rem;
     padding-right: 1rem;
+    box-sizing: border-box !important; /* Chrome: Explicit box-sizing */
 }
 
 @media (min-width: 640px) {
@@ -700,16 +828,167 @@ ul, ol {
     }
 }
 
+/* Chrome: Container class fixes for Tailwind + Custom CSS conflicts */
+/* Chrome: Ensure consistent container behavior */
+.container.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Chrome: Max-width classes with mx-auto */
+.max-w-7xl.mx-auto,
+.max-w-6xl.mx-auto,
+.max-w-5xl.mx-auto,
+.max-w-4xl.mx-auto,
+.max-w-3xl.mx-auto,
+.max-w-2xl.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important; /* Chrome: Ensure responsive behavior */
+}
+
+/* Chrome: Specific max-width values */
+.max-w-7xl {
+    max-width: 80rem !important; /* 1280px */
+}
+
+.max-w-6xl {
+    max-width: 72rem !important; /* 1152px */
+}
+
+.max-w-5xl {
+    max-width: 64rem !important; /* 1024px */
+}
+
+.max-w-4xl {
+    max-width: 56rem !important; /* 896px */
+}
+
+.max-w-3xl {
+    max-width: 48rem !important; /* 768px */
+}
+
+.max-w-2xl {
+    max-width: 42rem !important; /* 672px */
+}
+
+/* Chrome: Padding classes consistency */
+.px-4,
+.px-6,
+.px-8 {
+    box-sizing: border-box !important;
+}
+
+.px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+.px-6 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+.px-8 {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+}
+
 .flex {
     display: flex;
+    box-sizing: border-box !important; /* Chrome: Explicit box-sizing */
 }
 
 .grid {
     display: grid;
+    box-sizing: border-box !important; /* Chrome: Explicit box-sizing */
 }
 
 .hidden {
     display: none;
+}
+
+/* Chrome: Global Layout Fixes - Flexbox/Grid Consistency */
+/* Chrome: Ensure flexbox items have proper box-sizing */
+.flex > *,
+.grid > * {
+    box-sizing: border-box !important;
+}
+
+/* Chrome: Flexbox direction and alignment fixes */
+.flex-col {
+    flex-direction: column !important;
+}
+
+.flex-row {
+    flex-direction: row !important;
+}
+
+.items-center {
+    align-items: center !important;
+}
+
+.justify-center {
+    justify-content: center !important;
+}
+
+.justify-between {
+    justify-content: space-between !important;
+}
+
+/* Chrome: Positioning consistency */
+.relative {
+    position: relative !important;
+    box-sizing: border-box !important;
+}
+
+.absolute {
+    position: absolute !important;
+    box-sizing: border-box !important;
+}
+
+.fixed {
+    position: fixed !important;
+    box-sizing: border-box !important;
+}
+
+.sticky {
+    position: sticky !important;
+    box-sizing: border-box !important;
+}
+
+/* Chrome: Transform origin for all transformed elements */
+[style*="transform"],
+.transform,
+[class*="translate"],
+[class*="scale"],
+[class*="rotate"] {
+    transform-origin: center center !important;
+}
+
+/* Chrome: Left/Top 50% + Transform positioning fix */
+.left-1\/2,
+.top-1\/2 {
+    left: 50% !important;
+    top: 50% !important;
+}
+
+/* Chrome: Transform translate for centering */
+[style*="translate(-50%"],
+[style*="translate(-50%"] {
+    transform-origin: center center !important;
+}
+
+/* Chrome: Ensure transform calculations are correct */
+.left-1\/2[style*="transform"],
+.top-1\/2[style*="transform"] {
+    transform-origin: center center !important;
 }
 
 /* ============================================
@@ -764,7 +1043,7 @@ ul, ol {
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    z-index: 2147483647 !important; /* Maximum int32 for iOS 18 Root View Hit Testing Fix */
+    z-index: 9999 !important; /* Reduced from 2147483647 for Chrome compatibility */
     pointer-events: none !important; /* Clicks pass through to child elements */
     width: 100% !important;
     height: auto !important;
@@ -772,9 +1051,18 @@ ul, ol {
     contain: none !important;
 }
 
+/* Chrome: Containment DISABLED on root elements - causes layout issues */
+/* Chrome: Do NOT use containment on root elements as it breaks layout */
+@supports (contain: layout) {
+    /* Chrome: Explicitly disable containment on root elements */
+    #floating-nav-root {
+        contain: none !important; /* Chrome: No containment on root elements */
+    }
+}
+
 /* Global fix: Ensure navbar container is always visible and clickable */
 .floating-navbar-container {
-    z-index: 2147483647 !important; /* Maximum int32 for iOS 18 Root View Hit Testing Fix */
+    z-index: 9999 !important; /* Reduced from 2147483647 for Chrome compatibility */
     position: fixed !important;
     pointer-events: auto !important; /* Receive clicks from parent nav */
     display: flex !important;
@@ -790,6 +1078,42 @@ ul, ol {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 
                 0 0 20px rgba(249, 199, 79, 0.1) !important;
     border-radius: 9999px !important;
+}
+
+/* Chrome-specific backdrop-filter fixes */
+@supports (backdrop-filter: blur(1px)) and (-webkit-backdrop-filter: blur(1px)) {
+    /* Chrome: Ensure backdrop-filter works correctly */
+    .floating-navbar-container {
+        backdrop-filter: blur(12px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+    }
+    
+    .bg-gray-50,
+    .bg-white {
+        backdrop-filter: blur(10px) saturate(150%) !important;
+        -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+    }
+    
+    .benefit-card,
+    .persona-card,
+    .pricing-card,
+    .faq-item {
+        backdrop-filter: blur(10px) saturate(150%) !important;
+        -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+    }
+}
+
+/* Chrome: Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(1px)) {
+    .floating-navbar-container,
+    .bg-gray-50,
+    .bg-white,
+    .benefit-card,
+    .persona-card,
+    .pricing-card,
+    .faq-item {
+        background: rgba(255, 255, 255, 0.15) !important; /* Stronger background when no backdrop-filter */
+    }
 }
 
 /* Simplified Navbar Styles - Works on all browsers including iOS Safari */
@@ -844,6 +1168,35 @@ ul, ol {
     overflow-x: hidden !important;
     overflow-y: visible !important;
     /* Alternative: overflow: visible - but can break layout on some devices */
+    box-sizing: border-box !important; /* Chrome: Explicit box-sizing */
+    width: 100% !important; /* Chrome: Ensure full width */
+    position: relative !important; /* Chrome: Ensure positioning context */
+}
+
+/* Chrome: Hero Section Layout Fixes */
+.hero-section .container,
+.hero-section .max-w-7xl {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.hero-section .flex {
+    box-sizing: border-box !important;
+    display: flex !important;
+}
+
+.hero-section .flex-col {
+    flex-direction: column !important;
+}
+
+.hero-section .items-center {
+    align-items: center !important;
+}
+
+.hero-section .justify-center {
+    justify-content: center !important;
 }
 
 .bg-gray-50 {
@@ -877,6 +1230,22 @@ ul, ol {
     font-weight: 300;
     letter-spacing: -0.03em;
     line-height: 1.1;
+    box-sizing: border-box !important; /* Chrome: Explicit box-sizing */
+    width: 100% !important; /* Chrome: Ensure full width */
+    position: relative !important; /* Chrome: Ensure positioning context */
+}
+
+/* Chrome: Hero Title Text Layout Fixes */
+.hero-title-text {
+    box-sizing: border-box !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+.hero-description {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
 }
 
 .hero-title .text-accent,
@@ -910,8 +1279,23 @@ ul, ol {
     color: var(--accent);
     text-shadow: 0 0 20px rgba(249, 199, 79, 0.4), 0 0 40px rgba(249, 199, 79, 0.2);
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transform-origin: center;
+    transform-origin: center center !important; /* Chrome: Explicit transform-origin */
     font-size: inherit;
+    box-sizing: border-box !important; /* Chrome: Explicit box-sizing */
+    position: relative !important; /* Chrome: Ensure positioning context */
+}
+
+/* Chrome: Hero Rotating Text Layout Fixes */
+.hero-rotating-text {
+    box-sizing: border-box !important;
+    position: relative !important;
+    display: inline-flex !important;
+}
+
+.hero-rotating-item.absolute {
+    position: absolute !important;
+    box-sizing: border-box !important;
+    transform-origin: center center !important;
 }
 
 .hero-rotating-item.hero-rotating-hidden {
@@ -1851,6 +2235,7 @@ input:focus-visible {
     }
     
     /* Containment für bessere Performance - aber Text muss sichtbar bleiben */
+    /* Chrome: Containment disabled - see Chrome-specific rules below */
     .hero-section,
     #timeline-root {
         contain: layout style paint;
@@ -1862,9 +2247,254 @@ input:focus-visible {
         contain: layout style; /* Nur layout und style, nicht paint - damit Text sichtbar */
     }
     
+    /* Chrome: Override containment on mobile for Chrome */
+    @supports (contain: layout) {
+        .hero-section,
+        #timeline-root,
+        #radial-orbit-root {
+            contain: none !important; /* Chrome: Disable containment on mobile */
+        }
+    }
+    
     /* Radial Orbit Items Text sichtbar machen */
     #radial-orbit-root * {
         overflow: visible !important;
+    }
+}
+
+/* Chrome: Containment DISABLED on root/section elements - causes layout issues */
+/* Chrome: Containment breaks layout calculations in Chrome, especially with transforms */
+@supports (contain: layout) {
+    /* Chrome: Explicitly disable containment on root/section elements */
+    .hero-section {
+        contain: none !important; /* Chrome: No containment - breaks layout */
+    }
+    
+    /* Chrome: Radial orbit - no containment to allow proper positioning */
+    #radial-orbit-root {
+        contain: none !important; /* Chrome: No containment - allows transforms to work */
+        overflow: visible !important; /* Ensure text labels are visible */
+        box-sizing: border-box !important; /* Chrome: Explicit box-sizing */
+        width: 100% !important; /* Chrome: Ensure full width */
+        position: relative !important; /* Chrome: Ensure positioning context */
+    }
+    
+    /* Chrome: Timeline - no containment to allow proper layout */
+    #timeline-root {
+        contain: none !important; /* Chrome: No containment - breaks layout */
+        box-sizing: border-box !important; /* Chrome: Explicit box-sizing */
+        width: 100% !important; /* Chrome: Ensure full width */
+        position: relative !important; /* Chrome: Ensure positioning context */
+    }
+    
+    /* Chrome: All root elements - disable containment */
+    #personas,
+    #features,
+    #pricing,
+    #about,
+    #faq {
+        contain: none !important; /* Chrome: No containment on section roots */
+        box-sizing: border-box !important; /* Chrome: Explicit box-sizing */
+        width: 100% !important; /* Chrome: Ensure full width */
+        position: relative !important; /* Chrome: Ensure positioning context */
+    }
+}
+
+/* Chrome: Radial Orbit Specific Layout Fixes */
+#radial-orbit-root {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* Chrome: Radial Orbit Container Fixes */
+#radial-orbit-root > div {
+    box-sizing: border-box !important;
+    position: relative !important;
+    width: 100% !important;
+}
+
+/* Chrome: Radial Orbit Nodes - Transform Positioning Fixes */
+#radial-orbit-root [style*="transform"],
+#radial-orbit-root [style*="translate"] {
+    transform-origin: center center !important;
+    box-sizing: border-box !important;
+    position: absolute !important;
+}
+
+/* Chrome: Radial Orbit Absolute Positioning Fixes */
+#radial-orbit-root .absolute {
+    position: absolute !important;
+    box-sizing: border-box !important;
+    transform-origin: center center !important;
+}
+
+/* Chrome: Radial Orbit Left/Top 50% + Transform Fix */
+#radial-orbit-root .left-1\/2,
+#radial-orbit-root [style*="left: 50%"] {
+    left: 50% !important;
+}
+
+#radial-orbit-root .top-1\/2,
+#radial-orbit-root [style*="top: 50%"] {
+    top: 50% !important;
+}
+
+/* Chrome: Radial Orbit Transform Translate Fix */
+#radial-orbit-root [style*="translate("] {
+    transform-origin: center center !important;
+}
+
+/* Chrome: Timeline Specific Layout Fixes */
+#timeline-root {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* Chrome: Timeline Container Fixes */
+#timeline-root > div {
+    box-sizing: border-box !important;
+    position: relative !important;
+    width: 100% !important;
+}
+
+/* Chrome: Timeline Transform Fixes */
+#timeline-root [style*="transform"],
+#timeline-root [style*="translate"] {
+    transform-origin: center center !important;
+    box-sizing: border-box !important;
+}
+
+/* Chrome: Timeline Absolute/Fixed Positioning Fixes */
+#timeline-root .absolute,
+#timeline-root .fixed,
+#timeline-root .sticky {
+    box-sizing: border-box !important;
+    transform-origin: center center !important;
+}
+
+/* Chrome: All Component Root Elements - Layout Fixes */
+#interactive-selector-root,
+#pricing-root,
+#about-profile-root,
+#faq-root {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* Chrome: Interactive Selector Fixes */
+#interactive-selector-root > div {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+#interactive-selector-root [style*="transform"],
+#interactive-selector-root [style*="translate"] {
+    transform-origin: center center !important;
+    box-sizing: border-box !important;
+}
+
+/* Chrome: Pricing Section Fixes */
+#pricing-root {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+#pricing-root > div {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+/* Chrome: About/Profile Section Fixes */
+#about-profile-root {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+#about-profile-root > div {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+#about-profile-root [style*="transform"],
+#about-profile-root [style*="translate"] {
+    transform-origin: center center !important;
+    box-sizing: border-box !important;
+}
+
+/* Chrome: FAQ Section Fixes */
+#faq-root {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+#faq-root > div,
+#faq-root > section {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+/* Chrome: Section Elements - General Layout Fixes */
+section,
+article {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+/* Chrome: Main Element Fixes */
+main {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+/* Chrome: All Transform Elements - Transform Origin Fix */
+[style*="transform"],
+[style*="translate"],
+[style*="scale"],
+[style*="rotate"] {
+    transform-origin: center center !important;
+}
+
+/* Chrome: All Absolute/Fixed Elements - Box Sizing Fix */
+.absolute,
+.fixed,
+.sticky {
+    box-sizing: border-box !important;
+}
+
+/* Chrome: All Flex/Grid Containers - Box Sizing Fix */
+.flex,
+.grid,
+.flex > *,
+.grid > * {
+    box-sizing: border-box !important;
+}
+
+/* Chrome: Isolation context fixes - avoid isolation where it causes rendering issues */
+@supports (isolation: isolate) {
+    /* Chrome: Only use isolation when necessary, avoid on animated elements */
+    #radial-orbit-root .rounded-full {
+        /* Chrome: Don't use isolation on animated elements - causes rendering issues */
+        isolation: auto !important;
+    }
+    
+    /* Chrome: Use isolation only for static elements that need stacking context */
+    .floating-navbar-container {
+        isolation: isolate !important; /* Chrome: Safe to use on static navbar */
     }
 }
 

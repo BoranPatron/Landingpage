@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Badge } from "./badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./card";
 import { RadialOrbitItem } from "../../radial-orbit-data";
+import { getPreferredPositioningMethod } from "../../lib/utils";
 
 interface RadialOrbitalTimelineProps {
   timelineData: RadialOrbitItem[];
@@ -18,17 +19,18 @@ export default function RadialOrbitalTimeline({
   const [activeNodeId, setActiveNodeId] = useState<number | null>(null);
   const [radius, setRadius] = useState<number>(200);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [positioningMethod, setPositioningMethod] = useState<'transform' | 'margin'>('transform');
   
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number | null>(null);
   const lastFrameTimeRef = useRef<number>(0);
   const rotationAngleRef = useRef<number>(0);
 
-  // Detect iOS
+  // Detect browser and set positioning method
   useEffect(() => {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    console.log('iOS detected:', isIOS);
+    const method = getPreferredPositioningMethod();
+    setPositioningMethod(method);
+    console.log('Positioning method:', method);
   }, []);
 
   // Responsive radius
@@ -252,19 +254,29 @@ export default function RadialOrbitalTimeline({
           const isPulsing = pulseEffect[item.id];
           const Icon = item.icon;
 
-          // iOS Safari: Direct positioning with left/top instead of transform
+          // Chrome: Use transform for better performance
+          // iOS Safari: Use margin for more reliable positioning
           const nodeStyle: React.CSSProperties = {
             position: "absolute",
-            // Center the orbit container, then offset by calculated position
             left: "50%",
             top: "50%",
-            // iOS Safari: Use margin for positioning (more reliable than transform on iOS)
-            marginLeft: `${pos.x - 32}px`, // 32 = half of node width (64px)
-            marginTop: `${pos.y - 32}px`,  // 32 = half of node height (64px)
             zIndex: isExpanded ? 200 : pos.z,
             opacity: isExpanded ? 1 : pos.opacity,
-            transition: "opacity 0.3s ease-out, margin 0.3s ease-out",
             cursor: "pointer",
+            ...(positioningMethod === 'transform' 
+              ? {
+                  // Chrome: Transform-based positioning (better performance)
+                  transform: `translate(${pos.x - 32}px, ${pos.y - 32}px)`,
+                  transition: "opacity 0.3s ease-out, transform 0.3s ease-out",
+                  willChange: "transform, opacity",
+                }
+              : {
+                  // iOS Safari: Margin-based positioning (more reliable)
+                  marginLeft: `${pos.x - 32}px`, // 32 = half of node width (64px)
+                  marginTop: `${pos.y - 32}px`,  // 32 = half of node height (64px)
+                  transition: "opacity 0.3s ease-out, margin 0.3s ease-out",
+                }
+            ),
           };
 
           return (
@@ -326,8 +338,9 @@ export default function RadialOrbitalTimeline({
                   MozBorderRadius: "50%",
                   // iOS Safari: Overflow hidden ZWINGT runde Form
                   overflow: "hidden",
+                  // Chrome: Isolation context can cause rendering issues - use conditionally
                   // iOS Safari: Isolation-Kontext für korrektes border-radius Rendering
-                  isolation: "isolate",
+                  ...(positioningMethod === 'margin' ? { isolation: "isolate" } : {}),
                   // iOS Safari: Clip-Path Fallback für perfekte Rundung
                   WebkitClipPath: "circle(50% at 50% 50%)",
                   clipPath: "circle(50% at 50% 50%)",
