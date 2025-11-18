@@ -102,7 +102,7 @@ export default function PricingSection5() {
         </TimelineContent>
       </article>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto py-4 sm:py-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto py-4 sm:py-6 items-stretch">
         {pricingCategories.map((category, index) => {
           const isBautraeger = category.category === "bautraeger";
           const accentColorClass = isBautraeger 
@@ -116,6 +116,7 @@ export default function PricingSection5() {
               animationNum={1 + index}
               timelineRef={pricingRef}
               customVariants={revealVariants}
+              className="h-full"
             >
               <Card
                 className={cn(

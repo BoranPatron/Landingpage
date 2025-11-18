@@ -21,11 +21,23 @@ const InteractiveSelector = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   
   // Initialize with all options visible immediately for fallback
   const [animatedOptions, setAnimatedOptions] = useState<number[]>(() => {
     return Array.from({ length: 7 }, (_, i) => i);
   });
+
+  // Detect touch device
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    checkTouchDevice();
+    window.addEventListener('resize', checkTouchDevice);
+    return () => window.removeEventListener('resize', checkTouchDevice);
+  }, []);
 
   // Icon mapping function
   const getIconForFeature = (step: string, title: string): React.ReactElement => {
@@ -203,39 +215,67 @@ const InteractiveSelector = () => {
           <div
             key={index}
             className={`
-              option relative flex flex-col justify-end overflow-hidden transition-all duration-700 ease-in-out
+              option relative flex flex-col justify-end overflow-hidden transition-all duration-300 ease-in-out
               ${activeIndex === index ? 'active' : ''}
             `}
             style={{
               backgroundImage: `url('${option.image}')`,
-              backgroundSize: activeIndex === index ? 'auto 100%' : 'auto 120%',
+              backgroundSize: hoveredIndex === index && activeIndex !== index 
+                ? 'auto 130%' 
+                : activeIndex === index 
+                  ? 'auto 100%' 
+                  : 'auto 120%',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
               backfaceVisibility: 'hidden',
-              // Always visible - no opacity animation needed
               opacity: 1,
-              transform: 'translateX(0)',
+              transform: hoveredIndex === index && activeIndex !== index ? 'scale(1.02)' : 'translateX(0)',
               minWidth: '60px',
               minHeight: '100px',
               margin: 0,
               borderRadius: '0.75rem',
               borderWidth: '2px',
               borderStyle: 'solid',
-              borderColor: activeIndex === index ? 'rgba(249, 199, 79, 0.3)' : 'rgba(255, 255, 255, 0.1)',
+              borderColor: hoveredIndex === index && activeIndex !== index
+                ? 'rgba(249, 199, 79, 0.4)'
+                : activeIndex === index 
+                  ? 'rgba(249, 199, 79, 0.3)' 
+                  : 'rgba(255, 255, 255, 0.1)',
               cursor: 'pointer',
               backgroundColor: '#18181b',
-              boxShadow: activeIndex === index 
-                ? '0 20px 60px rgba(249, 199, 79, 0.2), 0 0 40px rgba(249, 199, 79, 0.1)' 
-                : '0 10px 30px rgba(0, 0, 0, 0.30)',
-              flex: activeIndex === index ? '7 1 0%' : '1 1 0%',
-              zIndex: activeIndex === index ? 10 : 1,
+              boxShadow: hoveredIndex === index && activeIndex !== index
+                ? '0 20px 60px rgba(249, 199, 79, 0.3), 0 0 40px rgba(249, 199, 79, 0.2), 0 0 20px rgba(249, 199, 79, 0.15)'
+                : activeIndex === index 
+                  ? '0 20px 60px rgba(249, 199, 79, 0.2), 0 0 40px rgba(249, 199, 79, 0.1)' 
+                  : '0 10px 30px rgba(0, 0, 0, 0.30)',
+              flex: hoveredIndex === index && activeIndex !== index
+                ? '1.2 1 0%'
+                : activeIndex === index 
+                  ? '7 1 0%' 
+                  : '1 1 0%',
+              zIndex: hoveredIndex === index && activeIndex !== index
+                ? 5
+                : activeIndex === index 
+                  ? 10 
+                  : 1,
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'flex-end',
               position: 'relative',
               overflow: 'hidden',
-              willChange: 'flex-grow, box-shadow, background-size, background-position',
+              willChange: 'flex-grow, box-shadow, background-size, transform, border-color',
               backdropFilter: 'blur(10px)',
+              transition: 'border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out, background-size 0.3s ease-in-out, flex 0.3s ease-in-out, z-index 0.3s ease-in-out',
+            }}
+            onMouseEnter={() => {
+              if (!isTouchDevice) {
+                setHoveredIndex(index);
+              }
+            }}
+            onMouseLeave={() => {
+              if (!isTouchDevice) {
+                setHoveredIndex(null);
+              }
             }}
             onClick={() => {
               handleOptionClick(index);
@@ -243,13 +283,27 @@ const InteractiveSelector = () => {
             }}
           >
             
+            {/* Premium glow effect overlay on hover */}
+            {hoveredIndex === index && activeIndex !== index && (
+              <div 
+                className="absolute inset-0 pointer-events-none transition-opacity duration-300 ease-in-out"
+                style={{
+                  background: 'radial-gradient(circle at 30% 20%, rgba(249, 199, 79, 0.08) 0%, transparent 60%), linear-gradient(135deg, transparent 0%, rgba(81, 100, 111, 0.04) 100%)',
+                  borderRadius: '0.75rem',
+                  zIndex: 0,
+                }}
+              ></div>
+            )}
+            
             {/* Glassmorphism overlay */}
             <div 
-              className="absolute inset-0 pointer-events-none transition-all duration-700 ease-in-out"
+              className="absolute inset-0 pointer-events-none transition-all duration-300 ease-in-out"
               style={{
                 background: activeIndex === index 
                   ? 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)'
-                  : 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)',
+                  : hoveredIndex === index
+                    ? 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)'
+                    : 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)',
                 backdropFilter: 'blur(2px)',
               }}
             ></div>
