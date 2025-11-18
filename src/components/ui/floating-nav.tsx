@@ -14,7 +14,7 @@ export interface FloatingNavProps {
 const sectionNames: { [key: string]: string } = {
   "#personas": "Rollen",
   "#timeline": "Prozess",
-  "#journey": "Features",
+  "#features": "Features",
   "#pricing": "Preise",
   "#about": "Über uns",
   "#faq": "FAQ",
@@ -39,7 +39,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
 
   // Track active section with IntersectionObserver
   useEffect(() => {
-    const sections = ["personas", "timeline", "journey", "pricing", "about", "faq"];
+    const sections = ["personas", "timeline", "features", "pricing", "about", "faq"];
     
     const observerOptions = {
       root: null,
@@ -108,7 +108,7 @@ export const FloatingNav = ({ navItems, className }: FloatingNavProps) => {
 
   // Scroll-Listener: Nach dem Scrollen die aktivste Section finden
   useEffect(() => {
-    const sections = ["personas", "timeline", "journey", "pricing", "about", "faq"];
+    const sections = ["personas", "timeline", "features", "pricing", "about", "faq"];
     
     const handleScroll = () => {
       // Finde die Section, die am nächsten zum oberen Rand ist (innerhalb eines bestimmten Bereichs)

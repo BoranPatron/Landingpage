@@ -7,6 +7,7 @@ import { Role } from "../../timeline-entry";
 import { TimelineTabs } from "./timeline-tabs";
 import { UserJourneyFeature } from "../../user-journey-data";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ZoomParallax } from "./zoom-parallax";
 
 interface FeatureStepsProps {
   bautraegerFeatures: UserJourneyFeature[];
@@ -40,12 +41,25 @@ export function FeatureSteps({
   const featuresLength = useMemo(() => features.length, [features]);
   const activeFeature = useMemo(() => features[currentFeature], [currentFeature, features]);
 
+  // Convert features to ZoomParallax image format
+  const parallaxImages = useMemo(() => {
+    const images = features.map((feature) => ({
+      src: feature.image,
+      alt: feature.title || feature.step,
+    }));
+    console.log('[FeatureSteps] Parallax images:', images);
+    return images;
+  }, [features]);
+
   // Detect screen size (Mobile < 768px, Tablet 768-1023px, Desktop >= 1024px)
   useEffect(() => {
     const checkScreenSize = () => {
       const width = window.innerWidth;
-      setIsMobile(width < 768);
-      setIsTablet(width >= 768 && width < 1024);
+      const mobile = width < 768;
+      const tablet = width >= 768 && width < 1024;
+      setIsMobile(mobile);
+      setIsTablet(tablet);
+      console.log('[FeatureSteps] Screen size:', { width, mobile, tablet, isDesktop: !mobile && !tablet });
     };
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
@@ -325,9 +339,40 @@ export function FeatureSteps({
     </div>
   );
 
-  // Render Desktop Layout
-  const renderDesktopLayout = () => (
-    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-20 lg:items-stretch">
+  // Render Desktop Layout with ZoomParallax
+  const renderDesktopLayout = () => {
+    console.log('[FeatureSteps] renderDesktopLayout called');
+    console.log('[FeatureSteps] parallaxImages:', parallaxImages);
+    console.log('[FeatureSteps] features:', features);
+    
+    return (
+      <div className="w-full">
+        {/* ZoomParallax Widget - Always visible */}
+        <div
+          className={cn(
+            "relative rounded-lg backdrop-blur-xl border-2 border-[#f9c74f]/50 shadow-[0_0_32px_rgba(249,199,79,0.2),_0_2px_2px_rgba(0,_0,_0,_0.1),_0_0_0_2px_rgba(249,199,79,0.1),_0_0_8px_rgba(249,199,79,0.15),_0_20px_80px_rgba(47,_48,_55,_0.1)]",
+            "h-[600px] lg:h-[800px] w-full overflow-visible mb-8 bg-gradient-to-br from-[#51646f]/20 to-[#41535c]/20"
+          )}
+          style={{ minHeight: '600px' }}
+        >
+          {parallaxImages.length > 0 ? (
+            <>
+              <div className="absolute top-2 left-2 z-50 bg-black/70 text-white px-2 py-1 rounded text-xs">
+                ZoomParallax Widget ({parallaxImages.length} Bilder)
+              </div>
+              <ZoomParallax images={parallaxImages} />
+            </>
+          ) : (
+            <div className="flex items-center justify-center h-full text-white">
+              <div>
+                <p className="text-lg font-bold">Keine Bilder verfügbar</p>
+                <p className="text-sm text-gray-400">Features: {features.length}, Images: {parallaxImages.length}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      
+      {/* Feature List */}
       <div className="space-y-4 sm:space-y-6 md:space-y-8">
         {features.map((feature, index) => (
           <motion.div
@@ -363,39 +408,9 @@ export function FeatureSteps({
           </motion.div>
         ))}
       </div>
-      <div
-        className={cn(
-          "relative h-[500px] lg:h-full min-h-[500px] lg:min-h-[600px] overflow-hidden rounded-lg backdrop-blur-xl border border-white/10 shadow-[0_0_32px_rgba(249,199,79,0.2)]"
-        )}
-      >
-        <AnimatePresence mode="wait">
-          {features.map(
-            (feature, index) =>
-              index === currentFeature && (
-                <motion.div
-                  key={index}
-                  className="absolute inset-0 rounded-lg overflow-visible flex items-center justify-center"
-                  initial={{ y: 100, opacity: 0, rotateX: -20 }}
-                  animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                  exit={{ y: -100, opacity: 0, rotateX: 20 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                  <div className="w-full h-full relative">
-                    <img
-                      src={feature.image}
-                      alt={feature.step}
-                      className="w-full h-full object-contain transition-transform transform"
-                      loading="lazy"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent pointer-events-none" />
-                  </div>
-                </motion.div>
-              ),
-          )}
-        </AnimatePresence>
-      </div>
     </div>
-  );
+    );
+  };
 
   return (
     <div className={cn("p-4 sm:p-6 md:p-12 lg:p-16", className)}>
@@ -411,8 +426,8 @@ export function FeatureSteps({
         <div className="flex justify-center mb-6 sm:mb-8 md:mb-12">
           <TimelineTabs activeRole={activeRole} onRoleChange={setActiveRole} />
         </div>
-        {/* Conditional Rendering: Carousel for Mobile/Tablet, Desktop Layout for Desktop */}
-        {(isMobile || isTablet) ? renderCarouselLayout() : renderDesktopLayout()}
+        {/* Always show Desktop Layout with ZoomParallax */}
+        {renderDesktopLayout()}
       </div>
     </div>
   );

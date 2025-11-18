@@ -7,9 +7,8 @@ import { ProfileCard } from "./components/ui/profile-card";
 import PricingSection5 from "./components/ui/pricing-section";
 import { FloatingNav } from "./components/ui/floating-nav";
 import FAQs from "./components/ui/faqs";
-import { FeatureSteps } from "./components/ui/feature-steps";
+import InteractiveSelector from "./components/ui/interactive-selector";
 import { radialOrbitData } from "./radial-orbit-data";
-import { bautraegerUserJourneyData, dienstleisterUserJourneyData } from "./user-journey-data";
 import { Home, Users, Clock, DollarSign, Info, HelpCircle, Sparkles } from "lucide-react";
 
 function initTimeline() {
@@ -172,7 +171,7 @@ function initFloatingNav() {
       },
       {
         name: "Features",
-        link: "#journey",
+        link: "#features",
         icon: <Sparkles className="h-4 w-4" />,
       },
       {
@@ -208,46 +207,35 @@ function initFloatingNav() {
   }
 }
 
-function initUserJourney() {
+
+function initInteractiveSelector() {
   try {
-    const rootElement = document.getElementById("user-journey-root");
+    const rootElement = document.getElementById("interactive-selector-root");
     if (!rootElement) {
-      console.warn("UserJourney root element not found");
+      console.warn("InteractiveSelector root element not found");
       return;
     }
     
     const useStrictMode = true;
     
     if (typeof ReactDOM !== 'undefined' && ReactDOM.createRoot) {
-      console.log("UserJourney root element found, initializing component...");
+      console.log("InteractiveSelector root element found, initializing component...");
       const root = ReactDOM.createRoot(rootElement);
-      const content = (
-        <FeatureSteps 
-          bautraegerFeatures={bautraegerUserJourneyData} 
-          dienstleisterFeatures={dienstleisterUserJourneyData} 
-          title="Was BuildWise bietet" 
-        />
-      );
+      const content = <InteractiveSelector />;
       root.render(useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content);
-      console.log("UserJourney component rendered");
+      console.log("InteractiveSelector component rendered");
     } else if (typeof ReactDOM !== 'undefined' && ReactDOM.render) {
-      console.log("UserJourney: Using ReactDOM.render fallback");
-      const content = (
-        <FeatureSteps 
-          bautraegerFeatures={bautraegerUserJourneyData} 
-          dienstleisterFeatures={dienstleisterUserJourneyData} 
-          title="Was BuildWise bietet" 
-        />
-      );
+      console.log("InteractiveSelector: Using ReactDOM.render fallback");
+      const content = <InteractiveSelector />;
       ReactDOM.render(
         useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content,
         rootElement
       );
     } else {
-      console.warn("UserJourney: ReactDOM not available");
+      console.warn("InteractiveSelector: ReactDOM not available");
     }
   } catch (error) {
-    console.error("Error initializing UserJourney:", error);
+    console.error("Error initializing InteractiveSelector:", error);
   }
 }
 
@@ -297,7 +285,7 @@ function initializeAllComponents() {
     initRadialOrbit();
     initFlowButton();
     initProfileCard();
-    initUserJourney();
+    initInteractiveSelector();
     initPricingSection();
     initFAQs();
     
