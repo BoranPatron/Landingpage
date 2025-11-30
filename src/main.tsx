@@ -79,6 +79,10 @@ function initFlowButton() {
     
     const useStrictMode = true;
     const handleClick = () => {
+      // Google Ads Conversion Event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', {'send_to': 'AW-17764876183/mNN1CMO_xckbEJf_-ZZC'});
+      }
       window.open('https://build-wise.app/login', '_blank', 'noopener,noreferrer');
     };
     
