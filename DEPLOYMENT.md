@@ -293,3 +293,5 @@ A: Nein, ändere `config.js.template` und generiere die config neu. Niemals `con
 ---
 
 **Letzte Aktualisierung**: 2025-10-29
+
+
