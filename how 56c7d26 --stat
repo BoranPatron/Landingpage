@@ -1,0 +1,20 @@
+[33m56c7d26[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Add Content Security Policy meta tags to index.html and thanks.html for enhanced security and compliance with Google Ads and Analytics requirements.
+[33maa41572[m Move Google Tag to optimal position at start of head section
+[33md700559[m Fix CSP syntax and add all required Google domains for Ads tracking
+[33m031057e[m Add Content Security Policy headers for Google Ads and Analytics in netlify.toml
+[33mb8fa115[m Update Google Ads conversion ID to nRzcCL_KoMgbEJf_-ZZC
+[33m412b0b6[m Implement Google Ads conversion tracking on CTA button click
+[33m7ffbce3[m Add Google Tag Manager scripts to index.html and thanks.html for tracking conversions. Update DEPLOYMENT.md and env-setup.txt with additional line breaks for clarity. Minor CSS adjustments in faqs.css.
+[33m00bf008[m Merge pull request #2 from BoranPatron/cursor/erstelle-und-verlinke-datenschutzerkl-rung-composer-1-708c
+[33m8f59773[m[33m ([m[1;31morigin/cursor/erstelle-und-verlinke-datenschutzerkl-rung-composer-1-708c[m[33m)[m Add datenschutz.html to sitemap and update timestamps
+[33m5ccd7f2[m Merge pull request #1 from BoranPatron/cursor/erstelle-generische-seite-f-r-schweizer-datenschutz-composer-1-7f02
+[33mb5019e7[m[33m ([m[1;31morigin/cursor/erstelle-generische-seite-f-r-schweizer-datenschutz-composer-1-7f02[m[33m)[m Add datenschutz.html and link it in footer
+[33m8226142[m Optimize Open Graph and Twitter Card meta tags for WhatsApp/SMS link previews
+[33m1de2ef0[m Add hover responsiveness to InteractiveSelector: glow effects and image preview on hover
+[33m3e8e36f[m Update sitemap.xml with new lastmod timestamps and enhance styles.css for Chrome compatibility. Refactor interactive-selector and radial-orbit components to improve positioning methods based on browser detection. Add utility functions for browser detection in utils.ts.
+[33m9c14560[m Add InteractiveSelector feature section with role differentiation and image modal navigation
+[33m9a52d3a[m Add detailed shipping and return policy information for offers in index.html - Include price validity, merchant return policy, and shipping details for both Bauträger and Dienstleister packages.
+[33m72664c0[m SEO-Optimierung fÃ¼r Schweizer Markt: Ausschreibungsplattform Schweiz und Bauprojekte erhalten Keywords integriert
+[33m6c7358d[m Fix Features button highlighting in navbar - Add journey section tracking, improve IntersectionObserver, add manual navigation flag
+[33m34a025e[m Section Titel und Navbar Bugfix
+[33m7d83656[m Anpassung Rich Link Preview & Korrektur Navbar Design (Hintergrund und Entfernen Button "Zukunft")

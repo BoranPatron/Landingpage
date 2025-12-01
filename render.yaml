@@ -1,10 +1,10 @@
 services:
   - type: web
     name: buildwise-landingpage
-    env: static
+    env: node
     rootDir: .
-    staticPublishPath: ./
     buildCommand: npm run build
+    startCommand: node server-static.js
     envVars:
       - key: NODE_VERSION
         value: 18
