@@ -18,7 +18,7 @@ export interface RadialOrbitItem {
   category: string;
   icon: React.ComponentType<{ size?: number; className?: string }>;
   relatedIds: number[];
-  status: "completed" | "in-progress" | "pending";
+  status: " " | "in-progress" | "pending";
   energy: number;
 }
 
@@ -31,7 +31,7 @@ export const radialOrbitData: RadialOrbitItem[] = [
     category: "Angebote",
     icon: FileText,
     relatedIds: [5, 7],
-    status: "completed",
+    status: " ",
     energy: 90
   },
   {
@@ -42,7 +42,7 @@ export const radialOrbitData: RadialOrbitItem[] = [
     category: "Kollaboration",
     icon: Users,
     relatedIds: [6, 9],
-    status: "completed",
+    status: " ",
     energy: 85
   },
   {
@@ -53,7 +53,7 @@ export const radialOrbitData: RadialOrbitItem[] = [
     category: "Qualität",
     icon: Shield,
     relatedIds: [10, 11],
-    status: "completed",
+    status: " ",
     energy: 92
   },
   {
@@ -64,7 +64,7 @@ export const radialOrbitData: RadialOrbitItem[] = [
     category: "Management",
     icon: Briefcase,
     relatedIds: [3, 9, 12],
-    status: "completed",
+    status: " ",
     energy: 87
   },
   {
@@ -75,7 +75,7 @@ export const radialOrbitData: RadialOrbitItem[] = [
     category: "Netzwerk",
     icon: Network,
     relatedIds: [2, 11],
-    status: "completed",
+    status: " ",
     energy: 80
   },
   {
@@ -86,7 +86,7 @@ export const radialOrbitData: RadialOrbitItem[] = [
     category: "Dokumente",
     icon: FileText,
     relatedIds: [3, 6, 12],
-    status: "completed",
+    status: " ",
     energy: 89
   },
   {
@@ -97,7 +97,7 @@ export const radialOrbitData: RadialOrbitItem[] = [
     category: "Tracking",
     icon: BarChart3,
     relatedIds: [5, 6, 11],
-    status: "completed",
+    status: " ",
     energy: 86
   },
   {
@@ -108,7 +108,7 @@ export const radialOrbitData: RadialOrbitItem[] = [
     category: "Vertrauen",
     icon: Handshake,
     relatedIds: [5, 7, 10],
-    status: "completed",
+    status: " ",
     energy: 91
   },
   {
@@ -119,7 +119,7 @@ export const radialOrbitData: RadialOrbitItem[] = [
     category: "Erfolg",
     icon: CheckCircle,
     relatedIds: [6, 9, 11],
-    status: "completed",
+    status: " ",
     energy: 94
   }
 ];
