@@ -17,6 +17,16 @@ app.use((req, res, next) => {
   next();
 });
 
+// Test-Route: Zeige die aktuelle CSP-Konfiguration
+app.get('/test-csp', (req, res) => {
+  res.json({
+    cspHeader: cspHeader,
+    cspLength: cspHeader.length,
+    hasGoogleAds: cspHeader.includes('googleadservices'),
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Redirect für favicon.png (Browser sucht automatisch nach /favicon.png)
 app.get('/favicon.png', (req, res) => {
   res.redirect('/assets/favicon.png');
