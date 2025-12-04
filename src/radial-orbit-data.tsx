@@ -25,102 +25,102 @@ export interface RadialOrbitItem {
 export const radialOrbitData: RadialOrbitItem[] = [
   {
     id: 2,
-    title: "Angebotserstellung",
+    title: "E-Mail-Chaos beenden",
     date: "2024",
-    content: "Digitale Angebote erstellen und einreichen in wenigen Klicks. Direkte Kommunikation mit Bauträgern für schnelle Entscheidungen.",
-    category: "Angebote",
+    content: "Schluss mit 200+ E-Mails pro Projekt. Alle Angebote zentral an einem Ort. Suche in 2 Sekunden statt 30 Minuten. Zeitersparnis: 3h/Woche = 156h/Jahr.",
+    category: "Problem",
     icon: FileText,
     relatedIds: [5, 7],
     status: " ",
-    energy: 90
+    energy: 95
   },
   {
     id: 3,
-    title: "Kollaboration",
+    title: "Dienstleister finden",
     date: "2024",
-    content: "Nahtlose Zusammenarbeit zwischen Bauträgern und Dienstleistern. Gemeinsame Projekträume für Dokumente, Aufgaben und Kommunikation.",
-    category: "Kollaboration",
+    content: "Keine stundenlange Suche mehr. Dienstleister finden SIE automatisch über Geo-Suche. Von 5 Stunden auf 0 Stunden reduziert.",
+    category: "Zeitersparnis",
     icon: Users,
     relatedIds: [6, 9],
-    status: " ",
-    energy: 85
-  },
-  {
-    id: 5,
-    title: "Qualitätsprüfung",
-    date: "2024",
-    content: "Verifizierte Dienstleister mit geprüften Referenzen. Bewertungssysteme und Qualitätskontrolle für vertrauensvolle Zusammenarbeit.",
-    category: "Qualität",
-    icon: Shield,
-    relatedIds: [10, 11],
     status: " ",
     energy: 92
   },
   {
-    id: 6,
-    title: "Projektmanagement",
+    id: 5,
+    title: "Budget im Griff",
     date: "2024",
-    content: "Umfassendes Projektmanagement für alle Gewerke. Von der Planung bis zur Abnahme - alles digital und transparent verwaltet.",
-    category: "Management",
+    content: "Schluss mit Excel-Tabellen. Echtzeit Budget-Dashboard zeigt sofort: Haben wir noch Budget? Automatische Warnungen bei Überschreitungen. Ersparnis: 5-10% durch Transparenz.",
+    category: "Kostenersparnis",
+    icon: BarChart3,
+    relatedIds: [10, 11],
+    status: " ",
+    energy: 94
+  },
+  {
+    id: 6,
+    title: "Dokumenten-Suche",
+    date: "2024",
+    content: "Nie wieder 'Wo war nochmal...?' Automatische Kategorisierung aller Dokumente. Von 2h/Woche Suchen auf 0 Minuten reduziert.",
+    category: "Problem",
     icon: Briefcase,
     relatedIds: [3, 9, 12],
     status: " ",
-    energy: 87
+    energy: 90
   },
   {
     id: 7,
-    title: "Netzwerk-Aufbau",
+    title: "Ausschreibung erstellen",
     date: "2024",
-    content: "Erweitern Sie Ihr Netzwerk mit qualifizierten Partnern. Langfristige Geschäftsbeziehungen durch erfolgreiche Projektzusammenarbeit.",
-    category: "Netzwerk",
+    content: "Von 2 Stunden manuellem Schreiben auf 15 Minuten Formular. Automatische Verteilung an qualifizierte Dienstleister in Ihrer Region.",
+    category: "Zeitersparnis",
     icon: Network,
     relatedIds: [2, 11],
     status: " ",
-    energy: 80
+    energy: 93
   },
   {
     id: 9,
-    title: "Dokumentenmanagement",
+    title: "Angebote vergleichen",
     date: "2024",
-    content: "Zentrales Dokumentenmanagement für alle Projektunterlagen. Automatische Versionierung, Zugriffskontrolle und Compliance.",
-    category: "Dokumente",
+    content: "Schluss mit Excel-Chaos. Side-by-Side Vergleich aller Angebote. Kostenaufschlüsselung auf einen Blick. Von 2h auf 30 Minuten.",
+    category: "Zeitersparnis",
     icon: FileText,
     relatedIds: [3, 6, 12],
-    status: " ",
-    energy: 89
-  },
-  {
-    id: 10,
-    title: "Transparenz & Tracking",
-    date: "2024",
-    content: "Vollständige Transparenz über Projektstatus, Budget und Termine. Echtzeit-Tracking für alle Beteiligten.",
-    category: "Tracking",
-    icon: BarChart3,
-    relatedIds: [5, 6, 11],
-    status: " ",
-    energy: 86
-  },
-  {
-    id: 11,
-    title: "Vertrauensaufbau",
-    date: "2024",
-    content: "Bewertungssysteme und Referenzen schaffen Vertrauen. Erfolgreiche Partnerschaften durch Transparenz und Qualität.",
-    category: "Vertrauen",
-    icon: Handshake,
-    relatedIds: [5, 7, 10],
     status: " ",
     energy: 91
   },
   {
-    id: 12,
-    title: "Projekterfolg",
+    id: 10,
+    title: "Mehrere Projekte parallel",
     date: "2024",
-    content: "Gemeinsam Projekte erfolgreich abschließen. Von der Planung bis zur Abnahme - alle Schritte nahtlos koordiniert.",
-    category: "Erfolg",
+    content: "5+ Projekte gleichzeitig verwalten ohne Chaos. Projekt-spezifische Dashboards. Schnell zwischen Projekten wechseln. Keine Verwirrung mehr.",
+    category: "Problem",
+    icon: Shield,
+    relatedIds: [5, 6, 11],
+    status: " ",
+    energy: 89
+  },
+  {
+    id: 11,
+    title: "Kostenübersicht",
+    date: "2024",
+    content: "Nie wieder überrascht von Kosten. Budget vs. Ist-Kosten in Echtzeit. Kostenprognosen für restliche Phasen. Von 2h/Monat auf 5 Minuten.",
+    category: "Kostenersparnis",
+    icon: Handshake,
+    relatedIds: [5, 7, 10],
+    status: " ",
+    energy: 94
+  },
+  {
+    id: 12,
+    title: "Alles an einem Ort",
+    date: "2024",
+    content: "Keine 5 verschiedenen Tools mehr. Projektmanagement + Ausschreibungen + Dokumente + Budget = eine Plattform. Ein Login für alles.",
+    category: "Lösung",
     icon: CheckCircle,
     relatedIds: [6, 9, 11],
     status: " ",
-    energy: 94
+    energy: 96
   }
 ];
 

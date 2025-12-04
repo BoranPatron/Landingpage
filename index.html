@@ -69,7 +69,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" crossorigin>
     
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="styles.css?v=7">
     
     <!-- Favicon / App Icons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/logo.png">
@@ -441,45 +441,276 @@
         
         <div class="w-full">
             <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
+                <div class="flex gap-10 lg:gap-12 py-16 lg:py-24 items-center justify-center flex-col">
                     <!-- Title Section -->
-                    <div class="flex gap-4 flex-col">
-                        <h1 class="hero-title text-4xl md:text-6xl lg:text-7xl max-w-2xl tracking-tighter text-center font-light">
-                            <span class="hero-title-text">Die Zukunft des Bauens in der Schweiz.</span>
-                            <span class="hero-rotating-text relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1" aria-label="Rotierender Text: Ein Projekt, Viele Profis, Eine Sprache, Qualität">
-                                &nbsp;
-                                <span class="hero-rotating-item absolute font-semibold" data-index="0">Ein Projekt.</span>
-                                <span class="hero-rotating-item absolute font-semibold" data-index="1">Viele Profis.</span>
-                                <span class="hero-rotating-item absolute font-semibold" data-index="2">Eine Sprache:</span>
-                                <span class="hero-rotating-item absolute font-semibold" data-index="3">Qualität</span>
+                    <div class="flex gap-6 flex-col w-full">
+                        <h1 class="hero-title text-3xl md:text-5xl lg:text-6xl max-w-5xl tracking-tight text-center font-bold leading-tight mx-auto">
+                            <span class="hero-title-text block mb-4">
+                                Bauträger & Dienstleister: 
+                                <span class="glow-text" style="color: #f9c74f; text-shadow: 0 0 40px rgba(249, 199, 79, 0.6), 0 0 80px rgba(249, 199, 79, 0.3);">Schluss mit E-Mail-Chaos</span>
+                            </span>
+                            <span class="block text-2xl md:text-3xl lg:text-4xl font-semibold mt-2" style="color: rgba(230, 235, 239, 0.9);">
+                                und stundenlanger Akquise
                             </span>
                         </h1>
                         
-                        <p class="hero-description text-base md:text-lg leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-                            <span class="block lg:inline">Die Plattform, die Bauprojekte vereinfacht. Qualifizierte Partner in <strong>Minuten</strong> finden.</span>
-                            <span class="block lg:inline lg:ml-1">Vermeiden Sie veraltete, mühsame Ausschreibungsprozesse und optimieren Sie Ihr Bauprojekt mit effizientem Projektmanagement.</span>
-                        </p>
+                        <!-- Split-Design: Bauträger & Dienstleister Value Props -->
+                        <div class="hero-value-props-grid grid gap-4 md:gap-5 max-w-4xl mx-auto w-full mt-10 lg:mt-12 items-stretch" style="display: grid !important; grid-template-columns: 1fr !important; gap: 1rem !important;">
+                            <!-- Bauträger Box -->
+                            <div class="glass-card glow-border rounded-2xl p-5 md:p-6 transition-all duration-300 hover:scale-105 h-full flex flex-col text-left max-w-2xl mx-auto w-full" 
+                                 style="background: linear-gradient(135deg, rgba(249, 199, 79, 0.15) 0%, rgba(249, 199, 79, 0.05) 100%); backdrop-filter: blur-xl; border: 2px solid rgba(249, 199, 79, 0.3); box-shadow: 0 8px 32px rgba(249, 199, 79, 0.2), 0 0 40px rgba(249, 199, 79, 0.1);">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: rgba(249, 199, 79, 0.2); border: 2px solid rgba(249, 199, 79, 0.5);">
+                                        <svg class="w-6 h-6" fill="#f9c74f" viewBox="0 0 24 24">
+                                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl md:text-2xl font-bold" style="color: #f9c74f; text-shadow: 0 0 20px rgba(249, 199, 79, 0.4);">Für Bauträger</h3>
+                                </div>
+                                <p class="text-base md:text-lg mb-3" style="color: rgba(230, 235, 239, 0.95);">
+                                    Finden Sie qualifizierte Handwerker in <strong style="color: #10b981; font-weight: 700;">15 Minuten</strong> statt 5 Stunden.
+                                </p>
+                                <p class="text-sm md:text-base" style="color: rgba(230, 235, 239, 0.8);">
+                                    Verwalten Sie Budget, Dokumente und Status an einem Ort. Sparen Sie <strong style="color: #f9c74f;">880 CHF</strong> pro Projekt.
+                                </p>
+                            </div>
+                            
+                            <!-- Dienstleister Box -->
+                            <div class="glass-card glow-border rounded-2xl p-5 md:p-6 transition-all duration-300 hover:scale-105 h-full flex flex-col text-left max-w-2xl mx-auto w-full"
+                                 style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%); backdrop-filter: blur-xl; border: 2px solid rgba(16, 185, 129, 0.3); box-shadow: 0 8px 32px rgba(16, 185, 129, 0.2), 0 0 40px rgba(16, 185, 129, 0.1);">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: rgba(16, 185, 129, 0.2); border: 2px solid rgba(16, 185, 129, 0.5);">
+                                        <svg class="w-6 h-6" fill="#10b981" viewBox="0 0 24 24">
+                                            <path d="M9 11.24V7.5a2.5 2.5 0 015 0v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl md:text-2xl font-bold" style="color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">Für Dienstleister</h3>
+                                </div>
+                                <p class="text-base md:text-lg mb-3" style="color: rgba(230, 235, 239, 0.95);">
+                                    Neue Projekte <strong style="color: #10b981; font-weight: 700;">automatisch finden</strong> - keine Akquise mehr nötig.
+                                </p>
+                                <p class="text-sm md:text-base" style="color: rgba(230, 235, 239, 0.8);">
+                                    Geo-basierte Suche bringt passende Aufträge direkt zu Ihnen. Mehr Zeit für die eigentliche Arbeit.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     
-                    <!-- CTA Button -->
-                    <div class="flex justify-center relative z-20">
-                        <div id="hero-flow-button-root" class="relative z-20"></div>
+                    <!-- CTA Buttons - Dual CTAs -->
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-20 w-full max-w-2xl mx-auto mt-8 lg:mt-10">
+                        <div id="hero-flow-button-root" class="relative z-20 flex-1 min-w-[200px]"></div>
+                        <a href="https://build-wise.app/login" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-semibold rounded-xl transition-all duration-300 border-2 hover:scale-105 glass-card"
+                           style="background: rgba(255, 255, 255, 0.15); border-color: rgba(249, 199, 79, 0.5); color: #f9c74f; backdrop-filter: blur-xl; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 40px rgba(249, 199, 79, 0.2), 0 0 60px rgba(249, 199, 79, 0.1);"
+                           onmouseenter="this.style.boxShadow='0 12px 40px rgba(0, 0, 0, 0.3), 0 0 50px rgba(249, 199, 79, 0.3), 0 0 70px rgba(249, 199, 79, 0.2)';"
+                           onmouseleave="this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.25), 0 0 40px rgba(249, 199, 79, 0.2), 0 0 60px rgba(249, 199, 79, 0.1)';">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            2-Min Demo ansehen
+                        </a>
                     </div>
                     
                     <!-- Trust Bar -->
-                    <div class="trust-bar flex flex-wrap justify-center gap-6 mt-4 text-sm text-gray-700">
+                    <div class="trust-bar flex flex-wrap justify-center gap-6 mt-8 lg:mt-10 text-sm" style="color: rgba(230, 235, 239, 0.9);">
                         <div class="flex items-center gap-2">
-                            <span class="text-green-600 font-bold">✓</span>
-                            <span>Für alle Bauunternehmer und Dienstleister</span>
+                            <span class="font-bold" style="color: #10b981;">✓</span>
+                            <span>Kostenlose Submissionen</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span class="text-green-600 font-bold">✓</span>
-                            <span>Mehrere aktive Bauprojekte</span>
+                            <span class="font-bold" style="color: #10b981;">✓</span>
+                            <span>keine monatlichen Kosten</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span class="text-green-600 font-bold">✓</span>
+                            <span class="font-bold" style="color: #10b981;">✓</span>
                             <span>Made in Switzerland</span>
                         </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold" style="color: #10b981;">✓</span>
+                            <span>Kostenlos Ressourcen ausstellen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Comparison Section -->
+    <section class="py-16 md:py-20 lg:py-24 bg-transparent relative overflow-hidden" id="comparison" aria-label="Vergleich: Traditionell vs BuildWise">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #f7fafc;">
+                    Die wahren Kosten des Status Quo
+                </h2>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto" style="color: rgba(230, 235, 239, 0.85);">
+                    Traditionelles Projektmanagement kostet Sie <strong style="color: #ef4444;">14 Stunden pro Projekt</strong>. 
+                    BuildWise reduziert das auf <strong style="color: #10b981;">3 Stunden</strong>.
+                </p>
+            </div>
+
+            <!-- Comparison Grid -->
+            <div class="comparison-grid grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto items-stretch" style="display: grid !important; grid-template-columns: 1fr !important; gap: 1.5rem !important;">
+                <!-- BEFORE: Traditional Method -->
+                <div class="rounded-2xl p-6 md:p-7 border-2 h-full flex flex-col text-left transition-all duration-300 hover:scale-[1.02]" 
+                     style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-color: rgba(239, 68, 68, 0.3); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(239, 68, 68, 0.1);"
+                     onmouseenter="this.style.boxShadow='0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(239, 68, 68, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 50px rgba(239, 68, 68, 0.2)'; this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%)';"
+                     onmouseleave="this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(239, 68, 68, 0.1)'; this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%)';"
+                     data-aos="fade-right">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: rgba(239, 68, 68, 0.2); border: 2px solid #ef4444;">
+                            <span class="text-2xl">❌</span>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold" style="color: #ef4444;">Traditionell</h3>
+                    </div>
+                    <p class="text-sm mb-6" style="color: rgba(230, 235, 239, 0.7); font-style: italic;">Excel + E-Mail + Telefon</p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl mt-1">📧</span>
+                            <div>
+                                <p class="font-semibold" style="color: #f7fafc;">Ausschreibung erstellen</p>
+                                <p class="text-sm" style="color: rgba(230, 235, 239, 0.7);">2 Stunden manuell</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl mt-1">📞</span>
+                            <div>
+                                <p class="font-semibold" style="color: #f7fafc;">Dienstleister suchen</p>
+                                <p class="text-sm" style="color: rgba(230, 235, 239, 0.7);">3 Stunden Telefon & E-Mail</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl mt-1">📊</span>
+                            <div>
+                                <p class="font-semibold" style="color: #f7fafc;">Angebote vergleichen</p>
+                                <p class="text-sm" style="color: rgba(230, 235, 239, 0.7);">2 Stunden Excel-Chaos</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl mt-1">📁</span>
+                            <div>
+                                <p class="font-semibold" style="color: #f7fafc;">Dokumente verwalten</p>
+                                <p class="text-sm" style="color: rgba(230, 235, 239, 0.7);">5 Stunden suchen & organisieren</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl mt-1">💰</span>
+                            <div>
+                                <p class="font-semibold" style="color: #f7fafc;">Budget-Übersicht</p>
+                                <p class="text-sm" style="color: rgba(230, 235, 239, 0.7);">2 Stunden Excel-Tabellen</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="mt-8 pt-6 border-t" style="border-color: rgba(239, 68, 68, 0.3);">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-semibold" style="color: rgba(230, 235, 239, 0.9);">TOTAL:</span>
+                            <span class="text-3xl font-bold" style="color: #ef4444; text-shadow: 0 0 20px rgba(239, 68, 68, 0.4);">14 Stunden</span>
+                        </div>
+                        <p class="text-sm mt-2 text-right" style="color: rgba(230, 235, 239, 0.7);">= 1.120 CHF (bei 80 CHF/h)</p>
+                    </div>
+                </div>
+
+                <!-- AFTER: BuildWise Method -->
+                <div class="rounded-2xl p-6 md:p-7 border-2 h-full flex flex-col text-left transition-all duration-300 hover:scale-[1.02]" 
+                     style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(16, 185, 129, 0.1);"
+                     onmouseenter="this.style.boxShadow='0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(16, 185, 129, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 50px rgba(16, 185, 129, 0.2)'; this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%)';"
+                     onmouseleave="this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(16, 185, 129, 0.1)'; this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%)';"
+                     data-aos="fade-left">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: rgba(16, 185, 129, 0.2); border: 2px solid #10b981;">
+                            <span class="text-2xl">✅</span>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold" style="color: #10b981;">Mit BuildWise</h3>
+                    </div>
+                    <p class="text-sm mb-6" style="color: rgba(230, 235, 239, 0.7); font-style: italic;">Alles automatisch an einem Ort</p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl mt-1">⚡</span>
+                            <div>
+                                <p class="font-semibold" style="color: #f7fafc;">Ausschreibung erstellen</p>
+                                <p class="text-sm" style="color: rgba(230, 235, 239, 0.7);">15 Min Formular ausfüllen</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl mt-1">🎯</span>
+                            <div>
+                                <p class="font-semibold" style="color: #f7fafc;">Dienstleister finden</p>
+                                <p class="text-sm" style="color: rgba(230, 235, 239, 0.7);">0 Min (finden SIE automatisch)</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl mt-1">📈</span>
+                            <div>
+                                <p class="font-semibold" style="color: #f7fafc;">Angebote vergleichen</p>
+                                <p class="text-sm" style="color: rgba(230, 235, 239, 0.7);">30 Min Side-by-Side</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl mt-1">🗂️</span>
+                            <div>
+                                <p class="font-semibold" style="color: #f7fafc;">Dokumente verwalten</p>
+                                <p class="text-sm" style="color: rgba(230, 235, 239, 0.7);">0 Min (automatisch organisiert)</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl mt-1">💎</span>
+                            <div>
+                                <p class="font-semibold" style="color: #f7fafc;">Budget-Übersicht</p>
+                                <p class="text-sm" style="color: rgba(230, 235, 239, 0.7);">5 Min Echtzeit-Dashboard</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="mt-8 pt-6 border-t" style="border-color: rgba(16, 185, 129, 0.3);">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-semibold" style="color: rgba(230, 235, 239, 0.9);">TOTAL:</span>
+                            <span class="text-3xl font-bold" style="color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">3 Stunden</span>
+                        </div>
+                        <p class="text-sm mt-2 text-right" style="color: rgba(230, 235, 239, 0.7);">= 240 CHF (bei 80 CHF/h)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savings Summary -->
+            <div class="mt-12 md:mt-16 max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <div class="rounded-2xl p-8 md:p-12 border-2 transition-all duration-300 hover:scale-[1.02]" 
+                     style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-color: rgba(249, 199, 79, 0.4); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(249, 199, 79, 0.2);"
+                     onmouseenter="this.style.boxShadow='0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(249, 199, 79, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 50px rgba(249, 199, 79, 0.3)'; this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%)';"
+                     onmouseleave="this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(249, 199, 79, 0.2)'; this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%)';">
+                    <p class="text-2xl md:text-3xl font-bold mb-4" style="color: #f9c74f; text-shadow: 0 0 30px rgba(249, 199, 79, 0.5);">
+                        💰 Ihre Zeitersparnis
+                    </p>
+                    <div class="text-5xl md:text-6xl font-black mb-2" style="color: #f9c74f;">
+                        11 Stunden
+                    </div>
+                    <p class="text-xl md:text-2xl mb-6" style="color: rgba(230, 235, 239, 0.9);">
+                        = <strong style="color: #f9c74f; font-size: 2rem;">880 CHF</strong> pro Projekt
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-left mt-8">
+                        <div class="p-4 rounded-lg transition-all duration-300" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <p class="text-sm mb-1" style="color: rgba(230, 235, 239, 0.7);">Bei 5 Projekten/Jahr:</p>
+                            <p class="text-2xl font-bold" style="color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">4.400 CHF</p>
+                        </div>
+                        <div class="p-4 rounded-lg transition-all duration-300" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <p class="text-sm mb-1" style="color: rgba(230, 235, 239, 0.7);">Bei 10 Projekten/Jahr:</p>
+                            <p class="text-2xl font-bold" style="color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">8.800 CHF</p>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <a href="https://build-wise.app/login" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105"
+                           style="background: linear-gradient(135deg, #f9c74f 0%, #f4a825 100%); color: #1f2937; box-shadow: 0 8px 24px rgba(249, 199, 79, 0.4), 0 0 40px rgba(249, 199, 79, 0.2);"
+                           onmouseenter="this.style.boxShadow='0 12px 32px rgba(249, 199, 79, 0.5), 0 0 60px rgba(249, 199, 79, 0.3)';"
+                           onmouseleave="this.style.boxShadow='0 8px 24px rgba(249, 199, 79, 0.4), 0 0 40px rgba(249, 199, 79, 0.2)';">
+                            Jetzt kostenlos starten
+                            <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -490,14 +721,291 @@
     <article class="py-20 md:py-24 lg:py-28 bg-transparent relative" id="personas" itemscope itemtype="https://schema.org/Service" aria-label="Personas Sektion - Für Bauträger und Dienstleister">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 md:mb-3">
-                    Für beide Seiten perfekt
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3" style="color: #f7fafc;">
+                    Die 5 größten Zeitfresser - gelöst
                 </h2>
-                <p class="text-base md:text-lg text-gray-600 mb-6 md:mb-8">
-                    Entdecken Sie das vernetzte Ökosystem von BuildWise - Vernetzen Sie sich mit qualifizierten Bauträgern und Dienstleistern in der Schweiz
+                <p class="text-base md:text-lg mb-6 md:mb-8" style="color: rgba(230, 235, 239, 0.85);">
+                    Diese Probleme kosten Bauträger & Dienstleister <strong style="color: #ef4444;">14 Stunden pro Projekt</strong>. BuildWise löst sie alle an einem Ort.
                 </p>
             </div>
-            <div id="radial-orbit-root" class="relative w-full"></div>
+            <!-- Problem-Solution Cards - Horizontal Layout -->
+            <div class="problem-solution-container space-y-6 md:space-y-8 max-w-7xl mx-auto mb-12">
+                <!-- Card 1: E-Mail-Chaos beenden -->
+                <div class="problem-solution-card-horizontal glass-card glow-border rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.01]" 
+                     style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur-xl; border: 2px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);"
+                     data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex flex-row" style="display: flex !important;">
+                        <!-- Left: Problem -->
+                        <div class="problem-side flex-1 p-6 md:p-8" 
+                             style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.08) 100%); border-right: 2px solid rgba(239, 68, 68, 0.3);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg" 
+                                     style="background: rgba(239, 68, 68, 0.3); border: 2px solid rgba(239, 68, 68, 0.6); color: #ef4444;">
+                                    1
+                                </div>
+                                <svg class="w-6 h-6" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <h3 class="text-xl md:text-2xl font-bold" style="color: #ef4444; text-shadow: 0 0 20px rgba(239, 68, 68, 0.4);">E-Mail-Chaos beenden</h3>
+                            </div>
+                            <p class="text-sm mb-3 font-semibold uppercase tracking-wide" style="color: rgba(239, 68, 68, 0.8);">Problem</p>
+                            <p class="text-lg md:text-xl font-bold mb-2" style="color: #f7fafc;">200+ E-Mails pro Projekt</p>
+                            <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.8);">Suche in 30 Minuten statt 2 Sekunden</p>
+                            <div class="mt-4 pt-4 border-t" style="border-color: rgba(239, 68, 68, 0.3);">
+                                <p class="text-2xl md:text-3xl font-black" style="color: #ef4444;">3h/Woche</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Arrow Divider -->
+                        <div class="arrow-divider flex items-center justify-center p-2" style="background: rgba(255, 255, 255, 0.05);">
+                            <svg class="w-8 h-8 md:w-12 md:h-12" fill="none" stroke="#f9c74f" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 10px rgba(249, 199, 79, 0.6));">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                        
+                        <!-- Right: Solution -->
+                        <div class="solution-side flex-1 p-6 md:p-8" 
+                             style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%); border-left: 2px solid rgba(16, 185, 129, 0.3);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="#10b981" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="text-xl md:text-2xl font-bold" style="color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">Mit BuildWise</h3>
+                            </div>
+                            <p class="text-sm mb-3 font-semibold uppercase tracking-wide" style="color: rgba(16, 185, 129, 0.8);">Lösung</p>
+                            <p class="text-lg md:text-xl font-bold mb-2" style="color: #f7fafc;">Alle Angebote zentral an einem Ort</p>
+                            <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.8);">Sofortige Suche in 2 Sekunden</p>
+                            <div class="mt-4 pt-4 border-t" style="border-color: rgba(16, 185, 129, 0.3);">
+                                <p class="text-2xl md:text-3xl font-black mb-1" style="color: #10b981; text-shadow: 0 0 30px rgba(16, 185, 129, 0.5);">0 Min</p>
+                                <p class="text-xs" style="color: rgba(230, 235, 239, 0.6);">= 156h/Jahr Zeitersparnis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Dienstleister finden -->
+                <div class="problem-solution-card-horizontal glass-card glow-border rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.01]" 
+                     style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur-xl; border: 2px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);"
+                     data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-row" style="display: flex !important;">
+                        <!-- Left: Problem -->
+                        <div class="problem-side flex-1 p-6 md:p-8" 
+                             style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.08) 100%); border-right: 2px solid rgba(239, 68, 68, 0.3);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg" 
+                                     style="background: rgba(239, 68, 68, 0.3); border: 2px solid rgba(239, 68, 68, 0.6); color: #ef4444;">
+                                    2
+                                </div>
+                                <svg class="w-6 h-6" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                <h3 class="text-xl md:text-2xl font-bold" style="color: #ef4444; text-shadow: 0 0 20px rgba(239, 68, 68, 0.4);">Dienstleister finden</h3>
+                            </div>
+                            <p class="text-sm mb-3 font-semibold uppercase tracking-wide" style="color: rgba(239, 68, 68, 0.8);">Problem</p>
+                            <p class="text-lg md:text-xl font-bold mb-2" style="color: #f7fafc;">Stundenlange Suche</p>
+                            <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.8);">Telefon & E-Mail-Akquise</p>
+                            <div class="mt-4 pt-4 border-t" style="border-color: rgba(239, 68, 68, 0.3);">
+                                <p class="text-2xl md:text-3xl font-black" style="color: #ef4444;"><span class="hidden md:inline">5 Stunden</span><span class="md:hidden">5h</span></p>
+                            </div>
+                        </div>
+                        
+                        <!-- Arrow Divider -->
+                        <div class="arrow-divider flex items-center justify-center p-2" style="background: rgba(255, 255, 255, 0.05);">
+                            <svg class="w-8 h-8 md:w-12 md:h-12" fill="none" stroke="#f9c74f" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 10px rgba(249, 199, 79, 0.6));">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                        
+                        <!-- Right: Solution -->
+                        <div class="solution-side flex-1 p-6 md:p-8" 
+                             style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%); border-left: 2px solid rgba(16, 185, 129, 0.3);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="#10b981" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="text-xl md:text-2xl font-bold" style="color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">Mit BuildWise</h3>
+                            </div>
+                            <p class="text-sm mb-3 font-semibold uppercase tracking-wide" style="color: rgba(16, 185, 129, 0.8);">Lösung</p>
+                            <p class="text-lg md:text-xl font-bold mb-2" style="color: #f7fafc;">Geo-basierte automatische Suche</p>
+                            <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.8);">Dienstleister finden SIE automatisch</p>
+                            <div class="mt-4 pt-4 border-t" style="border-color: rgba(16, 185, 129, 0.3);">
+                                <p class="text-2xl md:text-3xl font-black" style="color: #10b981; text-shadow: 0 0 30px rgba(16, 185, 129, 0.5);"><span class="hidden md:inline">0 Stunden</span><span class="md:hidden">0h</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Dokumenten-Suche -->
+                <div class="problem-solution-card-horizontal glass-card glow-border rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.01]" 
+                     style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur-xl; border: 2px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);"
+                     data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex flex-row" style="display: flex !important;">
+                        <!-- Left: Problem -->
+                        <div class="problem-side flex-1 p-6 md:p-8" 
+                             style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.08) 100%); border-right: 2px solid rgba(239, 68, 68, 0.3);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg" 
+                                     style="background: rgba(239, 68, 68, 0.3); border: 2px solid rgba(239, 68, 68, 0.6); color: #ef4444;">
+                                    3
+                                </div>
+                                <svg class="w-6 h-6" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                <h3 class="text-xl md:text-2xl font-bold" style="color: #ef4444; text-shadow: 0 0 20px rgba(239, 68, 68, 0.4);">Dokumenten-Suche</h3>
+                            </div>
+                            <p class="text-sm mb-3 font-semibold uppercase tracking-wide" style="color: rgba(239, 68, 68, 0.8);">Problem</p>
+                            <p class="text-lg md:text-xl font-bold mb-2" style="color: #f7fafc;">Nie wieder 'Wo war nochmal...?'</p>
+                            <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.8);">2h/Woche Suchen</p>
+                            <div class="mt-4 pt-4 border-t" style="border-color: rgba(239, 68, 68, 0.3);">
+                                <p class="text-2xl md:text-3xl font-black" style="color: #ef4444;">2h/Woche</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Arrow Divider -->
+                        <div class="arrow-divider flex items-center justify-center p-2" style="background: rgba(255, 255, 255, 0.05);">
+                            <svg class="w-8 h-8 md:w-12 md:h-12" fill="none" stroke="#f9c74f" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 10px rgba(249, 199, 79, 0.6));">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                        
+                        <!-- Right: Solution -->
+                        <div class="solution-side flex-1 p-6 md:p-8" 
+                             style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%); border-left: 2px solid rgba(16, 185, 129, 0.3);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="#10b981" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="text-xl md:text-2xl font-bold" style="color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">Mit BuildWise</h3>
+                            </div>
+                            <p class="text-sm mb-3 font-semibold uppercase tracking-wide" style="color: rgba(16, 185, 129, 0.8);">Lösung</p>
+                            <p class="text-lg md:text-xl font-bold mb-2" style="color: #f7fafc;">Automatische Kategorisierung</p>
+                            <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.8);">Alle Dokumente sofort auffindbar</p>
+                            <div class="mt-4 pt-4 border-t" style="border-color: rgba(16, 185, 129, 0.3);">
+                                <p class="text-2xl md:text-3xl font-black" style="color: #10b981; text-shadow: 0 0 30px rgba(16, 185, 129, 0.5);">0 Min</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Ausschreibung erstellen -->
+                <div class="problem-solution-card-horizontal glass-card glow-border rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.01]" 
+                     style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur-xl; border: 2px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);"
+                     data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex flex-row" style="display: flex !important;">
+                        <!-- Left: Problem -->
+                        <div class="problem-side flex-1 p-6 md:p-8" 
+                             style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.08) 100%); border-right: 2px solid rgba(239, 68, 68, 0.3);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg" 
+                                     style="background: rgba(239, 68, 68, 0.3); border: 2px solid rgba(239, 68, 68, 0.6); color: #ef4444;">
+                                    4
+                                </div>
+                                <svg class="w-6 h-6" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="text-xl md:text-2xl font-bold" style="color: #ef4444; text-shadow: 0 0 20px rgba(239, 68, 68, 0.4);">Ausschreibung erstellen</h3>
+                            </div>
+                            <p class="text-sm mb-3 font-semibold uppercase tracking-wide" style="color: rgba(239, 68, 68, 0.8);">Problem</p>
+                            <p class="text-lg md:text-xl font-bold mb-2" style="color: #f7fafc;">2 Stunden manuell schreiben</p>
+                            <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.8);">E-Mails an einzelne Dienstleister</p>
+                            <div class="mt-4 pt-4 border-t" style="border-color: rgba(239, 68, 68, 0.3);">
+                                <p class="text-2xl md:text-3xl font-black" style="color: #ef4444;"><span class="hidden md:inline">2 Stunden</span><span class="md:hidden">2h</span></p>
+                            </div>
+                        </div>
+                        
+                        <!-- Arrow Divider -->
+                        <div class="arrow-divider flex items-center justify-center p-2" style="background: rgba(255, 255, 255, 0.05);">
+                            <svg class="w-8 h-8 md:w-12 md:h-12" fill="none" stroke="#f9c74f" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 10px rgba(249, 199, 79, 0.6));">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                        
+                        <!-- Right: Solution -->
+                        <div class="solution-side flex-1 p-6 md:p-8" 
+                             style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%); border-left: 2px solid rgba(16, 185, 129, 0.3);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="#10b981" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="text-xl md:text-2xl font-bold" style="color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">Mit BuildWise</h3>
+                            </div>
+                            <p class="text-sm mb-3 font-semibold uppercase tracking-wide" style="color: rgba(16, 185, 129, 0.8);">Lösung</p>
+                            <p class="text-lg md:text-xl font-bold mb-2" style="color: #f7fafc;">15 Min Formular ausfüllen</p>
+                            <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.8);">Automatische Verteilung an qualifizierte Dienstleister</p>
+                            <div class="mt-4 pt-4 border-t" style="border-color: rgba(16, 185, 129, 0.3);">
+                                <p class="text-2xl md:text-3xl font-black" style="color: #10b981; text-shadow: 0 0 30px rgba(16, 185, 129, 0.5);">15 Min</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Angebote vergleichen -->
+                <div class="problem-solution-card-horizontal glass-card glow-border rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.01]" 
+                     style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur-xl; border: 2px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);"
+                     data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex flex-row" style="display: flex !important;">
+                        <!-- Left: Problem -->
+                        <div class="problem-side flex-1 p-6 md:p-8" 
+                             style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.08) 100%); border-right: 2px solid rgba(239, 68, 68, 0.3);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg" 
+                                     style="background: rgba(239, 68, 68, 0.3); border: 2px solid rgba(239, 68, 68, 0.6); color: #ef4444;">
+                                    5
+                                </div>
+                                <svg class="w-6 h-6" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                                <h3 class="text-xl md:text-2xl font-bold" style="color: #ef4444; text-shadow: 0 0 20px rgba(239, 68, 68, 0.4);">Angebote vergleichen</h3>
+                            </div>
+                            <p class="text-sm mb-3 font-semibold uppercase tracking-wide" style="color: rgba(239, 68, 68, 0.8);">Problem</p>
+                            <p class="text-lg md:text-xl font-bold mb-2" style="color: #f7fafc;">Excel-Chaos</p>
+                            <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.8);">2h manuell vergleichen</p>
+                            <div class="mt-4 pt-4 border-t" style="border-color: rgba(239, 68, 68, 0.3);">
+                                <p class="text-2xl md:text-3xl font-black" style="color: #ef4444;"><span class="hidden md:inline">2 Stunden</span><span class="md:hidden">2h</span></p>
+                            </div>
+                        </div>
+                        
+                        <!-- Arrow Divider -->
+                        <div class="arrow-divider flex items-center justify-center p-2" style="background: rgba(255, 255, 255, 0.05);">
+                            <svg class="w-8 h-8 md:w-12 md:h-12" fill="none" stroke="#f9c74f" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 10px rgba(249, 199, 79, 0.6));">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                        
+                        <!-- Right: Solution -->
+                        <div class="solution-side flex-1 p-6 md:p-8" 
+                             style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%); border-left: 2px solid rgba(16, 185, 129, 0.3);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <svg class="w-6 h-6" fill="none" stroke="#10b981" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="text-xl md:text-2xl font-bold" style="color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">Mit BuildWise</h3>
+                            </div>
+                            <p class="text-sm mb-3 font-semibold uppercase tracking-wide" style="color: rgba(16, 185, 129, 0.8);">Lösung</p>
+                            <p class="text-lg md:text-xl font-bold mb-2" style="color: #f7fafc;">Side-by-Side Vergleich</p>
+                            <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.8);">Kostenaufschlüsselung auf einen Blick</p>
+                            <div class="mt-4 pt-4 border-t" style="border-color: rgba(16, 185, 129, 0.3);">
+                                <p class="text-2xl md:text-3xl font-black" style="color: #10b981; text-shadow: 0 0 30px rgba(16, 185, 129, 0.5);">30 Min</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA after Personas -->
+            <div class="text-center mt-12 md:mt-16" data-aos="fade-up">
+                <a href="https://build-wise.app/login" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center justify-center px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105"
+                   style="background: linear-gradient(135deg, #f9c74f 0%, #f4a825 100%); color: #1f2937; box-shadow: 0 8px 24px rgba(249, 199, 79, 0.4), 0 0 40px rgba(249, 199, 79, 0.2);"
+                   onmouseenter="this.style.boxShadow='0 12px 32px rgba(249, 199, 79, 0.5), 0 0 60px rgba(249, 199, 79, 0.3)';"
+                   onmouseleave="this.style.boxShadow='0 8px 24px rgba(249, 199, 79, 0.4), 0 0 40px rgba(249, 199, 79, 0.2)';">
+                    Alle Probleme auf einmal lösen
+                    <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </a>
+                <p class="mt-4 text-sm" style="color: rgba(230, 235, 239, 0.7);">Kostenlos starten • Kostenlose Submissionen</p>
+            </div>
         </div>
     </article>
 
@@ -516,14 +1024,116 @@
         <div id="pricing-root"></div>
     </section>
 
+    <!-- ROI Calculator Placeholder -->
+    <section class="py-16 md:py-20 lg:py-24 bg-transparent relative overflow-hidden" id="roi-calculator" aria-label="ROI-Rechner">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-2xl p-8 md:p-12 lg:p-16 border-2 text-center transition-all duration-300 hover:scale-[1.01]" 
+                 style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-color: rgba(249, 199, 79, 0.4); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(249, 199, 79, 0.2);"
+                 onmouseenter="this.style.boxShadow='0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(249, 199, 79, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 50px rgba(249, 199, 79, 0.3)'; this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%)';"
+                 onmouseleave="this.style.boxShadow='0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(249, 199, 79, 0.2)'; this.style.background='linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%)';"
+                 data-aos="fade-up">
+                
+                <!-- Icon -->
+                <div class="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center" 
+                     style="background: linear-gradient(135deg, rgba(249, 199, 79, 0.3) 0%, rgba(16, 185, 129, 0.2) 100%); border: 3px solid rgba(249, 199, 79, 0.5);">
+                    <svg class="w-12 h-12" fill="none" stroke="#f9c74f" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                </div>
+
+                <!-- Title -->
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #f9c74f; text-shadow: 0 0 30px rgba(249, 199, 79, 0.4);">
+                    💰 Zeitersparnis-Rechner
+                </h2>
+                
+                <!-- Description -->
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto" style="color: rgba(230, 235, 239, 0.9);">
+                    Berechnen Sie, wie viel Zeit und Geld <strong style="color: #f9c74f;">Sie persönlich</strong> mit BuildWise sparen
+                </p>
+
+                <!-- Preview Questions -->
+                <div class="grid md:grid-cols-2 gap-4 mb-10 text-left max-w-3xl mx-auto">
+                    <div class="p-4 rounded-xl transition-all duration-300" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(249, 199, 79, 0.2);">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">📊</span>
+                            <span style="color: rgba(230, 235, 239, 0.9);">Anzahl Projekte pro Jahr</span>
+                        </div>
+                    </div>
+                    <div class="p-4 rounded-xl transition-all duration-300" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(249, 199, 79, 0.2);">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">💼</span>
+                            <span style="color: rgba(230, 235, 239, 0.9);">Durchschnittliches Budget</span>
+                        </div>
+                    </div>
+                    <div class="p-4 rounded-xl transition-all duration-300" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(249, 199, 79, 0.2);">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">⏰</span>
+                            <span style="color: rgba(230, 235, 239, 0.9);">Ihr Stundensatz</span>
+                        </div>
+                    </div>
+                    <div class="p-4 rounded-xl transition-all duration-300" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(249, 199, 79, 0.2);">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">🔧</span>
+                            <span style="color: rgba(230, 235, 239, 0.9);">Anzahl Gewerke pro Projekt</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coming Soon Badge -->
+                <div class="inline-flex items-center gap-3 px-8 py-4 rounded-full mb-8 transition-all duration-300" 
+                     style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%); backdrop-filter: blur(10px); border: 2px solid rgba(16, 185, 129, 0.4); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 0 20px rgba(16, 185, 129, 0.15);">
+                    <svg class="w-6 h-6 animate-pulse" fill="#10b981" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.5));">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                    </svg>
+                    <span class="text-lg font-bold" style="color: #10b981; text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">In Entwicklung - Bald verfügbar</span>
+                </div>
+
+                <!-- Example Result Preview -->
+                <div class="p-8 rounded-2xl max-w-xl mx-auto mb-8 transition-all duration-300" 
+                     style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 2px solid rgba(16, 185, 129, 0.3); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(16, 185, 129, 0.15);">
+                    <p class="text-sm mb-3" style="color: rgba(230, 235, 239, 0.7); font-style: italic;">Beispiel-Ergebnis:</p>
+                    <div class="text-4xl md:text-5xl font-black mb-2" style="color: #10b981; text-shadow: 0 0 40px rgba(16, 185, 129, 0.6), 0 0 80px rgba(16, 185, 129, 0.3);">
+                        13.840 CHF
+                    </div>
+                    <p class="text-lg" style="color: rgba(230, 235, 239, 0.9);">
+                        Potenzielle Ersparnis pro Jahr
+                    </p>
+                    <p class="text-sm mt-3" style="color: rgba(230, 235, 239, 0.6);">
+                        Bei 10 Projekten/Jahr = 173 Stunden Zeitersparnis
+                    </p>
+                </div>
+
+                <!-- CTA -->
+                <div class="space-y-4">
+                    <p class="text-base" style="color: rgba(230, 235, 239, 0.8);">
+                        Möchten Sie informiert werden, sobald der Rechner verfügbar ist?
+                    </p>
+                    <a href="https://build-wise.app/login" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center px-10 py-5 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105"
+                       style="background: linear-gradient(135deg, #f9c74f 0%, #f4a825 100%); color: #1f2937; box-shadow: 0 8px 24px rgba(249, 199, 79, 0.4), 0 0 40px rgba(249, 199, 79, 0.2);"
+                       onmouseenter="this.style.boxShadow='0 12px 32px rgba(249, 199, 79, 0.5), 0 0 60px rgba(249, 199, 79, 0.3)';"
+                       onmouseleave="this.style.boxShadow='0 8px 24px rgba(249, 199, 79, 0.4), 0 0 40px rgba(249, 199, 79, 0.2)';">
+                        Jetzt kostenlos registrieren & Zugang sichern
+                        <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                    <p class="text-sm" style="color: rgba(230, 235, 239, 0.6);">
+                        Kostenlose Submissionen • Erstes Projekt gratis
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Us Section -->
     <article class="py-20 md:py-24 lg:py-28 bg-transparent relative" id="about" aria-label="Über uns Sektion - Das Team hinter BuildWise">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6" style="color: #f7fafc;">
                     Über uns
                 </h2>
-                <p class="text-base md:text-lg text-gray-600 mb-12 md:mb-16">
+                <p class="text-base md:text-lg mb-12 md:mb-16" style="color: rgba(230, 235, 239, 0.85);">
                     Das BuildWise Team - Experten für digitale Bauprozesse in der Schweiz
                 </p>
             </div>
@@ -538,51 +1148,51 @@
     </main>
 
     <!-- Footer -->
-    <footer class="relative bg-transparent backdrop-blur-sm border-t border-white/10 py-12" role="contentinfo" aria-label="Fußbereich - Navigation und rechtliche Links">
+    <footer class="relative bg-transparent backdrop-blur-md border-t border-white/10 py-12" role="contentinfo" aria-label="Fußbereich - Navigation und rechtliche Links" style="background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <img src="/logo.png" alt="BuildWise Logo - Bauträger & Dienstleister Plattform" class="h-10 w-10" loading="lazy">
-                        <span class="text-xl font-bold text-gray-900">BuildWise</span>
+                        <span class="text-xl font-bold" style="color: #f7fafc;">BuildWise</span>
                     </div>
-                    <p class="text-gray-600">
+                    <p style="color: rgba(230, 235, 239, 0.8);">
                         Die intelligente Plattform für Bauprojekte in der Schweiz.
                     </p>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg md:text-xl font-semibold mb-4 text-gray-900">Produkt</h3>
+                    <h3 class="text-lg md:text-xl font-semibold mb-4" style="color: #f7fafc;">Produkt</h3>
                     <ul class="space-y-2">
-                        <li><a href="#pricing" class="text-gray-600 hover:text-orange-600 transition-colors" aria-label="Zu den Preisen">Preise</a></li>
+                        <li><a href="#pricing" class="transition-all duration-300" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" aria-label="Zu den Preisen">Preise</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg md:text-xl font-semibold mb-4 text-gray-900">Unternehmen</h3>
+                    <h3 class="text-lg md:text-xl font-semibold mb-4" style="color: #f7fafc;">Unternehmen</h3>
                     <ul class="space-y-2">
-                        <li><a href="#about" class="text-gray-600 hover:text-orange-600 transition-colors" aria-label="Zu Über uns">Über uns</a></li>
-                        <li><a href="#contact" class="text-gray-600 hover:text-orange-600 transition-colors" aria-label="Zum Kontakt">Kontakt</a></li>
+                        <li><a href="#about" class="transition-all duration-300" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" aria-label="Zu Über uns">Über uns</a></li>
+                        <li><a href="#contact" class="transition-all duration-300" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" aria-label="Zum Kontakt">Kontakt</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg md:text-xl font-semibold mb-4 text-gray-900">Support</h3>
+                    <h3 class="text-lg md:text-xl font-semibold mb-4" style="color: #f7fafc;">Support</h3>
                     <ul class="space-y-2">
-                        <li><a href="#faq" class="text-gray-600 hover:text-orange-600 transition-colors" aria-label="Zu den häufig gestellten Fragen">FAQ</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-orange-600 transition-colors" rel="nofollow" aria-label="Hilfe">Hilfe</a></li>
+                        <li><a href="#faq" class="transition-all duration-300" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" aria-label="Zu den häufig gestellten Fragen">FAQ</a></li>
+                        <li><a href="#" class="transition-all duration-300" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" rel="nofollow" aria-label="Hilfe">Hilfe</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <div class="text-gray-600 text-sm">
-                    © 2024 BuildWise AG. Alle Rechte vorbehalten.
+                <div class="text-sm" style="color: rgba(230, 235, 239, 0.8);">
+                    © 2025 BuildWise by Schellworth. Alle Rechte vorbehalten.
                 </div>
                 <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="/datenschutz.html" class="text-gray-600 hover:text-orange-600 transition-colors text-sm" aria-label="Datenschutzerklärung">Datenschutz</a>
-                    <a href="#" class="text-gray-600 hover:text-orange-600 transition-colors text-sm" rel="nofollow" aria-label="Allgemeine Geschäftsbedingungen">AGB</a>
-                    <a href="#" class="text-gray-600 hover:text-orange-600 transition-colors text-sm" rel="nofollow" aria-label="Impressum">Impressum</a>
+                    <a href="/datenschutz.html" class="transition-all duration-300 text-sm" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" aria-label="Datenschutzerklärung">Datenschutz</a>
+                    <a href="#" class="transition-all duration-300 text-sm" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" rel="nofollow" aria-label="Allgemeine Geschäftsbedingungen">AGB</a>
+                    <a href="#" class="transition-all duration-300 text-sm" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" rel="nofollow" aria-label="Impressum">Impressum</a>
                 </div>
             </div>
         </div>
@@ -591,7 +1201,7 @@
     <!-- Scripts -->
     <script src="config.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=9"></script>
     <script src="dist/timeline.bundle.js?v=3"></script>
 </body>
 </html> 

@@ -3,6 +3,47 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // ============================================
+    // Force Grid Layout for Comparison and Hero Sections
+    // ============================================
+    
+    function forceGridLayout() {
+        const comparisonGrid = document.querySelector('.comparison-grid');
+        const heroValuePropsGrid = document.querySelector('.hero-value-props-grid');
+        
+        if (comparisonGrid) {
+            const isDesktop = window.innerWidth >= 640;
+            if (isDesktop) {
+                comparisonGrid.style.display = 'grid';
+                comparisonGrid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+            } else {
+                comparisonGrid.style.display = 'grid';
+                comparisonGrid.style.gridTemplateColumns = '1fr';
+            }
+        }
+        
+        if (heroValuePropsGrid) {
+            const isDesktop = window.innerWidth >= 640;
+            if (isDesktop) {
+                heroValuePropsGrid.style.display = 'grid';
+                heroValuePropsGrid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+            } else {
+                heroValuePropsGrid.style.display = 'grid';
+                heroValuePropsGrid.style.gridTemplateColumns = '1fr';
+            }
+        }
+    }
+    
+    // Force grid layout on load
+    forceGridLayout();
+    
+    // Force grid layout on resize
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(forceGridLayout, 100);
+    });
+    
+    // ============================================
     // Initialize AOS (Animate On Scroll)
     // ============================================
     

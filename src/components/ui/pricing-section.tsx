@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { TimelineContent } from "@/components/ui/timeline-content";
 import { VerticalCutReveal } from "@/components/ui/vertical-cut-reveal";
 import { cn } from "@/lib/utils";
-import { CheckCheck, CreditCard, HandshakeIcon } from "lucide-react";
+import { CreditCard, HandshakeIcon } from "lucide-react";
 import { useRef } from "react";
 
 const pricingCategories = [
@@ -73,7 +73,7 @@ export default function PricingSection5() {
       ref={pricingRef}
     >
       <article className="text-center mb-8 sm:mb-10 md:mb-12 space-y-3 sm:space-y-4 max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl capitalize font-bold text-gray-900 mb-4 md:mb-6">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl capitalize font-bold mb-4 md:mb-6" style={{ color: '#f7fafc' }}>
           <VerticalCutReveal
             splitBy="words"
             staggerDuration={0.15}
@@ -96,7 +96,8 @@ export default function PricingSection5() {
           animationNum={0}
           timelineRef={pricingRef}
           customVariants={revealVariants}
-          className="text-base md:text-lg text-gray-600 px-2 sm:px-0 mb-12 md:mb-16"
+          className="text-base md:text-lg px-2 sm:px-0 mb-12 md:mb-16"
+          style={{ color: 'rgba(230, 235, 239, 0.85)' }}
         >
           Keine versteckten Kosten. Erst zahlen bei Erfolg.
         </TimelineContent>
@@ -139,12 +140,12 @@ export default function PricingSection5() {
                           {category.icon}
                         </div>
                       </div>
-                      <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900">
+                      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: '#f7fafc' }}>
                         {category.name}
                       </h3>
                     </div>
                   </div>
-                  <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6">
+                  <p className="text-sm mb-4 sm:mb-6" style={{ color: 'rgba(230, 235, 239, 0.85)' }}>
                     {category.description}
                   </p>
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
@@ -154,7 +155,7 @@ export default function PricingSection5() {
                     )}>
                       {category.price}
                     </span>
-                    <span className="text-sm sm:text-base md:text-lg text-gray-600">
+                    <span className="text-sm sm:text-base" style={{ color: 'rgba(230, 235, 239, 0.85)' }}>
                       {category.priceDetail}
                     </span>
                   </div>
@@ -162,24 +163,13 @@ export default function PricingSection5() {
 
                 <CardContent className="pt-0 flex-1 flex flex-col">
                   <div className="space-y-2 sm:space-y-3 pt-3 sm:pt-4 border-t border-neutral-200/50 flex-1">
-                    <h4 className="font-medium text-sm sm:text-base text-gray-900 mb-2 sm:mb-3">
+                    <h4 className="font-medium text-sm mb-2 sm:mb-3" style={{ color: '#f7fafc' }}>
                       {category.includes[0]}
                     </h4>
                     <ul className="space-y-1.5 sm:space-y-2 font-medium">
                       {category.includes.slice(1).map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-2 sm:gap-3">
-                          <span className={cn(
-                            "h-5 w-5 sm:h-6 sm:w-6 bg-white/10 border rounded-full grid place-content-center mt-0.5 flex-shrink-0 backdrop-blur-sm",
-                            isBautraeger
-                              ? "border-[#f9c74f]/30"
-                              : "border-blue-500/30"
-                          )}>
-                            <CheckCheck className={cn(
-                              "h-3 w-3 sm:h-4 sm:w-4",
-                              isBautraeger ? "text-[#f9c74f]" : "text-blue-500"
-                            )} />
-                          </span>
-                          <span className="text-xs sm:text-sm text-gray-600 leading-relaxed">{feature}</span>
+                        <li key={featureIndex} className="flex items-start">
+                          <span className="text-sm leading-relaxed" style={{ color: 'rgba(230, 235, 239, 0.85)' }}>{feature}</span>
                         </li>
                       ))}
                     </ul>

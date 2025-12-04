@@ -1,14 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Timeline } from "./components/ui/timeline";
-import RadialOrbitalTimeline from "./components/ui/radial-orbit";
 import { FlowButton } from "./components/ui/flow-button";
 import { ProfileCard } from "./components/ui/profile-card";
 import PricingSection5 from "./components/ui/pricing-section";
 import { FloatingNav } from "./components/ui/floating-nav";
 import FAQs from "./components/ui/faqs";
 import InteractiveSelector from "./components/ui/interactive-selector";
-import { radialOrbitData } from "./radial-orbit-data";
 import { Home, Users, Clock, DollarSign, Info, HelpCircle, Sparkles } from "lucide-react";
 
 function initTimeline() {
@@ -39,38 +37,6 @@ function initTimeline() {
   }
 }
 
-function initRadialOrbit() {
-  try {
-    const rootElement = document.getElementById("radial-orbit-root");
-    
-    if (!rootElement) {
-      console.warn("RadialOrbit root element not found");
-      return;
-    }
-    
-    // iOS Safari manchmal Probleme mit StrictMode - optional machen
-    const useStrictMode = true;
-    
-    if (typeof ReactDOM !== 'undefined' && ReactDOM.createRoot) {
-      console.log("RadialOrbit root element found, initializing component...");
-      const root = ReactDOM.createRoot(rootElement);
-      const content = <RadialOrbitalTimeline timelineData={radialOrbitData} />;
-      root.render(useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content);
-      console.log("RadialOrbit component rendered");
-    } else if (typeof ReactDOM !== 'undefined' && ReactDOM.render) {
-      console.log("RadialOrbit: Using ReactDOM.render fallback");
-      const content = <RadialOrbitalTimeline timelineData={radialOrbitData} />;
-      ReactDOM.render(
-        useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content,
-        rootElement
-      );
-    } else {
-      console.warn("RadialOrbit: ReactDOM not available");
-    }
-  } catch (error) {
-    console.error("Error initializing RadialOrbit:", error);
-  }
-}
 
 function initFlowButton() {
   try {
@@ -88,10 +54,10 @@ function initFlowButton() {
     
     if (typeof ReactDOM !== 'undefined' && ReactDOM.createRoot) {
       const root = ReactDOM.createRoot(rootElement);
-      const content = <FlowButton text="Loslegen" onClick={handleClick} />;
+      const content = <FlowButton text="Kostenlos starten" onClick={handleClick} />;
       root.render(useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content);
     } else if (typeof ReactDOM !== 'undefined' && ReactDOM.render) {
-      const content = <FlowButton text="Loslegen" onClick={handleClick} />;
+      const content = <FlowButton text="Kostenlos starten" onClick={handleClick} />;
       ReactDOM.render(
         useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content,
         rootElement
@@ -286,7 +252,6 @@ function initializeAllComponents() {
     
     // Initialize other components
     initTimeline();
-    initRadialOrbit();
     initFlowButton();
     initProfileCard();
     initInteractiveSelector();
