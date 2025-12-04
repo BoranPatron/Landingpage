@@ -21,7 +21,7 @@ export function ProfileCard(props: ProfileCardProps) {
     title = "Gründer & Geschäftsführer, BuildWise",
     description = "Wir sind die Gründer von BuildWise. Mit unserer Vision einer digitalen Plattform für das Baugewerbe revolutionieren wir die Art und Weise, wie Bauträger und Dienstleister zusammenarbeiten. Unsere Leidenschaft für Innovation und Qualität treibt BuildWise voran, um die Bauindustrie in der Schweiz zu modernisieren.",
     imageUrl = "/assets/aboutus.jpeg",
-    linkedinUrl = "#",
+    linkedinUrl = "https://linkedin.com/company/buildwise-original/",
     className,
   } = props;
 

@@ -52,7 +52,7 @@ export const Timeline: React.FC = () => {
       className="w-full bg-transparent font-sans md:px-10 overflow-x-hidden"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-24 md:py-32 px-4 md:px-8 lg:px-10">
+      <div className="max-w-7xl mx-auto py-24 md:py-32 px-2 md:px-8 lg:px-10">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl lg:text-5xl mb-3 text-white dark:text-white mx-auto font-bold">
             So funktioniert BuildWise
@@ -66,22 +66,22 @@ export const Timeline: React.FC = () => {
           <TimelineTabs activeRole={activeRole} onRoleChange={setActiveRole} />
         </div>
       </div>
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-32 overflow-x-hidden">
+      <div ref={ref} className="relative max-w-7xl mx-auto -mx-2 md:mx-auto pb-32 overflow-x-hidden">
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex justify-start pt-16 md:pt-60 md:gap-16"
+            className="flex justify-start pt-12 md:pt-60 md:gap-16"
           >
-            <div className="md:sticky relative flex flex-col md:flex-row z-0 items-center md:top-40 self-start max-w-sm lg:max-w-md md:w-full">
-              <div className="h-16 w-16 absolute left-4 md:left-4 rounded-full bg-gradient-to-br from-[#51646f]/40 to-[#41535c]/40 backdrop-blur-xl border-2 border-[#f9c74f]/50 flex items-center justify-center shadow-[0_0_32px_rgba(249,199,79,0.3)]">
-                <div className="h-6 w-6 rounded-full bg-gradient-to-br from-[#f9c74f] to-[#d4af3a] border-2 border-[#f9c74f] shadow-[0_0_20px_rgba(249,199,79,0.5)]" />
+            <div className="md:sticky relative flex flex-col md:flex-row z-0 items-center md:top-40 self-start w-20 flex-shrink-0 md:max-w-sm lg:max-w-md md:w-full">
+              <div className="h-14 w-14 md:h-16 md:w-16 absolute left-0 md:left-4 rounded-full bg-gradient-to-br from-[#51646f]/40 to-[#41535c]/40 backdrop-blur-xl border-2 border-[#f9c74f]/50 flex items-center justify-center shadow-[0_0_32px_rgba(249,199,79,0.3)]">
+                <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-gradient-to-br from-[#f9c74f] to-[#d4af3a] border-2 border-[#f9c74f] shadow-[0_0_20px_rgba(249,199,79,0.5)]" />
               </div>
               <h3 className="hidden md:block text-xl md:pl-24 md:text-2xl lg:text-3xl font-semibold text-white dark:text-white leading-tight">
                 {item.title}
               </h3>
             </div>
-            <div className="relative pl-24 md:pl-8 pr-4 w-full max-w-full overflow-hidden z-10">
-              <h3 className="md:hidden block text-xl md:text-2xl lg:text-3xl mb-6 text-left font-semibold text-white dark:text-white">
+            <div className="relative pl-0 ml-20 md:ml-0 md:pl-8 pr-0 md:pr-4 w-full max-w-full overflow-hidden z-10">
+              <h3 className="md:hidden block text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6 text-left font-semibold text-white dark:text-white">
                 {item.title}
               </h3>
               <div className="text-base md:text-lg break-words overflow-wrap-anywhere">
@@ -94,7 +94,7 @@ export const Timeline: React.FC = () => {
           style={{
             height: height + "px",
           }}
-          className="absolute md:left-12 left-12 top-0 overflow-visible w-[3px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-600 dark:via-neutral-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] z-[1]"
+          className="absolute left-[7px] md:left-12 top-0 overflow-visible w-[3px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-600 dark:via-neutral-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] z-[1]"
         >
           <motion.div
             style={{
