@@ -427,12 +427,26 @@
 </head>
 <body class="font-inter" style="background: linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%) !important; color: #f7fafc;">
     
+    <!-- Promotional Banner -->
+    <a href="https://build-wise.app/login" target="_blank" rel="noopener noreferrer" class="promo-banner" aria-label="Jahresend-Aktion: 0% Provision bis 31.12.2025">
+        <div class="promo-banner-content">
+            <div class="promo-banner-main">
+                <span class="promo-banner-emoji">🎉</span>
+                <span class="promo-banner-title">Jahresend-Aktion: <strong>0% Provision</strong> bis 31.12.2025</span>
+            </div>
+            <div class="promo-banner-sub">
+                <span class="promo-banner-text">Jetzt kostenlos Aufträge vermitteln • Keine versteckten Kosten</span>
+                <span class="promo-banner-cta">Mehr erfahren →</span>
+            </div>
+        </div>
+    </a>
+    
     <!-- Floating Navigation -->
     <nav id="floating-nav-root" role="navigation" aria-label="Hauptnavigation"></nav>
 
     <main role="main">
     <!-- Hero Section -->
-    <section class="hero-section pt-28 pb-16 relative overflow-hidden" id="hero" aria-label="Hero Bereich - Hauptüberschrift und Call-to-Action">
+    <section class="hero-section pt-40 pb-16 relative overflow-hidden" id="hero" aria-label="Hero Bereich - Hauptüberschrift und Call-to-Action">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="/assets/Background.png" alt="Baustellen-Hintergrund - BuildWise Bauträger Plattform Schweiz" class="w-full h-full object-cover opacity-30" loading="lazy">
@@ -453,6 +467,11 @@
                                 und stundenlanger Akquise
                             </span>
                         </h1>
+                        
+                        <!-- CTA Button - Kostenlos starten -->
+                        <div class="flex justify-center items-center relative z-20 w-full mt-6 lg:mt-8">
+                            <div id="hero-flow-button-root" class="relative z-20"></div>
+                        </div>
                         
                         <!-- Split-Design: Bauträger & Dienstleister Value Props -->
                         <div class="hero-value-props-grid grid gap-4 md:gap-5 max-w-4xl mx-auto w-full mt-10 lg:mt-12 items-stretch" style="display: grid !important; grid-template-columns: 1fr !important; gap: 1rem !important;">
@@ -498,7 +517,6 @@
                     
                     <!-- CTA Buttons - Dual CTAs -->
                     <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-20 w-full max-w-2xl mx-auto mt-8 lg:mt-10">
-                        <div id="hero-flow-button-root" class="relative z-20 flex-1 min-w-[200px]"></div>
                         <a href="https://build-wise.app/login" target="_blank" rel="noopener noreferrer" 
                            class="inline-flex items-center justify-center px-8 py-4 text-base md:text-lg font-semibold rounded-xl transition-all duration-300 border-2 hover:scale-105 glass-card"
                            style="background: rgba(255, 255, 255, 0.15); border-color: rgba(249, 199, 79, 0.5); color: #f9c74f; backdrop-filter: blur-xl; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 40px rgba(249, 199, 79, 0.2), 0 0 60px rgba(249, 199, 79, 0.1);"
