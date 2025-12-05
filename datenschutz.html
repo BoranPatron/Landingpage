@@ -6,8 +6,8 @@
     <base href="/">
     
     <!-- SEO Meta Tags -->
-    <title>Datenschutzerklärung - BuildWise AG | DSG-konform</title>
-    <meta name="description" content="Datenschutzerklärung der BuildWise AG. Informationen zur Datenverarbeitung gemäss Schweizer Datenschutzgesetz (DSG). Transparenz und Sicherheit für Ihre Daten.">
+    <title>Datenschutzerklärung - BuildWise by Schellworth | DSG-konform</title>
+    <meta name="description" content="Datenschutzerklärung von BuildWise by Schellworth. Informationen zur Datenverarbeitung gemäss Schweizer Datenschutzgesetz (DSG). Transparenz und Sicherheit für Ihre Daten.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#51646f">
     <link rel="canonical" href="https://www.buildwise.ch/datenschutz.html">
@@ -15,8 +15,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.buildwise.ch/datenschutz.html">
-    <meta property="og:title" content="Datenschutzerklärung - BuildWise AG">
-    <meta property="og:description" content="Datenschutzerklärung der BuildWise AG. Informationen zur Datenverarbeitung gemäss Schweizer Datenschutzgesetz (DSG).">
+    <meta property="og:title" content="Datenschutzerklärung - BuildWise by Schellworth">
+    <meta property="og:description" content="Datenschutzerklärung von BuildWise by Schellworth. Informationen zur Datenverarbeitung gemäss Schweizer Datenschutzgesetz (DSG).">
     <meta property="og:locale" content="de_CH">
     
     <!-- Tailwind CSS -->
@@ -68,20 +68,7 @@
             border-radius: 2px;
         }
         
-        .content-link {
-            color: #f9c74f;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid transparent;
-        }
-        
-        .content-link:hover {
-            color: #d4af3a;
-            border-bottom-color: #d4af3a;
-            text-shadow: 0 0 10px rgba(249, 199, 79, 0.3);
-        }
-        
-        .back-button {
+        .top-button {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -96,11 +83,25 @@
             font-weight: 500;
         }
         
-        .back-button:hover {
+        .top-button:hover {
             background: rgba(255, 255, 255, 0.15);
-            transform: translateX(-4px);
+            transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(249, 199, 79, 0.2);
         }
+        
+        .content-link {
+            color: #f9c74f;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid transparent;
+        }
+        
+        .content-link:hover {
+            color: #d4af3a;
+            border-bottom-color: #d4af3a;
+            text-shadow: 0 0 10px rgba(249, 199, 79, 0.3);
+        }
+        
     </style>
 </head>
 <body class="font-inter" style="background: linear-gradient(135deg, #5f7683 0%, #51646f 45%, #2f3c43 100%) !important; color: #f7fafc; min-height: 100vh;">
@@ -108,86 +109,82 @@
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center">
                 <a href="/" class="flex items-center space-x-3">
                     <img src="/logo.png" alt="BuildWise Logo" class="h-10 w-10" loading="lazy">
                     <span class="text-xl font-bold text-white">BuildWise</span>
-                </a>
-                <a href="/" class="back-button">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                    Zurück zur Startseite
                 </a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-32 pb-16">
+    <main class="pt-24 sm:pt-32 pb-12 sm:pb-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header -->
-            <div class="glass-card rounded-2xl p-8 mb-8">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4 glow-text">Datenschutzerklärung</h1>
-                <p class="text-lg text-gray-300 mb-4">
-                    <strong>Stand:</strong> Januar 2024
+            <div class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 glow-text">Datenschutzerklärung</h1>
+                <p class="text-base sm:text-lg text-gray-300 mb-3 sm:mb-4">
+                    <strong>Stand:</strong> Januar 2025
                 </p>
-                <p class="text-gray-300">
-                    Die BuildWise AG (nachfolgend "wir", "uns" oder "unser") nimmt den Schutz Ihrer persönlichen Daten sehr ernst. 
+                <p class="text-sm sm:text-base text-gray-300">
+                    BuildWise by Schellworth (nachfolgend "wir", "uns" oder "unser") nimmt den Schutz Ihrer persönlichen Daten sehr ernst. 
                     Diese Datenschutzerklärung informiert Sie über die Art, den Umfang und den Zweck der Verarbeitung von personenbezogenen Daten 
                     durch unsere Website und unsere Dienste gemäss dem Schweizer Datenschutzgesetz (DSG).
                 </p>
             </div>
 
             <!-- Inhaltsverzeichnis -->
-            <div class="glass-card rounded-2xl p-6 mb-8">
-                <h2 class="text-2xl font-semibold mb-4 section-title">Inhaltsverzeichnis</h2>
-                <nav class="space-y-2">
-                    <a href="#verantwortlicher" class="block content-link">1. Verantwortlicher</a>
-                    <a href="#datenerhebung" class="block content-link">2. Datenerhebung und -verwendung</a>
-                    <a href="#zweck" class="block content-link">3. Zweck der Datenverarbeitung</a>
-                    <a href="#rechtsgrundlage" class="block content-link">4. Rechtsgrundlage</a>
-                    <a href="#speicherung" class="block content-link">5. Speicherdauer</a>
-                    <a href="#weitergabe" class="block content-link">6. Weitergabe von Daten</a>
-                    <a href="#sicherheit" class="block content-link">7. Datensicherheit</a>
-                    <a href="#rechte" class="block content-link">8. Ihre Rechte</a>
-                    <a href="#cookies" class="block content-link">9. Cookies und Tracking</a>
-                    <a href="#drittparteien" class="block content-link">10. Drittparteien und externe Links</a>
-                    <a href="#aenderungen" class="block content-link">11. Änderungen dieser Datenschutzerklärung</a>
-                    <a href="#kontakt" class="block content-link">12. Kontakt</a>
+            <div class="glass-card rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8">
+                <h2 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 section-title">Inhaltsverzeichnis</h2>
+                <nav class="space-y-1.5 sm:space-y-2">
+                    <a href="#verantwortlicher" class="block content-link text-sm sm:text-base py-1">1. Verantwortlicher</a>
+                    <a href="#datenerhebung" class="block content-link text-sm sm:text-base py-1">2. Datenerhebung und -verwendung</a>
+                    <a href="#zweck" class="block content-link text-sm sm:text-base py-1">3. Zweck der Datenverarbeitung</a>
+                    <a href="#rechtsgrundlage" class="block content-link text-sm sm:text-base py-1">4. Rechtsgrundlage</a>
+                    <a href="#speicherung" class="block content-link text-sm sm:text-base py-1">5. Speicherdauer</a>
+                    <a href="#weitergabe" class="block content-link text-sm sm:text-base py-1">6. Weitergabe von Daten</a>
+                    <a href="#sicherheit" class="block content-link text-sm sm:text-base py-1">7. Datensicherheit</a>
+                    <a href="#rechte" class="block content-link text-sm sm:text-base py-1">8. Ihre Rechte</a>
+                    <a href="#cookies" class="block content-link text-sm sm:text-base py-1">9. Cookies und Tracking</a>
+                    <a href="#drittparteien" class="block content-link text-sm sm:text-base py-1">10. Drittparteien und externe Links</a>
+                    <a href="#aenderungen" class="block content-link text-sm sm:text-base py-1">11. Änderungen dieser Datenschutzerklärung</a>
+                    <a href="#kontakt" class="block content-link text-sm sm:text-base py-1">12. Kontakt</a>
                 </nav>
             </div>
 
             <!-- Section 1: Verantwortlicher -->
-            <section id="verantwortlicher" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">1. Verantwortlicher</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="verantwortlicher" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">1. Verantwortlicher</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
-                        <strong>BuildWise AG</strong><br>
-                        Musterstrasse 123<br>
-                        8001 Zürich<br>
-                        Schweiz
+                        <strong>BuildWise by Schellworth</strong><br>
+                        <strong>Rechtsform:</strong> Einzelunternehmen<br>
+                        <strong>Inhaber:</strong> Stephan Schellworth
                     </p>
+                    <div class="bg-black/20 rounded-lg p-4 sm:p-6 mt-4">
+                        <p class="mb-2">
+                            <strong style="color: #f9c74f;">Anschrift:</strong><br>
+                            Forchstrasse 6C<br>
+                            8610 Uster<br>
+                            Schweiz
+                        </p>
+                    </div>
                     <p>
                         <strong>Kontakt:</strong><br>
-                        E-Mail: <a href="mailto:datenschutz@buildwise.ch" class="content-link">datenschutz@buildwise.ch</a><br>
-                        Telefon: +41 44 123 45 67
-                    </p>
-                    <p>
-                        Handelsregister: CHE-XXX.XXX.XXX<br>
-                        UID: CHE-XXX.XXX.XXX
+                        E-Mail: <a href="mailto:Stephan.Schellworth@buildwise.ch" class="content-link break-all">Stephan.Schellworth@buildwise.ch</a>
                     </p>
                 </div>
             </section>
 
             <!-- Section 2: Datenerhebung -->
-            <section id="datenerhebung" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">2. Datenerhebung und -verwendung</h2>
-                <div class="space-y-6 text-gray-300">
+            <section id="datenerhebung" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">2. Datenerhebung und -verwendung</h2>
+                <div class="space-y-4 sm:space-y-6 text-gray-300 text-sm sm:text-base">
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">2.1 Automatisch erhobene Daten</h3>
-                        <p class="mb-3">Bei jedem Besuch unserer Website werden automatisch folgende Informationen erfasst:</p>
-                        <ul class="list-disc list-inside space-y-2 ml-4">
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">2.1 Automatisch erhobene Daten</h3>
+                        <p class="mb-2 sm:mb-3">Bei jedem Besuch unserer Website werden automatisch folgende Informationen erfasst:</p>
+                        <ul class="list-disc list-inside space-y-1.5 sm:space-y-2 ml-4">
                             <li>IP-Adresse</li>
                             <li>Datum und Uhrzeit des Zugriffs</li>
                             <li>Verwendeter Browser und Betriebssystem</li>
@@ -196,9 +193,9 @@
                         </ul>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">2.2 Von Ihnen bereitgestellte Daten</h3>
-                        <p class="mb-3">Wenn Sie unsere Dienste nutzen, können folgende Daten erfasst werden:</p>
-                        <ul class="list-disc list-inside space-y-2 ml-4">
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">2.2 Von Ihnen bereitgestellte Daten</h3>
+                        <p class="mb-2 sm:mb-3">Wenn Sie unsere Dienste nutzen, können folgende Daten erfasst werden:</p>
+                        <ul class="list-disc list-inside space-y-1.5 sm:space-y-2 ml-4">
                             <li>Name und Vorname</li>
                             <li>E-Mail-Adresse</li>
                             <li>Telefonnummer</li>
@@ -212,9 +209,9 @@
             </section>
 
             <!-- Section 3: Zweck -->
-            <section id="zweck" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">3. Zweck der Datenverarbeitung</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="zweck" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">3. Zweck der Datenverarbeitung</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>Wir verarbeiten Ihre personenbezogenen Daten für folgende Zwecke:</p>
                     <ul class="list-disc list-inside space-y-2 ml-4">
                         <li>Bereitstellung und Verbesserung unserer Plattform und Dienste</li>
@@ -230,9 +227,9 @@
             </section>
 
             <!-- Section 4: Rechtsgrundlage -->
-            <section id="rechtsgrundlage" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">4. Rechtsgrundlage</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="rechtsgrundlage" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">4. Rechtsgrundlage</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage von:</p>
                     <ul class="list-disc list-inside space-y-2 ml-4">
                         <li><strong>Vertragserfüllung:</strong> Zur Erfüllung unserer vertraglichen Verpflichtungen gegenüber Ihnen</li>
@@ -244,9 +241,9 @@
             </section>
 
             <!-- Section 5: Speicherdauer -->
-            <section id="speicherung" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">5. Speicherdauer</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="speicherung" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">5. Speicherdauer</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Wir speichern Ihre personenbezogenen Daten nur so lange, wie es für die Erfüllung der Zwecke erforderlich ist, 
                         für die sie erhoben wurden, oder solange gesetzliche Aufbewahrungspflichten bestehen.
@@ -264,9 +261,9 @@
             </section>
 
             <!-- Section 6: Weitergabe -->
-            <section id="weitergabe" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">6. Weitergabe von Daten</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="weitergabe" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">6. Weitergabe von Daten</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Wir geben Ihre personenbezogenen Daten nur in folgenden Fällen an Dritte weiter:
                     </p>
@@ -284,9 +281,9 @@
             </section>
 
             <!-- Section 7: Sicherheit -->
-            <section id="sicherheit" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">7. Datensicherheit</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="sicherheit" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">7. Datensicherheit</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Wir setzen technische und organisatorische Massnahmen ein, um Ihre Daten vor Verlust, Manipulation oder unbefugtem Zugriff zu schützen:
                     </p>
@@ -306,9 +303,9 @@
             </section>
 
             <!-- Section 8: Rechte -->
-            <section id="rechte" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">8. Ihre Rechte</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="rechte" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">8. Ihre Rechte</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Gemäss dem Schweizer Datenschutzgesetz (DSG) haben Sie folgende Rechte:
                     </p>
@@ -323,22 +320,22 @@
                     </ul>
                     <p class="mt-4">
                         Um Ihre Rechte auszuüben, kontaktieren Sie uns bitte unter 
-                        <a href="mailto:datenschutz@buildwise.ch" class="content-link">datenschutz@buildwise.ch</a>.
+                        <a href="mailto:Stephan.Schellworth@buildwise.ch" class="content-link break-all">Stephan.Schellworth@buildwise.ch</a>.
                     </p>
                 </div>
             </section>
 
             <!-- Section 9: Cookies -->
-            <section id="cookies" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">9. Cookies und Tracking</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="cookies" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">9. Cookies und Tracking</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Unsere Website verwendet Cookies und ähnliche Technologien. Cookies sind kleine Textdateien, 
                         die auf Ihrem Gerät gespeichert werden.
                     </p>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">9.1 Arten von Cookies</h3>
-                        <ul class="list-disc list-inside space-y-2 ml-4">
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">9.1 Arten von Cookies</h3>
+                        <ul class="list-disc list-inside space-y-1.5 sm:space-y-2 ml-4">
                             <li><strong>Notwendige Cookies:</strong> Für die Grundfunktionen der Website erforderlich</li>
                             <li><strong>Funktionale Cookies:</strong> Zur Verbesserung der Benutzerfreundlichkeit</li>
                             <li><strong>Analytische Cookies:</strong> Zur Analyse des Nutzungsverhaltens (nur mit Ihrer Einwilligung)</li>
@@ -353,9 +350,9 @@
             </section>
 
             <!-- Section 10: Drittparteien -->
-            <section id="drittparteien" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">10. Drittparteien und externe Links</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="drittparteien" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">10. Drittparteien und externe Links</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Unsere Website kann Links zu externen Websites enthalten. 
                         Wir haben keinen Einfluss auf den Inhalt und die Datenschutzpraktiken dieser Websites 
@@ -369,9 +366,9 @@
             </section>
 
             <!-- Section 11: Änderungen -->
-            <section id="aenderungen" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">11. Änderungen dieser Datenschutzerklärung</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="aenderungen" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">11. Änderungen dieser Datenschutzerklärung</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an geänderte Rechtslagen 
                         oder Änderungen unserer Dienste anzupassen.
@@ -384,42 +381,46 @@
             </section>
 
             <!-- Section 12: Kontakt -->
-            <section id="kontakt" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title">12. Kontakt</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="kontakt" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title">12. Kontakt</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte können Sie uns jederzeit kontaktieren:
                     </p>
-                    <div class="bg-black/20 rounded-lg p-6 mt-4">
+                    <div class="bg-black/20 rounded-lg p-4 sm:p-6 mt-4">
                         <p class="mb-2">
-                            <strong>BuildWise AG</strong><br>
-                            Musterstrasse 123<br>
-                            8001 Zürich<br>
+                            <strong>BuildWise by Schellworth</strong><br>
+                            <strong>Rechtsform:</strong> Einzelunternehmen<br>
+                            <strong>Inhaber:</strong> Stephan Schellworth
+                        </p>
+                        <p class="mb-2 mt-3">
+                            <strong style="color: #f9c74f;">Anschrift:</strong><br>
+                            Forchstrasse 6C<br>
+                            8610 Uster<br>
                             Schweiz
                         </p>
-                        <p class="mb-2">
-                            <strong>E-Mail:</strong> <a href="mailto:datenschutz@buildwise.ch" class="content-link">datenschutz@buildwise.ch</a>
-                        </p>
-                        <p>
-                            <strong>Telefon:</strong> +41 44 123 45 67
+                        <p class="mt-3">
+                            <strong>E-Mail:</strong> <a href="mailto:Stephan.Schellworth@buildwise.ch" class="content-link break-all">Stephan.Schellworth@buildwise.ch</a>
                         </p>
                     </div>
                     <p class="mt-4">
                         Sie haben zudem das Recht, eine Beschwerde bei der zuständigen Aufsichtsbehörde einzureichen:
                     </p>
-                    <p class="ml-4">
-                        <strong>Eidgenössischer Datenschutz- und Öffentlichkeitsbeauftragter (EDÖB)</strong><br>
-                        Feldeggweg 1<br>
-                        3003 Bern<br>
-                        Schweiz<br>
-                        <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener noreferrer" class="content-link">www.edoeb.admin.ch</a>
-                    </p>
+                    <div class="ml-2 sm:ml-4 mt-2">
+                        <p>
+                            <strong>Eidgenössischer Datenschutz- und Öffentlichkeitsbeauftragter (EDÖB)</strong><br>
+                            Feldeggweg 1<br>
+                            3003 Bern<br>
+                            Schweiz<br>
+                            <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener noreferrer" class="content-link break-all">www.edoeb.admin.ch</a>
+                        </p>
+                    </div>
                 </div>
             </section>
 
             <!-- Back to Top Button -->
             <div class="text-center mt-12">
-                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="back-button">
+                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="top-button">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
                     </svg>
@@ -468,9 +469,9 @@
                 </div>
             </div>
             
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <div class="text-gray-300 text-sm">
-                    © 2024 BuildWise AG. Alle Rechte vorbehalten.
+            <div class="border-t border-white/10 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-300 text-xs sm:text-sm">
+                    © 2025 BuildWise by Schellworth. Alle Rechte vorbehalten.
                 </div>
             </div>
         </div>
