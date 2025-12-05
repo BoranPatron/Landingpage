@@ -84,38 +84,41 @@
         .info-box {
             background: rgba(249, 199, 79, 0.1);
             border-left: 3px solid #f9c74f;
-            padding: 1rem 1.5rem;
+            padding: 0.75rem 1rem;
             border-radius: 0.5rem;
             margin: 1rem 0;
         }
         
-        .top-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 0.5rem;
-            color: #f7fafc;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        @media (min-width: 640px) {
+            .info-box {
+                padding: 1rem 1.25rem;
+            }
         }
         
-        .top-button:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(249, 199, 79, 0.2);
+        @media (min-width: 768px) {
+            .info-box {
+                padding: 1rem 1.5rem;
+            }
         }
         
         .highlight-box {
             background: rgba(16, 185, 129, 0.1);
             border-left: 3px solid #10b981;
-            padding: 1rem 1.5rem;
+            padding: 0.75rem 1rem;
             border-radius: 0.5rem;
             margin: 1rem 0;
+        }
+        
+        @media (min-width: 640px) {
+            .highlight-box {
+                padding: 1rem 1.25rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .highlight-box {
+                padding: 1rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -134,43 +137,43 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-32 pb-16">
+    <main class="pt-24 sm:pt-32 pb-12 sm:pb-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header -->
-            <div class="glass-card rounded-2xl p-8 mb-8">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4 glow-text" style="color: #f9c74f;">Allgemeine Geschäftsbedingungen (AGB)</h1>
-                <p class="text-lg text-gray-300 mb-4">
+            <div class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 glow-text" style="color: #f9c74f;">Allgemeine Geschäftsbedingungen (AGB)</h1>
+                <p class="text-base sm:text-lg text-gray-300 mb-3 sm:mb-4">
                     <strong>Stand:</strong> Januar 2025
                 </p>
-                <p class="text-gray-300">
+                <p class="text-sm sm:text-base text-gray-300">
                     Diese Allgemeinen Geschäftsbedingungen regeln die Nutzung der BuildWise-Plattform und die Geschäftsbeziehungen zwischen BuildWise by Schellworth und den Nutzern.
                 </p>
             </div>
 
             <!-- Inhaltsverzeichnis -->
-            <div class="glass-card rounded-2xl p-6 mb-8">
-                <h2 class="text-2xl font-semibold mb-4 section-title">Inhaltsverzeichnis</h2>
-                <nav class="space-y-2">
-                    <a href="#geltungsbereich" class="block content-link">1. Geltungsbereich</a>
-                    <a href="#vertragsgegenstand" class="block content-link">2. Vertragsgegenstand und Leistungen</a>
-                    <a href="#registrierung" class="block content-link">3. Registrierung und Nutzerkonten</a>
-                    <a href="#preise" class="block content-link">4. Preise und Zahlungsbedingungen</a>
-                    <a href="#credits" class="block content-link">5. Credit-System (Bauträger)</a>
-                    <a href="#provision" class="block content-link">6. Provision-Modell (Dienstleister)</a>
-                    <a href="#nutzung" class="block content-link">7. Nutzungsrechte und -pflichten</a>
-                    <a href="#verfuegbarkeit" class="block content-link">8. Verfügbarkeit und Störungen</a>
-                    <a href="#haftung" class="block content-link">9. Haftung und Gewährleistung</a>
-                    <a href="#kuendigung" class="block content-link">10. Kündigung und Vertragsbeendigung</a>
-                    <a href="#datenschutz" class="block content-link">11. Datenschutz</a>
-                    <a href="#aenderungen" class="block content-link">12. Änderungen der AGB</a>
-                    <a href="#schluss" class="block content-link">13. Schlussbestimmungen</a>
+            <div class="glass-card rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8">
+                <h2 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 section-title">Inhaltsverzeichnis</h2>
+                <nav class="space-y-1.5 sm:space-y-2">
+                    <a href="#geltungsbereich" class="block content-link text-sm sm:text-base py-1">1. Geltungsbereich</a>
+                    <a href="#vertragsgegenstand" class="block content-link text-sm sm:text-base py-1">2. Vertragsgegenstand und Leistungen</a>
+                    <a href="#registrierung" class="block content-link text-sm sm:text-base py-1">3. Registrierung und Nutzerkonten</a>
+                    <a href="#preise" class="block content-link text-sm sm:text-base py-1">4. Preise und Zahlungsbedingungen</a>
+                    <a href="#credits" class="block content-link text-sm sm:text-base py-1">5. Credit-System (Bauträger)</a>
+                    <a href="#provision" class="block content-link text-sm sm:text-base py-1">6. Provision-Modell (Dienstleister)</a>
+                    <a href="#nutzung" class="block content-link text-sm sm:text-base py-1">7. Nutzungsrechte und -pflichten</a>
+                    <a href="#verfuegbarkeit" class="block content-link text-sm sm:text-base py-1">8. Verfügbarkeit und Störungen</a>
+                    <a href="#haftung" class="block content-link text-sm sm:text-base py-1">9. Haftung und Gewährleistung</a>
+                    <a href="#kuendigung" class="block content-link text-sm sm:text-base py-1">10. Kündigung und Vertragsbeendigung</a>
+                    <a href="#datenschutz" class="block content-link text-sm sm:text-base py-1">11. Datenschutz</a>
+                    <a href="#aenderungen" class="block content-link text-sm sm:text-base py-1">12. Änderungen der AGB</a>
+                    <a href="#schluss" class="block content-link text-sm sm:text-base py-1">13. Schlussbestimmungen</a>
                 </nav>
             </div>
 
             <!-- Section 1: Geltungsbereich -->
-            <section id="geltungsbereich" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">1. Geltungsbereich</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="geltungsbereich" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">1. Geltungsbereich</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen BuildWise by Schellworth (nachfolgend "Anbieter" oder "BuildWise") und den Nutzern (nachfolgend "Nutzer", "Bauträger" oder "Dienstleister") der BuildWise-Plattform.
                     </p>
@@ -184,13 +187,13 @@
             </section>
 
             <!-- Section 2: Vertragsgegenstand -->
-            <section id="vertragsgegenstand" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">2. Vertragsgegenstand und Leistungen</h2>
-                <div class="space-y-6 text-gray-300">
+            <section id="vertragsgegenstand" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">2. Vertragsgegenstand und Leistungen</h2>
+                <div class="space-y-4 sm:space-y-6 text-gray-300 text-sm sm:text-base">
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">2.1 Leistungen des Anbieters</h3>
-                        <p class="mb-3">BuildWise bietet folgende Leistungen an:</p>
-                        <ul class="list-disc list-inside space-y-2 ml-4">
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">2.1 Leistungen des Anbieters</h3>
+                        <p class="mb-2 sm:mb-3">BuildWise bietet folgende Leistungen an:</p>
+                        <ul class="list-disc list-inside space-y-1.5 sm:space-y-2 ml-4">
                             <li>Zugang zur BuildWise-Plattform zur Verwaltung von Bauprojekten</li>
                             <li>Erstellung und Verwaltung von Ausschreibungen</li>
                             <li>Vermittlung zwischen Bauträgern und Dienstleistern</li>
@@ -200,8 +203,8 @@
                         </ul>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">2.2 Nutzungsrollen</h3>
-                        <p class="mb-3">Die Plattform unterscheidet zwischen zwei Nutzungsrollen:</p>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">2.2 Nutzungsrollen</h3>
+                        <p class="mb-2 sm:mb-3">Die Plattform unterscheidet zwischen zwei Nutzungsrollen:</p>
                         <div class="info-box">
                             <p class="mb-2"><strong style="color: #f9c74f;">Bauträger:</strong></p>
                             <p>Vollzugriff auf Projekte, können Ausschreibungen erstellen, Angebote bewerten und das Credit-System nutzen.</p>
@@ -215,9 +218,9 @@
             </section>
 
             <!-- Section 3: Registrierung -->
-            <section id="registrierung" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">3. Registrierung und Nutzerkonten</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="registrierung" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">3. Registrierung und Nutzerkonten</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Für die Nutzung der BuildWise-Plattform ist eine Registrierung erforderlich. Der Nutzer verpflichtet sich, bei der Registrierung wahrheitsgemässe, vollständige und aktuelle Angaben zu machen.
                     </p>
@@ -231,12 +234,12 @@
             </section>
 
             <!-- Section 4: Preise -->
-            <section id="preise" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">4. Preise und Zahlungsbedingungen</h2>
-                <div class="space-y-6 text-gray-300">
+            <section id="preise" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">4. Preise und Zahlungsbedingungen</h2>
+                <div class="space-y-4 sm:space-y-6 text-gray-300 text-sm sm:text-base">
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">4.1 Preisgestaltung</h3>
-                        <p class="mb-3">Die Preise werden in Schweizer Franken (CHF) angegeben. Die Preisgestaltung erfolgt nach Nutzungsrolle:</p>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">4.1 Preisgestaltung</h3>
+                        <p class="mb-2 sm:mb-3">Die Preise werden in Schweizer Franken (CHF) angegeben. Die Preisgestaltung erfolgt nach Nutzungsrolle:</p>
                         <div class="info-box">
                             <p class="mb-2"><strong style="color: #f9c74f;">Bauträger:</strong></p>
                             <p>Nutzung basierend auf einem Credit-System. 300 Credits werden kostenlos zum Start bereitgestellt. Weitere Credits können nach Bedarf erworben werden.</p>
@@ -247,13 +250,13 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">4.2 Zahlungsmethoden</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">4.2 Zahlungsmethoden</h3>
                         <p>
                             Zahlungen können per Kreditkarte, Banküberweisung oder anderen auf der Plattform angegebenen Zahlungsmethoden erfolgen. Der Anbieter behält sich vor, Zahlungsmethoden zu ändern oder zu ergänzen.
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">4.3 Fälligkeit</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">4.3 Fälligkeit</h3>
                         <p>
                             Rechnungen werden sofort fällig, sofern nicht anders vereinbart. Bei Zahlungsverzug behält sich der Anbieter vor, die Leistungen zu sperren oder den Vertrag zu kündigen.
                         </p>
@@ -262,15 +265,15 @@
             </section>
 
             <!-- Section 5: Credit-System -->
-            <section id="credits" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">5. Credit-System (Bauträger)</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="credits" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">5. Credit-System (Bauträger)</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Bauträger erhalten bei der Registrierung 300 Credits kostenlos zum Start. Credits werden für verschiedene Plattform-Funktionen verwendet, wie z.B. die Erstellung von Ausschreibungen oder die Nutzung von Premium-Funktionen.
                     </p>
                     <div class="info-box">
                         <p class="mb-2"><strong style="color: #f9c74f;">Wichtige Regelungen:</strong></p>
-                        <ul class="list-disc list-inside space-y-1 ml-4">
+                        <ul class="list-disc list-inside space-y-1 sm:space-y-1.5 ml-4">
                             <li>Credits können sowohl im Voraus (Prepaid) als auch nach Nutzung (Postpaid) erworben werden</li>
                             <li>Credits verfallen nicht und haben kein Ablaufdatum</li>
                             <li>Der Credit-Verbrauch wird transparent in der Plattform angezeigt</li>
@@ -284,9 +287,9 @@
             </section>
 
             <!-- Section 6: Provision-Modell -->
-            <section id="provision" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">6. Provision-Modell (Dienstleister)</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="provision" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">6. Provision-Modell (Dienstleister)</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Dienstleister zahlen eine Provision nur bei erfolgreicher Auftragserteilung durch einen Bauträger. Die Provision beträgt zwischen 2.7% und 4.7% des Auftragswertes, abhängig vom Ranking des Dienstleisters auf der Plattform.
                     </p>
@@ -301,25 +304,25 @@
             </section>
 
             <!-- Section 7: Nutzungsrechte -->
-            <section id="nutzung" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">7. Nutzungsrechte und -pflichten</h2>
-                <div class="space-y-6 text-gray-300">
+            <section id="nutzung" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">7. Nutzungsrechte und -pflichten</h2>
+                <div class="space-y-4 sm:space-y-6 text-gray-300 text-sm sm:text-base">
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">7.1 Nutzungsrechte</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">7.1 Nutzungsrechte</h3>
                         <p>
                             Der Anbieter gewährt dem Nutzer ein nicht-exklusives, nicht-übertragbares Recht zur Nutzung der BuildWise-Plattform für die Dauer des Vertragsverhältnisses.
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">7.2 Nutzungsrechte an Inhalten</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">7.2 Nutzungsrechte an Inhalten</h3>
                         <p>
                             Der Nutzer behält alle Rechte an den von ihm hochgeladenen Inhalten (Dokumente, Projekte, Daten). Der Nutzer gewährt dem Anbieter lediglich das Recht, diese Inhalte zur Bereitstellung der Plattform-Dienstleistungen zu verwenden, zu speichern und zu verarbeiten.
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">7.3 Nutzungspflichten</h3>
-                        <p class="mb-3">Der Nutzer verpflichtet sich:</p>
-                        <ul class="list-disc list-inside space-y-2 ml-4">
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">7.3 Nutzungspflichten</h3>
+                        <p class="mb-2 sm:mb-3">Der Nutzer verpflichtet sich:</p>
+                        <ul class="list-disc list-inside space-y-1.5 sm:space-y-2 ml-4">
                             <li>Die Plattform nur für rechtmässige Zwecke zu nutzen</li>
                             <li>Keine Inhalte hochzuladen, die gegen geltendes Recht verstossen</li>
                             <li>Keine Schadsoftware oder Viren zu verbreiten</li>
@@ -331,9 +334,9 @@
             </section>
 
             <!-- Section 8: Verfügbarkeit -->
-            <section id="verfuegbarkeit" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">8. Verfügbarkeit und Störungen</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="verfuegbarkeit" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">8. Verfügbarkeit und Störungen</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Der Anbieter bemüht sich um eine hohe Verfügbarkeit der Plattform, kann jedoch keine 100%ige Verfügbarkeit garantieren. Geplante Wartungsarbeiten werden nach Möglichkeit im Voraus angekündigt.
                     </p>
@@ -347,11 +350,11 @@
             </section>
 
             <!-- Section 9: Haftung -->
-            <section id="haftung" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">9. Haftung und Gewährleistung</h2>
-                <div class="space-y-6 text-gray-300">
+            <section id="haftung" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">9. Haftung und Gewährleistung</h2>
+                <div class="space-y-4 sm:space-y-6 text-gray-300 text-sm sm:text-base">
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">9.1 Haftungsbeschränkung</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">9.1 Haftungsbeschränkung</h3>
                         <p>
                             Der Anbieter haftet nur bei Vorsatz oder grober Fahrlässigkeit. Die Haftung für leichte Fahrlässigkeit ist ausgeschlossen, soweit gesetzlich zulässig.
                         </p>
@@ -360,13 +363,13 @@
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">9.2 Gewährleistung</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">9.2 Gewährleistung</h3>
                         <p>
                             Der Anbieter gewährleistet, dass die Plattform den vereinbarten Spezifikationen entspricht. Mängel werden nach Möglichkeit behoben. Ein Anspruch auf Minderung oder Schadensersatz besteht nur bei Vorsatz oder grober Fahrlässigkeit.
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">9.3 Haftung für Inhalte</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">9.3 Haftung für Inhalte</h3>
                         <p>
                             Der Anbieter übernimmt keine Haftung für die Richtigkeit, Vollständigkeit oder Aktualität der von Nutzern hochgeladenen Inhalte. Die Nutzer sind für ihre eigenen Inhalte verantwortlich.
                         </p>
@@ -375,9 +378,9 @@
             </section>
 
             <!-- Section 10: Kündigung -->
-            <section id="kuendigung" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">10. Kündigung und Vertragsbeendigung</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="kuendigung" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">10. Kündigung und Vertragsbeendigung</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Der Nutzer kann den Vertrag jederzeit ohne Einhaltung einer Kündigungsfrist kündigen. Die Kündigung erfolgt durch Löschung des Nutzerkontos oder schriftliche Mitteilung an den Anbieter.
                     </p>
@@ -394,9 +397,9 @@
             </section>
 
             <!-- Section 11: Datenschutz -->
-            <section id="datenschutz" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">11. Datenschutz</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="datenschutz" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">11. Datenschutz</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Der Anbieter verarbeitet personenbezogene Daten gemäss den Bestimmungen des Schweizer Datenschutzgesetzes (DSG) und der Datenschutzerklärung, die auf der Website verfügbar ist.
                     </p>
@@ -407,9 +410,9 @@
             </section>
 
             <!-- Section 12: Änderungen -->
-            <section id="aenderungen" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">12. Änderungen der AGB</h2>
-                <div class="space-y-4 text-gray-300">
+            <section id="aenderungen" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">12. Änderungen der AGB</h2>
+                <div class="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base">
                     <p>
                         Der Anbieter behält sich vor, diese AGB jederzeit zu ändern. Änderungen werden auf der Plattform veröffentlicht und treten mit der Veröffentlichung in Kraft.
                     </p>
@@ -417,35 +420,35 @@
                         Bei wesentlichen Änderungen werden die Nutzer per E-Mail oder über einen Hinweis auf der Plattform informiert. Widerspricht der Nutzer den geänderten AGB nicht innerhalb von 30 Tagen nach Bekanntgabe, gelten die geänderten AGB als akzeptiert.
                     </p>
                     <p>
-                        Die jeweils aktuelle Version der AGB ist auf der Website unter <a href="/agb.html" class="content-link">www.buildwise.ch/agb.html</a> abrufbar.
+                        Die jeweils aktuelle Version der AGB ist auf der Website unter <a href="/agb.html" class="content-link break-all">www.buildwise.ch/agb.html</a> abrufbar.
                     </p>
                 </div>
             </section>
 
             <!-- Section 13: Schlussbestimmungen -->
-            <section id="schluss" class="glass-card rounded-2xl p-8 mb-8">
-                <h2 class="text-3xl font-bold mb-6 section-title" style="color: #f7fafc;">13. Schlussbestimmungen</h2>
-                <div class="space-y-6 text-gray-300">
+            <section id="schluss" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 section-title" style="color: #f7fafc;">13. Schlussbestimmungen</h2>
+                <div class="space-y-4 sm:space-y-6 text-gray-300 text-sm sm:text-base">
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">13.1 Anwendbares Recht</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">13.1 Anwendbares Recht</h3>
                         <p>
                             Es gilt ausschliesslich schweizerisches Recht unter Ausschluss des UN-Kaufrechts (CISG).
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">13.2 Gerichtsstand</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">13.2 Gerichtsstand</h3>
                         <p>
                             Gerichtsstand für alle Streitigkeiten aus oder im Zusammenhang mit diesen AGB ist Uster, Schweiz, sofern der Nutzer Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist.
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">13.3 Salvatorische Klausel</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">13.3 Salvatorische Klausel</h3>
                         <p>
                             Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Die unwirksame Bestimmung wird durch eine wirksame ersetzt, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white">13.4 Widerrufsrecht</h3>
+                        <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white">13.4 Widerrufsrecht</h3>
                         <p>
                             Für digitale Dienstleistungen besteht kein Widerrufsrecht gemäss Art. 40d OR, da die Leistung mit ausdrücklicher Zustimmung des Nutzers vor Ablauf der Widerrufsfrist erbracht wird.
                         </p>
@@ -457,28 +460,19 @@
                             Forchstrasse 6C<br>
                             8610 Uster<br>
                             Schweiz<br>
-                            E-Mail: <a href="mailto:Stephan.Schellworth@buildwise.ch" class="content-link">Stephan.Schellworth@buildwise.ch</a>
+                            E-Mail: <a href="mailto:Stephan.Schellworth@buildwise.ch" class="content-link break-all">Stephan.Schellworth@buildwise.ch</a>
                         </p>
                     </div>
                 </div>
             </section>
 
-            <!-- Back to Top Button -->
-            <div class="text-center mt-12">
-                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="top-button">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-                    </svg>
-                    Nach oben
-                </a>
-            </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="relative bg-transparent backdrop-blur-sm border-t border-white/10 py-12 mt-16">
+    <footer class="relative bg-transparent backdrop-blur-sm border-t border-white/10 py-8 sm:py-12 mt-12 sm:mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div class="grid md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <img src="/logo.png" alt="BuildWise Logo" class="h-10 w-10" loading="lazy">
@@ -514,8 +508,8 @@
                 </div>
             </div>
             
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <div class="text-gray-300 text-sm">
+            <div class="border-t border-white/10 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-300 text-xs sm:text-sm">
                     © 2025 BuildWise by Schellworth. Alle Rechte vorbehalten.
                 </div>
             </div>
