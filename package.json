@@ -1,6 +1,7 @@
 {
   "name": "buildwise-landing",
   "private": true,
+  "version": "1.0.0",
   "scripts": {
     "dev": "cross-env DEPLOYMENT_MODE=local node generate-config.js && npx netlify dev --dir . --port 5508",
     "dev:simple": "cross-env DEPLOYMENT_MODE=local node generate-config.js && npm run serve",
