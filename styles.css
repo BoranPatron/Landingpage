@@ -154,7 +154,7 @@ html {
     left: 0;
     right: 0;
     width: 100%;
-    z-index: 9999;
+    z-index: 10000;
     display: block;
     text-decoration: none;
     cursor: pointer;
@@ -192,6 +192,8 @@ html {
     justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 .promo-banner-main {
@@ -237,12 +239,25 @@ html {
     color: #f9c74f;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.25rem;
     padding: 0.25rem 0.75rem;
     border-radius: 0.5rem;
     background: rgba(249, 199, 79, 0.1);
     border: 1px solid rgba(249, 199, 79, 0.3);
     transition: all 200ms ease;
+}
+
+.promo-banner-cta-text {
+    display: inline;
+}
+
+.promo-banner-cta-icon {
+    display: none;
+    width: 1rem;
+    height: 1rem;
+    color: #f9c74f;
+    flex-shrink: 0;
 }
 
 .promo-banner:hover .promo-banner-cta {
@@ -253,32 +268,232 @@ html {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    .promo-banner {
+        display: none !important;
+    }
+    
     .promo-banner-content {
-        flex-direction: column;
+        flex-direction: row;
         gap: 0.5rem;
-        padding: 0.625rem 1rem;
-        text-align: center;
+        padding: 0.25rem 0.5rem;
+        justify-content: space-between;
+        align-items: center;
+        overflow-x: hidden;
+        max-width: 100vw;
     }
     
     .promo-banner-main {
-        justify-content: center;
+        justify-content: flex-start;
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+    }
+    
+    .promo-banner-emoji {
+        font-size: 0.875rem;
+        flex-shrink: 0;
     }
     
     .promo-banner-title {
-        font-size: 0.875rem;
+        font-size: 0.6875rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
     
     .promo-banner-sub {
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-direction: row;
+        gap: 0;
+        flex-shrink: 0;
     }
     
     .promo-banner-text {
-        font-size: 0.75rem;
+        display: none;
     }
     
     .promo-banner-cta {
-        font-size: 0.8125rem;
+        font-size: 0.6875rem;
+        padding: 0.25rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .promo-banner-cta-text {
+        display: none;
+    }
+    
+    .promo-banner-cta-icon {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        color: #f9c74f;
+    }
+}
+
+/* ============================================
+   Promotional Popup (Mobile only)
+   ============================================ */
+
+.promo-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+}
+
+.promo-popup-overlay.show {
+    display: flex;
+}
+
+.promo-popup {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    min-height: 200px;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(249, 199, 79, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid rgba(249, 199, 79, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 
+                0 0 40px rgba(249, 199, 79, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: popupSlideIn 0.3s ease;
+    transform-origin: center;
+}
+
+.promo-popup-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    color: rgba(230, 235, 239, 0.9);
+    cursor: pointer;
+    transition: all 200ms ease;
+    z-index: 10;
+}
+
+.promo-popup-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #f7fafc;
+}
+
+.promo-popup-close svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.promo-popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.promo-popup-emoji {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.promo-popup-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #f7fafc;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.promo-popup-title strong {
+    color: #10b981;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.promo-popup-text {
+    font-size: 0.9375rem;
+    color: rgba(230, 235, 239, 0.9);
+    margin: 0;
+}
+
+.promo-popup-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+    background: linear-gradient(135deg, #f9c74f 0%, #f4a825 100%);
+    border-radius: 0.75rem;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(249, 199, 79, 0.4), 
+                0 0 30px rgba(249, 199, 79, 0.2);
+    transition: all 200ms ease;
+    margin-top: 0.5rem;
+}
+
+.promo-popup-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(249, 199, 79, 0.5), 
+                0 0 40px rgba(249, 199, 79, 0.3);
+}
+
+.promo-popup-cta svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Desktop: Popup ausblenden */
+@media (min-width: 769px) {
+    .promo-popup-overlay {
+        display: none !important;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popupSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
 
@@ -1380,7 +1595,7 @@ section#pricing > div > div > div.grid {
 /* Mobile: Simple positioning without complex overrides */
 @media (max-width: 640px) {
     .floating-navbar-container {
-        top: 1.5rem !important;
+        top: 4.5rem !important;
         left: 1rem !important;
         right: 1rem !important;
         padding: 0.625rem 0.75rem !important;

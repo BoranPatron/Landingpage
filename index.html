@@ -435,18 +435,45 @@
                 <span class="promo-banner-title">Jahresend-Aktion: <strong>0% Provision</strong> bis 31.12.2025</span>
             </div>
             <div class="promo-banner-sub">
-                <span class="promo-banner-text">Jetzt kostenlos Aufträge vermitteln • Keine versteckten Kosten</span>
-                <span class="promo-banner-cta">Mehr erfahren →</span>
+                <span class="promo-banner-text">Jetzt kostenlos passende Auftraege vergeben und annehmen. • Keine versteckten Kosten</span>
+                <span class="promo-banner-cta">
+                    <span class="promo-banner-cta-text">Mehr erfahren →</span>
+                    <svg class="promo-banner-cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </span>
             </div>
         </div>
     </a>
+    
+    <!-- Promotional Popup (Mobile only) -->
+    <div id="promo-popup-overlay" class="promo-popup-overlay" style="display: none;">
+        <div class="promo-popup">
+            <button class="promo-popup-close" aria-label="Popup schließen">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="promo-popup-content">
+                <div class="promo-popup-emoji">🎉</div>
+                <h2 class="promo-popup-title">Jahresend-Aktion: <strong>0% Provision</strong> bis 31.12.2025</h2>
+                <p class="promo-popup-text">Jetzt kostenlos passende Auftraege vergeben und annehmen.</p>
+                <a href="https://build-wise.app/login" target="_blank" rel="noopener noreferrer" class="promo-popup-cta">
+                    Jetzt starten
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
     
     <!-- Floating Navigation -->
     <nav id="floating-nav-root" role="navigation" aria-label="Hauptnavigation"></nav>
 
     <main role="main">
     <!-- Hero Section -->
-    <section class="hero-section pt-40 pb-16 relative overflow-hidden" id="hero" aria-label="Hero Bereich - Hauptüberschrift und Call-to-Action">
+    <section class="hero-section pt-28 pb-16 relative overflow-hidden" id="hero" aria-label="Hero Bereich - Hauptüberschrift und Call-to-Action">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="/assets/Background.png" alt="Baustellen-Hintergrund - BuildWise Bauträger Plattform Schweiz" class="w-full h-full object-cover opacity-30" loading="lazy">
@@ -1119,5 +1146,66 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js?v=9"></script>
     <script src="dist/timeline.bundle.js?v=3"></script>
+    
+    <!-- Promotional Popup Script (Mobile only) -->
+    <script>
+        (function() {
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+            
+            function showPopup() {
+                if (isMobile()) {
+                    const overlay = document.getElementById('promo-popup-overlay');
+                    if (overlay) {
+                        overlay.style.display = 'flex';
+                        overlay.classList.add('show');
+                    }
+                }
+            }
+            
+            function hidePopup() {
+                const overlay = document.getElementById('promo-popup-overlay');
+                if (overlay) {
+                    overlay.classList.remove('show');
+                    setTimeout(function() {
+                        overlay.style.display = 'none';
+                    }, 300);
+                }
+            }
+            
+            // Popup beim Seitenstart anzeigen (nur Mobile)
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(showPopup, 500);
+                });
+            } else {
+                setTimeout(showPopup, 500);
+            }
+            
+            // Close Button Event
+            const closeButton = document.querySelector('.promo-popup-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', hidePopup);
+            }
+            
+            // Overlay-Klick schliesst Popup
+            const overlay = document.getElementById('promo-popup-overlay');
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay) {
+                        hidePopup();
+                    }
+                });
+            }
+            
+            // Beim Resize: Popup ausblenden wenn zu Desktop
+            window.addEventListener('resize', function() {
+                if (!isMobile()) {
+                    hidePopup();
+                }
+            });
+        })();
+    </script>
 </body>
 </html> 
