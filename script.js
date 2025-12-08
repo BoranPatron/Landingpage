@@ -303,8 +303,17 @@ document.addEventListener('DOMContentLoaded', function() {
 // Utility Functions (Global)
 // ============================================
 
-// Track events for analytics
+// Track events for analytics (with cookie consent check)
+// This function will be replaced by the cookie-consent version if available
 function trackEvent(eventName, properties = {}) {
+    // Check if cookie-consent trackEvent is available (from cookie-consent.ts)
+    if (typeof window !== 'undefined' && window.cookieConsentTrackEvent) {
+        window.cookieConsentTrackEvent(eventName, properties);
+        return;
+    }
+    
+    // Fallback: Only track if gtag is available (legacy behavior)
+    // Note: This should only happen if cookie-consent hasn't loaded yet
     if (typeof gtag !== 'undefined') {
         gtag('event', eventName, properties);
     }

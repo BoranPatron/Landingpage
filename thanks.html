@@ -5,14 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <base href="/">
   
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17764876183"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-17764876183');
-  </script>
+  <!-- Google Analytics wird nur nach Cookie-Einwilligung geladen (siehe src/lib/cookie-consent.ts) -->
   
   <!-- Content Security Policy -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://*.google.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://tpc.googlesyndication.com https://cdn.tailwindcss.com https://unpkg.com; script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://*.google.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://tpc.googlesyndication.com https://cdn.tailwindcss.com https://unpkg.com; connect-src 'self' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://*.google.com https://*.analytics.google.com https://*.gstatic.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://tpc.googlesyndication.com https://www.google.com/pagead/ https://*.google.com/pagead/; img-src 'self' data: blob: https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://*.google.com https://*.gstatic.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://tpc.googlesyndication.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://*.gstatic.com; frame-src 'self' https://www.googletagmanager.com https://*.googletagmanager.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net;">
@@ -72,6 +65,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-inter ci-theme">
+  <!-- Cookie Banner -->
+  <div id="cookie-banner-root"></div>
+  
   <nav class="w-full py-4 px-6 flex items-center justify-between" style="background: rgba(0,0,0,.25); border-bottom:1px solid rgba(255,255,255,.08)">
     <a href="/" class="flex items-center gap-3"><span class="ci-logo ci-logo--gradient"></span><span class="font-bold text-lg">BuildWise</span></a>
   </nav>
@@ -120,6 +116,9 @@
     }
     tick(); setInterval(tick, 1000);
   </script>
+  
+  <!-- React Bundle for Cookie Banner -->
+  <script src="dist/timeline.bundle.js?v=3"></script>
 </body>
 </html>
 

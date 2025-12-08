@@ -5,14 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <base href="/">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17764876183"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-17764876183');
-    </script>
+    <!-- Google Analytics wird nur nach Cookie-Einwilligung geladen (siehe src/lib/cookie-consent.ts) -->
     
     <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://*.google.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://tpc.googlesyndication.com https://cdn.tailwindcss.com https://unpkg.com; script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://*.google.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://tpc.googlesyndication.com https://cdn.tailwindcss.com https://unpkg.com; connect-src 'self' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://*.google.com https://*.analytics.google.com https://*.gstatic.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://tpc.googlesyndication.com https://www.google.com/pagead/ https://*.google.com/pagead/; img-src 'self' data: blob: https://www.buildwise.ch https://*.buildwise.ch https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://*.google.com https://*.gstatic.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://tpc.googlesyndication.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://*.gstatic.com; frame-src 'self' https://www.googletagmanager.com https://*.googletagmanager.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net;">
@@ -467,6 +460,9 @@
             </div>
         </div>
     </div>
+    
+    <!-- Cookie Banner -->
+    <div id="cookie-banner-root"></div>
     
     <!-- Snow Effect -->
     <div id="snow-effect-root"></div>
@@ -1139,6 +1135,7 @@
                     <a href="/datenschutz.html" class="transition-all duration-300 text-sm" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" aria-label="Datenschutzerklärung">Datenschutz</a>
                     <a href="/agb.html" class="transition-all duration-300 text-sm" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" aria-label="Allgemeine Geschäftsbedingungen">AGB</a>
                     <a href="/impressum.html" class="transition-all duration-300 text-sm" style="color: rgba(230, 235, 239, 0.8);" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" aria-label="Impressum">Impressum</a>
+                    <button onclick="window.dispatchEvent(new CustomEvent('openCookieSettings'));" class="transition-all duration-300 text-sm cursor-pointer" style="color: rgba(230, 235, 239, 0.8); background: none; border: none; padding: 0;" onmouseover="this.style.color='#f9c74f'; this.style.textShadow='0 0 10px rgba(249, 199, 79, 0.5)';" onmouseout="this.style.color='rgba(230, 235, 239, 0.8)'; this.style.textShadow='none';" aria-label="Cookie-Einstellungen">Cookie-Einstellungen</button>
                 </div>
             </div>
         </div>

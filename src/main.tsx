@@ -8,6 +8,8 @@ import { FloatingNav } from "./components/ui/floating-nav";
 import FAQs from "./components/ui/faqs";
 import InteractiveSelector from "./components/ui/interactive-selector";
 import { SnowEffect } from "./components/ui/snow-effect";
+import { CookieBanner } from "./components/ui/cookie-banner";
+import { initCookieConsent, trackEvent } from "./lib/cookie-consent";
 import { Home, Users, Clock, DollarSign, Info, HelpCircle, Sparkles } from "lucide-react";
 
 function initTimeline() {
@@ -46,10 +48,8 @@ function initFlowButton() {
     
     const useStrictMode = true;
     const handleClick = () => {
-      // Google Ads Conversion Event
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'conversion', {'send_to': 'AW-17764876183/nRzcCL_KoMgbEJf_-ZZC'});
-      }
+      // Google Ads Conversion Event (only if consent given)
+      trackEvent('conversion', {'send_to': 'AW-17764876183/nRzcCL_KoMgbEJf_-ZZC'});
       window.open('https://build-wise.app/login', '_blank', 'noopener,noreferrer');
     };
     
@@ -281,10 +281,58 @@ function initSnowEffect() {
   }
 }
 
+function initCookieBanner() {
+  try {
+    console.log('[CookieBanner] Initializing...');
+    const rootElement = document.getElementById("cookie-banner-root");
+    if (!rootElement) {
+      console.warn("[CookieBanner] Root element 'cookie-banner-root' not found in DOM");
+      return;
+    }
+    console.log('[CookieBanner] Root element found:', rootElement);
+    
+    if (typeof ReactDOM === 'undefined') {
+      console.warn("[CookieBanner] ReactDOM is not available");
+      return;
+    }
+    
+    const useStrictMode = true;
+    
+    if (typeof ReactDOM.createRoot !== 'undefined') {
+      console.log('[CookieBanner] Using ReactDOM.createRoot');
+      const root = ReactDOM.createRoot(rootElement);
+      const content = <CookieBanner />;
+      root.render(useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content);
+      console.log('[CookieBanner] Component rendered successfully');
+    } else if (typeof ReactDOM.render !== 'undefined') {
+      console.log('[CookieBanner] Using ReactDOM.render (fallback)');
+      const content = <CookieBanner />;
+      ReactDOM.render(
+        useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content,
+        rootElement
+      );
+      console.log('[CookieBanner] Component rendered successfully (fallback)');
+    } else {
+      console.warn("[CookieBanner] Neither ReactDOM.createRoot nor ReactDOM.render is available");
+    }
+  } catch (error) {
+    console.error("[CookieBanner] Error initializing:", error);
+    console.error("[CookieBanner] Error stack:", error instanceof Error ? error.stack : 'No stack trace');
+  }
+}
+
 // Execute when DOM is ready - Simplified without timing hacks
 function initializeAllComponents() {
   try {
     console.log('[BuildWise] Initializing React components...');
+    
+    // Initialize cookie consent system first
+    console.log('[CookieConsent] Initializing...');
+    initCookieConsent();
+    console.log('[CookieConsent] Initialized');
+    
+    // Initialize Cookie Banner early (before other components)
+    initCookieBanner();
     
     // Initialize FloatingNav first - critical for navigation
     console.log('[FloatingNav] Initializing...');
