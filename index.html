@@ -468,6 +468,9 @@
         </div>
     </div>
     
+    <!-- Snow Effect -->
+    <div id="snow-effect-root"></div>
+    
     <!-- Floating Navigation -->
     <nav id="floating-nav-root" role="navigation" aria-label="Hauptnavigation"></nav>
 
@@ -1146,6 +1149,115 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js?v=9"></script>
     <script src="dist/timeline.bundle.js?v=3"></script>
+    
+    <!-- Snow Effect Script -->
+    <script>
+        (function() {
+            // Erstelle Keyframes direkt im Script (garantiert verfügbar)
+            function ensureKeyframes() {
+                // Prüfe ob Keyframes bereits existieren
+                let keyframeExists = false;
+                try {
+                    for (let i = 0; i < document.styleSheets.length; i++) {
+                        const sheet = document.styleSheets[i];
+                        try {
+                            const rules = sheet.cssRules || sheet.rules;
+                            for (let j = 0; j < rules.length; j++) {
+                                if (rules[j].type === CSSRule.KEYFRAMES_RULE && rules[j].name === 'snowfall') {
+                                    keyframeExists = true;
+                                    break;
+                                }
+                            }
+                        } catch (e) {
+                            // Cross-origin, ignoriere
+                        }
+                    }
+                } catch (e) {
+                    console.warn('[SnowEffect] Could not check for existing keyframes:', e);
+                }
+                
+                if (!keyframeExists) {
+                    const style = document.createElement('style');
+                    style.id = 'snow-effect-keyframes';
+                    // Vereinfachte Animation ohne calc() - besser kompatibel
+                    style.textContent = '@keyframes snowfall { 0% { transform: translateY(-10px) translateX(0px); opacity: 0; } 5% { opacity: 1; } 50% { transform: translateY(50vh) translateX(30px); } 95% { opacity: 1; } 100% { transform: translateY(100vh) translateX(60px); opacity: 0; } }';
+                    document.head.appendChild(style);
+                }
+            }
+            
+            function initSnowEffect() {
+                // Nur im Dezember anzeigen
+                const currentMonth = new Date().getMonth() + 1; // getMonth() gibt 0-11 zurück, daher +1
+                if (currentMonth !== 12) {
+                    return; // Nicht Dezember, kein Schnee
+                }
+                
+                // Stelle sicher, dass Keyframes existieren
+                ensureKeyframes();
+                
+                // Prüfe ob Container bereits existiert
+                let container = document.querySelector('.snow-container');
+                if (!container) {
+                    // Erstelle Container mit inline styles
+                    container = document.createElement('div');
+                    container.className = 'snow-container';
+                    container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;';
+                    document.body.appendChild(container);
+                }
+                
+                // Generiere Schneeflocken
+                const snowflakeCount = 50;
+                const snowflakes = [];
+                
+                for (let i = 0; i < snowflakeCount; i++) {
+                    const flake = document.createElement('div');
+                    flake.className = 'snowflake';
+                    
+                    // Zufällige Eigenschaften
+                    const left = Math.random() * 100;
+                    const size = 6 + Math.random() * 8; // 6-14px für bessere Sichtbarkeit
+                    const opacity = 0.3 + Math.random() * 0.3; // 0.3-0.6 für dezentes Aussehen
+                    const duration = 4 + Math.random() * 6; // 4-10 Sekunden
+                    const delay = Math.random() * 3; // 0-3 Sekunden
+                    
+                    // Setze Styles direkt inline (sicherer als CSS-Klasse)
+                    // WICHTIG: !important für animation-duration um prefers-reduced-motion zu umgehen
+                    flake.style.cssText = 
+                        'position: fixed; ' +
+                        'top: -10px; ' +
+                        'left: ' + left + '%; ' +
+                        'width: ' + size + 'px; ' +
+                        'height: ' + size + 'px; ' +
+                        'background: white; ' +
+                        'border-radius: 50%; ' +
+                        'pointer-events: none; ' +
+                        'z-index: 9999; ' +
+                        'opacity: ' + opacity + '; ' +
+                        'box-shadow: 0 0 6px rgba(255, 255, 255, 1), 0 0 12px rgba(255, 255, 255, 0.6); ' +
+                        'animation: snowfall ' + duration + 's linear infinite !important; ' +
+                        'animation-duration: ' + duration + 's !important; ' +
+                        'animation-delay: ' + delay + 's !important; ' +
+                        'animation-play-state: running !important; ' +
+                        'will-change: transform, opacity;';
+                    
+                    container.appendChild(flake);
+                    snowflakes.push(flake);
+                }
+                
+                return snowflakes;
+            }
+            
+            // Initialisiere beim DOMContentLoaded
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(initSnowEffect, 100);
+                });
+            } else {
+                // DOM ist bereits ready
+                setTimeout(initSnowEffect, 100);
+            }
+        })();
+    </script>
     
     <!-- Promotional Popup Script (Mobile only) -->
     <script>

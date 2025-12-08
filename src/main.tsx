@@ -7,6 +7,7 @@ import PricingSection5 from "./components/ui/pricing-section";
 import { FloatingNav } from "./components/ui/floating-nav";
 import FAQs from "./components/ui/faqs";
 import InteractiveSelector from "./components/ui/interactive-selector";
+import { SnowEffect } from "./components/ui/snow-effect";
 import { Home, Users, Clock, DollarSign, Info, HelpCircle, Sparkles } from "lucide-react";
 
 function initTimeline() {
@@ -240,6 +241,46 @@ function initFAQs() {
   }
 }
 
+function initSnowEffect() {
+  try {
+    console.log('[SnowEffect] Initializing...');
+    const rootElement = document.getElementById("snow-effect-root");
+    if (!rootElement) {
+      console.warn("[SnowEffect] Root element 'snow-effect-root' not found in DOM");
+      return;
+    }
+    console.log('[SnowEffect] Root element found:', rootElement);
+    
+    if (typeof ReactDOM === 'undefined') {
+      console.warn("[SnowEffect] ReactDOM is not available");
+      return;
+    }
+    
+    const useStrictMode = true;
+    
+    if (typeof ReactDOM.createRoot !== 'undefined') {
+      console.log('[SnowEffect] Using ReactDOM.createRoot');
+      const root = ReactDOM.createRoot(rootElement);
+      const content = <SnowEffect />;
+      root.render(useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content);
+      console.log('[SnowEffect] Component rendered successfully');
+    } else if (typeof ReactDOM.render !== 'undefined') {
+      console.log('[SnowEffect] Using ReactDOM.render (fallback)');
+      const content = <SnowEffect />;
+      ReactDOM.render(
+        useStrictMode ? <React.StrictMode>{content}</React.StrictMode> : content,
+        rootElement
+      );
+      console.log('[SnowEffect] Component rendered successfully (fallback)');
+    } else {
+      console.warn("[SnowEffect] Neither ReactDOM.createRoot nor ReactDOM.render is available");
+    }
+  } catch (error) {
+    console.error("[SnowEffect] Error initializing:", error);
+    console.error("[SnowEffect] Error stack:", error instanceof Error ? error.stack : 'No stack trace');
+  }
+}
+
 // Execute when DOM is ready - Simplified without timing hacks
 function initializeAllComponents() {
   try {
@@ -257,6 +298,7 @@ function initializeAllComponents() {
     initInteractiveSelector();
     initPricingSection();
     initFAQs();
+    initSnowEffect();
     
     console.log('[BuildWise] All components initialized');
   } catch (error) {
