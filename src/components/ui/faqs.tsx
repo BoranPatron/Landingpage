@@ -125,7 +125,7 @@ export default function FAQs() {
   ];
 
   return <FAQSection 
-    title="Häufige Bedenken" 
+    title="Häufige Fragen" 
     subtitle="FAQ"
     description="Ihre Fragen, ehrlich beantwortet"
     faqsLeft={faqsLeft} 
